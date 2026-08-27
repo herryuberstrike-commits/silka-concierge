@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="ui-title">荃灣絲麗酒店 - 禮賓部</title>
     
-    <!-- 引入 Firebase SDK (Compat 版本，最適合直接嵌入 HTML 使用) -->
+    <!-- 引入 Firebase SDK (Compat 版本) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
@@ -27,14 +27,12 @@
         .back-btn:hover { background: #5a6268; }
         .notice-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 15px; border-radius: 4px; font-size: 13px; line-height: 1.5; }
         
-        /* 專車收費表格樣式 */
         .price-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e9ecef; }
         .price-table th, .price-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; }
         .price-table th { background: #007bff; color: white; font-weight: bold; }
         .price-table tr:last-child td { border-bottom: none; }
         .price-table tr:nth-child(even) { background: #f8f9fa; }
         
-        /* 即時行車狀況大卡片樣式 */
         .live-status-card { background: linear-gradient(135deg, #e3f2fd, #f0f4f8); border: 1.5px solid #90caf9; padding: 12px 15px; border-radius: 10px; margin-bottom: 15px; text-align: center; box-shadow: 0 2px 8px rgba(0,123,255,0.08); }
         .live-status-title { font-size: 12px; color: #1565c0; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
         .live-status-text { font-size: 15px; font-weight: bold; color: #0d47a1; }
@@ -72,7 +70,6 @@
     <div class="container" id="mainContainer" style="display: none;">
         <h2 id="ui-title" style="text-align: center; color: #2c3e50; margin-top: 0; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">荃灣絲麗酒店 - 禮賓部</h2>
 
-        <!-- 主選單卡片網格 (共8個方塊) -->
         <div class="menu-grid" id="mainMenu">
             <div class="menu-card" onclick="showSection('busSection')">
                 <div class="icon">🚌</div>
@@ -122,7 +119,6 @@
             <h3 id="ui-bus-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">穿梭巴士時間表與即時狀態</h3>
             <p id="ui-bus-sub" style="font-size: 12px; color: #666; margin-bottom: 15px;">酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站</p>
             
-            <!-- 即時行車狀況顯示頂部橫幅 -->
             <div class="live-status-card">
                 <div class="live-status-title" id="ui-live-status-label">📍 即時行車狀況</div>
                 <div class="live-status-text" id="liveStatusText">載入中...</div>
@@ -140,150 +136,65 @@
 
             <div id="busListContainer"></div>
         </div>
-        <!-- 免費穿梭巴士上車地點 -->
+
         <div id="stationSection" class="section-content">
             <button class="back-btn" id="ui-back5" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-station-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">免費穿梭巴士上車地點</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增各站上下車位置與地圖指引。</p>
-            </div>
+            <div class="placeholder-content"><p>🚧 內容準備中，稍后將在此處新增各站上下車位置與地圖指引。</p></div>
         </div>
-        <!-- 酒店300米周邊實用指南頁面 -->
+
         <div id="mapSection" class="section-content">
             <button class="back-btn" id="ui-back2" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-map-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店300米周邊實用指南</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增周邊實用指南。</p>
-            </div>
+            <div class="placeholder-content"><p>🚧 內容準備中，稍后將在此處新增周邊實用指南。</p></div>
         </div>
-        <!-- 香港旅遊攻略 (主選單) -->
+
         <div id="guideSection" class="section-content">
             <button class="back-btn" id="ui-back6" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-guide-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略</h3>
-            
             <div class="menu-grid">
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🍜</div>
-                    <h3 id="ui-guide-1-title">美食</h3>
-                    <p id="ui-guide-1-desc">地道小吃與人氣餐廳</p>
-                </div>
-                <!-- 點擊「購物」進入專屬 4 個購物方塊頁面 -->
-                <div class="menu-card" onclick="showSection('guideShoppingSection')">
-                    <div class="icon">🛍️</div>
-                    <h3 id="ui-guide-2-title">購物</h3>
-                    <p id="ui-guide-2-desc">大型商場與熱門市集</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guidePlaySection')">
-                    <div class="icon">🎢</div>
-                    <h3 id="ui-guide-3-title">遊玩</h3>
-                    <p id="ui-guide-3-desc">主題樂園與娛樂體驗</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideSightseeingSection')">
-                    <div class="icon">📸</div>
-                    <h3 id="ui-guide-4-title">觀光</h3>
-                    <p id="ui-guide-4-desc">著名地標與打卡勝地</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🗺️</div>
-                    <h3 id="ui-guide-5-title">推薦行程1</h3>
-                    <p id="ui-guide-5-desc">經典一日遊路線</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">⭐</div>
-                    <h3 id="ui-guide-6-title">推薦行程2</h3>
-                    <p id="ui-guide-6-desc">深度文化探索之旅</p>
-                </div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🍜</div><h3 id="ui-guide-1-title">美食</h3><p id="ui-guide-1-desc">地道小吃與人氣餐廳</p></div>
+                <div class="menu-card" onclick="showSection('guideShoppingSection')"><div class="icon">🛍️</div><h3 id="ui-guide-2-title">購物</h3><p id="ui-guide-2-desc">大型商場與熱門市集</p></div>
+                <div class="menu-card" onclick="showSection('guidePlaySection')"><div class="icon">🎢</div><h3 id="ui-guide-3-title">遊玩</h3><p id="ui-guide-3-desc">主題樂園與娛樂體驗</p></div>
+                <div class="menu-card" onclick="showSection('guideSightseeingSection')"><div class="icon">📸</div><h3 id="ui-guide-4-title">觀光</h3><p id="ui-guide-4-desc">著名地標與打卡勝地</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🗺️</div><h3 id="ui-guide-5-title">推薦行程1</h3><p id="ui-guide-5-desc">經典一日遊路線</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">⭐</div><h3 id="ui-guide-6-title">推薦行程2</h3><p id="ui-guide-6-desc">深度文化探索之旅</p></div>
             </div>
         </div>
 
-        <!-- 香港旅遊攻略 -> 「購物」子頁面 (包含你指定的 4 個方塊) -->
         <div id="guideShoppingSection" class="section-content">
             <button class="back-btn" id="ui-back-guideshop" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
             <h3 id="ui-guideshop-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物</h3>
-            
             <div class="menu-grid">
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🏬</div>
-                    <h3 id="ui-gshop-1-title">海港城</h3>
-                    <p id="ui-gshop-1-desc">維港畔超大型購物商城與國際名品</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🛍️</div>
-                    <h3 id="ui-gshop-2-title">銅鑼灣購物商圈</h3>
-                    <p id="ui-gshop-2-desc">潮流百貨、SOGO崇光與不夜天購物天堂</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🎨</div>
-                    <h3 id="ui-gshop-3-title">中環蘇豪區與 PMQ元創方</h3>
-                    <p id="ui-gshop-3-desc">文創小店、獨立設計與特色精品</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">👟</div>
-                    <h3 id="ui-gshop-4-title">女人街與波鞋街</h3>
-                    <p id="ui-gshop-4-desc">地道市集、潮流球鞋與港式市井風情</p>
-                </div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🏬</div><h3 id="ui-gshop-1-title">海港城</h3><p id="ui-gshop-1-desc">維港畔超大型購物商城與國際名品</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🛍️</div><h3 id="ui-gshop-2-title">銅鑼灣購物商圈</h3><p id="ui-gshop-2-desc">潮流百貨、SOGO崇光與不夜天購物天堂</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🎨</div><h3 id="ui-gshop-3-title">中環蘇豪區與 PMQ元創方</h3><p id="ui-gshop-3-desc">文創小店、獨立設計與特色精品</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">👟</div><h3 id="ui-gshop-4-title">女人街與波鞋街</h3><p id="ui-gshop-4-desc">地道市集、潮流球鞋與港式市井風情</p></div>
             </div>
         </div>
 
-        <!-- 香港旅遊攻略 -> 「遊玩」子頁面 -->
         <div id="guidePlaySection" class="section-content">
             <button class="back-btn" id="ui-back-guideplay" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
             <h3 id="ui-guideplay-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩</h3>
-            
             <div class="menu-grid">
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🏰</div>
-                    <h3 id="ui-gp-1-title">香港迪士尼樂園</h3>
-                    <p id="ui-gp-1-desc">夢幻童話與精彩煙花匯演</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🐼</div>
-                    <h3 id="ui-gp-2-title">香港海洋公園</h3>
-                    <p id="ui-gp-2-desc">刺激機動遊戲與珍稀極地動物</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🎡</div>
-                    <h3 id="ui-gp-3-title">香港摩天輪</h3>
-                    <p id="ui-gp-3-desc">維多利亞港畔浪漫高空景致</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🚢</div>
-                    <h3 id="ui-gp-4-title">香港挪亞方舟</h3>
-                    <p id="ui-gp-4-desc">馬灣海峽自然博覽與合家歡景點</p>
-                </div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🏰</div><h3 id="ui-gp-1-title">香港迪士尼樂園</h3><p id="ui-gp-1-desc">夢幻童話與精彩煙花匯演</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🐼</div><h3 id="ui-gp-2-title">香港海洋公園</h3><p id="ui-gp-2-desc">刺激機動遊戲與珍稀極地動物</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🎡</div><h3 id="ui-gp-3-title">香港摩天輪</h3><p id="ui-gp-3-desc">維多利亞港畔浪漫高空景致</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🚢</div><h3 id="ui-gp-4-title">香港挪亞方舟</h3><p id="ui-gp-4-desc">馬灣海峽自然博覽與合家歡景點</p></div>
             </div>
         </div>
 
-        <!-- 香港旅遊攻略 -> 「觀光」子頁面 -->
         <div id="guideSightseeingSection" class="section-content">
             <button class="back-btn" id="ui-back-guidesight" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
             <h3 id="ui-guidesight-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光</h3>
-            
             <div class="menu-grid">
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🌆</div>
-                    <h3 id="ui-gs-1-title">維多利亞港與星光大道</h3>
-                    <p id="ui-gs-1-desc">世界級天際線與璀璨燈光秀</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">⛰️</div>
-                    <h3 id="ui-gs-2-title">太平山頂與凌霄閣摩天台</h3>
-                    <p id="ui-gs-2-desc">鳥瞰維港兩岸壯麗全景</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🎨</div>
-                    <h3 id="ui-gs-3-title">西九文化區（M+ 與香港故宮）</h3>
-                    <p id="ui-gs-3-desc">當代視覺文化與中華文物殿堂</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🏛️</div>
-                    <h3 id="ui-gs-4-title">大館與中環古蹟群</h3>
-                    <p id="ui-gs-4-desc">活化歷史建築與藝文消閒地標</p>
-                </div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🌆</div><h3 id="ui-gs-1-title">維多利亞港與星光大道</h3><p id="ui-gs-1-desc">世界級天際線與璀璨燈光秀</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">⛰️</div><h3 id="ui-gs-2-title">太平山頂與凌霄閣摩天台</h3><p id="ui-gs-2-desc">鳥瞰維港兩岸壯麗全景</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🎨</div><h3 id="ui-gs-3-title">西九文化區（M+ 與香港故宮）</h3><p id="ui-gs-3-desc">當代視覺文化與中華文物殿堂</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🏛️</div><h3 id="ui-gs-4-title">大館與中環古蹟群</h3><p id="ui-gs-4-desc">活化歷史建築與藝文消閒地標</p></div>
             </div>
         </div>
 
-        <!-- 行李寄存頁面 -->
         <div id="luggageSection" class="section-content">
             <button class="back-btn" id="ui-back3" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-lug-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">行李寄存服務</h3>
@@ -301,154 +212,86 @@
             </div>
         </div>
 
-        <!-- 出境攻略頁面 -->
         <div id="departureSection" class="section-content">
             <button class="back-btn" id="ui-back7" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-departure-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">出境攻略</h3>
             <div class="menu-grid">
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🚆</div>
-                    <h3 id="ui-dep-1-title">羅湖口岸</h3>
-                    <p id="ui-dep-1-desc">早上 06:30 至午夜 00:00</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🚇</div>
-                    <h3 id="ui-dep-2-title">落馬洲/福田口岸</h3>
-                    <p id="ui-dep-2-desc">上午 06:30 至晚上 10:30</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">✈️</div>
-                    <h3 id="ui-dep-3-title">香港國際機場</h3>
-                    <p id="ui-dep-3-desc">24小時</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🚄</div>
-                    <h3 id="ui-dep-4-title">香港西九龍站</h3>
-                    <p id="ui-dep-4-desc">上午 06:30 至晚上 11:30</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🚌</div>
-                    <h3 id="ui-dep-5-title">深圳灣口岸</h3>
-                    <p id="ui-dep-5-desc">上午 06:30 至午夜 12:00</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🌉</div>
-                    <h3 id="ui-dep-6-title">香園圍/蓮塘口岸</h3>
-                    <p id="ui-dep-6-desc">上午 07:00 至晚上 10:00</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">🛣️</div>
-                    <h3 id="ui-dep-7-title">港珠澳大橋</h3>
-                    <p id="ui-dep-7-desc">24小時</p>
-                </div>
-                <div class="menu-card" style="cursor: default;">
-                    <div class="icon">⛴️</div>
-                    <h3 id="ui-dep-8-title">港澳客輪碼頭</h3>
-                    <p id="ui-dep-8-desc">上午 06:30 至午夜 12:00</p>
-                </div>
+                <div class="menu-card" onclick="showSection('dep1Section')"><div class="icon">🚆</div><h3 id="ui-dep-1-title">羅湖口岸</h3><p id="ui-dep-1-desc">早上 06:30 至午夜 00:00</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🚇</div><h3 id="ui-dep-2-title">落馬洲/福田口岸</h3><p id="ui-dep-2-desc">上午 06:30 至晚上 10:30</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">✈️</div><h3 id="ui-dep-3-title">香港國際機場</h3><p id="ui-dep-3-desc">24小時</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🚄</div><h3 id="ui-dep-4-title">香港西九龍站</h3><p id="ui-dep-4-desc">上午 06:30 至晚上 11:30</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🚌</div><h3 id="ui-dep-5-title">深圳灣口岸</h3><p id="ui-dep-5-desc">上午 06:30 至午夜 12:00</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🌉</div><h3 id="ui-dep-6-title">香園圍/蓮塘口岸</h3><p id="ui-dep-6-desc">上午 07:00 至晚上 10:00</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">🛣️</div><h3 id="ui-dep-7-title">港珠澳大橋</h3><p id="ui-dep-7-desc">24小時</p></div>
+                <div class="menu-card" style="cursor: default;"><div class="icon">⛴️</div><h3 id="ui-dep-8-title">港澳客輪碼頭</h3><p id="ui-dep-8-desc">上午 06:30 至午夜 12:00</p></div>
             </div>
         </div>
-        <!-- 酒店專車服務頁面 -->
+
+        <!-- 出境攻略 -> 1. 羅湖口岸 子頁面 -->
+        <div id="dep1Section" class="section-content">
+            <button class="back-btn" id="ui-back-dep1" onclick="showSection('departureSection')">⬅ 返回出境攻略</button>
+            <h3 id="ui-dep1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">羅湖口岸</h3>
+            <div id="ui-dep1-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                <strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>
+                前往羅湖口岸主要有以下兩種便捷方式：<br><br>
+                <strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>
+                • <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達羅湖站。<br>
+                • <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br>
+                <strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>
+                • <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫 直達羅湖站。<br>
+                • <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站是「羅湖」還是「落馬洲」，切勿上錯車！<br><br>
+                <strong>二、 深圳目的地與過關優選</strong><br>
+                如果你計劃前往以下深圳地點，選擇經羅湖口岸過關絕對是首選（優選）：<br><br>
+                <strong>深圳火車站（羅湖火車站）：</strong><br>
+                • <strong>交通優勢</strong>：完美對接！過關後一出大樓即達深圳火車站，步行只需約 1 分鐘。<br><br>
+                <strong>東門老街：</strong><br>
+                • <strong>交通優勢</strong>：位置極近。過關後轉乘深圳地鐵 1 號線（羅寶線），由「羅湖站」出發只需坐 1 個站（到老街站），車程僅約 2-3 分鐘；亦可選擇步行約 10-15 分鐘直達。
+            </div>
+        </div>
+
         <div id="carSection" class="section-content">
             <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-car-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車服務</h3>
             <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('carPriceSection')">
-                    <div class="icon">💰</div>
-                    <h3 id="ui-car-card1-title">服務收費表</h3>
-                    <p id="ui-car-card1-desc">各路線點對點接送與包車收費</p>
-                </div>
-                <div class="menu-card" onclick="showSection('carTermsSection')">
-                    <div class="icon">📜</div>
-                    <h3 id="ui-car-card2-title">使用條款及細則</h3>
-                    <p id="ui-car-card2-desc">預約、取消與乘車須知</p>
-                </div>
+                <div class="menu-card" onclick="showSection('carPriceSection')"><div class="icon">💰</div><h3 id="ui-car-card1-title">服務收費表</h3><p id="ui-car-card1-desc">各路線點對點接送與包車收費</p></div>
+                <div class="menu-card" onclick="showSection('carTermsSection')"><div class="icon">📜</div><h3 id="ui-car-card2-title">使用條款及細則</h3><p id="ui-car-card2-desc">預約、取消與乘車須知</p></div>
             </div>
             <div id="ui-car-notice-box" style="margin-top: 20px; font-size: 13px; color: #555; background: #e8f4fd; padding: 12px; border-radius: 8px; border-left: 4px solid #007bff; line-height: 1.5;">
                 若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。
             </div>
         </div>
 
-        <!-- 酒店專車服務 - 服務收費表子頁面 -->
         <div id="carPriceSection" class="section-content">
             <button class="back-btn" id="ui-back-carprice" onclick="showSection('carSection')">⬅ 返回專車服務</button>
             <h3 id="ui-carprice-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 服務收費表</h3>
-            
             <table class="price-table">
-                <thead>
-                    <tr>
-                        <th id="ui-th-dest">目的地 / 服務項目</th>
-                        <th id="ui-th-price">收費 (HKD)</th>
-                    </tr>
-                </thead>
+                <thead><tr><th id="ui-th-dest">目的地 / 服務項目</th><th id="ui-th-price">收費 (HKD)</th></tr></thead>
                 <tbody>
-                    <tr>
-                        <td id="ui-p-mongkok">由酒店出發到旺角</td>
-                        <td>$300</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-chinachem">由酒店出發到中港城 / 高鐵站</td>
-                        <td>$400</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-airport">由酒店出發到機場、迪士尼、港珠澳大橋</td>
-                        <td>$500</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-oceanpark">由酒店出發到海洋公園</td>
-                        <td>$750</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-surcharge">早上 8 點前 / 晚上 8 點後 附加費</td>
-                        <td>$200</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-hourly">租用服務 (每小時，3小時起租)</td>
-                        <td>$500 / 小時</td>
-                    </tr>
+                    <tr><td id="ui-p-mongkok">由酒店出發到旺角</td><td>$300</td></tr>
+                    <tr><td id="ui-p-chinachem">由酒店出發到中港城 / 高鐵站</td><td>$400</td></tr>
+                    <tr><td id="ui-p-airport">由酒店出發到機場、迪士尼、港珠澳大橋</td><td>$500</td></tr>
+                    <tr><td id="ui-p-oceanpark">由酒店出發到海洋公園</td><td>$750</td></tr>
+                    <tr><td id="ui-p-surcharge">早上 8 點前 / 晚上 8 點後 附加費</td><td>$200</td></tr>
+                    <tr><td id="ui-p-hourly">租用服務 (每小時，3小時起租)</td><td>$500 / 小時</td></tr>
                 </tbody>
             </table>
-            
-            <div id="ui-carprice-note" style="font-size: 12px; color: #666; line-height: 1.5; background: #f8f9fa; padding: 10px; border-radius: 6px;">
-                💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。
-            </div>
+            <div id="ui-carprice-note" style="font-size: 12px; color: #666; line-height: 1.5; background: #f8f9fa; padding: 10px; border-radius: 6px;">💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。</div>
         </div>
 
-        <!-- 酒店專車服務 - 使用條款及細則子頁面 -->
         <div id="carTermsSection" class="section-content">
             <button class="back-btn" id="ui-back-carterms" onclick="showSection('carSection')">⬅ 返回專車服務</button>
             <h3 id="ui-carterms-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 使用條款及細則</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增專車服務使用條款及細則。</p>
-            </div>
+            <div class="placeholder-content"><p>🚧 內容準備中，稍后將在此處新增專車服務使用條款及細則。</p></div>
         </div>
 
-        <!-- 酒店設施主頁面 -->
         <div id="facilitySection" class="section-content">
             <button class="back-btn" id="ui-back9" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-facility-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店設施</h3>
-            
             <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('fac1Section')">
-                    <div class="icon">🍽️</div>
-                    <h3 id="ui-fac-1-title">金林閣餐廳</h3>
-                    <p id="ui-fac-1-desc">(2樓)</p>
-                </div>
-                <div class="menu-card" onclick="showSection('fac2Section')">
-                    <div class="icon">🌿</div>
-                    <h3 id="ui-fac-2-title">空中花園</h3>
-                    <p id="ui-fac-2-desc">(5樓)</p>
-                </div>
-                <div class="menu-card" onclick="showSection('fac3Section')">
-                    <div class="icon">🏋️</div>
-                    <h3 id="ui-fac-3-title">健身室</h3>
-                    <p id="ui-fac-3-desc">(5樓)</p>
-                </div>
-                <div class="menu-card" onclick="showSection('fac4Section')">
-                    <div class="icon">🅿️</div>
-                    <h3 id="ui-fac-4-title">停車場</h3>
-                    <p id="ui-fac-4-desc">(地面)</p>
-                </div>
+                <div class="menu-card" onclick="showSection('fac1Section')"><div class="icon">🍽️</div><h3 id="ui-fac-1-title">金林閣餐廳</h3><p id="ui-fac-1-desc">(2樓)</p></div>
+                <div class="menu-card" onclick="showSection('fac2Section')"><div class="icon">🌿</div><h3 id="ui-fac-2-title">空中花園</h3><p id="ui-fac-2-desc">(5樓)</p></div>
+                <div class="menu-card" onclick="showSection('fac3Section')"><div class="icon">🏋️</div><h3 id="ui-fac-3-title">健身室</h3><p id="ui-fac-3-desc">(5樓)</p></div>
+                <div class="menu-card" onclick="showSection('fac4Section')"><div class="icon">🅿️</div><h3 id="ui-fac-4-title">停車場</h3><p id="ui-fac-4-desc">(地面)</p></div>
             </div>
         </div>
 
@@ -456,8 +299,17 @@
         <div id="fac1Section" class="section-content">
             <button class="back-btn" id="ui-back-fac1" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
             <h3 id="ui-fac1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">金林閣餐廳 (2樓)</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增金林閣餐廳詳情。</p>
+            <div id="ui-fac1-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                🍽️ <strong>金林閣餐廳 (2/F)</strong><br><br>
+                <strong>【晨光美點 · 自助早餐】</strong><br>
+                • <strong>時間</strong>：每日 07:30 - 10:00<br>
+                • <strong>價目</strong>：HK$77 / 位<br>
+                • <strong>內容</strong>：提供豐富的中西式自助早餐，為您開啟充滿活力的一天。<br><br>
+                <strong>【周末限定 · 懷舊音樂自助餐】</strong><br>
+                • <strong>時間</strong>：每逢星期六下午及晚上<br>
+                • <strong>詳情</strong>：伴隨經典金曲，享受悠閒時光，詳情歡迎親臨或致電餐廳查詢。<br><br>
+                <strong>【團體預訂服務】</strong><br>
+                • 餐廳誠摯接受各類團體預訂自助午餐及晚餐，為您的聚會、慶典或商務活動提供專屬餐飲安排。
             </div>
         </div>
 
@@ -465,8 +317,12 @@
         <div id="fac2Section" class="section-content">
             <button class="back-btn" id="ui-back-fac2" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
             <h3 id="ui-fac2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">空中花園 (5樓)</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增空中花園詳情。</p>
+            <div id="ui-fac2-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                🌿 <strong>空中花園 (5/F)</strong><br><br>
+                <strong>【開放時間】</strong><br>
+                • <strong>時間</strong>：每日 08:00 - 22:00，歡迎蒞臨放鬆身心，享受片刻悠閒。<br><br>
+                <strong>【吸煙區提示】</strong><br>
+                • 為保障所有住客的健康與舒適，花園內僅限露天區域提供吸煙區，敬請配合及留意。
             </div>
         </div>
 
@@ -474,8 +330,14 @@
         <div id="fac3Section" class="section-content">
             <button class="back-btn" id="ui-back-fac3" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
             <h3 id="ui-fac3-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">健身室 (5樓)</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增健身室詳情。</p>
+            <div id="ui-fac3-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                💪 <strong>健身室 (5/F)</strong><br><br>
+                <strong>【全天候開放】</strong><br>
+                • <strong>時間</strong>：24 小時無休，供住客免費使用，隨時照顧您的運動節奏。<br><br>
+                <strong>【齊備健身器材】</strong><br>
+                • 備有多款專業健身及帶氧器材，滿足您的日常鍛鍊需求。<br><br>
+                <strong>【夜間寧馨提示】</strong><br>
+                • 為確保所有住客享有舒適寧靜的休息環境，請於晚上 11 時至翌日早上 8 時期間降低音量，感謝您的合作與體諒。
             </div>
         </div>
 
@@ -483,853 +345,920 @@
         <div id="fac4Section" class="section-content">
             <button class="back-btn" id="ui-back-fac4" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
             <h3 id="ui-fac4-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">停車場 (地面)</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增停車場詳情。</p>
+            <div id="ui-fac4-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                🚗 <strong>酒店停車場 (G/F)</strong><br><br>
+                <strong>【時租泊車服務】</strong><br>
+                • <strong>收費</strong>：每小時 HK$40<br>
+                • <strong>車位</strong>：設有 2 個時租車位，方便快捷。<br><br>
+                <strong>【官網限定優惠】</strong><br>
+                • 即刻透過酒店官方網站預訂指定住宿計劃，即可尊享「免費夜泊套餐優惠」，讓您的駕駛之旅更輕鬆、更超值！
             </div>
         </div>
 
     </div>
-    <script>
-        // ==================== Firebase 配置 ====================
-        const firebaseConfig = {
-            databaseURL: "https://silkatw-a5cf1-default-rtdb.asia-southeast1.firebasedatabase.app/"
+<script>
+    // ==================== Firebase 配置 ====================
+    const firebaseConfig = {
+        databaseURL: "https://silkatw-a5cf1-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    let manualOverrides = {};
+
+    db.ref('busManualOverrides').on('value', (snapshot) => {
+        manualOverrides = snapshot.val() || {};
+        renderBusSchedule();
+    });
+
+    let currentLang = 'zh-HK';
+
+    const t = {
+        'zh-HK': {
+            title: "荃灣絲麗酒店 - 禮賓部",
+            c1t: "🚌 免費穿梭巴士", c1d: "時間表與即時狀態",
+            c5t: "🚏 免費穿梭巴士上車地點", c5d: "站點詳細地圖與指引",
+            c2t: "🗺️ 酒店300米周邊實用指南", c2d: "地鐵站、美食與便利店",
+            c6t: "📖 香港旅遊攻略", c6d: "熱門景點與行程推介",
+            c3t: "🧳 行李寄存", c3d: "寄存服務條款與收費",
+            c7t: "✈️ 出境攻略", c7d: "離港交通與機場快線資訊",
+            c8t: "🚐 酒店專車服務", c8d: "點對點接送與包車預約",
+            c9t: "🏨 酒店設施", c9d: "健身房、餐廳與其他設施",
+            guide1Name: "美食", guide1Desc: "地道小吃與人氣餐廳",
+            guide2Name: "購物", guide2Desc: "大型商場與熱門市集",
+            guide3Name: "遊玩", guide3Desc: "主題樂園與娛樂體驗",
+            guide4Name: "觀光", guide4Desc: "著名地標與打卡勝地",
+            guide5Name: "推薦行程1", guide5Desc: "經典一日遊路線",
+            guide6Name: "推薦行程2", guide6Desc: "深度文化探索之旅",
+            gshop1Name: "海港城", gshop1Desc: "維港畔超大型購物商城與國際名品",
+            gshop2Name: "銅鑼灣購物商圈", gshop2Desc: "潮流百貨、SOGO崇光與不夜天購物天堂",
+            gshop3Name: "中環蘇豪區與 PMQ元創方", gshop3Desc: "文創小店、獨立設計與特色精品",
+            gshop4Name: "女人街與波鞋街", gshop4Desc: "地道市集、潮流球鞋與港式市井風情",
+            gp1Name: "香港迪士尼樂園", gp1Desc: "夢幻童話與精彩煙花匯演",
+            gp2Name: "香港海洋公園", gp2Desc: "刺激機動遊戲與珍稀極地動物",
+            gp3Name: "香港摩天輪", gp3Desc: "維多利亞港畔浪漫高空景致",
+            gp4Name: "香港挪亞方舟", gp4Desc: "馬灣海峽自然博覽與合家歡景點",
+            gs1Name: "維多利亞港與星光大道", gs1Desc: "世界級天際線與璀璨燈光秀",
+            gs2Name: "太平山頂與凌霄閣摩天台", gs2Desc: "鳥瞰維港兩岸壯麗全景",
+            gs3Name: "西九文化區（M+ 與香港故宮）", gs3Desc: "當代視覺文化與中華文物殿堂",
+            gs4Name: "大館與中環古蹟群", gs4Desc: "活化歷史建築與藝文消閒地標",
+            fac1Name: "金林閣餐廳", fac1Desc: "(2樓)",
+            fac2Name: "空中花園", fac2Desc: "(5樓)",
+            fac3Name: "健身室", fac3Desc: "(5樓)",
+            fac4Name: "停車場", fac4Desc: "(地面)",
+            fac1H: "金林閣餐廳 (2樓)",
+            fac1Detail: "🍽️ <strong>金林閣餐廳 (2/F)</strong><br><br><strong>【晨光美點 · 自助早餐】</strong><br>• <strong>時間</strong>：每日 07:30 - 10:00<br>• <strong>價目</strong>：HK$77 / 位<br>• <strong>內容</strong>：提供豐富的中西式自助早餐，為您開啟充滿活力的一天。<br><br><strong>【周末限定 · 懷舊音樂自助餐】</strong><br>• <strong>時間</strong>：每逢星期六下午及晚上<br>• <strong>詳情</strong>：伴隨經典金曲，享受悠閒時光，詳情歡迎親臨或致電餐廳查詢。<br><br><strong>【團體預訂服務】</strong><br>• 餐廳誠摯接受各類團體預訂自助午餐及晚餐，為您的聚會、慶典或商務活動提供專屬餐飲安排。",
+            fac2H: "空中花園 (5樓)",
+            fac2Detail: "🌿 <strong>空中花園 (5/F)</strong><br><br><strong>【開放時間】</strong><br>• <strong>時間</strong>：每日 08:00 - 22:00，歡迎蒞臨放鬆身心，享受片刻悠閒。<br><br><strong>【吸煙區提示】</strong><br>• 為保障所有住客的健康與舒適，花園內僅限露天區域提供吸煙區，敬請配合及留意。",
+            fac3H: "健身室 (5樓)",
+            fac3Detail: "💪 <strong>健身室 (5/F)</strong><br><br><strong>【全天候開放】</strong><br>• <strong>時間</strong>：24 小時無休，供住客免費使用，隨時照顧您的運動節奏。<br><br><strong>【齊備健身器材】</strong><br>• 備有多款專業健身及帶氧器材，滿足您的日常鍛鍊需求。<br><br><strong>【夜間寧馨提示】</strong><br>• 為確保所有住客享有舒適寧靜的休息環境，請於晚上 11 時至翌日早上 8 時期間降低音量，感謝您的合作與體諒。",
+            fac4H: "停車場 (地面)",
+            fac4Detail: "🚗 <strong>酒店停車場 (G/F)</strong><br><br><strong>【時租泊車服務】</strong><br>• <strong>收費</strong>：每小時 HK$40<br>• <strong>車位</strong>：設有 2 個時租車位，方便快捷。<br><br><strong>【官網限定優惠】</strong><br>• 即刻透過酒店官方網站預訂指定住宿計劃，即可尊享「免費夜泊套餐優惠」，讓您的駕駛之旅更輕鬆、更超值！",
+            backFacility: "⬅ 返回酒店設施",
+            backDeparture: "⬅ 返回出境攻略",
+            dep1H: "羅湖口岸",
+            dep1Detail: "<strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>前往羅湖口岸主要有以下兩種便捷方式：<br><br><strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>• <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達羅湖站。<br>• <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br><strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>• <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫 直達羅湖站。<br>• <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站是「羅湖」還是「落馬洲」，切勿上錯車！<br><br><strong>二、 深圳目的地與過關優選</strong><br>如果你計劃前往以下深圳地點，選擇經羅湖口岸過關絕對是首選（優選）：<br><br><strong>深圳火車站（羅湖火車站）：</strong><br>• <strong>交通優勢</strong>：完美對接！過關後一出大樓即達深圳火車站，步行只需約 1 分鐘。<br><br><strong>東門老街：</strong><br>• <strong>交通優勢</strong>：位置極近。過關後轉乘深圳地鐵 1 號線（羅寶線），由「羅湖站」出發只需坐 1 個站（到老街站），車程僅約 2-3 分鐘；亦可選擇步行約 10-15 分鐘直達。",
+            dep1Name: "羅湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
+            dep2Name: "落馬洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
+            dep3Name: "香港國際機場", dep3Desc: "24小時",
+            dep4Name: "香港西九龍站", dep4Desc: "上午 06:30 至晚上 11:30",
+            dep5Name: "深圳灣口岸", dep5Desc: "上午 06:30 至午夜 12:00",
+            dep6Name: "香園圍/蓮塘口岸", dep6Desc: "上午 07:00 至晚上 10:00",
+            dep7Name: "港珠澳大橋", dep7Desc: "24小時",
+            dep8Name: "港澳客輪碼頭", dep8Desc: "上午 06:30 至午夜 12:00",
+            carCard1T: "服務收費表", carCard1D: "各路線點對點接送與包車收費",
+            carCard2T: "使用條款及細則", carCard2D: "預約、取消與乘車須知",
+            carNoticeBox: "若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。",
+            carPriceH: "酒店專車 - 服務收費表",
+            carTermsH: "酒店專車 - 使用條款及細則",
+            thDest: "目的地 / 服務項目", thPrice: "收費 (HKD)",
+            pMongkok: "由酒店出發到旺角",
+            pChinachem: "由酒店出發到中港城 / 高鐵站",
+            pAirport: "由酒店出發到機場、迪士尼、港珠澳大橋",
+            pOceanpark: "由酒店出發到海洋公園",
+            pSurcharge: "早上 8 點前 / 晚上 8 點後 附加費",
+            pHourly: "租用服務 (每小時，3小時起租)",
+            carPriceNote: "💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。",
+            back: "⬅ 返回主選單",
+            backGuidePlay: "⬅ 返回香港旅遊攻略",
+            busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
+            stationH: "免費穿梭巴士上車地點",
+            guideH: "香港旅遊攻略",
+            guideShopH: "香港旅遊攻略 - 購物",
+            guidePlayH: "香港旅遊攻略 - 遊玩",
+            guideSightH: "香港旅遊攻略 - 觀光",
+            departureH: "出境攻略",
+            carH: "酒店專車服務",
+            facilityH: "酒店設施",
+            liveStatusLabel: "📍 即時行車狀況",
+            stDriving: "行車中 (前往葵芳)", stArrKwai: "🔵 到達葵芳", stDriving2: "行車中 (前往荃灣西)", stArrTsuen: "🔵 到達荃灣西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 準備發車中",
+            stEnded: "今日班次已完結",
+            noticeTelTitle: "禮賓部電話", noticeTelVal: "3700 3824 (座機內線按 ''4'' 字)",
+            noticeContactTitle: "請提早聯絡禮賓部預留位置",
+            noticeTimeTitle: "敬請準時出席", noticeTimeDesc: "否則名額將開放予其他賓客",
+            noticeWeatherTitle: "惡劣天氣安排", noticeWeatherDesc: "若天文台發出黑色暴雨或八號或以上熱帶氣旋信號, 穿梭巴士將暫停服務",
+            mapH: "酒店300米周邊實用指南",
+            lugH: "行李寄存服務", 
+            lugDesc: "🧳 **行李寄存服務須知**<br><br><strong>【收費與政策】</strong><br>• **入住及退房當日**：尊享全日免費行李寄存。<br>• **長期寄存**：按每件每日 <strong>$10</strong> 計算。<br><br><strong>【領取與安全須知】</strong><br>• 領取時請出示<strong>行李領取牌</strong>並核對簽名；如未能出示或簽名不符，本酒店有權拒絕交還。<br>• 寄存物品存放於<strong>非空調環境</strong>。<br><br><strong>【免責與處理條款】</strong><br>• 凡寄存於本酒店之行李或物品，如有任何<strong>遺失、損毀或被盜</strong>，香港荃灣絲麗酒店恕不負責。<br>• 逾期超過 <strong>兩個月</strong> 未領回之物品，本酒店將有權自行處置，恕不另行通知。",
+            kwaiFong: "葵芳", tsuenWanWest: "荃灣西", lunchBreak: "午飯時間 (暫停服務)", nextBusText: "⭐ 下一班次 (Next Bus)",
+            stBookable: "可預約", stWaiting: "等待發車", stBoarding: "可以上車", stDeparted: "已離開", stFull: "已滿", stOut: "暫停服務"
+        },
+        'zh-CN': {
+            title: "荃湾丝丽酒店 - 礼宾部",
+            c1t: "🚌 免费穿梭巴士", c1d: "时间表与即时状态",
+            c5t: "🚏 免费穿梭巴士上车地点", c5d: "站点详细地图与指引",
+            c2t: "🗺️ 酒店300米周边实用指南", c2d: "地铁站、美食与便利店",
+            c6t: "📖 香港旅游攻略", c6d: "热门景点与行程推介",
+            c3t: "🧳 行李寄存", c3d: "寄存服务条款与收费",
+            c7t: "✈️ 出境攻略", c7d: "离港交通与机场快线资讯",
+            c8t: "🚐 酒店专车服务", c8d: "点对点接送与包车预约",
+            c9t: "🏨 酒店设施", c9d: "健身房、餐厅与其他设施",
+            guide1Name: "美食", guide1Desc: "地道小吃与人气餐厅",
+            guide2Name: "购物", guide2Desc: "大型商场与热门市集",
+            guide3Name: "游玩", guide3Desc: "主题乐园与娱乐体验",
+            guide4Name: "观光", guide4Desc: "著名地标与打卡胜地",
+            guide5Name: "推荐行程1", guide5Desc: "经典一日游路线",
+            guide6Name: "推荐行程2", guide6Desc: "深度文化探索之旅",
+            gshop1Name: "海港城", gshop1Desc: "维港畔超大型购物商城与国际名品",
+            gshop2Name: "铜锣湾购物商圈", gshop2Desc: "潮流百货、SOGO崇光与不夜天购物天堂",
+            gshop3Name: "中环苏豪区与 PMQ元创方", gshop3Desc: "文创小店、独立设计与特色精品",
+            gshop4Name: "女人街与波鞋街", gshop4Desc: "地道市集、潮流球鞋与港式市井风情",
+            gp1Name: "香港迪士尼乐园", gp1Desc: "梦幻童话与精彩烟花汇演",
+            gp2Name: "香港海洋公园", gp2Desc: "刺激机动游戏与珍稀极地动物",
+            gp3Name: "香港摩天轮", gp3Desc: "维多利亚港畔浪漫高空景致",
+            gp4Name: "香港挪亚方舟", gp4Desc: "马湾海峡自然博览与合家欢景点",
+            gs1Name: "维多利亚港与星光大道", gs1Desc: "世界级天际线与璀璨灯光秀",
+            gs2Name: "太平山顶与凌霄阁摩天台", gs2Desc: "鸟瞰维港两岸壮丽全景",
+            gs3Name: "西九文化区（M+ 与香港故宫）", gs3Desc: "当代视觉文化与中华文物殿堂",
+            gs4Name: "大馆与中环古迹群", gs4Desc: "活化历史建筑与艺文消闲地标",
+            fac1Name: "金林阁餐厅", fac1Desc: "(2楼)",
+            fac2Name: "空中花园", fac2Desc: "(5楼)",
+            fac3Name: "健身室", fac3Desc: "(5楼)",
+            fac4Name: "停车场", fac4Desc: "(地面)",
+            fac1H: "金林阁餐厅 (2楼)",
+            fac1Detail: "🍽️ <strong>金林阁餐厅 (2/F)</strong><br><br><strong>【晨光美点 · 自助早餐】</strong><br>• <strong>时间</strong>：每日 07:30 - 10:00<br>• <strong>价目</strong>：HK$77 / 位<br>• <strong>内容</strong>：提供丰富的中西式自助早餐，为您开启充满活力的一天。<br><br><strong>【周末限定 · 怀旧音乐自助餐】</strong><br>• <strong>时间</strong>：每逢星期六下午及晚上<br>• <strong>详情</strong>：伴随经典金曲，享受悠闲时光，详情欢迎亲临或致电餐厅查询。<br><br><strong>【团体预订服务】</strong><br>• 餐厅诚挚接受各类团体预订自助午餐及晚餐，为您的聚会、庆典或商务活动提供专属餐饮安排。",
+            fac2H: "空中花园 (5楼)",
+            fac2Detail: "🌿 <strong>空中花园 (5/F)</strong><br><br><strong>【开放时间】</strong><br>• <strong>时间</strong>：每日 08:00 - 22:00，欢迎莅临放松身心，享受片刻悠闲。<br><br><strong>【吸烟区提示】</strong><br>• 为保障所有住客的健康与舒适，花园内仅限露天区域提供吸烟区，敬请配合及留意。",
+            fac3H: "健身室 (5楼)",
+            fac3Detail: "💪 <strong>健身室 (5/F)</strong><br><br><strong>【全天候开放】</strong><br>• <strong>时间</strong>：24 小时无休，供住客免费使用，随时照顾您的运动节奏。<br><br><strong>【齐备健身器材】</strong><br>• 备有多款专业健身及有氧器材，满足您的日常锻炼需求。<br><br><strong>【夜间提示】</strong><br>• 为确保所有住客享有舒适宁静的休息环境，请于晚上 11 时至翌日早上 8 时期间降低音量，感谢您的合作与体谅。",
+            fac4H: "停车场 (地面)",
+            fac4Detail: "🚗 <strong>酒店停车场 (G/F)</strong><br><br><strong>【时租泊车服务】</strong><br>• <strong>收费</strong>：每小时 HK$40<br>• <strong>车位</strong>：设有 2 个时租车位，方便快捷。<br><br><strong>【官网限定优惠】</strong><br>• 即刻透过酒店官方网站预订指定住宿计划，即可尊享“免费夜泊套餐优惠”，让您的驾驶之旅更轻松、更超值！",
+            backFacility: "⬅ 返回酒店设施",
+            backDeparture: "⬅ 返回出境攻略",
+            dep1H: "罗湖口岸",
+            dep1Detail: "<strong>一、 交通路线指南（由荃湾丝丽酒店出发）</strong><br>前往罗湖口岸主要有以下两种便捷方式：<br><br><strong>路线 A：乘坐专线小巴 ➔ 沙田/大围 ➔ 东铁线直达</strong><br>• <strong>具体步骤</strong>：于酒店附近乘坐 403、403P 或 403X 专线小巴前往沙田或大围，转乘 东铁线 直达罗湖站。<br>• <strong>支付方式</strong>：小巴仅支持八达通、支付宝及现金，请提前准备。<br><br><strong>路线 B：乘坐酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子换乘 ➔ 九龙塘换乘 ➔ 东铁线</strong><br>• <strong>具体步骤</strong>：乘坐酒店免费穿梭巴士或 31M 巴士前往葵芳站，乘地铁至太子站换乘，再到九龙塘站转乘 东铁线 直达罗湖站。<br>• <strong>重要提醒</strong>：乘坐东铁线北上时，务必留意列车的终点站是“罗湖”还是“落马洲”，切勿上错车！<br><br><strong>二、 深圳目的地与过关优选</strong><br>如果你计划前往以下深圳地点，选择经罗湖口岸过关绝对是首选（优选）：<br><br><strong>深圳火车站（罗湖火车站）：</strong><br>• <strong>交通优势</strong>：完美对接！过关后一出大楼即达深圳火车站，步行只需约 1 分钟。<br><br><strong>东门老街：</strong><br>• <strong>交通优势</strong>：位置极近。过关后转乘深圳地铁 1 号线（罗宝线），由“罗湖站”出发只需坐 1 个站（到老街站），车程仅约 2-3 分钟；亦可选择步行约 10-15 分钟直达。",
+            dep1Name: "罗湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
+            dep2Name: "落马洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
+            dep3Name: "香港国际机场", dep3Desc: "24小时",
+            dep4Name: "香港西九龙站", dep4Desc: "上午 06:30 至晚上 11:30",
+            dep5Name: "深圳湾口岸", dep5Desc: "上午 06:30 至午夜 12:00",
+            dep6Name: "香园围/莲塘口岸", dep6Desc: "上午 07:00 至晚上 10:00",
+            dep7Name: "港珠澳大桥", dep7Desc: "24小时",
+            dep8Name: "港澳客轮码头", dep8Desc: "上午 06:30 至午夜 12:00",
+            carCard1T: "服务收费表", carCard1D: "各路线点对点接送与包车收费",
+            carCard2T: "使用条款及细则", carCard2D: "预约、取消与乘车须知",
+            carNoticeBox: "若您需要任何协助、查询或使用此服务，恳请莅临礼宾部柜台，或致电 3700 3824，我们将竭诚为您服务。",
+            carPriceH: "酒店专车 - 服务收费表",
+            carTermsH: "酒店专车 - 使用条款及细则",
+            thDest: "目的地 / 服务项目", thPrice: "收费 (HKD)",
+            pMongkok: "由酒店出发到旺角",
+            pChinachem: "由酒店出发到中港城 / 高铁站",
+            pAirport: "由酒店出发到机场、迪士尼、港珠澳大桥",
+            pOceanpark: "由酒店出发到海洋公园",
+            pSurcharge: "早上 8 点前 / 晚上 8 点后 附加费",
+            pHourly: "租用服务 (每小时，3小时起租)",
+            carPriceNote: "💡 <strong>备注：</strong>以上收费适用于点对点接送服务。如需超时或更改行程，请向礼宾部查询。",
+            back: "⬅ 返回主菜单",
+            backGuidePlay: "⬅ 返回香港旅游攻略",
+            busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
+            stationH: "免费穿梭巴士上车地点",
+            guideH: "香港旅游攻略",
+            guideShopH: "香港旅游攻略 - 购物",
+            guidePlayH: "香港旅游攻略 - 游玩",
+            guideSightH: "香港旅游攻略 - 观光",
+            departureH: "出境攻略",
+            carH: "酒店专车服务",
+            facilityH: "酒店设施",
+            liveStatusLabel: "📍 即时行车状况",
+            stDriving: "行车中 (前往葵芳)", stArrKwai: "🔵 到达葵芳", stDriving2: "行车中 (前往荃湾西)", stArrTsuen: "🔵 到达荃湾西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 准备发车中",
+            stEnded: "今日班次已完结",
+            noticeTelTitle: "礼宾部电话", noticeTelVal: "3700 3824 (座机内线按 ''4'' 字)",
+            noticeContactTitle: "请提早联络礼宾部预留位置",
+            noticeTimeTitle: "敬请准时出席", noticeTimeDesc: "否则名额将开放予其他宾客",
+            noticeWeatherTitle: "恶劣天气安排", noticeWeatherDesc: "若天文台发出黑色暴雨或八号或以上热带气旋信号, 穿梭巴士将暂停服务",
+            mapH: "酒店300米周边实用指南",
+            lugH: "行李寄存服务", 
+            lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理条款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、損毀或被盜</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
+            kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
+            stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务"
+        },
+        'en': {
+            title: "Silka Tsuen Wan - Concierge",
+            c1t: "🚌 Free Shuttle Bus", c1d: "Schedule & live status",
+            c5t: "🚏 Free Shuttle Bus Boarding Locations", c5d: "Detailed station guide & maps",
+            c2t: "🗺️ Hotel 300m Practical Guide", c2d: "MTR, dining & convenience stores",
+            c6t: "📖 HK Travel Guide", c6d: "Top attractions & itineraries",
+            c3t: "🧳 Luggage Storage", c3d: "Storage policy & fees",
+            c7t: "✈️ Departure Guide", c7d: "Airport transport & Express info",
+            c8t: "🚐 Hotel Limousine Service", c8d: "Point-to-point & charter booking",
+            c9t: "🏨 Hotel Facilities", c9d: "Gym, dining & other amenities",
+            guide1Name: "Dining", guide1Desc: "Local snacks & popular restaurants",
+            guide2Name: "Shopping", guide2Desc: "Malls & bustling markets",
+            guide3Name: "Leisure", guide3Desc: "Theme parks & entertainment",
+            guide4Name: "Sightseeing", guide4Desc: "Famous landmarks & spots",
+            guide5Name: "Itinerary 1", guide5Desc: "Classic one-day tour route",
+            guide6Name: "Itinerary 2", guide6Desc: "In-depth cultural exploration",
+            gshop1Name: "Harbour City", gshop1Desc: "Mega waterfront mall and international luxury brands",
+            gshop2Name: "Causeway Bay Shopping District", gshop2Desc: "Trendy department stores, SOGO, and vibrant nightlife",
+            gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Creative boutiques, indie designers, and unique lifestyle goods",
+            gshop4Name: "Ladies' Market & Sneakers Street", gshop4Desc: "Bustling street markets, trendy kicks, and local flavor",
+            gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical fairy tales and fireworks",
+            gp2Name: "Ocean Park Hong Kong", gp2Desc: "Thrilling rides and polar animals",
+            gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantic skyline views by Victoria Harbour",
+            gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Ma Wan nature park and family fun",
+            gs1Name: "Victoria Harbour & Avenue of Stars", gs1Desc: "World-class skyline and light show",
+            gs2Name: "Victoria Peak & Peak Tower", gs2Desc: "Panoramic views of both sides of Victoria Harbour",
+            gs3Name: "West Kowloon Cultural District (M+ & Palace Museum)", gs3Desc: "Contemporary visual culture and Chinese heritage",
+            gs4Name: "Tai Kwun & Central Heritage Circuit", gs4Desc: "Revitalized historical architecture and arts hub",
+            fac1Name: "Kam Lam Restaurant", fac1Desc: "(2/F)",
+            fac2Name: "Sky Garden", fac2Desc: "(5/F)",
+            fac3Name: "Fitness Room", fac3Desc: "(5/F)",
+            fac4Name: "Car Park", fac4Desc: "(G/F)",
+            fac1H: "Kam Lam Restaurant (2/F)",
+            fac1Detail: "🍽️ <strong>Kam Lam Restaurant (2/F)</strong><br><br><strong>【Buffet Breakfast】</strong><br>• <strong>Time</strong>: Daily 07:30 - 10:00<br>• <strong>Price</strong>: HK$77 / person<br>• <strong>Details</strong>: A rich variety of Western and Chinese buffet breakfast to kickstart your day.<br><br><strong>【Weekend Nostalgic Music Buffet】</strong><br>• <strong>Time</strong>: Every Saturday afternoon & evening<br>• <strong>Details</strong>: Enjoy classic golden oldies and a relaxing meal. Please visit or call the restaurant for details.<br><br><strong>【Group Booking Service】</strong><br>• The restaurant warmly accepts group bookings for buffet lunch and dinner, providing dedicated dining arrangements for your gatherings, celebrations, or business events.",
+            fac2H: "Sky Garden (5/F)",
+            fac2Detail: "🌿 <strong>Sky Garden (5/F)</strong><br><br><strong>【Opening Hours】</strong><br>• <strong>Hours</strong>: Daily 08:00 - 22:00. Feel free to relax and enjoy a peaceful moment.<br><br><strong>【Designated Smoking Area】</strong><br>• To ensure the health and comfort of all guests, smoking is strictly permitted only in designated outdoor areas of the garden. Thank you for your cooperation.",
+            fac3H: "Fitness Room (5/F)",
+            fac3Detail: "💪 <strong>Fitness Room (5/F)</strong><br><br><strong>【24/7 Access】</strong><br>• <strong>Hours</strong>: Open 24 hours daily, free for in-house guests to suit your workout routine anytime.<br><br><strong>【Well-Equipped Equipment】</strong><br>• Equipped with various professional fitness and cardio equipment to meet your daily exercise needs.<br><br><strong>【Nighttime Quiet Hours】</strong><br>• To ensure a comfortable and restful environment for all guests, please lower your volume between 11:00 PM and 8:00 AM. Thank you for your cooperation and understanding.",
+            fac4H: "Car Park (G/F)",
+            fac4Detail: "🚗 <strong>Hotel Car Park (G/F)</strong><br><br><strong>【Hourly Parking Service】</strong><br>• <strong>Rate</strong>: HK$40 per hour<br>• <strong>Spaces</strong>: 2 hourly parking spaces available for your convenience.<br><br><strong>【Official Website Exclusive Offer】</strong><br>• Book designated stay packages via our official website to enjoy complimentary overnight parking privileges, making your journey even smoother!",
+            backFacility: "⬅ Back to Hotel Facilities",
+            backDeparture: "⬅ Back to Departure Guide",
+            dep1H: "Lo Wu Control Point",
+            dep1Detail: "<strong>1. Transportation Guide (From Silka Tsuen Wan)</strong><br>There are two convenient routes to reach Lo Wu Control Point:<br><br><strong>Route A: Minibus ➔ Sha Tin/Tai Wai ➔ East Rail Line (Direct)</strong><br>• <strong>Steps</strong>: Take green minibus 403, 403P, or 403X near the hotel to Sha Tin or Tai Wai, then transfer to the East Rail Line directly to Lo Wu Station.<br>• <strong>Payment</strong>: Minibuses only accept Octopus, Alipay, and cash. Please prepare in advance.<br><br><strong>Route B: Hotel Shuttle/Bus ➔ Kwai Fong ➔ Transfer at Prince Edward ➔ Transfer at Kowloon Tong ➔ East Rail Line</strong><br>• <strong>Steps</strong>: Take the free hotel shuttle or Bus 31M to Kwai Fong Station, take the MTR to Prince Edward, transfer to Kowloon Tong Station, then switch to the East Rail Line to Lo Wu Station.<br>• <strong>Important Reminder</strong>: When taking the East Rail Line northbound, make sure to check if the train's destination is Lo Wu or Lok Ma Chau so you don't board the wrong train!<br><br><strong>2. Preferred Shenzhen Destinations via Lo Wu</strong><br>If you plan to visit the following places in Shenzhen, crossing via Lo Wu Control Point is your best choice:<br><br><strong>Shenzhen Railway Station (Lo Wu Station):</strong><br>• <strong>Advantage</strong>: Perfect connection! Right outside the immigration building. Just a 1-minute walk.<br><br><strong>Dongmen Pedestrian Street (Laojie):</strong><br>• <strong>Advantage</strong>: Very close. Take Shenzhen Metro Line 1 (Luobao Line) from Luohu Station for just 1 stop to Laojie Station (approx. 2-3 minutes), or walk for 10-15 minutes.",
+            dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 to 00:00 Midnight",
+            dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 to 22:30",
+            dep3Name: "Hong Kong International Airport", dep3Desc: "24 Hours",
+            dep4Name: "Hong Kong West Kowloon Station", dep4Desc: "06:30 to 23:30",
+            dep5Name: "Shenzhen Bay Port", dep5Desc: "06:30 to 00:00 Midnight",
+            dep6Name: "Heung Yuen Wai / Liantang Port", dep6Desc: "07:00 to 22:30",
+            dep7Name: "Hong Kong-Zhuhai-Macao Bridge", dep7Desc: "24 Hours",
+            dep8Name: "Macau Ferry Terminal", dep8Desc: "06:30 to 00:00 Midnight",
+            carCard1T: "Service Rates", carCard1D: "Point-to-point & charter pricing",
+            carCard2T: "Terms & Conditions", carCard2D: "Booking, cancellation & policies",
+            carNoticeBox: "If you need any assistance, inquiries, or wish to use this service, please visit the Concierge desk or call 3700 3824. We are at your service.",
+            carPriceH: "Hotel Limousine - Service Rates",
+            carTermsH: "Hotel Limousine - Terms & Conditions",
+            thDest: "Destination / Service", thPrice: "Price (HKD)",
+            pMongkok: "From Hotel to Mong Kok",
+            pChinachem: "From Hotel to China Hong Kong City / High Speed Rail Station",
+            pAirport: "From Hotel to Airport, Disneyland, HK-Zhuhai-Macao Bridge",
+            pOceanpark: "From Hotel to Ocean Park",
+            pSurcharge: "Surcharge before 8:00 AM / after 8:00 PM",
+            pHourly: "Hourly Rental (Min. 3 hours)",
+            carPriceNote: "💡 <strong>Note:</strong> The above rates apply to point-to-point transfer services. For overtime or itinerary changes, please consult the Concierge.",
+            back: "⬅ Back to Menu",
+            backGuidePlay: "⬅ Back to HK Travel Guide",
+            busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
+            stationH: "Free Shuttle Bus Boarding Locations",
+            guideH: "Hong Kong Travel Guide",
+            guideShopH: "Hong Kong Travel Guide - Shopping",
+            guidePlayH: "Hong Kong Travel Guide - Leisure",
+            guideSightH: "Hong Kong Travel Guide - Sightseeing",
+            departureH: "Departure Guide",
+            carH: "Hotel Limousine Service",
+            facilityH: "Hotel Facilities",
+            liveStatusLabel: "📍 Live Bus Status",
+            stDriving: "Driving to Kwai Fong", stArrKwai: "🔵 Arrived at Kwai Fong", stDriving2: "Driving to Tsuen Wan West", stArrTsuen: "🔵 Arrived at Tsuen Wan West", stReturning: "Returning to Hotel", stWaitingStandby: "Standby / Preparing",
+            stEnded: "Today's trips have ended",
+            noticeTelTitle: "Concierge Tel", noticeTelVal: "3700 3824 (Press '4' for extension)",
+            noticeContactTitle: "Please contact Concierge in advance to reserve a seat",
+            noticeTimeTitle: "Please be punctual", noticeTimeDesc: "Otherwise, seats may be released to other guests.",
+            noticeWeatherTitle: "Severe Weather", noticeWeatherDesc: "Shuttle bus service will be suspended if Black Rainstorm or Typhoon Signal No. 8 or above is issued.",
+            mapH: "Hotel 300m Practical Guide",
+            lugH: "Luggage Storage Service", 
+            lugDesc: "🧳 **Luggage Storage Notice**<br><br><strong>【Policy & Fees】</strong><br>• **Check-in & Check-out Days**: Enjoy complimentary luggage storage.<br>• **Long-term Storage**: Charged at <strong>$10</strong> per piece per day.<br><br><strong>【Collection & Safety】</strong><br>• Please present the luggage claim tag and matching signature upon collection. The hotel reserves the right to refuse return if missing or unmatched.<br>• Stored in a <strong>non-air-conditioned</strong> environment.<br><br><strong>【Liability & Terms】</strong><br>• Silka Tsuen Wan is not liable for any <strong>loss, damage, or theft</strong> of items stored.<br>• Unclaimed items for <strong>over two months</strong> may be <strong>disposed of without prior notice</strong>.",
+            kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspended)", nextBusText: "⭐ Next Bus",
+            stBookable: "Available", stWaiting: "Waiting", stBoarding: "Boarding", stDeparted: "Departed", stFull: "Full", stOut: "Suspended"
+        },
+        'ja': {
+            title: "シルカ・ツェンワン - コンシェルジュ",
+            c1t: "🚌 無料シャトルバス", c1d: "時刻表とリアルタイム状況",
+            c5t: "🚏 無料シャトルバス乗降場所", c5d: "各駅の詳細マップとガイド",
+            c2t: "🗺️ ホテル300m周辺実用ガイド", c2d: "駅、飲食店、コンビニ",
+            c6t: "📖 香港観光ガイド", c6d: "おすすめスポットとモデルコース",
+            c3t: "🧳 手荷物預かり", c3d: "お預かりの案内と料金",
+            c7t: "✈️ 出国・空港ガイド", c7d: "空港アクセスと交通情報",
+            c8t: "🚐 ホテル送迎サービス", c8d: "送迎およびチャーター予約",
+            c9t: "🏨 ホテル施設", c9d: "ジム、レストラン、その他施設",
+            guide1Name: "グルメ", guide1Desc: "ローカルフードと人気レストラン",
+            guide2Name: "ショッピング", guide2Desc: "大型モールと人気の市場",
+            guide3Name: "レジャー", guide3Desc: "テーマパークとエンタメ体験",
+            guide4Name: "観光", guide4Desc: "有名ランドマークと撮影スポット",
+            guide5Name: "おすすめコース1", guide5Desc: "定番1日観光ルート",
+            guide6Name: "おすすめコース2", guide6Desc: "ディープな文化探索の旅",
+            gshop1Name: "ハーバー・シティ（海港城）", gshop1Desc: "ビクトリア湾沿いの超大型モールと高級ブランド",
+            gshop2Name: "銅鑼灣（コーズウェイベイ）ショッピング街", gshop2Desc: "トレンド百貨店、SOGO、眠らない街のショッピング天国",
+            gshop3Name: "中環ソーホー＆PMQ元創方", gshop3Desc: "クリエイティブな雑貨店、インディーズデザイナー、特選セレクト",
+            gshop4Name: "女人街＆スニーカー街", gshop4Desc: "ローカルな露店市場、スニーカーの聖地、香港の下町情緒",
+            gp1Name: "香港ディズニーランド", gp1Desc: "夢の童話と素晴らしい花火ショー",
+            gp2Name: "香港オーシャンパーク", gp2Desc: "スリリングなアトラクションと極地の動物",
+            gp3Name: "香港観覧車", gp3Desc: "ビクトリア・ハーバーのロマンチックな絶景",
+            gp4Name: "香港ノアの方舟", gp4Desc: "馬湾（マワン）自然公園とファミリー向けスポット",
+            gs1Name: "ビクトリア・ハーバーとスターフェリー通り", gs1Desc: "世界最高峰のスカイラインと光のショー",
+            gs2Name: "ヴィクトリア・ピークとピーク・タワー", gs2Desc: "ヴィクトリア湾の両岸を一望する絶景パノラマ",
+            gs3Name: "西九文化区（M+と香港故宮文化博物館）", gs3Desc: "現代ビジュアルカルチャーと中国美術の殿堂",
+            gs4Name: "大館（タイクーン）と中環古跡群", gs4Desc: "歴史的建造物の再生とカルチャーの拠点",
+            fac1Name: "金林閣レストラン", fac1Desc: "(2階)",
+            fac2Name: "空中庭園", fac2Desc: "(5階)",
+            fac3Name: "フィットネスジム", fac3Desc: "(5階)",
+            fac4Name: "駐車場", fac4Desc: "(1階/地上)",
+            fac1H: "金林閣レストラン (2階)",
+            fac1Detail: "🍽️ <strong>金林閣レストラン (2/F)</strong><br><br><strong>【ビュッフェ朝食】</strong><br>• <strong>時間</strong>：毎日 07:30 - 10:00<br>• <strong>料金</strong>：HK$77 / 名<br>• <strong>内容</strong>：豊富な和洋中・中華スタイルの朝食ビュッフェで素敵な一日を。<br><br><strong>【週末限定 · 懷舊音楽ビュッフェ】</strong><br>• <strong>時間</strong>：毎週土曜日の午後および夜<br>• <strong>詳細</strong>：懐かしのヒット曲とともに優雅なひとときをお楽しみください。詳細はレストランまでお問い合わせください。<br><br><strong>【団体予約サービス】</strong><br>• ランチ＆ディナービュッフェの団体予約を承っております。パーティー、祝事、ビジネスイベントなどの専用お食事プランをご用意いたします。",
+            fac2H: "空中庭園 (5階)",
+            fac2Detail: "🌿 <strong>空中庭園 (5階)</strong><br><br><strong>【営業時間】</strong><br>• <strong>時間</strong>：毎日 08:00 - 22:00。心身をリフレッシュし、くつろぎのひとときをお過ごしください。<br><br><strong>【喫煙エリアのご案内】</strong><br>• すべてのお客様の健康と快適さを守るため、庭園内の喫煙は屋外の指定エリアのみとなります。ご理解とご協力をお願いいたします。",
+            fac3H: "フィットネスジム (5階)",
+            fac3Detail: "💪 <strong>フィットネスジム (5階)</strong><br><br><strong>【24時間利用可能】</strong><br>• <strong>時間</strong>：24時間年中無休、ご宿泊のお客様は無料でご利用いただけます。<br><br><strong>【充実のトレーニング機器】</strong><br>• 各種プロ仕様のウェイトマシンや有酸素運動器具を完備し、毎日のトレーニングに対応します。<br><br><strong>【夜間の静寂に関するご注意】</strong><br>• すべてのお客様に快適で静かな睡眠環境を提供するため、午後11時から翌朝8時までの間は音量を小さくしていただきますようお願いいたします。ご協力よろしくお願いいたします。",
+            fac4H: "駐車場 (1階/地上)",
+            fac4Detail: "🚗 <strong>ホテル駐車場 (1階/地上)</strong><br><br><strong>【時間貸し駐車サービス】</strong><br>• <strong>料金</strong>：1時間あたり HK$40<br>• <strong>駐車台数</strong>：時間貸し駐車場2台分完備。<br><br><strong>【公式サイト限定特典】</strong><br>• ホテル公式サイトより対象の宿泊プランをご予約いただくと、「夜間無料駐車特典」をご利用いただけます！",
+            backFacility: "⬅ ホテル施設に戻る",
+            backDeparture: "⬅ 出国・空港ガイドに戻る",
+            dep1H: "羅湖口岸（ローウー）",
+            dep1Detail: "<strong>一、 交通アクセスガイド（シルカ・ツェンワン発）</strong><br>羅湖口岸へは主に以下の2つの便利なルートがあります：<br><br><strong>ルート A：ミニバス ➔ 沙田/大囲 ➔ 東鉄線直行</strong><br>• <strong>手順</strong>：ホテル近くから緑のミニバス（403、403P、403X）で沙田または大囲へ行き、東鉄線に乗り換えて羅湖駅まで直行します。<br>• <strong>支払い方法</strong>：ミニバスはオクトパスカード、Alipay、現金のみ対応しています。<br><br><strong>ルート B：無料シャトル/路線バス ➔ 葵芳 ➔ 太子乗換 ➔ 九龍塘乗換 ➔ 東鉄線</strong><br>• <strong>手順</strong>：無料シャトルバスまたは31Mバスで葵芳駅へ行き、MTRで太子駅・九龍塘駅経由で東鉄線に乗り換え、羅湖駅へ向かいます。<br>• <strong>注意点</strong>：東鉄線（北行き）に乗車する際、行先が「羅湖」か「落馬洲」か必ずご確認ください。<br><br><strong>二、 羅湖口岸からのアクセスが最適な深センの目的地</strong><br>以下の目的地へ向かう場合は、羅湖口岸のご利用が最適です：<br><br><strong>深セン駅（羅湖火車站）：</strong><br>• <strong>メリット</strong>：イミグレーションを出てすぐ！徒歩約1分で到着します。<br><br><strong>東門老街：</strong><br>• <strong>メリット</strong>：イミグレーション通過後、深セン地下鉄1号線（羅湖駅）から1駅（老街駅まで約2〜3分）、または徒歩10〜15分です。",
+            dep1Name: "羅湖口岸", dep1Desc: "午前 06:30 ～ 深夜 00:00",
+            dep2Name: "落馬洲 / 福田口岸", dep2Desc: "午前 06:30 ～ 午後 10:30",
+            dep3Name: "香港国際空港", dep3Desc: "24時間",
+            dep4Name: "香港西九龍駅", dep4Desc: "午前 06:30 ～ 午後 11:30",
+            dep5Name: "深圳湾イミグレーション", dep5Desc: "午前 06:30 ～ 深夜 12:00",
+            dep6Name: "香園囲 / 蓮塘口岸", dep6Desc: "午前 07:00 ～ 午後 10:30",
+            dep7Name: "港珠澳大橋", dep7Desc: "24時間",
+            dep8Name: "マカオフェリーターミナル", dep8Desc: "午前 06:30 ～ 深夜 12:00",
+            carCard1T: "料金表", carCard1D: "送迎およびチャーター料金",
+            carCard2T: "利用規約", carCard2D: "予約、キャンセル、ご利用案内",
+            carNoticeBox: "ご不明な点やサービスのご利用については、コンシェルジュカウンター（内線3700 3824）までお気軽にお問い合わせください。",
+            carPriceH: "ホテル送迎 - 料金表",
+            carTermsH: "ホテル送迎 - 利用規約",
+            thDest: "目的地 / サービス", thPrice: "料金 (HKD)",
+            pMongkok: "ホテルから旺角（モンコク）まで",
+            pChinachem: "ホテルから中港城 / 高速鉄道駅まで",
+            pAirport: "ホテルから空港、ディズニーランド、港珠澳大橋まで",
+            pOceanpark: "ホテルからオーシャンパークまで",
+            pSurcharge: "午前8時前 / 午後8時以降の追加料金",
+            pHourly: "時間貸し（1時間あたり、最低3時間から）",
+            carPriceNote: "💡 <strong>備考：</strong>上記の料金はポイント・ツー・ポイントの送迎に適用されます。時間延長や行程変更についてはコンシェルジュにお問い合わせください。",
+            back: "⬅ メニューに戻る",
+            backGuidePlay: "⬅ 香港観光ガイドに戻る",
+            busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
+            stationH: "無料シャトルバス乗降場所",
+            guideH: "香港観光ガイド",
+            guideShopH: "香港観光ガイド - ショッピング",
+            guidePlayH: "香港観光ガイド - レジャー",
+            guideSightH: "香港観光ガイド - 観光",
+            departureH: "出国・空港ガイド",
+            carH: "ホテル送迎サービス",
+            facilityH: "ホテル施設",
+            liveStatusLabel: "📍 リアルタイム運行状況",
+            stDriving: "運行中 (葵芳行き)", stArrKwai: "🔵 葵芳到着", stDriving2: "運行中 (荃湾西行き)", stArrTsuen: "🔵 荃湾西到着", stReturning: "ホテルへ帰還中", stWaitingStandby: "待機中 / 準備中",
+            stEnded: "本日の運行は終了しました",
+            noticeTelTitle: "コンシェルジュ電話", noticeTelVal: "3700 3824 (内線 '4')",
+            noticeContactTitle: "事前にコンシェルジュまで座席をご予約ください",
+            noticeTimeTitle: "時間厳守のお願い", noticeTimeDesc: "時間通りにお越しいただけない場合、他のお客様に譲る場合があります。",
+            noticeWeatherTitle: "悪天候時の運行", noticeWeatherDesc: "黒色暴風雨警報または台風警報8号以上が発令された場合、シャトルバスは運休します。",
+            mapH: "ホテル300m周辺実用ガイド",
+            lugH: "手荷物預かりサービス", 
+            lugDesc: "🧳 **手荷物預かりのご案内**<br><br><strong>【料金とポリシー】</strong><br>• **チェックイン/アウト当日**：全日無料でお預かり。<br>• **長期預かり**：1個あたり1日 <strong>$10</strong>。<br><br><strong>【お引き取りと安全】</strong><br>• お引き取り時は預かり札と**署名**を確認します。一致しない場合はお返しできません。<br>• **非空調環境**での保管となります。<br><br><strong>【免責事項】</strong><br>• 紛失、破損、盗難についてホテルは責任を負いません。<br>• **2ヶ月**以上引き取りのない物品は予告なく処分されます。",
+            kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "昼休み (運休)", nextBusText: "⭐ 次の便 (Next Bus)",
+            stBookable: "予約可能", stWaiting: "まもなく", stBoarding: "乗車可能", stDeparted: "出発済み", stFull: "満席", stOut: "運休"
+        },
+        'ko': {
+            title: "실카 취언완 - 컨시어지",
+            c1t: "🚌 무료 셔틀버스", c1d: "시간표 및 실시간 상태",
+            c5t: "🚏 무료 셔틀버스 승하차 장소", c5d: "각 정류장 상세 지도 및 안내",
+            c2t: "🗺️ 호텔 300m 주변 실용 가이드", c2d: "역, 맛집, 편의점",
+            c6t: "📖 홍콩 여행 가이드", c6d: "인기 관광지 및 일정 추천",
+            c3t: "🧳 수하물 보관", c3d: "보관 규정 및 요금",
+            c7t: "✈️ 출국 공항 가이드", c7d: "공항 교통 및 익스프레스 정보",
+            c8t: "🚐 호텔 차량 서비스", c8d: "공항/시내 픽업 및 대절 예약",
+            c9t: "🏨 호텔 부대시설", c9d: "피트니스, 레스토랑 및 편의시설",
+            guide1Name: "맛집", guide1Desc: "현지 간식 및 인기 레스토랑",
+            guide2Name: "쇼핑", guide2Desc: "대형 쇼핑몰 및 인기 시장",
+            guide3Name: "즐길거리", guide3Desc: "테마파크 및 엔터테인먼트",
+            guide4Name: "관광", guide4Desc: "유명 랜드마크 및 포토존",
+            guide5Name: "추천 일정 1", guide5Desc: "클래식 하루 여행 코스",
+            guide6Name: "추천 일정 2", guide6Desc: "심층 문화 탐방 여행",
+            gshop1Name: "하버 시티", gshop1Desc: "빅토리아 하버변의 초대형 쇼핑몰 및 글로벌 명품",
+            gshop2Name: "코즈웨이베이 쇼핑가", gshop2Desc: "트렌디한 백화점, 소고(SOGO), 잠들지 않는 쇼핑 천국",
+            gshop3Name: "센트럴 소호 & PMQ 원촹팡", gshop3Desc: "소품샵, 독립 디자이너 브랜드 및 개성 있는 편집샵",
+            gshop4Name: "레이디스 마켓 & 스니커즈 스트리트", gshop4Desc: "로컬 야시장, 인기 스니커즈 거리와 홍콩 특유의 활기",
+            gp1Name: "홍콩 디즈니랜드", gp1Desc: "환상적인 동화와 화려한 불꽃놀이",
+            gp2Name: "홍콩 오션파크", gp2Desc: "스릴 넘치는 놀이기구와 극지 동물",
+            gp3Name: "홍콩 대관람차", gp3Desc: "빅토리아 하버의 로맨틱한 스카이라인 뷰",
+            gp4Name: "홍콩 노아의 방주", gp4Desc: "마완 자연공원과 온가족이 즐기는 명소",
+            gs1Name: "빅토리아 하버 & 스타의 거리", gs1Desc: "세계적인 스카이라인과 화려한 조명 쇼",
+            gs2Name: "빅토리아 피크 & 피크 타워", gs2Desc: "빅토리아 하버 양쪽의 아름다운 파노라마 뷰",
+            gs3Name: "서구룡 문화지구 (M+ 및 홍콩 고궁박물관)", gs3Desc: "현대 시각 문화와 중국 유물의 전당",
+            gs4Name: "대관(타이 큰) & 센트럴 유적군", gs4Desc: "역사 건축물 재생과 문화 예술의 랜드마크",
+            fac1Name: "금림각 레스토랑", fac1Desc: "(2층)",
+            fac2Name: "하늘정원", fac2Desc: "(5층)",
+            fac3Name: "피트니스룸", fac3Desc: "(5층)",
+            fac4Name: "주차장", fac4Desc: "(지상)",
+            fac1H: "금림각 레스토랑 (2층)",
+            fac1Detail: "🍽️ <strong>금림각 레스토랑 (2/F)</strong><br><br><strong>【조식 뷔페】</strong><br>• <strong>시간</strong>：매일 07:30 - 10:00<br>• <strong>요금</strong>：HK$77 / 1인<br>• <strong>내용</strong>：풍성한 동서양 조식 뷔페로 활기찬 하루를 시작하세요.<br><br><strong>【주말 한정 · 추억의 음악 뷔페】</strong><br>• <strong>시간</strong>：매주 토요일 오후 및 저녁<br>• <strong>상세</strong>：클래식 명곡과 함께 여유로운 시간을 즐겨보세요. 자세한 사항은 레스토랑으로 문의해 주세요.<br><br><strong>【단체 예약 서비스】</strong><br>• 모임, 축하 행사, 비즈니스 이벤트를 위한 런치 및 디너 뷔페 단체 예약을 환영합니다.",
+            fac2H: "하늘정원 (5층)",
+            fac2Detail: "🌿 <strong>하늘정원 (5층)</strong><br><br><strong>【운영 시간】</strong><br>• <strong>시간</strong>：매일 08:00 - 22:00, 편안하게 휴식을 취하며 여유로운 시간을 즐겨보세요.<br><br><strong>【흡연 구역 안내】</strong><br>• 모든 투숙객의 건강과 쾌적한 환경을 위해 정원 내 야외 지정 구역에서만 흡연이 가능하오니 협조해 주시기 바랍니다.",
+            fac3H: "피트니스룸 (5층)",
+            fac3Detail: "💪 <strong>피트니스룸 (5층)</strong><br><br><strong>【24시간 상시 운영】</strong><br>• <strong>운영 시간</strong>: 24시간 연중무휴, 투숙객 무료 이용 가능.<br><br><strong>【다양한 운동 기구】</strong><br>• 전문 웨이트 기구 및 유산소 운동 기구가 갖춰져 있어 일상적인 운동 욕구를 충족시켜 드립니다.<br><br><strong>【야간 정숙 안내】</strong><br>• 모든 투숙객의 편안하고 조용한 휴식 환경을 위해 밤 11시부터 다음 날 아침 8시 사이에는 소음을 자제해 주시기 바랍니다. 양해와 협조에 감사드립니다.",
+            fac4H: "주차장 (지상)",
+            fac4Detail: "🚗 <strong>호텔 주차장 (지상)</strong><br><br><strong>【시간제 주차 서비스】</strong><br>• <strong>요금</strong>：시간당 HK$40<br>• <strong>주차 공간</strong>：시간제 주차 공간 2석 보유, 편리하고 신속하게 이용 가능.<br><br><strong>【공식 웹사이트 한정 혜택】</strong><br>• 호텔 공식 웹사이트를 통해 지정 숙박 패키지를 예약하시면 '무료 야간 주차 혜택'을 누리실 수 있습니다!",
+            backFacility: "⬅ 호텔 부대시설로 돌아가기",
+            backDeparture: "⬅ 출국 공항 가이드로 돌아가기",
+            dep1H: "로후 검문소 (Lo Wu)",
+            dep1Detail: "<strong>1. 교통 안내 (실카 취언완 출발)</strong><br>로후 검문소로 가는 주 경로 2가지:<br><br><strong>경로 A: 미니버스 ➔ 샤틴/타이와이 ➔ 동철선 (직행)</strong><br>• <strong>방법</strong>: 호텔 근처에서 403, 403P, 403X 미니버스를 타고 샤틴 또는 타이와이로 이동 후 동철선(East Rail Line)으로 환승하여 로후역 직행.<br>• <strong>결제 방식</strong>: 옥토퍼스 카드, 알리페이, 현금만 가능합니다.<br><br><strong>경로 B: 셔틀버스/시내버스 ➔ 콰이퐁 ➔ 프린스에드워드 환승 ➔ 구룡통 환승 ➔ 동철선</strong><br>• <strong>방법</strong>: 무료 셔틀버스 또는 31M 버스로 콰이퐁역 이동, 지하철을 타고 프린스에드워드역 및 구룡통역에서 환승하여 동철선 이용.<br>• <strong>주의사항</strong>: 동철선 탑승 시 종착지가 '로후(Lo Wu)'인지 '락마차우(Lok Ma Chau)'인지 확인하세요.<br><br><strong>2. 로후 검문소 이용 추천 심천 목적지</strong><br>다음 목적지로 가시는 경우 로후 검문소 이용을 강력 추천합니다:<br><br><strong>심천 기차역 (로후역):</strong><br>• <strong>장점</strong>: 입국장 건물 출구 바로 앞! 도보 약 1분 소요.<br><br><strong>동문 라오지에 (Dongmen):</strong><br>• <strong>장점</strong>: 입국 후 심천 지하철 1호선(로후역) 탑승 시 1정거장(라오지에역, 약 2-3분 소요) 또는 도보 10-15분.",
+            dep1Name: "로후 검문소", dep1Desc: "오전 06:30 ~ 자정 00:00",
+            dep2Name: "낙마주 / 휜티안", dep2Desc: "오전 06:30 ~ 오후 10:30",
+            dep3Name: "홍콩 국제공항", dep3Desc: "24시간",
+            dep4Name: "홍콩 서구룡역", dep4Desc: "오전 06:30 ~ 오후 11:30",
+            dep5Name: "선전 만 검문소", dep5Desc: "오전 06:30 ~ 자정 12:00",
+            dep6Name: "향원위 / 롄탕", dep6Desc: "오전 07:00 ~ 오후 10:30",
+            dep7Name: "강주아오 대교", dep7Desc: "24시간",
+            dep8Name: "마카오 페리 터미널", dep8Desc: "오전 06:30 ~ 자정 12:00",
+            carCard1T: "서비스 요금표", carCard1D: "구간별 픽업 및 대절 요금",
+            carCard2T: "이용 약관", carCard2D: "예약, 취소 및 탑승 안내",
+            carNoticeBox: "도움이나 문의 사항이 있으시거나 이 서비스를 이용하시려면 컨시어지 데스크를 방문하시거나 3700 3824로 연락해 주시기 바랍니다.",
+            carPriceH: "호텔 차량 - 서비스 요금표",
+            carTermsH: "호텔 차량 - 이용 약관",
+            thDest: "목적지 / 서비스 항목", thPrice: "요금 (HKD)",
+            pMongkok: "호텔에서 몽콕까지",
+            pChinachem: "호텔에서 차이나홍콩시티 / 고속철도역까지",
+            pAirport: "호텔에서 공항, 디즈니랜드, 강주아오 대교까지",
+            pOceanpark: "호텔에서 오션파크까지",
+            pSurcharge: "오전 8시 이전 / 오후 8시 이후 할증료",
+            pHourly: "시간제 대여 (시간당, 최소 3시간)",
+            carPriceNote: "💡 <strong>참고:</strong> 위 요금은 포인트 투 포인트 픽업 서비스에 적용됩니다. 초과 시간이나 일정 변경은 컨시어지에 문의해 주세요.",
+            back: "⬅ 메뉴로 돌아가기",
+            backGuidePlay: "⬅ 홍콩 여행 가이드로 돌아가기",
+            busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
+            stationH: "무료 셔틀버스 승하차 장소",
+            guideH: "홍콩 여행 가이드",
+            guideShopH: "홍콩 여행 가이드 - 쇼핑",
+            guidePlayH: "홍콩 여행 가이드 - 즐길거리",
+            guideSightH: "홍콩 여행 가이드 - 관광",
+            departureH: "출국 공항 가이드",
+            carH: "호텔 차량 서비스",
+            facilityH: "호텔 부대시설",
+            liveStatusLabel: "📍 실시간 운행 상태",
+            stDriving: "운행 중 (콰이퐁행)", stArrKwai: "🔵 콰이퐁 도착", stDriving2: "운행 중 (취언완 웨스트행)", stArrTsuen: "🔵 취언완 웨스트 도착", stReturning: "호텔로 복귀 중", stWaitingStandby: "대기 중 / 준비 중",
+            stEnded: "오늘의 운행이 종료되었습니다",
+            noticeTelTitle: "컨시어지 전화", noticeTelVal: "3700 3824 (내선 '4')",
+            noticeContactTitle: "사전에 컨시어지에 연락하여 좌석을 예약해 주세요",
+            noticeTimeTitle: "시간 준수 요청", noticeTimeDesc: "정시에 참석하지 않으실 경우, 다른 투숙객에게 좌석이 양도될 수 있습니다.",
+            noticeWeatherTitle: "악천후 안내", noticeWeatherDesc: "흑색 폭우 경보 또는 태풍 경보 8호 이상 발령 시 셔틀버스 운행이 중단됩니다.",
+            mapH: "호텔 300m 주변 실용 가이드",
+            lugH: "수하물 보관 서비스", 
+            lugDesc: "🧳 **수하물 보관 안내**<br><br><strong>【요금 및 정책】</strong><br>• **체크인 및 체크아웃 당일**：무료 보관。<br>• **장기 보관**：개당 1일 <strong>$10</strong>。<br><br><strong>【수령 및 안전】</strong><br>• 수령 시 보관증과 **서명** 확인 (불일치 시 반환 거부 가능).<br>• **에어컨이 없는 환경**에 보관됩니다。<br><br><strong>【면책 조항】</strong><br>• 분실, 손상, 도난에 대해 호텔은 책임지지 않습니다。<br>• **2개월** 이상 찾아가지 않은 물품은 임의 처분될 수 있습니다。",
+            kwaiFong: "콰이퐁", tsuenWanWest: "취언완 웨스트", lunchBreak: "점심 시간 (운행 중단)", nextBusText: "⭐ 다음 차량 (Next Bus)",
+            stBookable: "예약 가능", stWaiting: "대기 중", stBoarding: "탑승 가능", stDeparted: "출발함", stFull: "만석", stOut: "운행 중단"
+        },
+        'vi': {
+            title: "Silka Tsuen Wan - Tiền sảnh",
+            c1t: "🚌 Xe buýt đưa đón", c1d: "Lịch trình & trạng thái",
+            c5t: "🚏 Điểm đón xe buýt miễn phí", c5d: "Bản đồ chi tiết các trạm",
+            c2t: "🗺️ Hướng dẫn thực tế quanh khách sạn 300m", c2d: "MTR, ẩm thực & cửa hàng tiện lợi",
+            c6t: "📖 Cẩm nang du lịch HK", c6d: "Địa điểm hot & gợi ý lịch trình",
+            c3t: "🧳 Giữ hành lý", c3d: "Quy định & phí giữ hành lý",
+            c7t: "✈️ Hướng dẫn xuất cảnh", c7d: "Giao thông sân bay & Airport Express",
+            c8t: "🚐 Dịch vụ xe riêng", c8d: "Đưa đón sân bay & thuê xe",
+            c9t: "🏨 Tiện ích khách sạn", c9d: "Phòng gym, nhà hàng & tiện ích",
+            guide1Name: "Ẩm thực", guide1Desc: "Món ngon địa phương & nhà hàng hot",
+            guide2Name: "Mua sắm", guide2Desc: "Trung tâm thương mại & chợ sầm uất",
+            guide3Name: "Vui chơi", guide3Desc: "Công viên giải trí & trải nghiệm",
+            guide4Name: "Tham quan", guide4Desc: "Địa danh nổi tiếng & điểm check-in",
+            guide5Name: "Lịch trình 1", guide5Desc: "Tuyến đường 1 ngày kinh điển",
+            guide6Name: "Lịch trình 2", guide6Desc: "Khám phá văn hóa chiều sâu",
+            gshop1Name: "Harbour City", gshop1Desc: "Trung tâm mua sắm siêu lớn ven vịnh và các thương hiệu cao cấp",
+            gshop2Name: "Khu mua sắm Causeway Bay", gshop2Desc: "Bách hóa thời trang, SOGO và thiên đường mua sắm không ngủ",
+            gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Cửa hàng sáng tạo, nhà thiết kế độc lập và sản phẩm đặc sắc",
+            gshop4Name: "Chợ Quý Bà & Phố Giày Thể Thao", gshop4Desc: "Chợ địa phương, giày thời trang và phong cách đậm chất Hồng Kông",
+            gp1Name: "Hong Kong Disneyland", gp1Desc: "Cổ tích diệu kỳ và màn pháo hoa hoành tráng",
+            gp2Name: "Ocean Park Hong Kong", gp2Desc: "Trò chơi cảm giác mạnh và động vật vùng cực",
+            gp3Name: "Vòng quay Quan sát Hồng Kông", gp3Desc: "Cảnh quan lãng mạn bên Vịnh Victoria",
+            gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Công viên tự nhiên Mã Loan và điểm đến gia đình",
+            gs1Name: "Cảng Victoria & Đại lộ Ngôi sao", gs1Desc: "Đường chân trời đẳng cấp thế giới và biểu diễn ánh sáng",
+            gs2Name: "Đỉnh Thái Bình & Tháp Peak", gs2Desc: "Ngắm toàn cảnh ngoạn mục hai bên bờ Vịnh Victoria",
+            gs3Name: "Khu Văn hóa Tây Cử Long (M+ & Bảo tàng Cố cung)", gs3Desc: "Văn hóa thị giác đương đại và di sản Trung Hoa",
+            gs4Name: "Tai Kwun & Quần thể di tích Trung Hoàn", gs4Desc: "Kiến trúc lịch sử trùng tu và trung tâm nghệ thuật",
+            fac1Name: "Nhà hàng Kam Lam", fac1Desc: "(Tầng 2)",
+            fac2Name: "Vườn trên mái", fac2Desc: "(Tầng 5)",
+            fac3Name: "Phòng tập Gym", fac3Desc: "(Tầng 5)",
+            fac4Name: "Bãi đỗ xe", fac4Desc: "(Tầng trệt)",
+            fac1H: "Nhà hàng Kam Lam (Tầng 2)",
+            fac1Detail: "🍽️ <strong>Nhà hàng Kam Lam (2/F)</strong><br><br><strong>【Buffet Sáng】</strong><br>• <strong>Thời gian</strong>: Hàng ngày 07:30 - 10:00<br>• <strong>Giá</strong>: HK$77 / người<br>• <strong>Chi tiết</strong>: Buffet sáng phong phú Á - Âu giúp bạn tràn đầy năng lượng cho ngày mới.<br><br><strong>【Buffet Âm Nhạc Hoài Niệm Cuối Tuần】</strong><br>• <strong>Thời gian</strong>: Chiều & Tối Thứ Bảy hàng tuần<br>• <strong>Chi tiết</strong>: Thưởng thức bữa ăn thư thái cùng những tình khúc kinh điển. Vui lòng liên hệ nhà hàng để biết thêm chi tiết.<br><br><strong>【Dịch Vụ Đặt Tiệc Đoàn】</strong><br>• Nhà hàng nhận đặt buffet trưa và tối cho các đoàn, tiệc, lễ kỷ niệm hoặc sự kiện doanh nghiệp với dịch vụ chu đáo.",
+            fac2H: "Vườn trên mái (Tầng 5)",
+            fac2Detail: "🌿 <strong>Vườn trên mái (Tầng 5)</strong><br><br><strong>【Giờ mở cửa】</strong><br>• <strong>Thời gian</strong>: Hàng ngày 08:00 - 22:00, chào mừng quý khách đến thư giãn và tận hưởng khoảng thời gian thảnh thơi.<br><br><strong>【Lưu ý khu vực hút thuốc】</strong><br>• Để đảm bảo sức khỏe và sự thoải mái cho tất cả khách lưu trú, việc hút thuốc chỉ được phép tại khu vực ngoài trời chỉ định trong khu vườn. Rất mong quý khách hợp tác.",
+            fac3H: "Phòng tập Gym (Tầng 5)",
+            fac3Detail: "💪 <strong>Phòng tập Gym (Tầng 5)</strong><br><br><strong>【Mở cửa 24/7】</strong><br>• <strong>Thời gian</strong>: Mở cửa 24/24, phục vụ miễn phí cho khách lưu trú.<br><br><strong>【Trang thiết bị đầy đủ】</strong><br>• Trang bị đa dạng các thiết bị tập gym chuyên nghiệp và máy tập cardio đáp ứng nhu cầu rèn luyện hàng ngày của bạn.<br><br><strong>【Lưu ý giữ yên tĩnh ban đêm】</strong><br>• Để đảm bảo không gian nghỉ ngơi thoải mái, yên tĩnh cho tất cả khách lưu trú, vui lòng giữ im lặng từ 23:00 đến 08:00 sáng hôm sau. Xin chân thành cảm ơn sự hợp tác của quý khách.",
+            fac4H: "Bãi đỗ xe (Tầng trệt)",
+            fac4Detail: "🚗 <strong>Bãi đỗ xe khách sạn (Tầng trệt)</strong><br><br><strong>【Dịch vụ đỗ xe theo giờ】</strong><br>• <strong>Giá</strong>: HK$40 / giờ<br>• <strong>Chỗ đỗ xe</strong>: Có 2 chỗ đỗ xe theo giờ thuận tiện.<br><br><strong>【Ưu đãi độc quyền trên Website chính thức】</strong><br>• Đặt các gói phòng chỉ định qua website chính thức của khách sạn để tận hưởng ưu đãi \"Đỗ xe qua đêm miễn phí\"!",
+            backFacility: "⬅ Quay lại Tiện ích khách sạn",
+            backDeparture: "⬅ Quay lại Hướng dẫn xuất cảnh",
+            dep1H: "Trạm kiểm soát La Hồ (Lo Wu)",
+            dep1Detail: "<strong>1. Hướng dẫn di chuyển (Từ Silka Tsuen Wan)</strong><br>Có 2 tuyến đường thuận tiện đến Trạm kiểm soát La Hồ:<br><br><strong>Tuyến A: Xe buýt nhỏ ➔ Sha Tin/Tai Wai ➔ Tuyến East Rail (Thẳng)</strong><br>• <strong>Các bước</strong>: Bắt xe buýt nhỏ 403, 403P hoặc 403X gần khách sạn đến Sha Tin hoặc Tai Wai, chuyển sang Tuyến East Rail đi thẳng đến Ga La Hồ (Lo Wu).<br>• <strong>Thanh toán</strong>: Xe buýt nhỏ chỉ nhận thẻ Octopus, Alipay và tiền mặt.<br><br><strong>Tuyến B: Xe đưa đón/Bus ➔ Kwai Fong ➔ Đổi tuyến tại Prince Edward ➔ Đổi tuyến tại Kowloon Tong ➔ Tuyến East Rail</strong><br>• <strong>Các bước</strong>: Đi xe đưa đón miễn phí hoặc Bus 31M đến Ga Kwai Fong, đi MTR đổi tuyến tại Prince Edward và Kowloon Tong sang Tuyến East Rail đến Ga La Hồ.<br>• <strong>Lưu ý quan trọng</strong>: Hãy kiểm tra hướng đi của tàu East Rail là 'Lo Wu' hay 'Lok Ma Chau' để tránh lên nhầm tàu!<br><br><strong>2. Điểm đến Thâm Quyến ưu tiên qua Cửa khẩu La Hồ</strong><br>Nếu bạn có kế hoạch đến các địa điểm sau, Cửa khẩu La Hồ là lựa chọn tốt nhất:<br><br><strong>Ga tàu Thâm Quyến (Ga La Hồ):</strong><br>• <strong>Ưu điểm</strong>: Ngay bên ngoài tòa nhà cửa khẩu! Chỉ mất khoảng 1 phút đi bộ.<br><br><strong>Phố đi bộ Đông Môn (Laojie):</strong><br>• <strong>Ưu điểm</strong>: Rất gần. Đi tàu điện ngầm Thâm Quyến Tuyến 1 từ Ga La Hồ chỉ 1 trạm (đến Ga Laojie khoảng 2-3 phút) hoặc đi bộ 10-15 phút.",
+            dep1Name: "Trạm kiểm soát La Hồ", dep1Desc: "06:30 đến 00:00 Đêm",
+            dep2Name: "Lok Ma Chau / Cảng Phúc Điền", dep2Desc: "06:30 đến 22:30",
+            dep3Name: "Sân bay Quốc tế Hồng Kông", dep3Desc: "24 Giờ",
+            dep4Name: "Ga Tây Cử Long Hồng Kông", dep4Desc: "06:30 đến 23:30",
+            dep5Name: "Cảng Thâm Quyến Bay", dep5Desc: "06:30 đến 00:00 Đêm",
+            dep6Name: "Heung Yuen Wai / Cảng Liantang", dep6Desc: "07:00 đến 22:30",
+            dep7Name: "Cầu Hồng Kông - Chu Hải - Ma Cao", dep7Desc: "24 Giờ",
+            dep8Name: "Bến phà Ma Cao", dep8Desc: "06:30 đến 00:00 Đêm",
+            carCard1T: "Bảng giá dịch vụ", carCard1D: "Giá đưa đón và thuê xe trọn gói",
+            carCard2T: "Điều khoản & Điều kiện", carCard2D: "Quy định đặt xe, hủy xe và lưu ý",
+            carNoticeBox: "Nếu quý khách cần hỗ trợ, giải đáp thắc mắc hoặc sử dụng dịch vụ này, vui lòng đến quầy lễ tân hoặc gọi 3700 3824, chúng tôi rất hân hạnh được phục vụ.",
+            carPriceH: "Xe riêng - Bảng giá dịch vụ",
+            carTermsH: "Xe riêng - Điều khoản & Điều kiện",
+            thDest: "Điểm đến / Dịch vụ", thPrice: "Giá (HKD)",
+            pMongkok: "Từ khách sạn đến Mong Kok",
+            pChinachem: "Từ khách sạn đến China Hong Kong City / Ga Tàu cao tốc",
+            pAirport: "Từ khách sạn đến Sân bay, Disneyland, Cầu Hô Trương Môn",
+            pOceanpark: "Từ khách sạn đến Ocean Park",
+            pSurcharge: "Phụ phí trước 8:00 sáng / sau 8:00 tối",
+            pHourly: "Thuê theo giờ (Tối thiểu 3 tiếng)",
+            carPriceNote: "💡 <strong>Lưu ý:</strong> Mức giá trên áp dụng cho dịch vụ đưa đón điểm-đến-điểm. Nếu cần quá giờ hoặc thay đổi lịch trình, vui lòng liên hệ lễ tân.",
+            back: "⬅ Quay lại Menu",
+            backGuidePlay: "⬅ Quay lại Cẩm nang du lịch",
+            busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
+            stationH: "Điểm đón xe buýt miễn phí",
+            guideH: "Cẩm nang du lịch Hồng Kông",
+            guideShopH: "Cẩm nang du lịch - Mua sắm",
+            guidePlayH: "Cẩm nang du lịch - Vui chơi",
+            guideSightH: "Cẩm nang du lịch - Tham quan",
+            departureH: "Hướng dẫn xuất cảnh",
+            carH: "Dịch vụ xe riêng của khách sạn",
+            facilityH: "Tiện ích khách sạn",
+            liveStatusLabel: "📍 Trạng thái xe buýt trực tiếp",
+            stDriving: "Đang chạy tới Kwai Fong", stArrKwai: "🔵 Đã đến Kwai Fong", stDriving2: "Đang chạy tới Tsuen Wan West", stArrTsuen: "🔵 Đã đến Tsuen Wan West", stReturning: "Đang quay về khách sạn", stWaitingStandby: "Đang chờ / Chuẩn bị",
+            stEnded: "Các chuyến hôm nay đã kết thúc",
+            noticeTelTitle: "Điện thoại lễ tân", noticeTelVal: "3700 3824 (Nhấn '4' để kết nối nội bộ)",
+            noticeContactTitle: "Vui lòng liên hệ lễ tân sớm để đặt chỗ",
+            noticeTimeTitle: "Vui lòng đến đúng giờ", noticeTimeDesc: "Nếu không, suất đi sẽ được nhường cho khách khác.",
+            noticeWeatherTitle: "Lưu ý thời tiết xấu", noticeWeatherDesc: "Nếu có cảnh báo mưa bão màu đen hoặc bão cấp 8 trở lên, xe buýt sẽ tạm ngưng hoạt động.",
+            mapH: "Hướng dẫn thực tế quanh khách sạn 300m",
+            lugH: "Dịch vụ giữ hành lý", 
+            lugDesc: "🧳 **Quy định gửi hành lý**<br><br><strong>【Chính sách & Phí】</strong><br>• **Ngày nhận/trả phòng**：Miễn phí.<br>• **Gửi dài hạn**：<strong>$10</strong>/kiện/ngày.<br><br><strong>【Nhận đồ & An toàn】</strong><br>• Xuất trình thẻ và **chữ ký khớp**.<br>• **Không có điều hòa**.<br><br><strong>【Miễn trừ trách nhiệm】</strong><br>• Khách sạn không chịu trách nhiệm mất mát, hư hỏng.<br>• Quá **2 tháng** không nhận sẽ bị xử lý.",
+            kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Giờ nghỉ trưa (Tạm dừng)", nextBusText: "⭐ Chuyến tiếp theo",
+            stBookable: "Có thể đặt", stWaiting: "Đang chờ", stBoarding: "Đang lên xe", stDeparted: "Đã đi", stFull: "Hết chỗ", stOut: "Tạm dừng"
+        },
+        'hi': {
+            title: "सिलका त्सुएन वान - दरबान",
+            c1t: "🚌 मुफ्त शटल bus", c1d: "समय सारणी और स्थिति",
+            c5t: "🚏 मुफ्त शटल बस बोर्डिंग स्थान", c5d: "विस्तृत स्टेशन गाइड और नक्शे",
+            c2t: "🗺️ होटल 300मी व्यावहारिक गाइड", c2d: "मेट्रो, भोजन और दुकानें",
+            c6t: "📖 हांगकांग यात्रा गाइड", c6d: "शीर्ष आकर्षण और यात्रा कार्यक्रम",
+            c3t: "🧳 सामान का भंडारण", c3d: "भंडारण नियम और शुल्क",
+            c7t: "✈️ प्रस्थान गाइड", c7d: "हवाई अड्डा परिवहन और एक्सप्रेस जानकारी",
+            c8t: "🚐 होटल कार सेवा", c8d: "पॉइंट-टू-पॉइंट और चार्टर बुकिंग",
+            c9t: "🏨 होटल सुविधाएं", c9d: "जिम, डाइनिंग और अन्य सुविधाएं",
+            guide1Name: "भोजन", guide1Desc: "स्थानीय स्नैक्स और लोकप्रिय रेस्तरां",
+            guide2Name: "खरीदारी", guide2Desc: "मॉल और प्रसिद्ध बाजार",
+            guide3Name: "मनोरंजन", guide3Desc: "थीम पार्क और एक्टिविटी",
+            guide4Name: "दर्शनीय स्थल", guide4Desc: "प्रसिद्ध स्थल और फोटो स्पॉट",
+            guide5Name: "यात्रा कार्यक्रम 1", guide5Desc: "क्लासिक एक दिवसीय रूट",
+            guide6Name: "यात्रा कार्यक्रम 2", guide6Desc: "गहन सांस्कृतिक अन्वेषण यात्रा",
+            gshop1Name: "हार्बर सिटी", gshop1Desc: "वाटरफ्रंट मेगा मॉल और अंतरराष्ट्रीय लक्जरी ब्रांड",
+            gshop2Name: "कॉज़वे बे शॉपिंग जिला", gshop2Desc: "ट्रेंडी डिपार्टमेंट स्टोर, SOGO, और जीवंत नाइटलाइफ़",
+            gshop3Name: "सोहो और पीएमक्यू सेंट्रल", gshop3Desc: "रचनात्मक बुटीक, स्वतंत्र डिजाइनर और अनूठे सामान",
+            gshop4Name: "लेडीज मार्केट और स्नीकर्स स्ट्रीट", gshop4Desc: "हलचल भरे बाजार, ट्रेंडी जूते और स्थानीय स्वाद",
+            gp1Name: "हांगकांग डिज्नीलैंड", gp1Desc: "जादुई परी कथाएँ और आतिशबाजी शो",
+            gp2Name: "हांगकांग ओशन पार्क", gp2Desc: "रोमांचक सवारी और ध्रुवीय जानवर",
+            gp3Name: "हांगकांग ऑब्ज़र्वेशन व्हील", gp3Desc: "विक्टोरिया हार्बर पर रोमांटिक नज़ारे",
+            gp4Name: "हांगकांग नूह की सन्दूक", gp4Desc: "मा वान नेचर पार्क और पारिवारिक आकर्षण",
+            gs1Name: "विक्टोरिया हार्बर और एवेन्यू ऑफ स्टार्स", gs1Desc: "विश्व स्तरीय क्षितिज और लाइट शो",
+            gs2Name: "विक्टोरिया पीक और पीक टॉवर", gs2Desc: "विक्टोरिया हार्बर के दोनों किनारों का मनोरम दृश्य",
+            gs3Name: "वेस्ट काउलून सांस्कृतिक जिला (M+ और पैलेस संग्रहालय)", gs3Desc: "समकालीन दृश्य संस्कृति और चीनी विरासत",
+            gs4Name: "ताई क्वून और सेंट्रल हेरिटेज सर्किट", gs4Desc: "पुनर्जीवित ऐतिहासिक वास्तुकला और कला केंद्र",
+            fac1Name: "कम लाम रेस्तरां", fac1Desc: "(दूसरी मंजिल)",
+            fac2Name: "स्काई गार्डन", fac2Desc: "(5वीं मंजिल)",
+            fac3Name: "जिम", fac3Desc: "(5वीं मंजिल)",
+            fac4Name: "पार्किंग", fac4Desc: "(ग्राउंड फ्लोर)",
+            fac1H: "कम लाम रेस्तरां (दूसरी मंजिल)",
+            fac1Detail: "🍽️ <strong>कम लाम रेस्तरां (2/F)</strong><br><br><strong>【बुफे नाश्ता】</strong><br>• <strong>समय</strong>: दैनिक 07:30 - 10:00<br>• <strong>मूल्य</strong>: HK$77 / व्यक्ति<br>• <strong>विवरण</strong>: अपने दिन की ऊर्जावान शुरुआत के लिए समृद्ध पश्चिमी और चीनी बुफे नाश्ता。<br><br><strong>【वीकेंड संगीत बुफे】</strong><br>• <strong>समय</strong>: हर शनिवार दोपहर और शाम<br>• <strong>विवरण</strong>: क्लासिक धुनों के साथ आरामदायक समय का आनंद लें। विवरण के लिए कृपया रेस्तरां से संपर्क करें。<br><br><strong>【समूह बुकिंग सेवा】</strong><br>• रेस्तरां आपकी सभाओं, उत्सवों या व्यावसायिक कार्यक्रमों के लिए बुफे दोपहर के भोजन और रात के खाने की समूह बुकिंग स्वीकार करता है।",
+            fac2H: "स्काई गार्डन (5वीं मंजिल)",
+            fac2Detail: "🌿 <strong>स्काई गार्डन (5वीं मंजिल)</strong><br><br><strong>【खुलने का समय】</strong><br>• <strong>समय</strong>: दैनिक 08:00 - 22:00, आराम करने और शांतिपूर्ण क्षणों का आनंद लेने के लिए आपका स्वागत है।<br><br><strong>【धूम्रपान क्षेत्र सूचना】</strong><br>• सभी अतिथियों के स्वास्थ्य और आराम को सुनिश्चित करने के लिए, धूम्रपान केवल बगीचे के निर्दिष्ट खुले क्षेत्रों में ही अनुमत है। कृपया सहयोग करें।",
+            fac3H: "जिम (5वीं मंजिल)",
+            fac3Detail: "💪 <strong>जिम (5वीं मंजिल)</strong><br><br><strong>【24/7 उपलब्धता】</strong><br>• <strong>समय</strong>: 24 घंटे खुला, इन-हाउस मेहमानों के लिए निःशुल्क उपयोग।<br><br><strong>【सुसज्जित फिटनेस उपकरण】</strong><br>• आपकी दैनिक कसरत की ज़रूरतों को पूरा करने के लिए विभिन्न पेशेवर फ़िटनेस और कार्डियो उपकरणों से सुसज्जित।<br><br><strong>【रात्रि शांत समय】</strong><br>• सभी मेहमानों के लिए एक आरामदायक और शांतिपूर्ण वातावरण सुनिश्चित करने के लिए, कृपया रात 11:00 बजे से सुबह 8:00 बजे के बीच अपनी आवाज़ धीमी रखें। आपके सहयोग के लिए धन्यवाद।",
+            fac4H: "पार्किंग (ग्राउंड फ्लोर)",
+            fac4Detail: "🚗 <strong>होटल पार्किंग (ग्राउंड फ्लोर)</strong><br><br><strong>【प्रति घंटा पार्किंग सेवा】</strong><br>• <strong>शुल्क</strong>: HK$40 प्रति घंटा<br>• <strong>स्थान</strong>: आपकी सुविधा के लिए 2 प्रति घंटा पार्किंग स्थान उपलब्ध हैं।<br><br><strong>【आधिकारिक वेबसाइट विशेष ऑफर】</strong><br>• 'मुफ्त ओवरनाइट पार्किंग ऑफर' का आनंद लेने के लिए हमारी आधिकारिक वेबसाइट के माध्यम से निर्दिष्ट स्टे पैकेज बुक करें!",
+            backFacility: "⬅ होटल सुविधाओं पर वापस जाएं",
+            backDeparture: "⬅ प्रस्थान गाइड पर वापस जाएं",
+            dep1H: "लो वू चेकपॉइंट",
+            dep1Detail: "<strong>1. परिवहन गाइड (सिलका त्सुएन वान से)</strong><br>लो वू चेकपॉइंट तक पहुंचने के 2 सुविधाजनक रास्ते:<br><br><strong>मार्ग A: मिनीबस ➔ शा तिन/ताई वाई ➔ ईस्ट रेल लाइन (डायरेक्ट)</strong><br>• <strong>चरण</strong>: होटल के पास ग्रीन मिनीबस 403, 403P या 403X से शा तिन या ताई वाई जाएं, फिर ईस्ट रेल लाइन से लो वू स्टेशन जाएं।<br>• <strong>भुगतान</strong>: मिनीबस में केवल ऑक्टोपस, अलीपे और कैश स्वीकार्य है।<br><br><strong>मार्ग B: होटल शटल/बस ➔ क्वाई फोंग ➔ प्रिंस एडवर्ड ट्रांसफर ➔ काउलून टोंग ट्रांसफर ➔ ईस्ट रेल लाइन</strong><br>• <strong>चरण</strong>: मुफ्त होटल शटल या बस 31M से क्वाई फोंग स्टेशन जाएं, एमटीआर से प्रिंस एडवर्ड और काउलून टोंग में ईस्ट रेल लाइन पर ट्रांसफर करें।<br>• <strong>महत्वपूर्ण सूचना</strong>: ट्रेन में चढ़ते समय ध्यान दें कि गंतव्य 'लो वू' (Lo Wu) है या 'लोक मा चाउ' (Lok Ma Chau)।<br><br><strong>2. लो वू के माध्यम से पसंदीदा शेन्ज़ेन गंतव्य</strong><br>यदि आप निम्नलिखित स्थानों पर जाने की योजना बना रहे हैं, तो लो वू चेकपॉइंट सबसे अच्छा विकल्प है:<br><br><strong>शेन्ज़ेन रेलवे स्टेशन (लो वू स्टेशन):</strong><br>• <strong>लाभ</strong>: इमीग्रेशन बिल्डिंग के ठीक बाहर! केवल 1 मिनट की पैदल दूरी।<br><br><strong>दॉन्गमैन पेडेस्ट्रियन स्ट्रीट (लाओजी):</strong><br>• <strong>लाभ</strong>: बहुत पास। शेन्ज़ेन मेट्रो लाइन 1 से केवल 1 स्टॉप (लगभग 2-3 मिनट) या 10-15 मिनट पैदल दूरी।",
+            dep1Name: "लो वू चेकपॉइंट", dep1Desc: "सुबह 06:30 से मध्यरात्रि 00:00",
+            dep2Name: "लोक मा चाउ / फुतियान", dep2Desc: "सुबह 06:30 से रात 10:30",
+            dep3Name: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा", dep3Desc: "24 घंटे",
+            dep4Name: "हांगकांग वेस्ट कॉवloon स्टेशन", dep4Desc: "सुबह 06:30 से रात 11:30",
+            dep5Name: "शेन्ज़ेन बे पोर्ट", dep5Desc: "सुबह 06:30 से मध्यरात्रि 12:00",
+            dep6Name: "हेउंग युएन वाई / लियान्तांग पोर्ट", dep6Desc: "सुबह 07:00 से रात 10:30",
+            dep7Name: "हांगकांग-झुहाई-मकाऊ ब्रिज", dep7Desc: "24 घंटे",
+            dep8Name: "मकाऊ फेरी टर्मिनल", dep8Desc: "सुबह 06:30 से मध्यरात्रि 12:00",
+            carCard1T: "सेवा शुल्क तालिका", carCard1D: "पॉइंट-टू-पॉइंट और चार्टर मूल्य निर्धारण",
+            carCard2T: "नियम एवं शर्तें", carCard2D: "बुकिंग, रद्दीकरण और नीतियां",
+            carNoticeBox: "यदि आपको किसी सहायता, पूछताछ या इस सेवा का उपयोग करने की आवश्यकता है, तो कृपया कंसर्ज डेस्क पर आएं या 3700 3824 पर कॉल करें।",
+            carPriceH: "होटल कार - सेवा शुल्क तालिका",
+            carTermsH: "होटल कार - नियम एवं शर्तें",
+            thDest: "गंतव्य / सेवा", thPrice: "शुल्क (HKD)",
+            pMongkok: "होटल से मोंग कोक",
+            pChinachem: "होटल से चाइना हांगकांग सिटी / हाई स्पीड रेल स्टेशन",
+            pAirport: "होटल से हवाई अड्डा, डिज्नीलैंड, हांगकांग-झुहाई-मकाऊ ब्रिज",
+            pOceanpark: "होटल से ओशन पार्क",
+            pSurcharge: "सुबह 8 बजे से पहले / रात 8 बजे के बाद अतिरिक्त शुल्क",
+            pHourly: "प्रति घंटा किराया (न्यूनतम 3 घंटे)",
+            carPriceNote: "💡 <strong>नोट:</strong> उपर्युक्त शुल्क पॉइंट-टू-पॉइंट ट्रांसफर सेवाओं पर लागू होते हैं। ओवरटाइम या यात्रा कार्यक्रम में बदलाव के लिए कृपया कंसर्ज से संपर्क करें।",
+            back: "⬅ मेनू पर वापस जाएं",
+            backGuidePlay: "⬅ हांगकांग यात्रा गाइड पर वापस जाएं",
+            busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएं वान वेस्ट",
+            stationH: "मुफ्त शटल बस बोर्डिंग स्थान",
+            guideH: "हांगकांग यात्रा गाइड",
+            guideShopH: "हांगकांग यात्रा गाइड - खरीदारी",
+            guidePlayH: "हांगकांग यात्रा गाइड - मनोरंजन",
+            guideSightH: "हांगकांग यात्रा गाइड - दर्शनीय स्थल",
+            departureH: "प्रस्थान गाइड",
+            carH: "होटल कार सेवा",
+            facilityH: "होटल सुविधाएं",
+            liveStatusLabel: "📍 लाइव बस स्थिति",
+            stDriving: "क्वाई फोंग जा रही है", stArrKwai: "🔵 क्वाई फोंग पहुंच गई", stDriving2: "त्सुएं वान वेस्ट जा रही है", stArrTsuen: "🔵 त्सुएं वान वेस्ट पहुंच गई", stReturning: "होटल वापस लौट रही है", stWaitingStandby: "प्रतीक्षा / तैयारी",
+            stEnded: "आज की यात्राएं समाप्त हो गई हैं",
+            noticeTelTitle: "कंसर्ज फोन", noticeTelVal: "3700 3824 (एक्सटेंशन के लिए '4' दबाएं)",
+            noticeContactTitle: "कृपया सीट आरक्षित करने के लिए पहले से कंसर्ज से संपर्क करें",
+            noticeTimeTitle: "समय पर उपस्थित रहें", noticeTimeDesc: "अन्यथा सीट अन्य अतिथियों को दे दी जाएगी।",
+            noticeWeatherTitle: "खराब मौसम व्यवस्था", noticeWeatherDesc: "ब्लैक रेनस्टॉर्म या तूफान सिग्नल 8 या अधिक जारी होने पर शटल bus सेवा स्थगित रहेगी।",
+            mapH: "होटल 300मी व्यावहारिक गाइड",
+            lugH: "सामान भंडारण सेवा", 
+            lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है।",
+            kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएं वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली बस (Next Bus)",
+            stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित"
+        },
+        'fil': {
+            title: "Silka Tsuen Wan - Concierge",
+            c1t: "🚌 Libreng Shuttle Bus", c1d: "Iskedyul at live na status",
+            c5t: "🚏 Sakayan ng Libreng Shuttle Bus", c5d: "Detalyadong gabay at mapa sa istasyon",
+            c2t: "🗺️ Gabay sa 300m Paligid ng Hotel", c2d: "MTR, kainan at convenience store",
+            c6t: "📖 Gabay sa Paglalakbay", c6d: "Mga pasyalan at gabay sa biyahe",
+            c3t: "🧳 Imbakan ng Bagahe", c3d: "Patakaran at bayarin sa bagahe",
+            c7t: "✈️ Gabay sa Pag-alis", c7d: "Transportasyon sa paliparan at Airport Express",
+            c8t: "🚐 Serbisyo ng Kotse sa Hotel", c8d: "Point-to-point at booking ng sasakyan",
+            c9t: "🏨 Mga Pasilidad ng Hotel", c9d: "Gym, kainan at iba pa",
+            guide1Name: "Pagkain", guide1Desc: "Lokal na meryenda at sikat na kainan",
+            guide2Name: "Pamimili", guide2Desc: "Mga mall at sikat na palengke",
+            guide3Name: "Libangan", guide3Desc: "Theme park at karanasan",
+            guide4Name: "Pasyalan", guide4Desc: "Mga sikat na landmark at tanawin",
+            guide5Name: "Ruta 1", guide5Desc: "Klasikong 1-araw na biyahe",
+            guide6Name: "Ruta 2", guide6Desc: "Malalim na pagtuklas sa kultura",
+            gshop1Name: "Harbour City", gshop1Desc: "Malaking waterfront mall at international luxury brands",
+            gshop2Name: "Causeway Bay Shopping District", gshop2Desc: "Trendy department stores, SOGO, at masiglang nightlife",
+            gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Creative boutiques, indie designers, at natatanging items",
+            gshop4Name: "Ladies' Market & Sneakers Street", gshop4Desc: "Street markets, trendy kicks, at lokal na kultura",
+            gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical na engkanto at paputok",
+            gp2Name: "Ocean Park Hong Kong", gp2Desc: "Nakatutuwang rides at mga polar animal",
+            gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantikong tanawin ng skyline sa Victoria Harbour",
+            gp4Name: "Hong Kong Noah's Ark", gp4Desc: "Ma Wan nature park at pampamilyang pasyalan",
+            gs1Name: "Victoria Harbour at Avenue of Stars", gs1Desc: "World-class skyline at light show",
+            gs2Name: "Victoria Peak at Peak Tower", gs2Desc: "Panoramic view ng magkabilang panig ng Victoria Harbour",
+            gs3Name: "West Kowloon Cultural District (M+ at Palace Museum)", gs3Desc: "Contemporary visual culture at Chinese heritage",
+            gs4Name: "Tai Kwun at Central Heritage Circuit", gs4Desc: "Binagong makasaysayang arkitektura at arts hub",
+            fac1Name: "Restawran ng Kam Lam", fac1Desc: "(Ika-2 Palapag)",
+            fac2Name: "Halaman sa Himpapawid", fac2Desc: "(Ika-5 Palapag)",
+            fac3Name: "Gym / Fitness Room", fac3Desc: "(Ika-5 Palapag)",
+            fac4Name: "Paradahan", fac4Desc: "(Ground Floor)",
+            fac1H: "Restawran ng Kam Lam (Ika-2 Palapag)",
+            fac1Detail: "🍽️ <strong>Restawran ng Kam Lam (2/F)</strong><br><br><strong>【Buffet Almusal】</strong><br>• <strong>Oras</strong>: Araw-araw 07:30 - 10:00<br>• <strong>Presyo</strong>: HK$77 / tao<br>• <strong>Detalyado</strong>: Magsimula ng masiglang araw sa masarap na Western at Chinese buffet breakfast.<br><br><strong>【Weekend Music Buffet】</strong><br>• <strong>Oras</strong>: Tuwing Sabado ng hapon at gabi<br>• <strong>Detalyado</strong>: Mag-enjoy sa mga klasikong kanta at masarap na pagkain. Mangyaring magtanong sa restawran para sa karagdagang detalye.<br><br><strong>【Serbisyo sa Pag-book ng Grupo】</strong><br>• Taos-pusong tumatanggap ang restawran ng mga group booking para sa buffet lunch at dinner para sa inyong mga pagtitipon, pagdiriwang, o business event.",
+            fac2H: "Halaman sa Himpapawid (Ika-5 Palapag)",
+            fac2Detail: "🌿 <strong>Halaman sa Himpapawid (Ika-5 Palapag)</strong><br><br><strong>【Oras ng Pagbubukas】</strong><br>• <strong>Oras</strong>: Araw-araw 08:00 - 22:00, malugod kayong tinatanggap na magpahinga at mag-enjoy ng kaunting katahimikan.<br><br><strong>【Paalala sa Smoking Area】</strong><br>• Upang matiyak ang kalusugan at kaginhawaan ng lahat ng bisita, ang paninigarilyo ay pinapayagan lamang sa mga open-air area ng hardin. Maraming salamat sa inyong kooperasyon.",
+            fac3H: "Gym / Fitness Room (Ika-5 Palapag)",
+            fac3Detail: "💪 <strong>Gym / Fitness Room (Ika-5 Palapag)</strong><br><br><strong>【Bukas 24/7】</strong><br>• <strong>Oras</strong>: Bukas 24 oras araw-araw, libreng gamitin para sa mga in-house guest.<br><br><strong>【Kumpletong Kagamitan sa Exercise】</strong><br>• May iba't ibang propesyonal na fitness at cardio equipment para sa inyong pang-araw-araw na ehersisyo.<br><br><strong>【Paalala sa Katahimikan sa Gabi】</strong><br>• Upang matiyak ang komportable at tahimik na kapaligiran para sa lahat ng bisita, mangyaring hinaan ang ingay mula 11:00 PM hanggang 8:00 AM kinaumagahan. Maraming salamat sa inyong kooperasyon.",
+            fac4H: "Paradahan (Ground Floor)",
+            fac4Detail: "🚗 <strong>Paradahan ng Hotel (Ground Floor)</strong><br><br><strong>【Serbisyo sa Pagparada kada Oras】</strong><br>• <strong>Singil</strong>: HK$40 kada oras<br>• <strong>Slot</strong>: May 2 hourly parking slots na available para sa inyong kaginhawaan.<br><br><strong>【Eksklusibong Alok sa Opisyal na Website】</strong><br>• Mag-book ng mga kwalipikadong stay package sa opisyal na website upang ma-enjoy ang \"Libreng Overnight Parking Offer\"!",
+            backFacility: "⬅ Bumalik sa Pasilidad ng Hotel",
+            backDeparture: "⬅ Bumalik sa Gabay sa Pag-alis",
+            dep1H: "Lo Wu Control Point",
+            dep1Detail: "<strong>1. Gabay sa Transportasyon (Mula Silka Tsuen Wan)</strong><br>Mayroong 2 maginhawang ruta papuntang Lo Wu Control Point:<br><br><strong>Ruta A: Minibus ➔ Sha Tin/Tai Wai ➔ East Rail Line (Direkta)</strong><br>• <strong>Mga Hakbang</strong>: Sumakay ng green minibus 403, 403P, o 403X malapit sa hotel papuntang Sha Tin o Tai Wai, pagkatapos ay lumipat sa East Rail Line papuntang Lo Wu Station.<br>• <strong>Pagbabayad</strong>: Octopus, Alipay, at cash lamang ang tinatanggap sa minibus.<br><br><strong>Ruta B: Hotel Shuttle/Bus ➔ Kwai Fong ➔ Lipat sa Prince Edward ➔ Lipat sa Kowloon Tong ➔ East Rail Line</strong><br>• <strong>Mga Hakbang</strong>: Sumakay ng libreng hotel shuttle o Bus 31M papuntang Kwai Fong Station, mag-MTR at lumipat sa Prince Edward at Kowloon Tong papuntang East Rail Line.<br>• <strong>Mahalagang Paalala</strong>: Tiyaking suriin kung ang destinasyon ng tren ay 'Lo Wu' o 'Lok Ma Chau' upang hindi magkamali ng sakay!<br><br><strong>2. Inirerekomendang Destinasyon sa Shenzhen sa pamamagitan ng Lo Wu</strong><br>Kung plano mong pumunta sa mga sumusunod na lugar, ang Lo Wu Control Point ang pinakamagandang opsyon:<br><br><strong>Shenzhen Railway Station (Lo Wu Station):</strong><br>• <strong>Kalamangan</strong>: Paglabas mismo ng immigration building! 1 minutong lakad lamang.<br><br><strong>Dongmen Pedestrian Street (Laojie):</strong><br>• <strong>Kalamangan</strong>: Napakalapit. Sumakay ng Shenzhen Metro Line 1 mula Luohu Station nang 1 stop lamang papuntang Laojie Station (mga 2-3 minuto) o maglakad nang 10-15 minuto.",
+            dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 hanggang 00:00 Hatinggabi",
+            dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 hanggang 22:30",
+            dep3Name: "Hong Kong International Airport", dep3Desc: "24 Oras",
+            dep4Name: "Hong Kong West Kowloon Station", dep4Desc: "06:30 hanggang 23:30",
+            dep5Name: "Shenzhen Bay Port", dep5Desc: "06:30 hanggang 00:00 Hatinggabi",
+            dep6Name: "Heung Yuen Wai / Liantang Port", dep6Desc: "07:00 hanggang 22:30",
+            dep7Name: "Hong Kong-Zhuhai-Macao Bridge", dep7Desc: "24 Oras",
+            dep8Name: "Macau Ferry Terminal", dep8Desc: "06:30 hanggang 00:00 Hatinggabi",
+            carCard1T: "Talaan ng Singilin", carCard1D: "Presyo ng point-to-point at charter",
+            carCard2T: "Mga Tuntunin at Kundisyon", carCard2D: "Pag-book, pagkansela at patakaran",
+            carNoticeBox: "Kung kailangan ninyo ng tulong, tanong, o nais gamitin ang serbisyong ito, mangyaring magtungo sa Concierge desk o tumawag sa 3700 3824.",
+            carPriceH: "Kotse sa Hotel - Talaan ng Singilin",
+            carTermsH: "Kotse sa Hotel - Mga Tuntunin at Kundisyon",
+            thDest: "Destinasyon / Serbisyo", thPrice: "Singil (HKD)",
+            pMongkok: "Mula Hotel hanggang Mong Kok",
+            pChinachem: "Mula Hotel hanggang China Hong Kong City / High Speed Rail Station",
+            pAirport: "Mula Hotel hanggang Airport, Disneyland, HK-Zhuhai-Macao Bridge",
+            pOceanpark: "Mula Hotel hanggang Ocean Park",
+            pSurcharge: "Karagdagang bayad bago mag-8:00 AM / pagkatapos ng 8:00 PM",
+            pHourly: "Pag-upa kada oras (Minimum na 3 oras)",
+            carPriceNote: "💡 <strong>Tandaan:</strong> Ang mga singil sa taas ay para sa point-to-point transfer. Para sa overtime o pagbabago ng ruta, magtanong sa Concierge.",
+            back: "⬅ Bumalik sa Menu",
+            backGuidePlay: "⬅ Bumalik sa Gabay sa Paglalakbay",
+            busH: "Iskedyul ng Shuttle Bus at Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
+            stationH: "Sakayan ng Libreng Shuttle Bus",
+            guideH: "Gabay sa Paglalakbay sa Hong Kong",
+            guideShopH: "Gabay sa Paglalakbay - Pamimili",
+            guidePlayH: "Gabay sa Paglalakbay - Libangan",
+            guideSightH: "Gabay sa Paglalakbay - Pasyalan",
+            departureH: "Gabay sa Pag-alis",
+            carH: "Serbisyo ng Kotse sa Hotel",
+            facilityH: "Mga Pasilidad ng Hotel",
+            liveStatusLabel: "📍 Live na Status ng Bus",
+            stDriving: "Bumabiyahe papuntang Kwai Fong", stArrKwai: "🔵 Dumating na sa Kwai Fong", stDriving2: "Bumabiyahe papuntang Tsuen Wan West", stArrTsuen: "🔵 Dumating na sa Tsuen Wan West", stReturning: "Bumabalik sa Hotel", stWaitingStandby: "Naghihintay / Naghahanda",
+            stEnded: "Tapos na ang mga biyahe ngayong araw",
+            noticeTelTitle: "Telepono ng Concierge", noticeTelVal: "3700 3824 (Pindutin ang '4' para sa extension)",
+            noticeContactTitle: "Mangyaring makipag-ugnayan sa Concierge nang maaga upang mag-reserba",
+            noticeTimeTitle: "Maging punctual", noticeTimeDesc: "Kung hindi, ang mga upuan ay maaaring ibigay sa ibang mga bisita.",
+            noticeWeatherTitle: "Masamang Panahon", noticeWeatherDesc: "Ang serbisyo ng shuttle bus ay pansamantalang ititigil kung may Black Rainstorm o Typhoon Signal No. 8 pataas.",
+            mapH: "Gabay sa 300m Paligid ng Hotel",
+            lugH: "Serbisyo sa Imbakan ng Bagahe", 
+            lugDesc: "🧳 **Paalala sa Imbakan ng Bagahe**<br><br><strong>【Patakaran at Bayarin】</strong><br>• **Araw ng Pag-check-in at Check-out**：Libreng imbakan.<br>• **Mahabang Panahong Imbakan**：<strong>$10</strong> bawat piraso bawat araw.<br><br><strong>【Pagkolekta at Kaligtasan】</strong><br>• Mangyaring ipakita ang claim tag at **tugmang lagda**.<br>• Nakaimbak sa **hindi naka-aircon** na kapaligiran.<br><br><strong>【Pananagutan】</strong><br>• Ang hotel ay hindi panagot sa anumang **pagkawala, pinsala, o pagnanakaw**.<br>• Ang mga hindi kinuha sa loob ng **dalawang buwan** ay maaaring itapon nang walang abiso.",
+            kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Oras ng Tanghalian (Suspendido)", nextBusText: "⭐ Susunod na Bus",
+            stBookable: "Maaaring I-book", stWaiting: "Naghihintay", stBoarding: "Sumasakay", stDeparted: "Umalis Na", stFull: "Puno", stOut: "Suspendido"
+        }
+    };
+
+    function selectLang(lang) {
+        currentLang = lang;
+        document.getElementById('lang-modal').style.display = 'none';
+        document.getElementById('mainContainer').style.display = 'block';
+        updateUIText();
+        renderBusSchedule();
+    }
+
+    function updateUIText() {
+        const langData = t[currentLang] || t['zh-HK'];
+        document.title = langData.title;
+        const elements = {
+            'ui-title': langData.title,
+            'ui-card1-title': langData.c1t, 'ui-card1-desc': langData.c1d,
+            'ui-card5-title': langData.c5t, 'ui-card5-desc': langData.c5d,
+            'ui-card2-title': langData.c2t, 'ui-card2-desc': langData.c2d,
+            'ui-card6-title': langData.c6t, 'ui-card6-desc': langData.c6d,
+            'ui-card3-title': langData.c3t, 'ui-card3-desc': langData.c3d,
+            'ui-card7-title': langData.c7t, 'ui-card7-desc': langData.c7d,
+            'ui-card8-title': langData.c8t, 'ui-card8-desc': langData.c8d,
+            'ui-card9-title': langData.c9t, 'ui-card9-desc': langData.c9d,
+            'ui-bus-header': langData.busH, 'ui-bus-sub': langData.busSub,
+            'ui-station-header': langData.stationH,
+            'ui-map-header': langData.mapH,
+            'ui-guide-header': langData.guideH,
+            'ui-guideshop-header': langData.guideShopH,
+            'ui-guideplay-header': langData.guidePlayH,
+            'ui-guidesight-header': langData.guideSightH,
+            'ui-lug-header': langData.lugH, 'ui-lug-desc': langData.lugDesc,
+            'ui-departure-header': langData.departureH,
+            'ui-dep1-header': langData.dep1H, 'ui-dep1-desc': langData.dep1Detail, 'ui-back-dep1': langData.backDeparture,
+            'ui-car-header': langData.carH,
+            'ui-car-card1-title': langData.carCard1T, 'ui-car-card1-desc': langData.carCard1D,
+            'ui-car-card2-title': langData.carCard2T, 'ui-car-card2-desc': langData.carCard2D,
+            'ui-car-notice-box': langData.carNoticeBox,
+            'ui-carprice-header': langData.carPriceH,
+            'ui-th-dest': langData.thDest, 'ui-th-price': langData.thPrice,
+            'ui-p-mongkok': langData.pMongkok,
+            'ui-p-chinachem': langData.pChinachem,
+            'ui-p-airport': langData.pAirport,
+            'ui-p-oceanpark': langData.pOceanpark,
+            'ui-p-surcharge': langData.pSurcharge,
+            'ui-p-hourly': langData.pHourly,
+            'ui-carprice-note': langData.carPriceNote,
+            'ui-carterms-header': langData.carTermsH,
+            'ui-facility-header': langData.facilityH,
+            'ui-fac-1-title': langData.fac1Name, 'ui-fac-1-desc': langData.fac1Desc,
+            'ui-fac-2-title': langData.fac2Name, 'ui-fac-2-desc': langData.fac2Desc,
+            'ui-fac-3-title': langData.fac3Name, 'ui-fac-3-desc': langData.fac3Desc,
+            'ui-fac-4-title': langData.fac4Name, 'ui-fac-4-desc': langData.fac4Desc,
+            'ui-fac1-header': langData.fac1H, 'ui-fac1-desc': langData.fac1Detail,
+            'ui-fac2-header': langData.fac2H, 'ui-fac2-desc': langData.fac2Detail,
+            'ui-fac3-header': langData.fac3H, 'ui-fac3-desc': langData.fac3Detail,
+            'ui-fac4-header': langData.fac4H, 'ui-fac4-desc': langData.fac4Detail,
+            'ui-back-fac1': langData.backFacility, 'ui-back-fac2': langData.backFacility, 'ui-back-fac3': langData.backFacility, 'ui-back-fac4': langData.backFacility,
+            'ui-back1': langData.back, 'ui-back2': langData.back, 'ui-back3': langData.back,
+            'ui-back5': langData.back, 'ui-back6': langData.back, 'ui-back7': langData.back, 'ui-back8': langData.back, 'ui-back9': langData.back,
+            'ui-back-guideshop': langData.guideH, 'ui-back-guideplay': langData.backGuidePlay, 'ui-back-guidesight': langData.backGuidePlay,
+            'ui-back-carprice': langData.carH, 'ui-back-carterms': langData.carH,
+            'ui-live-status-label': langData.liveStatusLabel,
+            'ui-notice-tel-title': langData.noticeTelTitle, 'ui-notice-tel-val': langData.noticeTelVal,
+            'ui-notice-contact-title': langData.noticeContactTitle,
+            'ui-notice-time-title': langData.noticeTimeTitle, 'ui-notice-time-desc': langData.noticeTimeDesc,
+            'ui-notice-weather-title': langData.noticeWeatherTitle, 'ui-notice-weather-desc': langData.noticeWeatherDesc,
+            'ui-guide-1-title': langData.guide1Name, 'ui-guide-1-desc': langData.guide1Desc,
+            'ui-guide-2-title': langData.guide2Name, 'ui-guide-2-desc': langData.guide2Desc,
+            'ui-guide-3-title': langData.guide3Name, 'ui-guide-3-desc': langData.guide3Desc,
+            'ui-guide-4-title': langData.guide4Name, 'ui-guide-4-desc': langData.guide4Desc,
+            'ui-guide-5-title': langData.guide5Name, 'ui-guide-5-desc': langData.guide5Desc,
+            'ui-guide-6-title': langData.guide6Name, 'ui-guide-6-desc': langData.guide6Desc,
+            'ui-gshop-1-title': langData.gshop1Name, 'ui-gshop-1-desc': langData.gshop1Desc,
+            'ui-gshop-2-title': langData.gshop2Name, 'ui-gshop-2-desc': langData.gshop2Desc,
+            'ui-gshop-3-title': langData.gshop3Name, 'ui-gshop-3-desc': langData.gshop3Desc,
+            'ui-gshop-4-title': langData.gshop4Name, 'ui-gshop-4-desc': langData.gshop4Desc,
+            'ui-gp-1-title': langData.gp1Name, 'ui-gp-1-desc': langData.gp1Desc,
+            'ui-gp-2-title': langData.gp2Name, 'ui-gp-2-desc': langData.gp2Desc,
+            'ui-gp-3-title': langData.gp3Name, 'ui-gp-3-desc': langData.gp3Desc,
+            'ui-gp-4-title': langData.gp4Name, 'ui-gp-4-desc': langData.gp4Desc,
+            'ui-gs-1-title': langData.gs1Name, 'ui-gs-1-desc': langData.gs1Desc,
+            'ui-gs-2-title': langData.gs2Name, 'ui-gs-2-desc': langData.gs2Desc,
+            'ui-gs-3-title': langData.gs3Name, 'ui-gs-3-desc': langData.gs3Desc,
+            'ui-gs-4-title': langData.gs4Name, 'ui-gs-4-desc': langData.gs4Desc,
+            'ui-dep-1-title': langData.dep1Name, 'ui-dep-1-desc': langData.dep1Desc,
+            'ui-dep-2-title': langData.dep2Name, 'ui-dep-2-desc': langData.dep2Desc,
+            'ui-dep-3-title': langData.dep3Name, 'ui-dep-3-desc': langData.dep3Desc,
+            'ui-dep-4-title': langData.dep4Name, 'ui-dep-4-desc': langData.dep4Desc,
+            'ui-dep-5-title': langData.dep5Name, 'ui-dep-5-desc': langData.dep5Desc,
+            'ui-dep-6-title': langData.dep6Name, 'ui-dep-6-desc': langData.dep6Desc,
+            'ui-dep-7-title': langData.dep7Name, 'ui-dep-7-desc': langData.dep7Desc,
+            'ui-dep-8-title': langData.dep8Name, 'ui-dep-8-desc': langData.dep8Desc
         };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
 
-        let manualOverrides = {};
-
-        db.ref('busManualOverrides').on('value', (snapshot) => {
-            manualOverrides = snapshot.val() || {};
-            renderBusSchedule();
-        });
-
-        let currentLang = 'zh-HK';
-
-        const t = {
-            'zh-HK': {
-                title: "荃灣絲麗酒店 - 禮賓部",
-                c1t: "🚌 免費穿梭巴士", c1d: "時間表與即時狀態",
-                c5t: "🚏 免費穿梭巴士上車地點", c5d: "站點詳細地圖與指引",
-                c2t: "🗺️ 酒店300米周邊實用指南", c2d: "地鐵站、美食與便利店",
-                c6t: "📖 香港旅遊攻略", c6d: "熱門景點與行程推介",
-                c3t: "🧳 行李寄存", c3d: "寄存服務條款與收費",
-                c7t: "✈️ 出境攻略", c7d: "離港交通與機場快線資訊",
-                c8t: "🚐 酒店專車服務", c8d: "點對點接送與包車預約",
-                c9t: "🏨 酒店設施", c9d: "健身房、餐廳與其他設施",
-                guide1Name: "美食", guide1Desc: "地道小吃與人氣餐廳",
-                guide2Name: "購物", guide2Desc: "大型商場與熱門市集",
-                guide3Name: "遊玩", guide3Desc: "主題樂園與娛樂體驗",
-                guide4Name: "觀光", guide4Desc: "著名地標與打卡勝地",
-                guide5Name: "推薦行程1", guide5Desc: "經典一日遊路線",
-                guide6Name: "推薦行程2", guide6Desc: "深度文化探索之旅",
-                gshop1Name: "海港城", gshop1Desc: "維港畔超大型購物商城與國際名品",
-                gshop2Name: "銅鑼灣購物商圈", gshop2Desc: "潮流百貨、SOGO崇光與不夜天購物天堂",
-                gshop3Name: "中環蘇豪區與 PMQ元創方", gshop3Desc: "文創小店、獨立設計與特色精品",
-                gshop4Name: "女人街與波鞋街", gshop4Desc: "地道市集、潮流球鞋與港式市井風情",
-                gp1Name: "香港迪士尼樂園", gp1Desc: "夢幻童話與精彩煙花匯演",
-                gp2Name: "香港海洋公園", gp2Desc: "刺激機動遊戲與珍稀極地動物",
-                gp3Name: "香港摩天輪", gp3Desc: "維多利亞港畔浪漫高空景致",
-                gp4Name: "香港挪亞方舟", gp4Desc: "馬灣海峽自然博覽與合家歡景點",
-                gs1Name: "維多利亞港與星光大道", gs1Desc: "世界級天際線與璀璨燈光秀",
-                gs2Name: "太平山頂與凌霄閣摩天台", gs2Desc: "鳥瞰維港兩岸壯麗全景",
-                gs3Name: "西九文化區（M+ 與香港故宮）", gs3Desc: "當代視覺文化與中華文物殿堂",
-                gs4Name: "大館與中環古蹟群", gs4Desc: "活化歷史建築與藝文消閒地標",
-                fac1Name: "金林閣餐廳", fac1Desc: "(2樓)",
-                fac2Name: "空中花園", fac2Desc: "(5樓)",
-                fac3Name: "健身室", fac3Desc: "(5樓)",
-                fac4Name: "停車場", fac4Desc: "(地面)",
-                fac1H: "金林閣餐廳 (2樓)",
-                fac2H: "空中花園 (5樓)",
-                fac3H: "健身室 (5樓)",
-                fac4H: "停車場 (地面)",
-                backFacility: "⬅ 返回酒店設施",
-                dep1Name: "羅湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
-                dep2Name: "落馬洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
-                dep3Name: "香港國際機場", dep3Desc: "24小時",
-                dep4Name: "香港西九龍站", dep4Desc: "上午 06:30 至晚上 11:30",
-                dep5Name: "深圳灣口岸", dep5Desc: "上午 06:30 至午夜 12:00",
-                dep6Name: "香園圍/蓮塘口岸", dep6Desc: "上午 07:00 至晚上 10:00",
-                dep7Name: "港珠澳大橋", dep7Desc: "24小時",
-                dep8Name: "港澳客輪碼頭", dep8Desc: "上午 06:30 至午夜 12:00",
-                carCard1T: "服務收費表", carCard1D: "各路線點對點接送與包車收費",
-                carCard2T: "使用條款及細則", carCard2D: "預約、取消與乘車須知",
-                carNoticeBox: "若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。",
-                carPriceH: "酒店專車 - 服務收費表",
-                carTermsH: "酒店專車 - 使用條款及細則",
-                thDest: "目的地 / 服務項目", thPrice: "收費 (HKD)",
-                pMongkok: "由酒店出發到旺角",
-                pChinachem: "由酒店出發到中港城 / 高鐵站",
-                pAirport: "由酒店出發到機場、迪士尼、港珠澳大橋",
-                pOceanpark: "由酒店出發到海洋公園",
-                pSurcharge: "早上 8 點前 / 晚上 8 點後 附加費",
-                pHourly: "租用服務 (每小時，3小時起租)",
-                carPriceNote: "💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。",
-                back: "⬅ 返回主選單",
-                backGuidePlay: "⬅ 返回香港旅遊攻略",
-                busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
-                stationH: "免費穿梭巴士上車地點",
-                guideH: "香港旅遊攻略",
-                guideShopH: "香港旅遊攻略 - 購物",
-                guidePlayH: "香港旅遊攻略 - 遊玩",
-                guideSightH: "香港旅遊攻略 - 觀光",
-                departureH: "出境攻略",
-                carH: "酒店專車服務",
-                facilityH: "酒店設施",
-                liveStatusLabel: "📍 即時行車狀況",
-                stDriving: "行車中 (前往葵芳)", stArrKwai: "🔵 到達葵芳", stDriving2: "行車中 (前往荃灣西)", stArrTsuen: "🔵 到達荃灣西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 準備發車中",
-                stEnded: "今日班次已完結",
-                noticeTelTitle: "禮賓部電話", noticeTelVal: "3700 3824 (座機內線按 ''4'' 字)",
-                noticeContactTitle: "請提早聯絡禮賓部預留位置",
-                noticeTimeTitle: "敬請準時出席", noticeTimeDesc: "否則名額將開放予其他賓客",
-                noticeWeatherTitle: "惡劣天氣安排", noticeWeatherDesc: "若天文台發出黑色暴雨或八號或以上熱帶氣旋信號, 穿梭巴士將暫停服務",
-                mapH: "酒店300米周邊實用指南",
-                lugH: "行李寄存服務", 
-                lugDesc: "🧳 **行李寄存服務須知**<br><br><strong>【收費與政策】</strong><br>• **入住及退房當日**：尊享全日免費行李寄存。<br>• **長期寄存**：按每件每日 <strong>$10</strong> 計算。<br><br><strong>【領取與安全須知】</strong><br>• 領取時請出示<strong>行李領取牌</strong>並核對簽名；如未能出示或簽名不符，本酒店有權拒絕交還。<br>• 寄存物品存放於<strong>非空調環境</strong>。<br><br><strong>【免責與處理條款】</strong><br>• 凡寄存於本酒店之行李或物品，如有任何<strong>遺失、損毀或被盜</strong>，香港荃灣絲麗酒店恕不負責。<br>• 逾期超過 <strong>兩個月</strong> 未領回之物品，本酒店將有權自行處置，恕不另行通知。",
-                kwaiFong: "葵芳", tsuenWanWest: "荃灣西", lunchBreak: "午飯時間 (暫停服務)", nextBusText: "⭐ 下一班次 (Next Bus)",
-                stBookable: "可預約", stWaiting: "等待發車", stBoarding: "可以上車", stDeparted: "已離開", stFull: "已滿", stOut: "暫停服務"
-            },
-            'zh-CN': {
-                title: "荃湾丝丽酒店 - 礼宾部",
-                c1t: "🚌 免费穿梭巴士", c1d: "时间表与即时状态",
-                c5t: "🚏 免费穿梭巴士上车地点", c5d: "站点详细地图与指引",
-                c2t: "🗺️ 酒店300米周边实用指南", c2d: "地铁站、美食与便利店",
-                c6t: "📖 香港旅游攻略", c6d: "热门景点与行程推介",
-                c3t: "🧳 行李寄存", c3d: "寄存服务条款与收费",
-                c7t: "✈️ 出境攻略", c7d: "离港交通与机场快线资讯",
-                c8t: "🚐 酒店专车服务", c8d: "点对点接送与包车预约",
-                c9t: "🏨 酒店设施", c9d: "健身房、餐厅与其他设施",
-                guide1Name: "美食", guide1Desc: "地道小吃与人气餐厅",
-                guide2Name: "购物", guide2Desc: "大型商场与热门市集",
-                guide3Name: "游玩", guide3Desc: "主题乐园与娱乐体验",
-                guide4Name: "观光", guide4Desc: "著名地标与打卡胜地",
-                guide5Name: "推荐行程1", guide5Desc: "经典一日游路线",
-                guide6Name: "推荐行程2", guide6Desc: "深度文化探索之旅",
-                gshop1Name: "海港城", gshop1Desc: "维港畔超大型购物商城与国际名品",
-                gshop2Name: "铜锣湾购物商圈", gshop2Desc: "潮流百货、SOGO崇光与不夜天购物天堂",
-                gshop3Name: "中环苏豪区与 PMQ元创方", gshop3Desc: "文创小店、独立设计与特色精品",
-                gshop4Name: "女人街与波鞋街", gshop4Desc: "地道市集、潮流球鞋与港式市井风情",
-                gp1Name: "香港迪士尼乐园", gp1Desc: "梦幻童话与精彩烟花汇演",
-                gp2Name: "香港海洋公园", gp2Desc: "刺激机动游戏与珍稀极地动物",
-                gp3Name: "香港摩天轮", gp3Desc: "维多利亚港畔浪漫高空景致",
-                gp4Name: "香港挪亚方舟", gp4Desc: "马湾海峡自然博览与合家欢景点",
-                gs1Name: "维多利亚港与星光大道", gs1Desc: "世界级天际线与璀璨灯光秀",
-                gs2Name: "太平山顶与凌霄阁摩天台", gs2Desc: "鸟瞰维港两岸壮丽全景",
-                gs3Name: "西九文化区（M+ 与香港故宫）", gs3Desc: "当代视觉文化与中华文物殿堂",
-                gs4Name: "大馆与中环古迹群", gs4Desc: "活化历史建筑与艺文消闲地标",
-                fac1Name: "金林阁餐厅", fac1Desc: "(2楼)",
-                fac2Name: "空中花园", fac2Desc: "(5楼)",
-                fac3Name: "健身室", fac3Desc: "(5楼)",
-                fac4Name: "停车场", fac4Desc: "(地面)",
-                fac1H: "金林阁餐厅 (2楼)",
-                fac2H: "空中花园 (5楼)",
-                fac3H: "健身室 (5楼)",
-                fac4H: "停车场 (地面)",
-                backFacility: "⬅ 返回酒店设施",
-                dep1Name: "罗湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
-                dep2Name: "落马洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
-                dep3Name: "香港国际机场", dep3Desc: "24小时",
-                dep4Name: "香港西九龙站", dep4Desc: "上午 06:30 至晚上 11:30",
-                dep5Name: "深圳湾口岸", dep5Desc: "上午 06:30 至午夜 12:00",
-                dep6Name: "香园围/莲塘口岸", dep6Desc: "上午 07:00 至晚上 10:00",
-                dep7Name: "港珠澳大桥", dep7Desc: "24小时",
-                dep8Name: "港澳客轮码头", dep8Desc: "上午 06:30 至午夜 12:00",
-                carCard1T: "服务收费表", carCard1D: "各路线点对点接送与包车收费",
-                carCard2T: "使用条款及细则", carCard2D: "预约、取消与乘车须知",
-                carNoticeBox: "若您需要任何协助、查询或使用此服务，恳请莅临礼宾部柜台，或致电 3700 3824，我们将竭诚为您服务。",
-                carPriceH: "酒店专车 - 服务收费表",
-                carTermsH: "酒店专车 - 使用条款及细则",
-                thDest: "目的地 / 服务项目", thPrice: "收费 (HKD)",
-                pMongkok: "由酒店出发到旺角",
-                pChinachem: "由酒店出发到中港城 / 高铁站",
-                pAirport: "由酒店出发到机场、迪士尼、港珠澳大桥",
-                pOceanpark: "由酒店出发到海洋公园",
-                pSurcharge: "早上 8 点前 / 晚上 8 点后 附加费",
-                pHourly: "租用服务 (每小时，3小时起租)",
-                carPriceNote: "💡 <strong>备注：</strong>以上收费适用于点对点接送服务。如需超时或更改行程，请向礼宾部查询。",
-                back: "⬅ 返回主菜单",
-                backGuidePlay: "⬅ 返回香港旅游攻略",
-                busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
-                stationH: "免费穿梭巴士上车地点",
-                guideH: "香港旅游攻略",
-                guideShopH: "香港旅游攻略 - 购物",
-                guidePlayH: "香港旅游攻略 - 游玩",
-                guideSightH: "香港旅游攻略 - 观光",
-                departureH: "出境攻略",
-                carH: "酒店专车服务",
-                facilityH: "酒店设施",
-                liveStatusLabel: "📍 即时行车状况",
-                stDriving: "行车中 (前往葵芳)", stArrKwai: "🔵 到达葵芳", stDriving2: "行车中 (前往荃湾西)", stArrTsuen: "🔵 到达荃湾西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 准备发车中",
-                stEnded: "今日班次已完结",
-                noticeTelTitle: "礼宾部电话", noticeTelVal: "3700 3824 (座机内线按 ''4'' 字)",
-                noticeContactTitle: "请提早联络礼宾部预留位置",
-                noticeTimeTitle: "敬请准时出席", noticeTimeDesc: "否则名额将开放予其他宾客",
-                noticeWeatherTitle: "恶劣天气安排", noticeWeatherDesc: "若天文台发出黑色暴雨或八号或以上热带气旋信号, 穿梭巴士将暂停服务",
-                mapH: "酒店300米周边实用指南",
-                lugH: "行李寄存服务", 
-                lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理条款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、損毀或被盜</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
-                kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
-                stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务"
-            },
-            'en': {
-                title: "Silka Tsuen Wan - Concierge",
-                c1t: "🚌 Free Shuttle Bus", c1d: "Schedule & live status",
-                c5t: "🚏 Free Shuttle Bus Boarding Locations", c5d: "Detailed station guide & maps",
-                c2t: "🗺️ Hotel 300m Practical Guide", c2d: "MTR, dining & convenience stores",
-                c6t: "📖 HK Travel Guide", c6d: "Top attractions & itineraries",
-                c3t: "🧳 Luggage Storage", c3d: "Storage policy & fees",
-                c7t: "✈️ Departure Guide", c7d: "Airport transport & Express info",
-                c8t: "🚐 Hotel Limousine Service", c8d: "Point-to-point & charter booking",
-                c9t: "🏨 Hotel Facilities", c9d: "Gym, dining & other amenities",
-                guide1Name: "Dining", guide1Desc: "Local snacks & popular restaurants",
-                guide2Name: "Shopping", guide2Desc: "Malls & bustling markets",
-                guide3Name: "Leisure", guide3Desc: "Theme parks & entertainment",
-                guide4Name: "Sightseeing", guide4Desc: "Famous landmarks & spots",
-                guide5Name: "Itinerary 1", guide5Desc: "Classic one-day tour route",
-                guide6Name: "Itinerary 2", guide6Desc: "In-depth cultural exploration",
-                gshop1Name: "Harbour City", gshop1Desc: "Mega waterfront mall and international luxury brands",
-                gshop2Name: "Causeway Bay Shopping District", gshop2Desc: "Trendy department stores, SOGO, and vibrant nightlife",
-                gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Creative boutiques, indie designers, and unique lifestyle goods",
-                gshop4Name: "Ladies' Market & Sneakers Street", gshop4Desc: "Bustling street markets, trendy kicks, and local flavor",
-                gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical fairy tales and fireworks",
-                gp2Name: "Ocean Park Hong Kong", gp2Desc: "Thrilling rides and polar animals",
-                gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantic skyline views by Victoria Harbour",
-                gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Ma Wan nature park and family fun",
-                gs1Name: "Victoria Harbour & Avenue of Stars", gs1Desc: "World-class skyline and light show",
-                gs2Name: "Victoria Peak & Peak Tower", gs2Desc: "Panoramic views of both sides of Victoria Harbour",
-                gs3Name: "West Kowloon Cultural District (M+ & Palace Museum)", gs3Desc: "Contemporary visual culture and Chinese heritage",
-                gs4Name: "Tai Kwun & Central Heritage Circuit", gs4Desc: "Revitalized historical architecture and arts hub",
-                fac1Name: "Kam Lam Restaurant", fac1Desc: "(2/F)",
-                fac2Name: "Sky Garden", fac2Desc: "(5/F)",
-                fac3Name: "Fitness Room", fac3Desc: "(5/F)",
-                fac4Name: "Car Park", fac4Desc: "(G/F)",
-                fac1H: "Kam Lam Restaurant (2/F)",
-                fac2H: "Sky Garden (5/F)",
-                fac3H: "Fitness Room (5/F)",
-                fac4H: "Car Park (G/F)",
-                backFacility: "⬅ Back to Hotel Facilities",
-                dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 to 00:00 Midnight",
-                dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 to 22:30",
-                dep3Name: "Hong Kong International Airport", dep3Desc: "24 Hours",
-                dep4Name: "Hong Kong West Kowloon Station", dep4Desc: "06:30 to 23:30",
-                dep5Name: "Shenzhen Bay Port", dep5Desc: "06:30 to 00:00 Midnight",
-                dep6Name: "Heung Yuen Wai / Liantang Port", dep6Desc: "07:00 to 22:30",
-                dep7Name: "Hong Kong-Zhuhai-Macao Bridge", dep7Desc: "24 Hours",
-                dep8Name: "Macau Ferry Terminal", dep8Desc: "06:30 to 00:00 Midnight",
-                carCard1T: "Service Rates", carCard1D: "Point-to-point & charter pricing",
-                carCard2T: "Terms & Conditions", carCard2D: "Booking, cancellation & policies",
-                carNoticeBox: "If you need any assistance, inquiries, or wish to use this service, please visit the Concierge desk or call 3700 3824. We are at your service.",
-                carPriceH: "Hotel Limousine - Service Rates",
-                carTermsH: "Hotel Limousine - Terms & Conditions",
-                thDest: "Destination / Service", thPrice: "Price (HKD)",
-                pMongkok: "From Hotel to Mong Kok",
-                pChinachem: "From Hotel to China Hong Kong City / High Speed Rail Station",
-                pAirport: "From Hotel to Airport, Disneyland, HK-Zhuhai-Macao Bridge",
-                pOceanpark: "From Hotel to Ocean Park",
-                pSurcharge: "Surcharge before 8:00 AM / after 8:00 PM",
-                pHourly: "Hourly Rental (Min. 3 hours)",
-                carPriceNote: "💡 <strong>Note:</strong> The above rates apply to point-to-point transfer services. For overtime or itinerary changes, please consult the Concierge.",
-                back: "⬅ Back to Menu",
-                backGuidePlay: "⬅ Back to HK Travel Guide",
-                busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
-                stationH: "Free Shuttle Bus Boarding Locations",
-                guideH: "Hong Kong Travel Guide",
-                guideShopH: "Hong Kong Travel Guide - Shopping",
-                guidePlayH: "Hong Kong Travel Guide - Leisure",
-                guideSightH: "Hong Kong Travel Guide - Sightseeing",
-                departureH: "Departure Guide",
-                carH: "Hotel Limousine Service",
-                facilityH: "Hotel Facilities",
-                liveStatusLabel: "📍 Live Bus Status",
-                stDriving: "Driving to Kwai Fong", stArrKwai: "🔵 Arrived at Kwai Fong", stDriving2: "Driving to Tsuen Wan West", stArrTsuen: "🔵 Arrived at Tsuen Wan West", stReturning: "Returning to Hotel", stWaitingStandby: "Standby / Preparing",
-                stEnded: "Today's trips have ended",
-                noticeTelTitle: "Concierge Tel", noticeTelVal: "3700 3824 (Press '4' for extension)",
-                noticeContactTitle: "Please contact Concierge in advance to reserve a seat",
-                noticeTimeTitle: "Please be punctual", noticeTimeDesc: "Otherwise, seats may be released to other guests.",
-                noticeWeatherTitle: "Severe Weather", noticeWeatherDesc: "Shuttle bus service will be suspended if Black Rainstorm or Typhoon Signal No. 8 or above is issued.",
-                mapH: "Hotel 300m Practical Guide",
-                lugH: "Luggage Storage Service", 
-                lugDesc: "🧳 **Luggage Storage Notice**<br><br><strong>【Policy & Fees】</strong><br>• **Check-in & Check-out Days**: Enjoy complimentary luggage storage.<br>• **Long-term Storage**: Charged at <strong>$10</strong> per piece per day.<br><br><strong>【Collection & Safety】</strong><br>• Please present the luggage claim tag and matching signature upon collection. The hotel reserves the right to refuse return if missing or unmatched.<br>• Stored in a <strong>non-air-conditioned</strong> environment.<br><br><strong>【Liability & Terms】</strong><br>• Silka Tsuen Wan is not liable for any <strong>loss, damage, or theft</strong> of items stored.<br>• Unclaimed items for <strong>over two months</strong> may be <strong>disposed of without prior notice</strong>.",
-                kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspended)", nextBusText: "⭐ Next Bus",
-                stBookable: "Available", stWaiting: "Waiting", stBoarding: "Boarding", stDeparted: "Departed", stFull: "Full", stOut: "Suspended"
-            },
-            'ja': {
-                title: "シルカ・ツェンワン - コンシェルジュ",
-                c1t: "🚌 無料シャトルバス", c1d: "時刻表とリアルタイム状況",
-                c5t: "🚏 無料シャトルバス乗降場所", c5d: "各駅の詳細マップとガイド",
-                c2t: "🗺️ ホテル300m周辺実用ガイド", c2d: "駅、飲食店、コンビニ",
-                c6t: "📖 香港観光ガイド", c6d: "おすすめスポットとモデルコース",
-                c3t: "🧳 手荷物預かり", c3d: "お預かりの案内と料金",
-                c7t: "✈️ 出国・空港ガイド", c7d: "空港アクセスと交通情報",
-                c8t: "🚐 ホテル送迎サービス", c8d: "送迎およびチャーター予約",
-                c9t: "🏨 ホテル施設", c9d: "ジム、レストラン、その他施設",
-                guide1Name: "グルメ", guide1Desc: "ローカルフードと人気レストラン",
-                guide2Name: "ショッピング", guide2Desc: "大型モールと人気の市場",
-                guide3Name: "レジャー", guide3Desc: "テーマパークとエンタメ体験",
-                guide4Name: "観光", guide4Desc: "有名ランドマークと撮影スポット",
-                guide5Name: "おすすめコース1", guide5Desc: "定番1日観光ルート",
-                guide6Name: "おすすめコース2", guide6Desc: "ディープな文化探索の旅",
-                gshop1Name: "ハーバー・シティ（海港城）", gshop1Desc: "ビクトリア湾沿いの超大型モールと高級ブランド",
-                gshop2Name: "銅鑼灣（コーズウェイベイ）ショッピング街", gshop2Desc: "トレンド百貨店、SOGO、眠らない街のショッピング天国",
-                gshop3Name: "中環ソーホー＆PMQ元創方", gshop3Desc: "クリエイティブな雑貨店、インディーズデザイナー、特選セレクト",
-                gshop4Name: "女人街＆スニーカー街", gshop4Desc: "ローカルな露店市場、スニーカーの聖地、香港の下町情緒",
-                gp1Name: "香港ディズニーランド", gp1Desc: "夢の童話と素晴らしい花火ショー",
-                gp2Name: "香港オーシャンパーク", gp2Desc: "スリリングなアトラクションと極地の動物",
-                gp3Name: "香港観覧車", gp3Desc: "ビクトリア・ハーバーのロマンチックな絶景",
-                gp4Name: "香港ノアの方舟", gp4Desc: "馬湾（マワン）自然公園とファミリー向けスポット",
-                gs1Name: "ビクトリア・ハーバーとスターフェリー通り", gs1Desc: "世界最高峰のスカイラインと光のショー",
-                gs2Name: "ヴィクトリア・ピークとピーク・タワー", gs2Desc: "ヴィクトリア湾の両岸を一望する絶景パノラマ",
-                gs3Name: "西九文化区（M+と香港故宮文化博物館）", gs3Desc: "現代ビジュアルカルチャーと中国美術の殿堂",
-                gs4Name: "大館（タイクーン）と中環古跡群", gs4Desc: "歴史的建造物の再生とカルチャーの拠点",
-                fac1Name: "金林閣レストラン", fac1Desc: "(2階)",
-                fac2Name: "空中庭園", fac2Desc: "(5階)",
-                fac3Name: "フィットネスジム", fac3Desc: "(5階)",
-                fac4Name: "駐車場", fac4Desc: "(1階/地上)",
-                fac1H: "金林閣レストラン (2階)",
-                fac2H: "空中庭園 (5階)",
-                fac3H: "フィットネスジム (5階)",
-                fac4H: "駐車場 (1階/地上)",
-                backFacility: "⬅ ホテル施設に戻る",
-                dep1Name: "羅湖イミグレーション", dep1Desc: "午前 06:30 ～ 深夜 00:00",
-                dep2Name: "落馬洲 / 福田口岸", dep2Desc: "午前 06:30 ～ 午後 10:30",
-                dep3Name: "香港国際空港", dep3Desc: "24時間",
-                dep4Name: "香港西九龍駅", dep4Desc: "午前 06:30 ～ 午後 11:30",
-                dep5Name: "深圳湾イミグレーション", dep5Desc: "午前 06:30 ～ 深夜 12:00",
-                dep6Name: "香園囲 / 蓮塘口岸", dep6Desc: "午前 07:00 ～ 午後 10:30",
-                dep7Name: "港珠澳大橋", dep7Desc: "24時間",
-                dep8Name: "マカオフェリーターミナル", dep8Desc: "午前 06:30 ～ 深夜 12:00",
-                carCard1T: "料金表", carCard1D: "送迎およびチャーター料金",
-                carCard2T: "利用規約", carCard2D: "予約、キャンセル、ご利用案内",
-                carNoticeBox: "ご不明な点やサービスのご利用については、コンシェルジュカウンター（内線3700 3824）までお気軽にお問い合わせください。",
-                carPriceH: "ホテル送迎 - 料金表",
-                carTermsH: "ホテル送迎 - 利用規約",
-                thDest: "目的地 / サービス", thPrice: "料金 (HKD)",
-                pMongkok: "ホテルから旺角（モンコク）まで",
-                pChinachem: "ホテルから中港城 / 高速鉄道駅まで",
-                pAirport: "ホテルから空港、ディズニーランド、港珠澳大橋まで",
-                pOceanpark: "ホテルからオーシャンパークまで",
-                pSurcharge: "午前8時前 / 午後8時以降の追加料金",
-                pHourly: "時間貸し（1時間あたり、最低3時間から）",
-                carPriceNote: "💡 <strong>備考：</strong>上記の料金はポイント・ツー・ポイントの送迎に適用されます。時間延長や行程変更についてはコンシェルジュにお問い合わせください。",
-                back: "⬅ メニューに戻る",
-                backGuidePlay: "⬅ 香港観光ガイドに戻る",
-                busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
-                stationH: "無料シャトルバス乗降場所",
-                guideH: "香港観光ガイド",
-                guideShopH: "香港観光ガイド - ショッピング",
-                guidePlayH: "香港観光ガイド - レジャー",
-                guideSightH: "香港観光ガイド - 観光",
-                departureH: "出国・空港ガイド",
-                carH: "ホテル送迎サービス",
-                facilityH: "ホテル施設",
-                liveStatusLabel: "📍 リアルタイム運行状況",
-                stDriving: "運行中 (葵芳行き)", stArrKwai: "🔵 葵芳到着", stDriving2: "運行中 (荃湾西行き)", stArrTsuen: "🔵 荃湾西到着", stReturning: "ホテルへ帰還中", stWaitingStandby: "待機中 / 準備中",
-                stEnded: "本日の運行は終了しました",
-                noticeTelTitle: "コンシェルジュ電話", noticeTelVal: "3700 3824 (内線 '4')",
-                noticeContactTitle: "事前にコンシェルジュまで座席をご予約ください",
-                noticeTimeTitle: "時間厳守のお願い", noticeTimeDesc: "時間通りにお越しいただけない場合、他のお客様に譲る場合があります。",
-                noticeWeatherTitle: "悪天候時の運行", noticeWeatherDesc: "黒色暴風雨警報または台風警報8号以上が発令された場合、シャトルバスは運休します。",
-                mapH: "ホテル300m周辺実用ガイド",
-                lugH: "手荷物預かりサービス", 
-                lugDesc: "🧳 **手荷物預かりのご案内**<br><br><strong>【料金とポリシー】</strong><br>• **チェックイン/アウト当日**：全日無料でお預かり。<br>• **長期預かり**：1個あたり1日 <strong>$10</strong>。<br><br><strong>【お引き取りと安全】</strong><br>• お引き取り時は預かり札と**署名**を確認します。一致しない場合はお返しできません。<br>• **非空調環境**での保管となります。<br><br><strong>【免責事項】</strong><br>• 紛失、破損、盗難についてホテルは責任を負いません。<br>• **2ヶ月**以上引き取りのない物品は予告なく処分されます。",
-                kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "昼休み (運休)", nextBusText: "⭐ 次の便 (Next Bus)",
-                stBookable: "予約可能", stWaiting: "まもなく", stBoarding: "乗車可能", stDeparted: "出発済み", stFull: "満席", stOut: "運休"
-            },
-            'ko': {
-                title: "실카 취언완 - 컨시어지",
-                c1t: "🚌 무료 셔틀버스", c1d: "시간표 및 실시간 상태",
-                c5t: "🚏 무료 셔틀버스 승하차 장소", c5d: "각 정류장 상세 지도 및 안내",
-                c2t: "🗺️ 호텔 300m 주변 실용 가이드", c2d: "역, 맛집, 편의점",
-                c6t: "📖 홍콩 여행 가이드", c6d: "인기 관광지 및 일정 추천",
-                c3t: "🧳 수하물 보관", c3d: "보관 규정 및 요금",
-                c7t: "✈️ 출국 공항 가이드", c7d: "공항 교통 및 익스프레스 정보",
-                c8t: "🚐 호텔 차량 서비스", c8d: "공항/시내 픽업 및 대절 예약",
-                c9t: "🏨 호텔 부대시설", c9d: "피트니스, 레스토랑 및 편의시설",
-                guide1Name: "맛집", guide1Desc: "현지 간식 및 인기 레스토랑",
-                guide2Name: "쇼핑", guide2Desc: "대형 쇼핑몰 및 인기 시장",
-                guide3Name: "즐길거리", guide3Desc: "테마파크 및 엔터테인먼트",
-                guide4Name: "관광", guide4Desc: "유명 랜드마크 및 포토존",
-                guide5Name: "추천 일정 1", guide5Desc: "클래식 하루 여행 코스",
-                guide6Name: "추천 일정 2", guide6Desc: "심층 문화 탐방 여행",
-                gshop1Name: "하버 시티", gshop1Desc: "빅토리아 하버변의 초대형 쇼핑몰 및 글로벌 명품",
-                gshop2Name: "코즈웨이베이 쇼핑가", gshop2Desc: "트렌디한 백화점, 소고(SOGO), 잠들지 않는 쇼핑 천국",
-                gshop3Name: "센트럴 소호 & PMQ 원촹팡", gshop3Desc: "소품샵, 독립 디자이너 브랜드 및 개성 있는 편집샵",
-                gshop4Name: "레이디스 마켓 & 스니커즈 스트리트", gshop4Desc: "로컬 야시장, 인기 스니커즈 거리와 홍콩 특유의 활기",
-                gp1Name: "홍콩 디즈니랜드", gp1Desc: "환상적인 동화와 화려한 불꽃놀이",
-                gp2Name: "홍콩 오션파크", gp2Desc: "스릴 넘치는 놀이기구와 극지 동물",
-                gp3Name: "홍콩 대관람차", gp3Desc: "빅토리아 하버의 로맨틱한 스카이라인 뷰",
-                gp4Name: "홍콩 노아의 방주", gp4Desc: "마완 자연공원과 온가족이 즐기는 명소",
-                gs1Name: "빅토리아 하버 & 스타의 거리", gs1Desc: "세계적인 스카이라인과 화려한 조명 쇼",
-                gs2Name: "빅토리아 피크 & 피크 타워", gs2Desc: "빅토리아 하버 양쪽의 아름다운 파노라마 뷰",
-                gs3Name: "서구룡 문화지구 (M+ 및 홍콩 고궁박물관)", gs3Desc: "현대 시각 문화와 중국 유물의 전당",
-                gs4Name: "대관(타이 큰) & 센트럴 유적군", gs4Desc: "역사 건축물 재생과 문화 예술의 랜드마크",
-                fac1Name: "금림각 레스토랑", fac1Desc: "(2층)",
-                fac2Name: "하늘정원", fac2Desc: "(5층)",
-                fac3Name: "피트니스룸", fac3Desc: "(5층)",
-                fac4Name: "주차장", fac4Desc: "(지상)",
-                fac1H: "금림각 레스토랑 (2층)",
-                fac2H: "하늘정원 (5층)",
-                fac3H: "피트니스룸 (5층)",
-                fac4H: "주차장 (지상)",
-                backFacility: "⬅ 호텔 부대시설로 돌아가기",
-                dep1Name: "로후 검문소", dep1Desc: "오전 06:30 ~ 자정 00:00",
-                dep2Name: "낙마주 / 휜티안", dep2Desc: "오전 06:30 ~ 오후 10:30",
-                dep3Name: "홍콩 국제공항", dep3Desc: "24시간",
-                dep4Name: "홍콩 서구룡역", dep4Desc: "오전 06:30 ~ 오후 11:30",
-                dep5Name: "선전 만 검문소", dep5Desc: "오전 06:30 ~ 자정 12:00",
-                dep6Name: "향원위 / 롄탕", dep6Desc: "오전 07:00 ~ 오후 10:30",
-                dep7Name: "강주아오 대교", dep7Desc: "24시간",
-                dep8Name: "마카오 페리 터미널", dep8Desc: "오전 06:30 ~ 자정 12:00",
-                carCard1T: "서비스 요금표", carCard1D: "구간별 픽업 및 대절 요금",
-                carCard2T: "이용 약관", carCard2D: "예약, 취소 및 탑승 안내",
-                carNoticeBox: "도움이나 문의 사항이 있으시거나 이 서비스를 이용하시려면 컨시어지 데스크를 방문하시거나 3700 3824로 연락해 주시기 바랍니다.",
-                carPriceH: "호텔 차량 - 서비스 요금표",
-                carTermsH: "호텔 차량 - 이용 약관",
-                thDest: "목적지 / 서비스 항목", thPrice: "요금 (HKD)",
-                pMongkok: "호텔에서 몽콕까지",
-                pChinachem: "호텔에서 차이나홍콩시티 / 고속철도역까지",
-                pAirport: "호텔에서 공항, 디즈니랜드, 강주아오 대교까지",
-                pOceanpark: "호텔에서 오션파크까지",
-                pSurcharge: "오전 8시 이전 / 오후 8시 이후 할증료",
-                pHourly: "시간제 대여 (시간당, 최소 3시간)",
-                carPriceNote: "💡 <strong>참고:</strong> 위 요금은 포인트 투 포인트 픽업 서비스에 적용됩니다. 초과 시간이나 일정 변경은 컨시어지에 문의해 주세요.",
-                back: "⬅ 메뉴로 돌아가기",
-                backGuidePlay: "⬅ 홍콩 여행 가이드로 돌아가기",
-                busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
-                stationH: "무료 셔틀버스 승하차 장소",
-                guideH: "홍콩 여행 가이드",
-                guideShopH: "홍콩 여행 가이드 - 쇼핑",
-                guidePlayH: "홍콩 여행 가이드 - 즐길거리",
-                guideSightH: "홍콩 여행 가이드 - 관광",
-                departureH: "출국 공항 가이드",
-                carH: "호텔 차량 서비스",
-                facilityH: "호텔 부대시설",
-                liveStatusLabel: "📍 실시간 운행 상태",
-                stDriving: "운행 중 (콰이퐁행)", stArrKwai: "🔵 콰이퐁 도착", stDriving2: "운행 중 (취언완 웨스트행)", stArrTsuen: "🔵 취언완 웨스트 도착", stReturning: "호텔로 복귀 중", stWaitingStandby: "대기 중 / 준비 중",
-                stEnded: "오늘의 운행이 종료되었습니다",
-                noticeTelTitle: "컨시어지 전화", noticeTelVal: "3700 3824 (내선 '4')",
-                noticeContactTitle: "사전에 컨시어지에 연락하여 좌석을 예약해 주세요",
-                noticeTimeTitle: "시간 준수 요청", noticeTimeDesc: "정시에 참석하지 않으실 경우, 다른 투숙객에게 좌석이 양도될 수 있습니다.",
-                noticeWeatherTitle: "악천후 안내", noticeWeatherDesc: "흑색 폭우 경보 또는 태풍 경보 8호 이상 발령 시 셔틀버스 운행이 중단됩니다.",
-                mapH: "호텔 300m 주변 실용 가이드",
-                lugH: "수하물 보관 서비스", 
-                lugDesc: "🧳 **수하물 보관 안내**<br><br><strong>【요금 및 정책】</strong><br>• **체크인 및 체크아웃 당일**：무료 보관。<br>• **장기 보관**：개당 1일 <strong>$10</strong>。<br><br><strong>【수령 및 안전】</strong><br>• 수령 시 보관증과 **서명** 확인 (불일치 시 반환 거부 가능).<br>• **에어컨이 없는 환경**에 보관됩니다。<br><br><strong>【면책 조항】</strong><br>• 분실, 손상, 도난에 대해 호텔은 책임지지 않습니다。<br>• **2개월** 이상 찾아가지 않은 물품은 임의 처분될 수 있습니다。",
-                kwaiFong: "콰이퐁", tsuenWanWest: "취언완 웨스트", lunchBreak: "점심 시간 (운행 중단)", nextBusText: "⭐ 다음 차량 (Next Bus)",
-                stBookable: "예약 가능", stWaiting: "대기 중", stBoarding: "탑승 가능", stDeparted: "출발함", stFull: "만석", stOut: "운행 중단"
-            },
-            'vi': {
-                title: "Silka Tsuen Wan - Tiền sảnh",
-                c1t: "🚌 Xe buýt đưa đón", c1d: "Lịch trình & trạng thái",
-                c5t: "🚏 Điểm đón xe buýt miễn phí", c5d: "Bản đồ chi tiết các trạm",
-                c2t: "🗺️ Hướng dẫn thực tế quanh khách sạn 300m", c2d: "MTR, ẩm thực & cửa hàng tiện lợi",
-                c6t: "📖 Cẩm nang du lịch HK", c6d: "Địa điểm hot & gợi ý lịch trình",
-                c3t: "🧳 Giữ hành lý", c3d: "Quy định & phí giữ hành lý",
-                c7t: "✈️ Hướng dẫn xuất cảnh", c7d: "Giao thông sân bay & Airport Express",
-                c8t: "🚐 Dịch vụ xe riêng", c8d: "Đưa đón sân bay & thuê xe",
-                c9t: "🏨 Tiện ích khách sạn", c9d: "Phòng gym, nhà hàng & tiện ích",
-                guide1Name: "Ẩm thực", guide1Desc: "Món ngon địa phương & nhà hàng hot",
-                guide2Name: "Mua sắm", guide2Desc: "Trung tâm thương mại & chợ sầm uất",
-                guide3Name: "Vui chơi", guide3Desc: "Công viên giải trí & trải nghiệm",
-                guide4Name: "Tham quan", guide4Desc: "Địa danh nổi tiếng & điểm check-in",
-                guide5Name: "Lịch trình 1", guide5Desc: "Tuyến đường 1 ngày kinh điển",
-                guide6Name: "Lịch trình 2", guide6Desc: "Khám phá văn hóa chiều sâu",
-                gshop1Name: "Harbour City", gshop1Desc: "Trung tâm mua sắm siêu lớn ven vịnh và các thương hiệu cao cấp",
-                gshop2Name: "Khu mua sắm Causeway Bay", gshop2Desc: "Bách hóa thời trang, SOGO và thiên đường mua sắm không ngủ",
-                gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Cửa hàng sáng tạo, nhà thiết kế độc lập và sản phẩm đặc sắc",
-                gshop4Name: "Chợ Quý Bà & Phố Giày Thể Thao", gshop4Desc: "Chợ địa phương, giày thời trang và phong cách đậm chất Hồng Kông",
-                gp1Name: "Hong Kong Disneyland", gp1Desc: "Cổ tích diệu kỳ và màn pháo hoa hoành tráng",
-                gp2Name: "Ocean Park Hong Kong", gp2Desc: "Trò chơi cảm giác mạnh và động vật vùng cực",
-                gp3Name: "Vòng quay Quan sát Hồng Kông", gp3Desc: "Cảnh quan lãng mạn bên Vịnh Victoria",
-                gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Công viên tự nhiên Mã Loan và điểm đến gia đình",
-                gs1Name: "Cảng Victoria & Đại lộ Ngôi sao", gs1Desc: "Đường chân trời đẳng cấp thế giới và biểu diễn ánh sáng",
-                gs2Name: "Đỉnh Thái Bình & Tháp Peak", gs2Desc: "Ngắm toàn cảnh ngoạn mục hai bên bờ Vịnh Victoria",
-                gs3Name: "Khu Văn hóa Tây Cử Long (M+ & Bảo tàng Cố cung)", gs3Desc: "Văn hóa thị giác đương đại và di sản Trung Hoa",
-                gs4Name: "Tai Kwun & Quần thể di tích Trung Hoàn", gs4Desc: "Kiến trúc lịch sử trùng tu và trung tâm nghệ thuật",
-                fac1Name: "Nhà hàng Kam Lam", fac1Desc: "(Tầng 2)",
-                fac2Name: "Vườn trên mái", fac2Desc: "(Tầng 5)",
-                fac3Name: "Phòng tập Gym", fac3Desc: "(Tầng 5)",
-                fac4Name: "Bãi đỗ xe", fac4Desc: "(Tầng trệt)",
-                fac1H: "Nhà hàng Kam Lam (Tầng 2)",
-                fac2H: "Vườn trên mái (Tầng 5)",
-                fac3H: "Phòng tập Gym (Tầng 5)",
-                fac4H: "Bãi đỗ xe (Tầng trệt)",
-                backFacility: "⬅ Quay lại Tiện ích khách sạn",
-                dep1Name: "Trạm kiểm soát La Hồ", dep1Desc: "06:30 đến 00:00 Đêm",
-                dep2Name: "Lok Ma Chau / Cảng Phúc Điền", dep2Desc: "06:30 đến 22:30",
-                dep3Name: "Sân bay Quốc tế Hồng Kông", dep3Desc: "24 Giờ",
-                dep4Name: "Ga Tây Cử Long Hồng Kông", dep4Desc: "06:30 đến 23:30",
-                dep5Name: "Cảng Thâm Quyến Bay", dep5Desc: "06:30 đến 00:00 Đêm",
-                dep6Name: "Heung Yuen Wai / Cảng Liantang", dep6Desc: "07:00 đến 22:30",
-                dep7Name: "Cầu Hồng Kông - Chu Hải - Ma Cao", dep7Desc: "24 Giờ",
-                dep8Name: "Bến phà Ma Cao", dep8Desc: "06:30 đến 00:00 Đêm",
-                carCard1T: "Bảng giá dịch vụ", carCard1D: "Giá đưa đón và thuê xe trọn gói",
-                carCard2T: "Điều khoản & Điều kiện", carCard2D: "Quy định đặt xe, hủy xe và lưu ý",
-                carNoticeBox: "Nếu quý khách cần hỗ trợ, giải đáp thắc mắc hoặc sử dụng dịch vụ này, vui lòng đến quầy lễ tân hoặc gọi 3700 3824, chúng tôi rất hân hạnh được phục vụ.",
-                carPriceH: "Xe riêng - Bảng giá dịch vụ",
-                carTermsH: "Xe riêng - Điều khoản & Điều kiện",
-                thDest: "Điểm đến / Dịch vụ", thPrice: "Giá (HKD)",
-                pMongkok: "Từ khách sạn đến Mong Kok",
-                pChinachem: "Từ khách sạn đến China Hong Kong City / Ga Tàu cao tốc",
-                pAirport: "Từ khách sạn đến Sân bay, Disneyland, Cầu Hô Trương Môn",
-                pOceanpark: "Từ khách sạn đến Ocean Park",
-                pSurcharge: "Phụ phí trước 8:00 sáng / sau 8:00 tối",
-                pHourly: "Thuê theo giờ (Tối thiểu 3 tiếng)",
-                carPriceNote: "💡 <strong>Lưu ý:</strong> Mức giá trên áp dụng cho dịch vụ đưa đón điểm-đến-điểm. Nếu cần quá giờ hoặc thay đổi lịch trình, vui lòng liên hệ lễ tân.",
-                back: "⬅ Quay lại Menu",
-                backGuidePlay: "⬅ Quay lại Cẩm nang du lịch",
-                busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
-                stationH: "Điểm đón xe buýt miễn phí",
-                guideH: "Cẩm nang du lịch Hồng Kông",
-                guideShopH: "Cẩm nang du lịch - Mua sắm",
-                guidePlayH: "Cẩm nang du lịch - Vui chơi",
-                guideSightH: "Cẩm nang du lịch - Tham quan",
-                departureH: "Hướng dẫn xuất cảnh",
-                carH: "Dịch vụ xe riêng của khách sạn",
-                facilityH: "Tiện ích khách sạn",
-                liveStatusLabel: "📍 Trạng thái xe buýt trực tiếp",
-                stDriving: "Đang chạy tới Kwai Fong", stArrKwai: "🔵 Đã đến Kwai Fong", stDriving2: "Đang chạy tới Tsuen Wan West", stArrTsuen: "🔵 Đã đến Tsuen Wan West", stReturning: "Đang quay về khách sạn", stWaitingStandby: "Đang chờ / Chuẩn bị",
-                stEnded: "Các chuyến hôm nay đã kết thúc",
-                noticeTelTitle: "Điện thoại lễ tân", noticeTelVal: "3700 3824 (Nhấn '4' để kết nối nội bộ)",
-                noticeContactTitle: "Vui lòng liên hệ lễ tân sớm để đặt chỗ",
-                noticeTimeTitle: "Vui lòng đến đúng giờ", noticeTimeDesc: "Nếu không, suất đi sẽ được nhường cho khách khác.",
-                noticeWeatherTitle: "Lưu ý thời tiết xấu", noticeWeatherDesc: "Nếu có cảnh báo mưa bão màu đen hoặc bão cấp 8 trở lên, xe buýt sẽ tạm ngưng hoạt động.",
-                mapH: "Hướng dẫn thực tế quanh khách sạn 300m",
-                lugH: "Dịch vụ giữ hành lý", 
-                lugDesc: "🧳 **Quy định gửi hành lý**<br><br><strong>【Chính sách & Phí】</strong><br>• **Ngày nhận/trả phòng**：Miễn phí.<br>• **Gửi dài hạn**：<strong>$10</strong>/kiện/ngày.<br><br><strong>【Nhận đồ & An toàn】</strong><br>• Xuất trình thẻ và **chữ ký khớp**.<br>• **Không có điều hòa**.<br><br><strong>【Miễn trừ trách nhiệm】</strong><br>• Khách sạn không chịu trách nhiệm mất mát, hư hỏng.<br>• Quá **2 tháng** không nhận sẽ bị xử lý.",
-                kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Giờ nghỉ trưa (Tạm dừng)", nextBusText: "⭐ Chuyến tiếp theo",
-                stBookable: "Có thể đặt", stWaiting: "Đang chờ", stBoarding: "Đang lên xe", stDeparted: "Đã đi", stFull: "Hết chỗ", stOut: "Tạm dừng"
-            },
-            'hi': {
-                title: "सिलका त्सुएन वान - दरबान",
-                c1t: "🚌 मुफ्त शटल bus", c1d: "समय सारणी और स्थिति",
-                c5t: "🚏 मुफ्त शटल बस बोर्डिंग स्थान", c5d: "विस्तृत स्टेशन गाइड और नक्शे",
-                c2t: "🗺️ होटल 300मी व्यावहारिक गाइड", c2d: "मेट्रो, भोजन और दुकानें",
-                c6t: "📖 हांगकांग यात्रा गाइड", c6d: "शीर्ष आकर्षण और यात्रा कार्यक्रम",
-                c3t: "🧳 सामान का भंडारण", c3d: "भंडारण नियम और शुल्क",
-                c7t: "✈️ प्रस्थान गाइड", c7d: "हवाई अड्डा परिवहन और एक्सप्रेस जानकारी",
-                c8t: "🚐 होटल कार सेवा", c8d: "पॉइंट-टू-पॉइंट और चार्टर बुकिंग",
-                c9t: "🏨 होटल सुविधाएं", c9d: "जिम, डाइनिंग और अन्य सुविधाएं",
-                guide1Name: "भोजन", guide1Desc: "स्थानीय स्नैक्स और लोकप्रिय रेस्तरां",
-                guide2Name: "खरीदारी", guide2Desc: "मॉल और प्रसिद्ध बाजार",
-                guide3Name: "मनोरंजन", guide3Desc: "थीम पार्क और एक्टिविटी",
-                guide4Name: "दर्शनीय स्थल", guide4Desc: "प्रसिद्ध स्थल और फोटो स्पॉट",
-                guide5Name: "यात्रा कार्यक्रम 1", guide5Desc: "क्लासिक एक दिवसीय रूट",
-                guide6Name: "यात्रा कार्यक्रम 2", guide6Desc: "गहन सांस्कृतिक अन्वेषण यात्रा",
-                gshop1Name: "हार्बर सिटी", gshop1Desc: "वाटरफ्रंट मेगा मॉल और अंतरराष्ट्रीय लक्जरी ब्रांड",
-                gshop2Name: "कॉज़वे बे शॉपिंग जिला", gshop2Desc: "ट्रेंडी डिपार्टमेंट स्टोर, SOGO, और जीवंत नाइटलाइफ़",
-                gshop3Name: "सोहो और पीएमक्यू सेंट्रल", gshop3Desc: "रचनात्मक बुटीक, स्वतंत्र डिजाइनर और अनूठे सामान",
-                gshop4Name: "लेडीज मार्केट और स्नीकर्स स्ट्रीट", gshop4Desc: "हलचल भरे बाजार, ट्रेंडी जूते और स्थानीय स्वाद",
-                gp1Name: "हांगकांग डिज्नीलैंड", gp1Desc: "जादुई परी कथाएँ और आतिशबाजी शो",
-                gp2Name: "हांगकांग ओशन पार्क", gp2Desc: "रोमांचक सवारी और ध्रुवीय जानवर",
-                gp3Name: "हांगकांग ऑब्ज़र्वेशन व्हील", gp3Desc: "विक्टोरिया हार्बर पर रोमांटिक नज़ारे",
-                gp4Name: "हांगकांग नूह की सन्दूक", gp4Desc: "मा वान नेचर पार्क और पारिवारिक आकर्षण",
-                gs1Name: "विक्टोरिया हार्बर और एवेन्यू ऑफ स्टार्स", gs1Desc: "विश्व स्तरीय क्षितिज और लाइट शो",
-                gs2Name: "विक्टोरिया पीक और पीक टॉवर", gs2Desc: "विक्टोरिया हार्बर के दोनों किनारों का मनोरम दृश्य",
-                gs3Name: "वेस्ट काउलून सांस्कृतिक जिला (M+ और पैलेस संग्रहालय)", gs3Desc: "समकालीन दृश्य संस्कृति और चीनी विरासत",
-                gs4Name: "ताई क्वून और सेंट्रल हेरिटेज सर्किट", gs4Desc: "पुनर्जीवित ऐतिहासिक वास्तुकला और कला केंद्र",
-                fac1Name: "कम लाम रेस्तरां", fac1Desc: "(दूसरी मंजिल)",
-                fac2Name: "स्काई गार्डन", fac2Desc: "(5वीं मंजिल)",
-                fac3Name: "जिम", fac3Desc: "(5वीं मंजिल)",
-                fac4Name: "पार्किंग", fac4Desc: "(ग्राउंड फ्लोर)",
-                fac1H: "कम लाम रेस्तरां (दूसरी मंजिल)",
-                fac2H: "स्काई गार्डन (5वीं मंजिल)",
-                fac3H: "जिम (5वीं मंजिल)",
-                fac4H: "पार्किंग (ग्राउंड फ्लोर)",
-                backFacility: "⬅ होटल सुविधाओं पर वापस जाएं",
-                dep1Name: "लो वू चेकपॉइंट", dep1Desc: "सुबह 06:30 से मध्यरात्रि 00:00",
-                dep2Name: "लोक मा चाउ / फुतियान", dep2Desc: "सुबह 06:30 से रात 10:30",
-                dep3Name: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा", dep3Desc: "24 घंटे",
-                dep4Name: "हांगकांग वेस्ट कॉवloon स्टेशन", dep4Desc: "सुबह 06:30 से रात 11:30",
-                dep5Name: "शेन्ज़ेन बे पोर्ट", dep5Desc: "सुबह 06:30 से मध्यरात्रि 12:00",
-                dep6Name: "हेउंग युएन वाई / लियान्तांग पोर्ट", dep6Desc: "सुबह 07:00 से रात 10:30",
-                dep7Name: "हांगकांग-झुहाई-मकाऊ ब्रिज", dep7Desc: "24 घंटे",
-                dep8Name: "मकाऊ फेरी टर्मिनल", dep8Desc: "सुबह 06:30 से मध्यरात्रि 12:00",
-                carCard1T: "सेवा शुल्क तालिका", carCard1D: "पॉइंट-टू-पॉइंट और चार्टर मूल्य निर्धारण",
-                carCard2T: "नियम एवं शर्तें", carCard2D: "बुकिंग, रद्दीकरण और नीतियां",
-                carNoticeBox: "यदि आपको किसी सहायता, पूछताछ या इस सेवा का उपयोग करने की आवश्यकता है, तो कृपया कंसर्ज डेस्क पर आएं या 3700 3824 पर कॉल करें।",
-                carPriceH: "होटल कार - सेवा शुल्क तालिका",
-                carTermsH: "होटल कार - नियम एवं शर्तें",
-                thDest: "गंतव्य / सेवा", thPrice: "शुल्क (HKD)",
-                pMongkok: "होटल से मोंग कोक",
-                pChinachem: "होटल से चाइना हांगकांग सिटी / हाई स्पीड रेल स्टेशन",
-                pAirport: "होटल से हवाई अड्डा, डिज्नीलैंड, हांगकांग-झुहाई-मकाऊ ब्रिज",
-                pOceanpark: "होटल से ओशन पार्क",
-                pSurcharge: "सुबह 8 बजे से पहले / रात 8 बजे के बाद अतिरिक्त शुल्क",
-                pHourly: "प्रति घंटा किराया (न्यूनतम 3 घंटे)",
-                carPriceNote: "💡 <strong>नोट:</strong> उपर्युक्त शुल्क पॉइंट-टू-पॉइंट ट्रांसफर सेवाओं पर लागू होते हैं। ओवरटाइम या यात्रा कार्यक्रम में बदलाव के लिए कृपया कंसर्ज से संपर्क करें।",
-                back: "⬅ मेनू पर वापस जाएं",
-                backGuidePlay: "⬅ हांगकांग यात्रा गाइड पर वापस जाएं",
-                busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएन वान वेस्ट",
-                stationH: "मुफ्त शटल बस बोर्डिंग स्थान",
-                guideH: "हांगकांग यात्रा गाइड",
-                guideShopH: "हांगकांग यात्रा गाइड - खरीदारी",
-                guidePlayH: "हांगकांग यात्रा गाइड - मनोरंजन",
-                guideSightH: "हांगकांग यात्रा गाइड - दर्शनीय स्थल",
-                departureH: "प्रस्थान गाइड",
-                carH: "होटल कार सेवा",
-                facilityH: "होटल सुविधाएं",
-                liveStatusLabel: "📍 लाइव बस स्थिति",
-                stDriving: "क्वाई फोंग जा रही है", stArrKwai: "🔵 क्वाई फोंग पहुंच गई", stDriving2: "त्सुएन वान वेस्ट जा रही है", stArrTsuen: "🔵 त्सुएन वान वेस्ट पहुंच गई", stReturning: "होटल वापस लौट रही है", stWaitingStandby: "प्रतीक्षा / तैयारी",
-                stEnded: "आज की यात्राएं समाप्त हो गई हैं",
-                noticeTelTitle: "कंसर्ज फोन", noticeTelVal: "3700 3824 (एक्सटेंशन के लिए '4' दबाएं)",
-                noticeContactTitle: "कृपया सीट आरक्षित करने के लिए पहले से कंसर्ज से संपर्क करें",
-                noticeTimeTitle: "समय पर उपस्थित रहें", noticeTimeDesc: "अन्यथा सीट अन्य अतिथियों को दे दी जाएगी।",
-                noticeWeatherTitle: "खराब मौसम व्यवस्था", noticeWeatherDesc: "ब्लैक रेनस्टॉर्म या तूफान सिग्नल 8 या अधिक जारी होने पर शटल bus सेवा स्थगित रहेगी।",
-                mapH: "होटल 300मी व्यावहारिक गाइड",
-                lugH: "सामान भंडारण सेवा", 
-                lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है।",
-                kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएन वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली बस (Next Bus)",
-                stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित"
-            },
-            'fil': {
-                title: "Silka Tsuen Wan - Concierge",
-                c1t: "🚌 Libreng Shuttle Bus", c1d: "Iskedyul at live na status",
-                c5t: "🚏 Sakayan ng Libreng Shuttle Bus", c5d: "Detalyadong gabay at mapa sa istasyon",
-                c2t: "🗺️ Gabay sa 300m Paligid ng Hotel", c2d: "MTR, kainan at convenience store",
-                c6t: "📖 Gabay sa Paglalakbay", c6d: "Mga pasyalan at gabay sa biyahe",
-                c3t: "🧳 Imbakan ng Bagahe", c3d: "Patakaran at bayarin sa bagahe",
-                c7t: "✈️ Gabay sa Pag-alis", c7d: "Transportasyon sa paliparan at Airport Express",
-                c8t: "🚐 Serbisyo ng Kotse sa Hotel", c8d: "Point-to-point at booking ng sasakyan",
-                c9t: "🏨 Mga Pasilidad ng Hotel", c9d: "Gym, kainan at iba pa",
-                guide1Name: "Pagkain", guide1Desc: "Lokal na meryenda at sikat na kainan",
-                guide2Name: "Pamimili", guide2Desc: "Mga mall at sikat na palengke",
-                guide3Name: "Libangan", guide3Desc: "Theme park at karanasan",
-                guide4Name: "Pasyalan", guide4Desc: "Mga sikat na landmark at tanawin",
-                guide5Name: "Ruta 1", guide5Desc: "Klasikong 1-araw na biyahe",
-                guide6Name: "Ruta 2", guide6Desc: "Malalim na pagtuklas sa kultura",
-                gshop1Name: "Harbour City", gshop1Desc: "Malaking waterfront mall at international luxury brands",
-                gshop2Name: "Causeway Bay Shopping District", gshop2Desc: "Trendy department stores, SOGO, at masiglang nightlife",
-                gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Creative boutiques, indie designers, at natatanging items",
-                gshop4Name: "Ladies' Market & Sneakers Street", gshop4Desc: "Street markets, trendy kicks, at lokal na kultura",
-                gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical na engkanto at paputok",
-                gp2Name: "Ocean Park Hong Kong", gp2Desc: "Nakatutuwang rides at mga polar animal",
-                gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantikong tanawin ng skyline sa Victoria Harbour",
-                gp4Name: "Hong Kong Noah's Ark", gp4Desc: "Ma Wan nature park at pampamilyang pasyalan",
-                gs1Name: "Victoria Harbour at Avenue of Stars", gs1Desc: "World-class skyline at light show",
-                gs2Name: "Victoria Peak at Peak Tower", gs2Desc: "Panoramic view ng magkabilang panig ng Victoria Harbour",
-                gs3Name: "West Kowloon Cultural District (M+ at Palace Museum)", gs3Desc: "Contemporary visual culture at Chinese heritage",
-                gs4Name: "Tai Kwun at Central Heritage Circuit", gs4Desc: "Binagong makasaysayang arkitektura at arts hub",
-                fac1Name: "Restawran ng Kam Lam", fac1Desc: "(Ika-2 Palapag)",
-                fac2Name: "Halaman sa Himpapawid", fac2Desc: "(Ika-5 Palapag)",
-                fac3Name: "Gym / Fitness Room", fac3Desc: "(Ika-5 Palapag)",
-                fac4Name: "Paradahan", fac4Desc: "(Ground Floor)",
-                fac1H: "Restawran ng Kam Lam (Ika-2 Palapag)",
-                fac2H: "Halaman sa Himpapawid (Ika-5 Palapag)",
-                fac3H: "Gym / Fitness Room (Ika-5 Palapag)",
-                fac4H: "Paradahan (Ground Floor)",
-                backFacility: "⬅ Bumalik sa Pasilidad ng Hotel",
-                dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 hanggang 00:00 Hatinggabi",
-                dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 hanggang 22:30",
-                dep3Name: "Hong Kong International Airport", dep3Desc: "24 Oras",
-                dep4Name: "Hong Kong West Kowloon Station", dep4Desc: "06:30 hanggang 23:30",
-                dep5Name: "Shenzhen Bay Port", dep5Desc: "06:30 hanggang 00:00 Hatinggabi",
-                dep6Name: "Heung Yuen Wai / Liantang Port", dep6Desc: "07:00 hanggang 22:30",
-                dep7Name: "Hong Kong-Zhuhai-Macao Bridge", dep7Desc: "24 Oras",
-                dep8Name: "Macau Ferry Terminal", dep8Desc: "06:30 hanggang 00:00 Hatinggabi",
-                carCard1T: "Talaan ng Singilin", carCard1D: "Presyo ng point-to-point at charter",
-                carCard2T: "Mga Tuntunin at Kundisyon", carCard2D: "Pag-book, pagkansela at patakaran",
-                carNoticeBox: "Kung kailangan ninyo ng tulong, tanong, o nais gamitin ang serbisyong ito, mangyaring magtungo sa Concierge desk o tumawag sa 3700 3824.",
-                carPriceH: "Kotse sa Hotel - Talaan ng Singilin",
-                carTermsH: "Kotse sa Hotel - Mga Tuntunin at Kundisyon",
-                thDest: "Destinasyon / Serbisyo", thPrice: "Singil (HKD)",
-                pMongkok: "Mula Hotel hanggang Mong Kok",
-                pChinachem: "Mula Hotel hanggang China Hong Kong City / High Speed Rail Station",
-                pAirport: "Mula Hotel hanggang Airport, Disneyland, HK-Zhuhai-Macao Bridge",
-                pOceanpark: "Mula Hotel hanggang Ocean Park",
-                pSurcharge: "Karagdagang bayad bago mag-8:00 AM / pagkatapos ng 8:00 PM",
-                pHourly: "Pag-upa kada oras (Minimum na 3 oras)",
-                carPriceNote: "💡 <strong>Tandaan:</strong> Ang mga singil sa taas ay para sa point-to-point transfer. Para sa overtime o pagbabago ng ruta, magtanong sa Concierge.",
-                back: "⬅ Bumalik sa Menu",
-                backGuidePlay: "⬅ Bumalik sa Gabay sa Paglalakbay",
-                busH: "Iskedyul ng Shuttle Bus at Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
-                stationH: "Sakayan ng Libreng Shuttle Bus",
-                guideH: "Gabay sa Paglalakbay sa Hong Kong",
-                guideShopH: "Gabay sa Paglalakbay - Pamimili",
-                guidePlayH: "Gabay sa Paglalakbay - Libangan",
-                guideSightH: "Gabay sa Paglalakbay - Pasyalan",
-                departureH: "Gabay sa Pag-alis",
-                carH: "Serbisyo ng Kotse sa Hotel",
-                facilityH: "Mga Pasilidad ng Hotel",
-                liveStatusLabel: "📍 Live na Status ng Bus",
-                stDriving: "Bumabiyahe papuntang Kwai Fong", stArrKwai: "🔵 Dumating na sa Kwai Fong", stDriving2: "Bumabiyahe papuntang Tsuen Wan West", stArrTsuen: "🔵 Dumating na sa Tsuen Wan West", stReturning: "Bumabalik sa Hotel", stWaitingStandby: "Naghihintay / Naghahanda",
-                stEnded: "Tapos na ang mga biyahe ngayong araw",
-                noticeTelTitle: "Telepono ng Concierge", noticeTelVal: "3700 3824 (Pindutin ang '4' para sa extension)",
-                noticeContactTitle: "Mangyaring makipag-ugnayan sa Concierge nang maaga upang mag-reserba",
-                noticeTimeTitle: "Maging punctual", noticeTimeDesc: "Kung hindi, ang mga upuan ay maaaring ibigay sa ibang mga bisita.",
-                noticeWeatherTitle: "Masamang Panahon", noticeWeatherDesc: "Ang serbisyo ng shuttle bus ay pansamantalang ititigil kung may Black Rainstorm o Typhoon Signal No. 8 pataas.",
-                mapH: "Gabay sa 300m Paligid ng Hotel",
-                lugH: "Serbisyo sa Imbakan ng Bagahe", 
-                lugDesc: "🧳 **Paalala sa Imbakan ng Bagahe**<br><br><strong>【Patakaran at Bayarin】</strong><br>• **Araw ng Pag-check-in at Check-out**：Libreng imbakan.<br>• **Mahabang Panahong Imbakan**：<strong>$10</strong> bawat piraso bawat araw.<br><br><strong>【Pagkolekta at Kaligtasan】</strong><br>• Mangyaring ipakita ang claim tag at **tugmang lagda**.<br>• Nakaimbak sa **hindi naka-aircon** na kapaligiran.<br><br><strong>【Pananagutan】</strong><br>• Ang hotel ay hindi panagot sa anumang **pagkawala, pinsala, o pagnanakaw**.<br>• Ang mga hindi kinuha sa loob ng **dalawang buwan** ay maaaring itapon nang walang abiso.",
-                kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Oras ng Tanghalian (Suspendido)", nextBusText: "⭐ Susunod na Bus",
-                stBookable: "Maaaring I-book", stWaiting: "Naghihintay", stBoarding: "Sumasakay", stDeparted: "Umalis Na", stFull: "Puno", stOut: "Suspendido"
-            }
-        };
-
-        function selectLang(lang) {
-            currentLang = lang;
-            document.getElementById('lang-modal').style.display = 'none';
-            document.getElementById('mainContainer').style.display = 'block';
-            updateUIText();
-            renderBusSchedule();
+        for (const [id, text] of Object.entries(elements)) {
+            const el = document.getElementById(id);
+            if (el && text) el.innerHTML = text;
         }
+    }
 
-        function updateUIText() {
-            const langData = t[currentLang] || t['zh-HK'];
-            document.title = langData.title;
-            const elements = {
-                'ui-title': langData.title,
-                'ui-card1-title': langData.c1t, 'ui-card1-desc': langData.c1d,
-                'ui-card5-title': langData.c5t, 'ui-card5-desc': langData.c5d,
-                'ui-card2-title': langData.c2t, 'ui-card2-desc': langData.c2d,
-                'ui-card6-title': langData.c6t, 'ui-card6-desc': langData.c6d,
-                'ui-card3-title': langData.c3t, 'ui-card3-desc': langData.c3d,
-                'ui-card7-title': langData.c7t, 'ui-card7-desc': langData.c7d,
-                'ui-card8-title': langData.c8t, 'ui-card8-desc': langData.c8d,
-                'ui-card9-title': langData.c9t, 'ui-card9-desc': langData.c9d,
-                'ui-bus-header': langData.busH, 'ui-bus-sub': langData.busSub,
-                'ui-station-header': langData.stationH,
-                'ui-map-header': langData.mapH,
-                'ui-guide-header': langData.guideH,
-                'ui-guideshop-header': langData.guideShopH,
-                'ui-guideplay-header': langData.guidePlayH,
-                'ui-guidesight-header': langData.guideSightH,
-                'ui-lug-header': langData.lugH, 'ui-lug-desc': langData.lugDesc,
-                'ui-departure-header': langData.departureH,
-                'ui-car-header': langData.carH,
-                'ui-car-card1-title': langData.carCard1T, 'ui-car-card1-desc': langData.carCard1D,
-                'ui-car-card2-title': langData.carCard2T, 'ui-car-card2-desc': langData.carCard2D,
-                'ui-car-notice-box': langData.carNoticeBox,
-                'ui-carprice-header': langData.carPriceH,
-                'ui-th-dest': langData.thDest, 'ui-th-price': langData.thPrice,
-                'ui-p-mongkok': langData.pMongkok,
-                'ui-p-chinachem': langData.pChinachem,
-                'ui-p-airport': langData.pAirport,
-                'ui-p-oceanpark': langData.pOceanpark,
-                'ui-p-surcharge': langData.pSurcharge,
-                'ui-p-hourly': langData.pHourly,
-                'ui-carprice-note': langData.carPriceNote,
-                'ui-carterms-header': langData.carTermsH,
-                'ui-facility-header': langData.facilityH,
-                'ui-fac-1-title': langData.fac1Name, 'ui-fac-1-desc': langData.fac1Desc,
-                'ui-fac-2-title': langData.fac2Name, 'ui-fac-2-desc': langData.fac2Desc,
-                'ui-fac-3-title': langData.fac3Name, 'ui-fac-3-desc': langData.fac3Desc,
-                'ui-fac-4-title': langData.fac4Name, 'ui-fac-4-desc': langData.fac4Desc,
-                'ui-fac1-header': langData.fac1H,
-                'ui-fac2-header': langData.fac2H,
-                'ui-fac3-header': langData.fac3H,
-                'ui-fac4-header': langData.fac4H,
-                'ui-back-fac1': langData.backFacility, 'ui-back-fac2': langData.backFacility, 'ui-back-fac3': langData.backFacility, 'ui-back-fac4': langData.backFacility,
-                'ui-back1': langData.back, 'ui-back2': langData.back, 'ui-back3': langData.back,
-                'ui-back5': langData.back, 'ui-back6': langData.back, 'ui-back7': langData.back, 'ui-back8': langData.back, 'ui-back9': langData.back,
-                'ui-back-guideshop': langData.guideH, 'ui-back-guideplay': langData.backGuidePlay, 'ui-back-guidesight': langData.backGuidePlay,
-                'ui-back-carprice': langData.carH, 'ui-back-carterms': langData.carH,
-                'ui-live-status-label': langData.liveStatusLabel,
-                'ui-notice-tel-title': langData.noticeTelTitle, 'ui-notice-tel-val': langData.noticeTelVal,
-                'ui-notice-contact-title': langData.noticeContactTitle,
-                'ui-notice-time-title': langData.noticeTimeTitle, 'ui-notice-time-desc': langData.noticeTimeDesc,
-                'ui-notice-weather-title': langData.noticeWeatherTitle, 'ui-notice-weather-desc': langData.noticeWeatherDesc,
-                'ui-guide-1-title': langData.guide1Name, 'ui-guide-1-desc': langData.guide1Desc,
-                'ui-guide-2-title': langData.guide2Name, 'ui-guide-2-desc': langData.guide2Desc,
-                'ui-guide-3-title': langData.guide3Name, 'ui-guide-3-desc': langData.guide3Desc,
-                'ui-guide-4-title': langData.guide4Name, 'ui-guide-4-desc': langData.guide4Desc,
-                'ui-guide-5-title': langData.guide5Name, 'ui-guide-5-desc': langData.guide5Desc,
-                'ui-guide-6-title': langData.guide6Name, 'ui-guide-6-desc': langData.guide6Desc,
-                'ui-gshop-1-title': langData.gshop1Name, 'ui-gshop-1-desc': langData.gshop1Desc,
-                'ui-gshop-2-title': langData.gshop2Name, 'ui-gshop-2-desc': langData.gshop2Desc,
-                'ui-gshop-3-title': langData.gshop3Name, 'ui-gshop-3-desc': langData.gshop3Desc,
-                'ui-gshop-4-title': langData.gshop4Name, 'ui-gshop-4-desc': langData.gshop4Desc,
-                'ui-gp-1-title': langData.gp1Name, 'ui-gp-1-desc': langData.gp1Desc,
-                'ui-gp-2-title': langData.gp2Name, 'ui-gp-2-desc': langData.gp2Desc,
-                'ui-gp-3-title': langData.gp3Name, 'ui-gp-3-desc': langData.gp3Desc,
-                'ui-gp-4-title': langData.gp4Name, 'ui-gp-4-desc': langData.gp4Desc,
-                'ui-gs-1-title': langData.gs1Name, 'ui-gs-1-desc': langData.gs1Desc,
-                'ui-gs-2-title': langData.gs2Name, 'ui-gs-2-desc': langData.gs2Desc,
-                'ui-gs-3-title': langData.gs3Name, 'ui-gs-3-desc': langData.gs3Desc,
-                'ui-gs-4-title': langData.gs4Name, 'ui-gs-4-desc': langData.gs4Desc,
-                'ui-dep-1-title': langData.dep1Name, 'ui-dep-1-desc': langData.dep1Desc,
-                'ui-dep-2-title': langData.dep2Name, 'ui-dep-2-desc': langData.dep2Desc,
-                'ui-dep-3-title': langData.dep3Name, 'ui-dep-3-desc': langData.dep3Desc,
-                'ui-dep-4-title': langData.dep4Name, 'ui-dep-4-desc': langData.dep4Desc,
-                'ui-dep-5-title': langData.dep5Name, 'ui-dep-5-desc': langData.dep5Desc,
-                'ui-dep-6-title': langData.dep6Name, 'ui-dep-6-desc': langData.dep6Desc,
-                'ui-dep-7-title': langData.dep7Name, 'ui-dep-7-desc': langData.dep7Desc,
-                'ui-dep-8-title': langData.dep8Name, 'ui-dep-8-desc': langData.dep8Desc
-            };
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section-content');
+        sections.forEach(sec => sec.classList.remove('active-section'));
+        document.getElementById('mainMenu').style.display = 'none';
+        document.getElementById(sectionId).classList.add('active-section');
+        window.scrollTo(0, 0);
+    }
 
-            for (const [id, text] of Object.entries(elements)) {
-                const el = document.getElementById(id);
-                if (el && text) el.innerHTML = text;
-            }
-        }
+    function goBack() {
+        const sections = document.querySelectorAll('.section-content');
+        sections.forEach(sec => sec.classList.remove('active-section'));
+        document.getElementById('mainMenu').style.display = 'grid';
+        window.scrollTo(0, 0);
+    }
 
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section-content');
-            sections.forEach(sec => sec.classList.remove('active-section'));
-            document.getElementById('mainMenu').style.display = 'none';
-            document.getElementById(sectionId).classList.add('active-section');
-            window.scrollTo(0, 0);
-        }
+    // 完整穿梭巴士時間表 (08:00 至 20:00)
+    const busScheduleData = [
+        { id: 1, hotel: "08:00", kwaiFong: "08:15", tsuenWanWest: "08:30" },
+        { id: 2, hotel: "09:00", kwaiFong: "09:15", tsuenWanWest: "09:30" },
+        { id: 3, hotel: "10:00", kwaiFong: "10:15", tsuenWanWest: "10:30" },
+        { id: 4, hotel: "11:00", kwaiFong: "11:15", tsuenWanWest: "11:30" },
+        { id: 5, hotel: "12:00", kwaiFong: "12:15", tsuenWanWest: "12:30" },
+        { id: 6, hotel: "13:00", isLunch: true },
+        { id: 7, hotel: "14:00", kwaiFong: "14:15", tsuenWanWest: "14:30" },
+        { id: 8, hotel: "15:00", kwaiFong: "15:15", tsuenWanWest: "15:30" },
+        { id: 9, hotel: "16:00", kwaiFong: "16:15", tsuenWanWest: "16:30" },
+        { id: 10, hotel: "17:00", kwaiFong: "17:15", tsuenWanWest: "17:30" },
+        { id: 11, hotel: "18:00", kwaiFong: "18:15", tsuenWanWest: "18:30" },
+        { id: 12, hotel: "19:00", kwaiFong: "19:15", tsuenWanWest: "19:30" },
+        { id: 13, hotel: "20:00", kwaiFong: "20:15", tsuenWanWest: "20:30" }
+    ];
 
-        function goBack() {
-            const sections = document.querySelectorAll('.section-content');
-            sections.forEach(sec => sec.classList.remove('active-section'));
-            document.getElementById('mainMenu').style.display = 'grid';
-            window.scrollTo(0, 0);
-        }
+    function timeToMinutes(timeStr) {
+        if (!timeStr) return 0;
+        const [h, m] = timeStr.split(':').map(Number);
+        return h * 60 + m;
+    }
 
-        // 完整穿梭巴士時間表（含 13:00 午飯時間與 18:00, 19:00, 20:00 班次）
-        const busScheduleData = [
-            { id: 1, hotel: "09:00", kwaiFong: "09:15", tsuenWanWest: "09:30" },
-            { id: 2, hotel: "10:00", kwaiFong: "10:15", tsuenWanWest: "10:30" },
-            { id: 3, hotel: "11:00", kwaiFong: "11:15", tsuenWanWest: "11:30" },
-            { id: 4, hotel: "12:00", kwaiFong: "12:15", tsuenWanWest: "12:30" },
-            { id: 5, hotel: "13:00", isLunch: true },
-            { id: 6, hotel: "14:00", kwaiFong: "14:15", tsuenWanWest: "14:30" },
-            { id: 7, hotel: "15:00", kwaiFong: "15:15", tsuenWanWest: "15:30" },
-            { id: 8, hotel: "16:00", kwaiFong: "16:15", tsuenWanWest: "16:30" },
-            { id: 9, hotel: "17:00", kwaiFong: "17:15", tsuenWanWest: "17:30" },
-            { id: 10, hotel: "18:00", kwaiFong: "18:15", tsuenWanWest: "18:30" },
-            { id: 11, hotel: "19:00", kwaiFong: "19:15", tsuenWanWest: "19:30" },
-            { id: 12, hotel: "20:00", kwaiFong: "20:15", tsuenWanWest: "20:30" }
-        ];
+    function renderBusSchedule() {
+        const container = document.getElementById('busListContainer');
+        if (!container) return;
+        container.innerHTML = '';
 
-        function timeToMinutes(timeStr) {
-            if (!timeStr) return 0;
-            const [h, m] = timeStr.split(':').map(Number);
-            return h * 60 + m;
-        }
+        const langData = t[currentLang] || t['zh-HK'];
+        const now = new Date();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-        function renderBusSchedule() {
-            const container = document.getElementById('busListContainer');
-            if (!container) return;
-            container.innerHTML = '';
+        const isNightReset = (currentMinutes >= 1320 || currentMinutes < 460);
 
-            const langData = t[currentLang] || t['zh-HK'];
-            const now = new Date();
-            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        let nextBusId = null;
+        let minDiff = Infinity;
 
-            let nextBusId = null;
-            let minDiff = Infinity;
-
-            // 計算下一班車
+        if (!isNightReset) {
             busScheduleData.forEach(bus => {
                 if (bus.isLunch) return;
                 const override = manualOverrides[bus.id];
-                const isOut = override === 'out' || override === 'full';
-                if (!isOut) {
-                    const busMinutes = timeToMinutes(bus.hotel);
-                    let diff = busMinutes - currentMinutes;
-                    if (diff >= -15 && diff < minDiff) {
-                        minDiff = diff;
-                        nextBusId = bus.id;
-                    }
+                if (override === 'out') return;
+
+                const busMinutes = timeToMinutes(bus.hotel);
+                const diff = busMinutes - currentMinutes;
+                if (diff >= 0 && diff < minDiff) {
+                    minDiff = diff;
+                    nextBusId = bus.id;
                 }
             });
+        } else {
+            nextBusId = 1;
+        }
 
-            // 計算即時行車狀況
-            let liveText = langData.stWaitingStandby;
-            let foundActive = false;
+        let liveText = langData.stWaitingStandby;
+        let foundActive = false;
 
+        if (!isNightReset) {
             for (let i = 0; i < busScheduleData.length; i++) {
                 const bus = busScheduleData[i];
                 if (bus.isLunch) continue;
@@ -1361,69 +1290,95 @@
             if (!foundActive) {
                 const activeBuses = busScheduleData.filter(b => !b.isLunch);
                 const lastBus = activeBuses[activeBuses.length - 1];
-                if (currentMinutes >= timeToMinutes(lastBus.tsuenWanWest) + 25) {
+                const lastBusEndMins = timeToMinutes(lastBus.tsuenWanWest) + 25;
+                if (currentMinutes >= lastBusEndMins) {
                     liveText = langData.stEnded;
                 } else {
                     liveText = langData.stWaitingStandby;
                 }
             }
+        } else {
+            liveText = langData.stWaitingStandby;
+        }
 
-            const liveStatusTextEl = document.getElementById('liveStatusText');
-            if (liveStatusTextEl) liveStatusTextEl.innerText = liveText;
+        const liveStatusTextEl = document.getElementById('liveStatusText');
+        if (liveStatusTextEl) liveStatusTextEl.innerText = liveText;
 
-            // 渲染班次清單
-            busScheduleData.forEach(bus => {
-                const item = document.createElement('div');
-                item.className = 'bus-item';
-                const isNext = (bus.id === nextBusId);
-                if (isNext) item.classList.add('next-bus-highlight');
+        busScheduleData.forEach(bus => {
+            const item = document.createElement('div');
+            item.className = 'bus-item';
+            const isNext = (bus.id === nextBusId);
+            if (isNext) item.classList.add('next-bus-highlight');
 
-                let badgeClass = 'badge-bookable';
-                let badgeText = langData.stBookable;
+            let badgeClass = 'badge-bookable';
+            let badgeText = langData.stBookable;
 
-                if (bus.isLunch) {
+            if (bus.isLunch) {
+                badgeClass = 'badge-out';
+                badgeText = langData.lunchBreak;
+            } else {
+                const override = manualOverrides[bus.id];
+                
+                if (override === 'full') {
+                    badgeClass = 'badge-full';
+                    badgeText = langData.stFull;
+                } else if (override === 'out') {
                     badgeClass = 'badge-out';
-                    badgeText = langData.lunchBreak;
+                    badgeText = langData.stOut;
+                } else if (override === 'waiting') {
+                    badgeClass = 'badge-waiting';
+                    badgeText = langData.stWaiting;
+                } else if (override === 'boarding') {
+                    badgeClass = 'badge-boarding';
+                    badgeText = langData.stBoarding;
+                } else if (override === 'departed') {
+                    badgeClass = 'badge-departed';
+                    badgeText = langData.stDeparted;
                 } else {
-                    const override = manualOverrides[bus.id];
-                    if (override) {
-                        if (override === 'waiting') { badgeClass = 'badge-waiting'; badgeText = langData.stWaiting; }
-                        else if (override === 'boarding') { badgeClass = 'badge-boarding'; badgeText = langData.stBoarding; }
-                        else if (override === 'departed') { badgeClass = 'badge-departed'; badgeText = langData.stDeparted; }
-                        else if (override === 'full') { badgeClass = 'badge-full'; badgeText = langData.stFull; }
-                        else if (override === 'out') { badgeClass = 'badge-out'; badgeText = langData.stOut; }
+                    if (isNightReset) {
+                        badgeClass = 'badge-bookable';
+                        badgeText = langData.stBookable;
                     } else {
                         const busMinutes = timeToMinutes(bus.hotel);
-                        if (currentMinutes > busMinutes + 15) {
-                            badgeClass = 'badge-departed';
-                            badgeText = langData.stDeparted;
-                        } else if (currentMinutes >= busMinutes - 10 && currentMinutes <= busMinutes + 15) {
+                        const diff = busMinutes - currentMinutes;
+
+                        if (diff > 20) {
+                            badgeClass = 'badge-bookable';
+                            badgeText = langData.stBookable;
+                        } else if (diff >= 6 && diff <= 20) {
+                            badgeClass = 'badge-waiting';
+                            badgeText = langData.stWaiting;
+                        } else if (diff >= 0 && diff <= 5) {
                             badgeClass = 'badge-boarding';
                             badgeText = langData.stBoarding;
+                        } else {
+                            badgeClass = 'badge-departed';
+                            badgeText = langData.stDeparted;
                         }
                     }
                 }
+            }
 
-                let nextBadgeHtml = isNext ? `<div class="next-bus-badge">${langData.nextBusText}</div><br>` : '';
+            let nextBadgeHtml = isNext ? `<div class="next-bus-badge">${langData.nextBusText}</div><br>` : '';
 
-                let timeInfoHtml = bus.isLunch ?
-                    `<strong>🕒 ${bus.hotel}</strong> ➔ ${langData.lunchBreak}` :
-                    `<strong>酒店 🕒 ${bus.hotel}</strong><br><span style="font-size:11px; color:#666;">➔ ${langData.kwaiFong} ${bus.kwaiFong} ➔ ${langData.tsuenWanWest} ${bus.tsuenWanWest}</span>`;
+            let timeInfoHtml = bus.isLunch ?
+                `<strong>🕒 ${bus.hotel}</strong> ➔ ${langData.lunchBreak}` :
+                `<strong>酒店 🕒 ${bus.hotel}</strong><br><span style="font-size:11px; color:#666;">➔ ${langData.kwaiFong} ${bus.kwaiFong} ➔ ${langData.tsuenWanWest} ${bus.tsuenWanWest}</span>`;
 
-                item.innerHTML = `
-                    <div>
-                        ${nextBadgeHtml}
-                        ${timeInfoHtml}
-                    </div>
-                    <div>
-                        <span class="badge ${badgeClass}">${badgeText}</span>
-                    </div>
-                `;
-                container.appendChild(item);
-            });
-        }
+            item.innerHTML = `
+                <div>
+                    ${nextBadgeHtml}
+                    ${timeInfoHtml}
+                </div>
+                <div>
+                    <span class="badge ${badgeClass}">${badgeText}</span>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    }
 
-        setInterval(renderBusSchedule, 30000);
-    </script>
+    setInterval(renderBusSchedule, 30000);
+</script>
 </body>
 </html>
