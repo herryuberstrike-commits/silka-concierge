@@ -148,7 +148,6 @@
                 <p>🚧 內容準備中，稍后將在此處新增各站上下車位置與地圖指引。</p>
             </div>
         </div>
-
         <!-- 酒店300米周邊實用指南頁面 -->
         <div id="mapSection" class="section-content">
             <button class="back-btn" id="ui-back2" onclick="goBack()">⬅ 返回主選單</button>
@@ -157,7 +156,6 @@
                 <p>🚧 內容準備中，稍后將在此處新增周邊實用指南。</p>
             </div>
         </div>
-
         <!-- 香港旅遊攻略 (主選單) -->
         <div id="guideSection" class="section-content">
             <button class="back-btn" id="ui-back6" onclick="goBack()">⬅ 返回主選單</button>
@@ -350,7 +348,6 @@
                 </div>
             </div>
         </div>
-
         <!-- 酒店專車服務頁面 -->
         <div id="carSection" class="section-content">
             <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
@@ -1158,168 +1155,111 @@
                 stEnded: "Tapos na ang mga biyahe ngayong araw",
                 noticeTelTitle: "Telepono ng Concierge", noticeTelVal: "3700 3824 (Pindutin ang '4' para sa extension)",
                 noticeContactTitle: "Mangyaring makipag-ugnayan sa Concierge nang maaga upang mag-reserba",
-                noticeTimeTitle: "Maging mabilis at maging sa oras", noticeTimeDesc: "Kung hindi, ang slot ay ibibigay sa ibang bisita.",
-                noticeWeatherTitle: "Masamang Panahon", noticeWeatherDesc: "Kanselado ang bus kapag may Black Rainstorm o Typhoon Signal No. 8 pataas.",
+                noticeTimeTitle: "Maging punctual", noticeTimeDesc: "Kung hindi, ang mga upuan ay maaaring ibigay sa ibang mga bisita.",
+                noticeWeatherTitle: "Masamang Panahon", noticeWeatherDesc: "Ang serbisyo ng shuttle bus ay pansamantalang ititigil kung may Black Rainstorm o Typhoon Signal No. 8 pataas.",
                 mapH: "Gabay sa 300m Paligid ng Hotel",
-                lugH: "Serbisyo ng Imbakan ng Bagahe", 
-                lugDesc: "🧳 **Paalala sa Imbakan ng Bagahe**<br><br><strong>【Bayad at Patakaran】</strong><br>• **Araw ng Check-in/out**：Libre.<br>• **Matagalang Imbakan**：<strong>$10</strong> kada gamit bawat araw.<br><br><strong>【Koleksyon at Siguridad】</strong><br>• Ipakita ang tag at **pirma**.<br>• Nakatabi sa **walang air-con** na lugar.<br><br><strong>【Disclaimers】</strong><br>• Walang pananagutan ang hotel sa nawala o nasira.<br>• Ang hindi kukunin lagpas **2 buwan** ay itatapon nang walang abiso.",
-                kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Oras ng Tanghalian (Walang Biyahe)", nextBusText: "⭐ Susunod na Bus",
-                stBookable: "Puwede i-book", stWaiting: "Naghihintay", stBoarding: "Puwede nang sumakay", stDeparted: "Nakaalis na", stFull: "Puno na", stOut: "Kanselado"
+                lugH: "Serbisyo sa Imbakan ng Bagahe", 
+                lugDesc: "🧳 **Paalala sa Imbakan ng Bagahe**<br><br><strong>【Patakaran at Bayarin】</strong><br>• **Araw ng Pag-check-in at Check-out**：Libreng imbakan.<br>• **Mahabang Panahong Imbakan**：<strong>$10</strong> bawat piraso bawat araw.<br><br><strong>【Pagkolekta at Kaligtasan】</strong><br>• Mangyaring ipakita ang claim tag at **tugmang lagda**.<br>• Nakaimbak sa **hindi naka-aircon** na kapaligiran.<br><br><strong>【Pananagutan】</strong><br>• Ang hotel ay hindi panagot sa anumang **pagkawala, pinsala, o pagnanakaw**.<br>• Ang mga hindi kinuha sa loob ng **dalawang buwan** ay maaaring itapon nang walang abiso.",
+                kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Oras ng Tanghalian (Suspendido)", nextBusText: "⭐ Susunod na Bus",
+                stBookable: "Maaaring I-book", stWaiting: "Naghihintay", stBoarding: "Sumasakay", stDeparted: "Umalis Na", stFull: "Puno", stOut: "Suspendido"
             }
         };
-
-        const staticSchedule = [
-            { time: "08:00", kTime: "08:15", tTime: "08:30" },
-            { time: "09:00", kTime: "09:15", tTime: "09:30" },
-            { time: "10:00", kTime: "10:15", tTime: "10:30" },
-            { time: "11:00", kTime: "11:15", tTime: "11:30" },
-            { time: "12:00", kTime: "12:15", tTime: "12:30" },
-            { time: "13:00", isLunch: true },
-            { time: "14:00", kTime: "14:15", tTime: "14:30" },
-            { time: "15:00", kTime: "15:15", tTime: "15:30" },
-            { time: "16:00", kTime: "16:15", tTime: "16:30" },
-            { time: "17:00", kTime: "17:15", tTime: "17:30" },
-            { time: "18:00", kTime: "18:15", tTime: "18:30" },
-            { time: "19:00", kTime: "19:15", tTime: "19:30" },
-            { time: "20:00", kTime: "20:15", tTime: "20:30" }
-        ];
 
         function selectLang(lang) {
             currentLang = lang;
             document.getElementById('lang-modal').style.display = 'none';
             document.getElementById('mainContainer').style.display = 'block';
-            updateTexts();
+            updateUIText();
             renderBusSchedule();
         }
 
-        function updateTexts() {
-            const langT = t[currentLang];
-            document.getElementById('ui-title').innerText = langT.title;
-            // 更新主選單
-            document.getElementById('ui-card1-title').innerText = langT.c1t;
-            document.getElementById('ui-card1-desc').innerText = langT.c1d;
-            document.getElementById('ui-card5-title').innerText = langT.c5t;
-            document.getElementById('ui-card5-desc').innerText = langT.c5d;
-            document.getElementById('ui-card2-title').innerText = langT.c2t;
-            document.getElementById('ui-card2-desc').innerText = langT.c2d;
-            document.getElementById('ui-card6-title').innerText = langT.c6t;
-            document.getElementById('ui-card6-desc').innerText = langT.c6d;
-            document.getElementById('ui-card3-title').innerText = langT.c3t;
-            document.getElementById('ui-card3-desc').innerText = langT.c3d;
-            document.getElementById('ui-card7-title').innerText = langT.c7t;
-            document.getElementById('ui-card7-desc').innerText = langT.c7d;
-            document.getElementById('ui-card8-title').innerText = langT.c8t;
-            document.getElementById('ui-card8-desc').innerText = langT.c8d;
-            document.getElementById('ui-card9-title').innerText = langT.c9t;
-            document.getElementById('ui-card9-desc').innerText = langT.c9d;
+        function updateUIText() {
+            const langData = t[currentLang] || t['zh-HK'];
+            document.title = langData.title;
+            const elements = {
+                'ui-title': langData.title,
+                'ui-card1-title': langData.c1t, 'ui-card1-desc': langData.c1d,
+                'ui-card5-title': langData.c5t, 'ui-card5-desc': langData.c5d,
+                'ui-card2-title': langData.c2t, 'ui-card2-desc': langData.c2d,
+                'ui-card6-title': langData.c6t, 'ui-card6-desc': langData.c6d,
+                'ui-card3-title': langData.c3t, 'ui-card3-desc': langData.c3d,
+                'ui-card7-title': langData.c7t, 'ui-card7-desc': langData.c7d,
+                'ui-card8-title': langData.c8t, 'ui-card8-desc': langData.c8d,
+                'ui-card9-title': langData.c9t, 'ui-card9-desc': langData.c9d,
+                'ui-bus-header': langData.busH, 'ui-bus-sub': langData.busSub,
+                'ui-station-header': langData.stationH,
+                'ui-map-header': langData.mapH,
+                'ui-guide-header': langData.guideH,
+                'ui-guideshop-header': langData.guideShopH,
+                'ui-guideplay-header': langData.guidePlayH,
+                'ui-guidesight-header': langData.guideSightH,
+                'ui-lug-header': langData.lugH, 'ui-lug-desc': langData.lugDesc,
+                'ui-departure-header': langData.departureH,
+                'ui-car-header': langData.carH,
+                'ui-car-card1-title': langData.carCard1T, 'ui-car-card1-desc': langData.carCard1D,
+                'ui-car-card2-title': langData.carCard2T, 'ui-car-card2-desc': langData.carCard2D,
+                'ui-car-notice-box': langData.carNoticeBox,
+                'ui-carprice-header': langData.carPriceH,
+                'ui-th-dest': langData.thDest, 'ui-th-price': langData.thPrice,
+                'ui-p-mongkok': langData.pMongkok,
+                'ui-p-chinachem': langData.pChinachem,
+                'ui-p-airport': langData.pAirport,
+                'ui-p-oceanpark': langData.pOceanpark,
+                'ui-p-surcharge': langData.pSurcharge,
+                'ui-p-hourly': langData.pHourly,
+                'ui-carprice-note': langData.carPriceNote,
+                'ui-carterms-header': langData.carTermsH,
+                'ui-facility-header': langData.facilityH,
+                'ui-fac-1-title': langData.fac1Name, 'ui-fac-1-desc': langData.fac1Desc,
+                'ui-fac-2-title': langData.fac2Name, 'ui-fac-2-desc': langData.fac2Desc,
+                'ui-fac-3-title': langData.fac3Name, 'ui-fac-3-desc': langData.fac3Desc,
+                'ui-fac-4-title': langData.fac4Name, 'ui-fac-4-desc': langData.fac4Desc,
+                'ui-fac1-header': langData.fac1H,
+                'ui-fac2-header': langData.fac2H,
+                'ui-fac3-header': langData.fac3H,
+                'ui-fac4-header': langData.fac4H,
+                'ui-back-fac1': langData.backFacility, 'ui-back-fac2': langData.backFacility, 'ui-back-fac3': langData.backFacility, 'ui-back-fac4': langData.backFacility,
+                'ui-back1': langData.back, 'ui-back2': langData.back, 'ui-back3': langData.back,
+                'ui-back5': langData.back, 'ui-back6': langData.back, 'ui-back7': langData.back, 'ui-back8': langData.back, 'ui-back9': langData.back,
+                'ui-back-guideshop': langData.guideH, 'ui-back-guideplay': langData.backGuidePlay, 'ui-back-guidesight': langData.backGuidePlay,
+                'ui-back-carprice': langData.carH, 'ui-back-carterms': langData.carH,
+                'ui-live-status-label': langData.liveStatusLabel,
+                'ui-notice-tel-title': langData.noticeTelTitle, 'ui-notice-tel-val': langData.noticeTelVal,
+                'ui-notice-contact-title': langData.noticeContactTitle,
+                'ui-notice-time-title': langData.noticeTimeTitle, 'ui-notice-time-desc': langData.noticeTimeDesc,
+                'ui-notice-weather-title': langData.noticeWeatherTitle, 'ui-notice-weather-desc': langData.noticeWeatherDesc,
+                'ui-guide-1-title': langData.guide1Name, 'ui-guide-1-desc': langData.guide1Desc,
+                'ui-guide-2-title': langData.guide2Name, 'ui-guide-2-desc': langData.guide2Desc,
+                'ui-guide-3-title': langData.guide3Name, 'ui-guide-3-desc': langData.guide3Desc,
+                'ui-guide-4-title': langData.guide4Name, 'ui-guide-4-desc': langData.guide4Desc,
+                'ui-guide-5-title': langData.guide5Name, 'ui-guide-5-desc': langData.guide5Desc,
+                'ui-guide-6-title': langData.guide6Name, 'ui-guide-6-desc': langData.guide6Desc,
+                'ui-gshop-1-title': langData.gshop1Name, 'ui-gshop-1-desc': langData.gshop1Desc,
+                'ui-gshop-2-title': langData.gshop2Name, 'ui-gshop-2-desc': langData.gshop2Desc,
+                'ui-gshop-3-title': langData.gshop3Name, 'ui-gshop-3-desc': langData.gshop3Desc,
+                'ui-gshop-4-title': langData.gshop4Name, 'ui-gshop-4-desc': langData.gshop4Desc,
+                'ui-gp-1-title': langData.gp1Name, 'ui-gp-1-desc': langData.gp1Desc,
+                'ui-gp-2-title': langData.gp2Name, 'ui-gp-2-desc': langData.gp2Desc,
+                'ui-gp-3-title': langData.gp3Name, 'ui-gp-3-desc': langData.gp3Desc,
+                'ui-gp-4-title': langData.gp4Name, 'ui-gp-4-desc': langData.gp4Desc,
+                'ui-gs-1-title': langData.gs1Name, 'ui-gs-1-desc': langData.gs1Desc,
+                'ui-gs-2-title': langData.gs2Name, 'ui-gs-2-desc': langData.gs2Desc,
+                'ui-gs-3-title': langData.gs3Name, 'ui-gs-3-desc': langData.gs3Desc,
+                'ui-gs-4-title': langData.gs4Name, 'ui-gs-4-desc': langData.gs4Desc,
+                'ui-dep-1-title': langData.dep1Name, 'ui-dep-1-desc': langData.dep1Desc,
+                'ui-dep-2-title': langData.dep2Name, 'ui-dep-2-desc': langData.dep2Desc,
+                'ui-dep-3-title': langData.dep3Name, 'ui-dep-3-desc': langData.dep3Desc,
+                'ui-dep-4-title': langData.dep4Name, 'ui-dep-4-desc': langData.dep4Desc,
+                'ui-dep-5-title': langData.dep5Name, 'ui-dep-5-desc': langData.dep5Desc,
+                'ui-dep-6-title': langData.dep6Name, 'ui-dep-6-desc': langData.dep6Desc,
+                'ui-dep-7-title': langData.dep7Name, 'ui-dep-7-desc': langData.dep7Desc,
+                'ui-dep-8-title': langData.dep8Name, 'ui-dep-8-desc': langData.dep8Desc
+            };
 
-            // 各子頁面標題與返回按鈕
-            document.getElementById('ui-back1').innerText = langT.back;
-            document.getElementById('ui-back5').innerText = langT.back;
-            document.getElementById('ui-back2').innerText = langT.back;
-            document.getElementById('ui-back6').innerText = langT.back;
-            document.getElementById('ui-back-guideshop').innerText = langT.backGuidePlay;
-            document.getElementById('ui-back-guideplay').innerText = langT.backGuidePlay;
-            document.getElementById('ui-back-guidesight').innerText = langT.backGuidePlay;
-            document.getElementById('ui-back3').innerText = langT.back;
-            document.getElementById('ui-back7').innerText = langT.back;
-            document.getElementById('ui-back8').innerText = langT.back;
-            document.getElementById('ui-back-carprice').innerText = langT.back;
-            document.getElementById('ui-back-carterms').innerText = langT.back;
-            document.getElementById('ui-back9').innerText = langT.back;
-            document.getElementById('ui-back-fac1').innerText = langT.backFacility;
-            document.getElementById('ui-back-fac2').innerText = langT.backFacility;
-            document.getElementById('ui-back-fac3').innerText = langT.backFacility;
-            document.getElementById('ui-back-fac4').innerText = langT.backFacility;
-
-            document.getElementById('ui-bus-header').innerText = langT.busH;
-            document.getElementById('ui-bus-sub').innerText = langT.busSub;
-            document.getElementById('ui-station-header').innerText = langT.stationH;
-            document.getElementById('ui-map-header').innerText = langT.mapH;
-            document.getElementById('ui-guide-header').innerText = langT.guideH;
-            document.getElementById('ui-guideshop-header').innerText = langT.guideShopH;
-            document.getElementById('ui-guideplay-header').innerText = langT.guidePlayH;
-            document.getElementById('ui-guidesight-header').innerText = langT.guideSightH;
-            document.getElementById('ui-lug-header').innerText = langT.lugH;
-            document.getElementById('ui-lug-desc').innerHTML = langT.lugDesc;
-            document.getElementById('ui-departure-header').innerText = langT.departureH;
-            document.getElementById('ui-car-header').innerText = langT.carH;
-            document.getElementById('ui-carprice-header').innerText = langT.carPriceH;
-            document.getElementById('ui-carterms-header').innerText = langT.carTermsH;
-            document.getElementById('ui-facility-header').innerText = langT.facilityH;
-            document.getElementById('ui-live-status-label').innerText = langT.liveStatusLabel;
-
-            // 公告欄
-            document.getElementById('ui-notice-tel-title').innerText = langT.noticeTelTitle;
-            document.getElementById('ui-notice-tel-val').innerText = langT.noticeTelVal;
-            document.getElementById('ui-notice-contact-title').innerText = langT.noticeContactTitle;
-            document.getElementById('ui-notice-time-title').innerText = langT.noticeTimeTitle;
-            document.getElementById('ui-notice-time-desc').innerText = langT.noticeTimeDesc;
-            document.getElementById('ui-notice-weather-title').innerText = langT.noticeWeatherTitle;
-            document.getElementById('ui-notice-weather-desc').innerText = langT.noticeWeatherDesc;
-
-            // 導遊卡片文字
-            document.getElementById('ui-guide-1-title').innerText = langT.guide1Name; document.getElementById('ui-guide-1-desc').innerText = langT.guide1Desc;
-            document.getElementById('ui-guide-2-title').innerText = langT.guide2Name; document.getElementById('ui-guide-2-desc').innerText = langT.guide2Desc;
-            document.getElementById('ui-guide-3-title').innerText = langT.guide3Name; document.getElementById('ui-guide-3-desc').innerText = langT.guide3Desc;
-            document.getElementById('ui-guide-4-title').innerText = langT.guide4Name; document.getElementById('ui-guide-4-desc').innerText = langT.guide4Desc;
-            document.getElementById('ui-guide-5-title').innerText = langT.guide5Name; document.getElementById('ui-guide-5-desc').innerText = langT.guide5Desc;
-            document.getElementById('ui-guide-6-title').innerText = langT.guide6Name; document.getElementById('ui-guide-6-desc').innerText = langT.guide6Desc;
-
-            // 購物
-            document.getElementById('ui-gshop-1-title').innerText = langT.gshop1Name; document.getElementById('ui-gshop-1-desc').innerText = langT.gshop1Desc;
-            document.getElementById('ui-gshop-2-title').innerText = langT.gshop2Name; document.getElementById('ui-gshop-2-desc').innerText = langT.gshop2Desc;
-            document.getElementById('ui-gshop-3-title').innerText = langT.gshop3Name; document.getElementById('ui-gshop-3-desc').innerText = langT.gshop3Desc;
-            document.getElementById('ui-gshop-4-title').innerText = langT.gshop4Name; document.getElementById('ui-gshop-4-desc').innerText = langT.gshop4Desc;
-
-            // 遊玩
-            document.getElementById('ui-gp-1-title').innerText = langT.gp1Name; document.getElementById('ui-gp-1-desc').innerText = langT.gp1Desc;
-            document.getElementById('ui-gp-2-title').innerText = langT.gp2Name; document.getElementById('ui-gp-2-desc').innerText = langT.gp2Desc;
-            document.getElementById('ui-gp-3-title').innerText = langT.gp3Name; document.getElementById('ui-gp-3-desc').innerText = langT.gp3Desc;
-            document.getElementById('ui-gp-4-title').innerText = langT.gp4Name; document.getElementById('ui-gp-4-desc').innerText = langT.gp4Desc;
-
-            // 觀光
-            document.getElementById('ui-gs-1-title').innerText = langT.gs1Name; document.getElementById('ui-gs-1-desc').innerText = langT.gs1Desc;
-            document.getElementById('ui-gs-2-title').innerText = langT.gs2Name; document.getElementById('ui-gs-2-desc').innerText = langT.gs2Desc;
-            document.getElementById('ui-gs-3-title').innerText = langT.gs3Name; document.getElementById('ui-gs-3-desc').innerText = langT.gs3Desc;
-            document.getElementById('ui-gs-4-title').innerText = langT.gs4Name; document.getElementById('ui-gs-4-desc').innerText = langT.gs4Desc;
-
-            // 出境口岸
-            document.getElementById('ui-dep-1-title').innerText = langT.dep1Name; document.getElementById('ui-dep-1-desc').innerText = langT.dep1Desc;
-            document.getElementById('ui-dep-2-title').innerText = langT.dep2Name; document.getElementById('ui-dep-2-desc').innerText = langT.dep2Desc;
-            document.getElementById('ui-dep-3-title').innerText = langT.dep3Name; document.getElementById('ui-dep-3-desc').innerText = langT.dep3Desc;
-            document.getElementById('ui-dep-4-title').innerText = langT.dep4Name; document.getElementById('ui-dep-4-desc').innerText = langT.dep4Desc;
-            document.getElementById('ui-dep-5-title').innerText = langT.dep5Name; document.getElementById('ui-dep-5-desc').innerText = langT.dep5Desc;
-            document.getElementById('ui-dep-6-title').innerText = langT.dep6Name; document.getElementById('ui-dep-6-desc').innerText = langT.dep6Desc;
-            document.getElementById('ui-dep-7-title').innerText = langT.dep7Name; document.getElementById('ui-dep-7-desc').innerText = langT.dep7Desc;
-            document.getElementById('ui-dep-8-title').innerText = langT.dep8Name; document.getElementById('ui-dep-8-desc').innerText = langT.dep8Desc;
-
-            // 專車與設施
-            document.getElementById('ui-car-card1-title').innerText = langT.carCard1T; document.getElementById('ui-car-card1-desc').innerText = langT.carCard1D;
-            document.getElementById('ui-car-card2-title').innerText = langT.carCard2T; document.getElementById('ui-car-card2-desc').innerText = langT.carCard2D;
-            document.getElementById('ui-car-notice-box').innerText = langT.carNoticeBox;
-
-            document.getElementById('ui-th-dest').innerText = langT.thDest;
-            document.getElementById('ui-th-price').innerText = langT.thPrice;
-            document.getElementById('ui-p-mongkok').innerText = langT.pMongkok;
-            document.getElementById('ui-p-chinachem').innerText = langT.pChinachem;
-            document.getElementById('ui-p-airport').innerText = langT.pAirport;
-            document.getElementById('ui-p-oceanpark').innerText = langT.pOceanpark;
-            document.getElementById('ui-p-surcharge').innerText = langT.pSurcharge;
-            document.getElementById('ui-p-hourly').innerText = langT.pHourly;
-            document.getElementById('ui-carprice-note').innerHTML = langT.carPriceNote;
-
-            document.getElementById('ui-fac-1-title').innerText = langT.fac1Name; document.getElementById('ui-fac-1-desc').innerText = langT.fac1Desc;
-            document.getElementById('ui-fac-2-title').innerText = langT.fac2Name; document.getElementById('ui-fac-2-desc').innerText = langT.fac2Desc;
-            document.getElementById('ui-fac-3-title').innerText = langT.fac3Name; document.getElementById('ui-fac-3-desc').innerText = langT.fac3Desc;
-            document.getElementById('ui-fac-4-title').innerText = langT.fac4Name; document.getElementById('ui-fac-4-desc').innerText = langT.fac4Desc;
-
-            document.getElementById('ui-fac1-header').innerText = langT.fac1H;
-            document.getElementById('ui-fac2-header').innerText = langT.fac2H;
-            document.getElementById('ui-fac3-header').innerText = langT.fac3H;
-            document.getElementById('ui-fac4-header').innerText = langT.fac4H;
-
-            renderBusSchedule();
+            for (const [id, text] of Object.entries(elements)) {
+                const el = document.getElementById(id);
+                if (el && text) el.innerHTML = text;
+            }
         }
 
         function showSection(sectionId) {
@@ -1337,138 +1277,153 @@
             window.scrollTo(0, 0);
         }
 
+        // 完整穿梭巴士時間表（含 13:00 午飯時間與 18:00, 19:00, 20:00 班次）
+        const busScheduleData = [
+            { id: 1, hotel: "09:00", kwaiFong: "09:15", tsuenWanWest: "09:30" },
+            { id: 2, hotel: "10:00", kwaiFong: "10:15", tsuenWanWest: "10:30" },
+            { id: 3, hotel: "11:00", kwaiFong: "11:15", tsuenWanWest: "11:30" },
+            { id: 4, hotel: "12:00", kwaiFong: "12:15", tsuenWanWest: "12:30" },
+            { id: 5, hotel: "13:00", isLunch: true },
+            { id: 6, hotel: "14:00", kwaiFong: "14:15", tsuenWanWest: "14:30" },
+            { id: 7, hotel: "15:00", kwaiFong: "15:15", tsuenWanWest: "15:30" },
+            { id: 8, hotel: "16:00", kwaiFong: "16:15", tsuenWanWest: "16:30" },
+            { id: 9, hotel: "17:00", kwaiFong: "17:15", tsuenWanWest: "17:30" },
+            { id: 10, hotel: "18:00", kwaiFong: "18:15", tsuenWanWest: "18:30" },
+            { id: 11, hotel: "19:00", kwaiFong: "19:15", tsuenWanWest: "19:30" },
+            { id: 12, hotel: "20:00", kwaiFong: "20:15", tsuenWanWest: "20:30" }
+        ];
+
+        function timeToMinutes(timeStr) {
+            if (!timeStr) return 0;
+            const [h, m] = timeStr.split(':').map(Number);
+            return h * 60 + m;
+        }
+
         function renderBusSchedule() {
             const container = document.getElementById('busListContainer');
+            if (!container) return;
             container.innerHTML = '';
-            const langT = t[currentLang];
 
+            const langData = t[currentLang] || t['zh-HK'];
             const now = new Date();
-            const currentHour = now.getHours();
-            const currentMin = now.getMinutes();
-            const currentTimeVal = currentHour * 60 + currentMin;
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-            // 檢查是否在晚上 20:46 後至早上 06:30 之間
-            const endLimitVal = 20 * 60 + 46; // 20:46
-            const startLimitVal = 6 * 60 + 30; // 06:30
-            const isEnded = currentTimeVal >= endLimitVal || currentTimeVal < startLimitVal;
+            let nextBusId = null;
+            let minDiff = Infinity;
 
-            // 即時行車狀況判斷
-            let liveText = langT.stWaitingStandby;
-            if (isEnded) {
-                liveText = langT.stEnded;
-            } else if (currentHour === 13) {
-                liveText = langT.lunchBreak;
-            } else {
-                for (let i = 0; i < staticSchedule.length; i++) {
-                    const item = staticSchedule[i];
-                    if (item.isLunch) continue;
-                    const [h, m] = item.time.split(':').map(Number);
-                    const [kh, km] = item.kTime.split(':').map(Number);
-                    const [th, tm] = item.tTime.split(':').map(Number);
-
-                    const busStartMin = h * 60 + m;
-                    const kwaiArrMin = kh * 60 + km;
-                    const tsuenArrMin = th * 60 + tm;
-                    const nextBusStartMin = (i < staticSchedule.length - 1 && !staticSchedule[i+1].isLunch) ? 
-                        (Number(staticSchedule[i+1].time.split(':')[0]) * 60 + Number(staticSchedule[i+1].time.split(':')[1])) : 
-                        (busStartMin + 60);
-
-                    if (currentTimeVal >= busStartMin && currentTimeVal < kwaiArrMin) {
-                        liveText = `${langT.kwaiFong} - ${langT.stDriving}`;
-                        break;
-                    } else if (currentTimeVal >= kwaiArrMin && currentTimeVal < kwaiArrMin + 5) {
-                        liveText = `${langT.kwaiFong} - ${langT.stArrKwai}`;
-                        break;
-                    } else if (currentTimeVal >= kwaiArrMin + 5 && currentTimeVal < tsuenArrMin) {
-                        liveText = `${langT.tsuenWanWest} - ${langT.stDriving2}`;
-                        break;
-                    } else if (currentTimeVal >= tsuenArrMin && currentTimeVal < tsuenArrMin + 5) {
-                        liveText = `${langT.tsuenWanWest} - ${langT.stArrTsuen}`;
-                        break;
-                    } else if (currentTimeVal >= tsuenArrMin + 5 && currentTimeVal < nextBusStartMin) {
-                        liveText = `${langT.stReturning}`;
-                        break;
+            // 計算下一班車
+            busScheduleData.forEach(bus => {
+                if (bus.isLunch) return;
+                const override = manualOverrides[bus.id];
+                const isOut = override === 'out' || override === 'full';
+                if (!isOut) {
+                    const busMinutes = timeToMinutes(bus.hotel);
+                    let diff = busMinutes - currentMinutes;
+                    if (diff >= -15 && diff < minDiff) {
+                        minDiff = diff;
+                        nextBusId = bus.id;
                     }
                 }
-            }
-            document.getElementById('liveStatusText').innerText = liveText;
+            });
 
-            // 尋找下一個合適班次作高亮顯示
-            let nextBusIndex = -1;
-            if (!isEnded) {
-                for (let i = 0; i < staticSchedule.length; i++) {
-                    const item = staticSchedule[i];
-                    if (item.isLunch) continue;
-                    const [h, m] = item.time.split(':').map(Number);
-                    const bMin = h * 60 + m;
-                    if (currentTimeVal <= bMin) {
-                        nextBusIndex = i;
-                        break;
+            // 計算即時行車狀況
+            let liveText = langData.stWaitingStandby;
+            let foundActive = false;
+
+            for (let i = 0; i < busScheduleData.length; i++) {
+                const bus = busScheduleData[i];
+                if (bus.isLunch) continue;
+                const busMins = timeToMinutes(bus.hotel);
+                const kwaiMins = timeToMinutes(bus.kwaiFong);
+                const tsuenMins = timeToMinutes(bus.tsuenWanWest);
+                const endMins = tsuenMins + 25;
+
+                if (currentMinutes >= busMins && currentMinutes < endMins) {
+                    foundActive = true;
+                    const override = manualOverrides[bus.id];
+                    if (override === 'out') {
+                        liveText = langData.stOut;
+                    } else if (override === 'full') {
+                        liveText = langData.stFull;
+                    } else {
+                        if (currentMinutes < kwaiMins) {
+                            liveText = `${langData.stDriving} (${bus.hotel})`;
+                        } else if (currentMinutes < tsuenMins) {
+                            liveText = `${langData.stArrKwai} (${bus.kwaiFong})`;
+                        } else {
+                            liveText = `${langData.stArrTsuen} (${bus.tsuenWanWest})`;
+                        }
                     }
+                    break;
                 }
             }
 
-            // 渲染班次列表
-            staticSchedule.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'bus-item';
-
-                if (index === nextBusIndex) {
-                    div.classList.add('next-bus-highlight');
-                }
-
-                if (item.isLunch) {
-                    div.innerHTML = `
-                        <div>
-                            <strong>${item.time}</strong>
-                            <div style="font-size: 11px; color: #888;">${langT.lunchBreak}</div>
-                        </div>
-                        <div><span class="badge badge-out">${langT.stOut}</span></div>
-                    `;
+            if (!foundActive) {
+                const activeBuses = busScheduleData.filter(b => !b.isLunch);
+                const lastBus = activeBuses[activeBuses.length - 1];
+                if (currentMinutes >= timeToMinutes(lastBus.tsuenWanWest) + 25) {
+                    liveText = langData.stEnded;
                 } else {
-                    const statusKey = manualOverrides[index] || 'bookable';
-                    let badgeClass = 'badge-bookable';
-                    let badgeText = langT.stBookable;
-
-                    if (statusKey === 'waiting') { badgeClass = 'badge-waiting'; badgeText = langT.stWaiting; }
-                    else if (statusKey === 'boarding') { badgeClass = 'badge-boarding'; badgeText = langT.stBoarding; }
-                    else if (statusKey === 'departed') { badgeClass = 'badge-departed'; badgeText = langT.stDeparted; }
-                    else if (statusKey === 'full') { badgeClass = 'badge-full'; badgeText = langT.stFull; }
-                    else if (statusKey === 'out') { badgeClass = 'badge-out'; badgeText = langT.stOut; }
-
-                    let nextBadgeHtml = (index === nextBusIndex) ? `<div class="next-bus-badge">${langT.nextBusText}</div><br>` : '';
-
-                    div.innerHTML = `
-                        <div>
-                            ${nextBadgeHtml}
-                            <strong>${item.time}</strong> 
-                            <span style="font-size: 11px; color: #666;">(葵芳 ${item.kTime} / 荃灣西 ${item.tTime})</span>
-                        </div>
-                        <div>
-                            <span class="badge ${badgeClass}">${badgeText}</span>
-                        </div>
-                    `;
+                    liveText = langData.stWaitingStandby;
                 }
-                container.appendChild(div);
+            }
+
+            const liveStatusTextEl = document.getElementById('liveStatusText');
+            if (liveStatusTextEl) liveStatusTextEl.innerText = liveText;
+
+            // 渲染班次清單
+            busScheduleData.forEach(bus => {
+                const item = document.createElement('div');
+                item.className = 'bus-item';
+                const isNext = (bus.id === nextBusId);
+                if (isNext) item.classList.add('next-bus-highlight');
+
+                let badgeClass = 'badge-bookable';
+                let badgeText = langData.stBookable;
+
+                if (bus.isLunch) {
+                    badgeClass = 'badge-out';
+                    badgeText = langData.lunchBreak;
+                } else {
+                    const override = manualOverrides[bus.id];
+                    if (override) {
+                        if (override === 'waiting') { badgeClass = 'badge-waiting'; badgeText = langData.stWaiting; }
+                        else if (override === 'boarding') { badgeClass = 'badge-boarding'; badgeText = langData.stBoarding; }
+                        else if (override === 'departed') { badgeClass = 'badge-departed'; badgeText = langData.stDeparted; }
+                        else if (override === 'full') { badgeClass = 'badge-full'; badgeText = langData.stFull; }
+                        else if (override === 'out') { badgeClass = 'badge-out'; badgeText = langData.stOut; }
+                    } else {
+                        const busMinutes = timeToMinutes(bus.hotel);
+                        if (currentMinutes > busMinutes + 15) {
+                            badgeClass = 'badge-departed';
+                            badgeText = langData.stDeparted;
+                        } else if (currentMinutes >= busMinutes - 10 && currentMinutes <= busMinutes + 15) {
+                            badgeClass = 'badge-boarding';
+                            badgeText = langData.stBoarding;
+                        }
+                    }
+                }
+
+                let nextBadgeHtml = isNext ? `<div class="next-bus-badge">${langData.nextBusText}</div><br>` : '';
+
+                let timeInfoHtml = bus.isLunch ?
+                    `<strong>🕒 ${bus.hotel}</strong> ➔ ${langData.lunchBreak}` :
+                    `<strong>酒店 🕒 ${bus.hotel}</strong><br><span style="font-size:11px; color:#666;">➔ ${langData.kwaiFong} ${bus.kwaiFong} ➔ ${langData.tsuenWanWest} ${bus.tsuenWanWest}</span>`;
+
+                item.innerHTML = `
+                    <div>
+                        ${nextBadgeHtml}
+                        ${timeInfoHtml}
+                    </div>
+                    <div>
+                        <span class="badge ${badgeClass}">${badgeText}</span>
+                    </div>
+                `;
+                container.appendChild(item);
             });
         }
 
-        // 每日 22:00 自動將所有班次重置回 可預約
-        setInterval(() => {
-            const now = new Date();
-            const h = now.getHours();
-            const m = now.getMinutes();
-            if (h === 22 && m === 0) {
-                const todayStr = now.toDateString();
-                if (localStorage.getItem('busResetDate') !== todayStr) {
-                    db.ref('busManualOverrides').set(null).then(() => {
-                        localStorage.setItem('busResetDate', todayStr);
-                    });
-                }
-            }
-            // 每分鐘自動刷新一次時間顯示與狀態
-            renderBusSchedule();
-        }, 60000);
+        setInterval(renderBusSchedule, 30000);
     </script>
 </body>
 </html>
