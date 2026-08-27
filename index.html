@@ -159,12 +159,72 @@
             </div>
         </div>
 
-        <!-- 香港旅遊攻略 -->
+        <!-- 香港旅遊攻略 (主選單) -->
         <div id="guideSection" class="section-content">
             <button class="back-btn" id="ui-back6" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-guide-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增香港熱門景點、美食及行程推薦。</p>
+            
+            <div class="menu-grid">
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🍜</div>
+                    <h3 id="ui-guide-1-title">美食</h3>
+                    <p id="ui-guide-1-desc">地道小吃與人氣餐廳</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🛍️</div>
+                    <h3 id="ui-guide-2-title">購物</h3>
+                    <p id="ui-guide-2-desc">大型商場與熱門市集</p>
+                </div>
+                <!-- 點擊「遊玩」進入專屬 4 個景點方塊頁面 -->
+                <div class="menu-card" onclick="showSection('guidePlaySection')">
+                    <div class="icon">🎢</div>
+                    <h3 id="ui-guide-3-title">遊玩</h3>
+                    <p id="ui-guide-3-desc">主題樂園與娛樂體驗</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">📸</div>
+                    <h3 id="ui-guide-4-title">觀光</h3>
+                    <p id="ui-guide-4-desc">著名地標與打卡勝地</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🗺️</div>
+                    <h3 id="ui-guide-5-title">推薦行程1</h3>
+                    <p id="ui-guide-5-desc">經典一日遊路線</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">⭐</div>
+                    <h3 id="ui-guide-6-title">推薦行程2</h3>
+                    <p id="ui-guide-6-desc">深度文化探索之旅</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 香港旅遊攻略 -> 「遊玩」子頁面 (包含你指定的 4 個方塊) -->
+        <div id="guidePlaySection" class="section-content">
+            <button class="back-btn" id="ui-back-guideplay" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
+            <h3 id="ui-guideplay-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩</h3>
+            
+            <div class="menu-grid">
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🏰</div>
+                    <h3 id="ui-gp-1-title">香港迪士尼樂園</h3>
+                    <p id="ui-gp-1-desc">夢幻童話與精彩煙花匯演</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🐼</div>
+                    <h3 id="ui-gp-2-title">香港海洋公園</h3>
+                    <p id="ui-gp-2-desc">刺激機動遊戲與珍稀極地動物</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🎡</div>
+                    <h3 id="ui-gp-3-title">香港摩天輪</h3>
+                    <p id="ui-gp-3-desc">維多利亞港畔浪漫高空景致</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🚢</div>
+                    <h3 id="ui-gp-4-title">香港挪亞方舟</h3>
+                    <p id="ui-gp-4-desc">馬灣海峽自然博覽與合家歡景點</p>
+                </div>
             </div>
         </div>
 
@@ -186,7 +246,7 @@
             </div>
         </div>
 
-        <!-- 6. 出境攻略頁面 -->
+        <!-- 出境攻略頁面 -->
         <div id="departureSection" class="section-content">
             <button class="back-btn" id="ui-back7" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-departure-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">出境攻略</h3>
@@ -234,7 +294,7 @@
             </div>
         </div>
 
-        <!-- 7. 酒店專車服務頁面 -->
+        <!-- 酒店專車服務頁面 -->
         <div id="carSection" class="section-content">
             <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-car-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車服務</h3>
@@ -250,13 +310,12 @@
                     <p id="ui-car-card2-desc">預約、取消與乘車須知</p>
                 </div>
             </div>
-            <!-- 已加入的提示句 -->
             <div id="ui-car-notice-box" style="margin-top: 20px; font-size: 13px; color: #555; background: #e8f4fd; padding: 12px; border-radius: 8px; border-left: 4px solid #007bff; line-height: 1.5;">
                 若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。
             </div>
         </div>
 
-        <!-- 7.1 酒店專車服務 - 服務收費表子頁面 -->
+        <!-- 酒店專車服務 - 服務收費表子頁面 -->
         <div id="carPriceSection" class="section-content">
             <button class="back-btn" id="ui-back-carprice" onclick="showSection('carSection')">⬅ 返回專車服務</button>
             <h3 id="ui-carprice-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 服務收費表</h3>
@@ -301,7 +360,7 @@
             </div>
         </div>
 
-        <!-- 7.2 酒店專車服務 - 使用條款及細則子頁面 -->
+        <!-- 酒店專車服務 - 使用條款及細則子頁面 -->
         <div id="carTermsSection" class="section-content">
             <button class="back-btn" id="ui-back-carterms" onclick="showSection('carSection')">⬅ 返回專車服務</button>
             <h3 id="ui-carterms-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 使用條款及細則</h3>
@@ -310,7 +369,7 @@
             </div>
         </div>
 
-        <!-- 8. 酒店設施頁面 -->
+        <!-- 酒店設施頁面 -->
         <div id="facilitySection" class="section-content">
             <button class="back-btn" id="ui-back9" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-facility-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店設施</h3>
@@ -348,6 +407,17 @@
                 c7t: "✈️ 出境攻略", c7d: "離港交通與機場快線資訊",
                 c8t: "🚐 酒店專車服務", c8d: "點對點接送與包車預約",
                 c9t: "🏨 酒店設施", c9d: "健身房、餐廳與其他設施",
+                guide1Name: "美食", guide1Desc: "地道小吃與人氣餐廳",
+                guide2Name: "購物", guide2Desc: "大型商場與熱門市集",
+                guide3Name: "遊玩", guide3Desc: "主題樂園與娛樂體驗",
+                guide4Name: "觀光", guide4Desc: "著名地標與打卡勝地",
+                guide5Name: "推薦行程1", guide5Desc: "經典一日遊路線",
+                guide6Name: "推薦行程2", guide6Desc: "深度文化探索之旅",
+                // 新增遊玩 4 個景點的多語言翻譯 (繁中)
+                gp1Name: "香港迪士尼樂園", gp1Desc: "夢幻童話與精彩煙花匯演",
+                gp2Name: "香港海洋公園", gp2Desc: "刺激機動遊戲與珍稀極地動物",
+                gp3Name: "香港摩天輪", gp3Desc: "維多利亞港畔浪漫高空景致",
+                gp4Name: "香港挪亞方舟", gp4Desc: "馬灣海峽自然博覽與合家歡景點",
                 dep1Name: "羅湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
                 dep2Name: "落馬洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
                 dep3Name: "香港國際機場", dep3Desc: "24小時",
@@ -370,9 +440,11 @@
                 pHourly: "租用服務 (每小時，3小時起租)",
                 carPriceNote: "💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。",
                 back: "⬅ 返回主選單",
+                backGuidePlay: "⬅ 返回香港旅遊攻略",
                 busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
                 stationH: "免費穿梭巴士上車地點",
                 guideH: "香港旅遊攻略",
+                guidePlayH: "香港旅遊攻略 - 遊玩",
                 departureH: "出境攻略",
                 carH: "酒店專車服務",
                 facilityH: "酒店設施",
@@ -398,6 +470,16 @@
                 c7t: "✈️ 出境攻略", c7d: "离港交通与机场快线资讯",
                 c8t: "🚐 酒店专车服务", c8d: "点对点接送与包车预约",
                 c9t: "🏨 酒店设施", c9d: "健身房、餐厅与其他设施",
+                guide1Name: "美食", guide1Desc: "地道小吃与人气餐厅",
+                guide2Name: "购物", guide2Desc: "大型商场与热门市集",
+                guide3Name: "游玩", guide3Desc: "主题乐园与娱乐体验",
+                guide4Name: "观光", guide4Desc: "著名地标与打卡胜地",
+                guide5Name: "推荐行程1", guide5Desc: "经典一日游路线",
+                guide6Name: "推荐行程2", guide6Desc: "深度文化探索之旅",
+                gp1Name: "香港迪士尼乐园", gp1Desc: "梦幻童话与精彩烟花汇演",
+                gp2Name: "香港海洋公园", gp2Desc: "刺激机动游戏与珍稀极地动物",
+                gp3Name: "香港摩天轮", gp3Desc: "维多利亚港畔浪漫高空景致",
+                gp4Name: "香港挪亚方舟", gp4Desc: "马湾海峡自然博览与合家欢景点",
                 dep1Name: "罗湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
                 dep2Name: "落马洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
                 dep3Name: "香港国际机场", dep3Desc: "24小时",
@@ -420,9 +502,11 @@
                 pHourly: "租用服务 (每小时，3小时起租)",
                 carPriceNote: "💡 <strong>备注：</strong>以上收费适用于点对点接送服务。如需超时或更改行程，请向礼宾部查询。",
                 back: "⬅ 返回主菜单",
+                backGuidePlay: "⬅ 返回香港旅游攻略",
                 busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
                 stationH: "免费穿梭巴士上车地点",
                 guideH: "香港旅游攻略",
+                guidePlayH: "香港旅游攻略 - 游玩",
                 departureH: "出境攻略",
                 carH: "酒店专车服务",
                 facilityH: "酒店设施",
@@ -434,7 +518,7 @@
                 noticeWeatherTitle: "恶劣天气安排", noticeWeatherDesc: "若天文台发出黑色暴雨或八号或以上热带气旋信号, 穿梭巴士将暂停服务",
                 mapH: "酒店300米周边实用指南",
                 lugH: "行李寄存服务", 
-                lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理条款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、损毀或被盜</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
+                lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理条款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、損毀或被盜</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
                 stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务"
             },
@@ -448,6 +532,16 @@
                 c7t: "✈️ Departure Guide", c7d: "Airport transport & Express info",
                 c8t: "🚐 Hotel Limousine Service", c8d: "Point-to-point & charter booking",
                 c9t: "🏨 Hotel Facilities", c9d: "Gym, dining & other amenities",
+                guide1Name: "Dining", guide1Desc: "Local snacks & popular restaurants",
+                guide2Name: "Shopping", guide2Desc: "Malls & bustling markets",
+                guide3Name: "Leisure", guide3Desc: "Theme parks & entertainment",
+                guide4Name: "Sightseeing", guide4Desc: "Famous landmarks & spots",
+                guide5Name: "Itinerary 1", guide5Desc: "Classic one-day tour route",
+                guide6Name: "Itinerary 2", guide6Desc: "In-depth cultural exploration",
+                gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical fairy tales and fireworks",
+                gp2Name: "Ocean Park Hong Kong", gp2Desc: "Thrilling rides and polar animals",
+                gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantic skyline views by Victoria Harbour",
+                gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Ma Wan nature park and family fun",
                 dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 to 00:00 Midnight",
                 dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 to 22:30",
                 dep3Name: "Hong Kong International Airport", dep3Desc: "24 Hours",
@@ -470,9 +564,11 @@
                 pHourly: "Hourly Rental (Min. 3 hours)",
                 carPriceNote: "💡 <strong>Note:</strong> The above rates apply to point-to-point transfer services. For overtime or itinerary changes, please consult the Concierge.",
                 back: "⬅ Back to Menu",
+                backGuidePlay: "⬅ Back to HK Travel Guide",
                 busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
                 stationH: "Free Shuttle Bus Boarding Locations",
                 guideH: "Hong Kong Travel Guide",
+                guidePlayH: "Hong Kong Travel Guide - Leisure",
                 departureH: "Departure Guide",
                 carH: "Hotel Limousine Service",
                 facilityH: "Hotel Facilities",
@@ -498,6 +594,16 @@
                 c7t: "✈️ 出国・空港ガイド", c7d: "空港アクセスと交通情報",
                 c8t: "🚐 ホテル送迎サービス", c8d: "送迎およびチャーター予約",
                 c9t: "🏨 ホテル施設", c9d: "ジム、レストラン、その他施設",
+                guide1Name: "グルメ", guide1Desc: "ローカルフードと人気レストラン",
+                guide2Name: "ショッピング", guide2Desc: "大型モールと人気の市場",
+                guide3Name: "レジャー", guide3Desc: "テーマパークとエンタメ体験",
+                guide4Name: "観光", guide4Desc: "有名ランドマークと撮影スポット",
+                guide5Name: "おすすめコース1", guide5Desc: "定番1日観光ルート",
+                guide6Name: "おすすめコース2", guide6Desc: "ディープな文化探索の旅",
+                gp1Name: "香港ディズニーランド", gp1Desc: "夢の童話と素晴らしい花火ショー",
+                gp2Name: "香港オーシャンパーク", gp2Desc: "スリリングなアトラクションと極地の動物",
+                gp3Name: "香港観覧車", gp3Desc: "ビクトリア・ハーバーのロマンチックな絶景",
+                gp4Name: "香港ノアの方舟", gp4Desc: "馬湾（マワン）自然公園とファミリー向けスポット",
                 dep1Name: "羅湖イミグレーション", dep1Desc: "午前 06:30 ～ 深夜 00:00",
                 dep2Name: "落馬洲 / 福田口岸", dep2Desc: "午前 06:30 ～ 午後 10:30",
                 dep3Name: "香港国際空港", dep3Desc: "24時間",
@@ -520,9 +626,11 @@
                 pHourly: "時間貸し（1時間あたり、最低3時間から）",
                 carPriceNote: "💡 <strong>備考：</strong>上記の料金はポイント・ツー・ポイントの送迎に適用されます。時間延長や行程変更についてはコンシェルジュにお問い合わせください。",
                 back: "⬅ メニューに戻る",
+                backGuidePlay: "⬅ 香港観光ガイドに戻る",
                 busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
                 stationH: "無料シャトルバス乗降場所",
                 guideH: "香港観光ガイド",
+                guidePlayH: "香港観光ガイド - レジャー",
                 departureH: "出国・空港ガイド",
                 carH: "ホテル送迎サービス",
                 facilityH: "ホテル施設",
@@ -548,6 +656,16 @@
                 c7t: "✈️ 출국 공항 가이드", c7d: "공항 교통 및 익스프레스 정보",
                 c8t: "🚐 호텔 차량 서비스", c8d: "공항/시내 픽업 및 대절 예약",
                 c9t: "🏨 호텔 부대시설", c9d: "피트니스, 레스토랑 및 편의시설",
+                guide1Name: "맛집", guide1Desc: "현지 간식 및 인기 레스토랑",
+                guide2Name: "쇼핑", guide2Desc: "대형 쇼핑몰 및 인기 시장",
+                guide3Name: "즐길거리", guide3Desc: "테마파크 및 엔터테인먼트",
+                guide4Name: "관광", guide4Desc: "유명 랜드마크 및 포토존",
+                guide5Name: "추천 일정 1", guide5Desc: "클래식 하루 여행 코스",
+                guide6Name: "추천 일정 2", guide6Desc: "심층 문화 탐방 여행",
+                gp1Name: "홍콩 디즈니랜드", gp1Desc: "환상적인 동화와 화려한 불꽃놀이",
+                gp2Name: "홍콩 오션파크", gp2Desc: "스릴 넘치는 놀이기구와 극지 동물",
+                gp3Name: "홍콩 대관람차", gp3Desc: "빅토리아 하버의 로맨틱한 스카이라인 뷰",
+                gp4Name: "홍콩 노아의 방주", gp4Desc: "마완 자연공원과 온가족이 즐기는 명소",
                 dep1Name: "로후 검문소", dep1Desc: "오전 06:30 ~ 자정 00:00",
                 dep2Name: "낙마주 / 휜티안", dep2Desc: "오전 06:30 ~ 오후 10:30",
                 dep3Name: "홍콩 국제공항", dep3Desc: "24시간",
@@ -570,9 +688,11 @@
                 pHourly: "시간제 대여 (시간당, 최소 3시간)",
                 carPriceNote: "💡 <strong>참고:</strong> 위 요금은 포인트 투 포인트 픽업 서비스에 적용됩니다. 초과 시간이나 일정 변경은 컨시어지에 문의해 주세요.",
                 back: "⬅ 메뉴로 돌아가기",
+                backGuidePlay: "⬅ 홍콩 여행 가이드로 돌아가기",
                 busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
                 stationH: "무료 셔틀버스 승하차 장소",
                 guideH: "홍콩 여행 가이드",
+                guidePlayH: "홍콩 여행 가이드 - 즐길거리",
                 departureH: "출국 공항 가이드",
                 carH: "호텔 차량 서비스",
                 facilityH: "호텔 부대시설",
@@ -598,6 +718,16 @@
                 c7t: "✈️ Hướng dẫn xuất cảnh", c7d: "Giao thông sân bay & Airport Express",
                 c8t: "🚐 Dịch vụ xe riêng", c8d: "Đưa đón sân bay & thuê xe",
                 c9t: "🏨 Tiện ích khách sạn", c9d: "Phòng gym, nhà hàng & tiện ích",
+                guide1Name: "Ẩm thực", guide1Desc: "Món ngon địa phương & nhà hàng hot",
+                guide2Name: "Mua sắm", guide2Desc: "Trung tâm thương mại & chợ sầm uất",
+                guide3Name: "Vui chơi", guide3Desc: "Công viên giải trí & trải nghiệm",
+                guide4Name: "Tham quan", guide4Desc: "Địa danh nổi tiếng & điểm check-in",
+                guide5Name: "Lịch trình 1", guide5Desc: "Tuyến đường 1 ngày kinh điển",
+                guide6Name: "Lịch trình 2", guide6Desc: "Khám phá văn hóa chiều sâu",
+                gp1Name: "Hong Kong Disneyland", gp1Desc: "Cổ tích diệu kỳ và màn pháo hoa hoành tráng",
+                gp2Name: "Ocean Park Hong Kong", gp2Desc: "Trò chơi cảm giác mạnh và động vật vùng cực",
+                gp3Name: "Vòng quay Quan sát Hồng Kông", gp3Desc: "Cảnh quan lãng mạn bên Vịnh Victoria",
+                gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Công viên tự nhiên Mã Loan và điểm đến gia đình",
                 dep1Name: "Trạm kiểm soát La Hồ", dep1Desc: "06:30 đến 00:00 Đêm",
                 dep2Name: "Lok Ma Chau / Cảng Phúc Điền", dep2Desc: "06:30 đến 22:30",
                 dep3Name: "Sân bay Quốc tế Hồng Kông", dep3Desc: "24 Giờ",
@@ -620,9 +750,11 @@
                 pHourly: "Thuê theo giờ (Tối thiểu 3 tiếng)",
                 carPriceNote: "💡 <strong>Lưu ý:</strong> Mức giá trên áp dụng cho dịch vụ đưa đón điểm-đến-điểm. Nếu cần quá giờ hoặc thay đổi lịch trình, vui lòng liên hệ lễ tân.",
                 back: "⬅ Quay lại Menu",
+                backGuidePlay: "⬅ Quay lại Cẩm nang du lịch",
                 busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
                 stationH: "Điểm đón xe buýt miễn phí",
                 guideH: "Cẩm nang du lịch Hồng Kông",
+                guidePlayH: "Cẩm nang du lịch - Vui chơi",
                 departureH: "Hướng dẫn xuất cảnh",
                 carH: "Dịch vụ xe riêng của khách sạn",
                 facilityH: "Tiện ích khách sạn",
@@ -648,6 +780,16 @@
                 c7t: "✈️ प्रस्थान गाइड", c7d: "हवाई अड्डा परिवहन और एक्सप्रेस जानकारी",
                 c8t: "🚐 होटल कार सेवा", c8d: "पॉइंट-टू-पॉइंट और चार्टर बुकिंग",
                 c9t: "🏨 होटल सुविधाएं", c9d: "जिम, डाइनिंग और अन्य सुविधाएं",
+                guide1Name: "भोजन", guide1Desc: "स्थानीय स्नैक्स और लोकप्रिय रेस्तरां",
+                guide2Name: "खरीदारी", guide2Desc: "मॉल और प्रसिद्ध बाजार",
+                guide3Name: "मनोरंजन", guide3Desc: "थीम पार्क और एक्टिविटी",
+                guide4Name: "दर्शनीय स्थल", guide4Desc: "प्रसिद्ध स्थल और फोटो स्पॉट",
+                guide5Name: "यात्रा कार्यक्रम 1", guide5Desc: "क्लासिक एक दिवसीय रूट",
+                guide6Name: "यात्रा कार्यक्रम 2", guide6Desc: "गहन सांस्कृतिक अन्वेषण यात्रा",
+                gp1Name: "हांगकांग डिज्नीलैंड", gp1Desc: "जादुई परी कथाएँ और आतिशबाजी शो",
+                gp2Name: "हांगकांग ओशन पार्क", gp2Desc: "रोमांचक सवारी और ध्रुवीय जानवर",
+                gp3Name: "हांगकांग ऑब्ज़र्वेशन व्हील", gp3Desc: "विक्टोरिया हार्बर पर रोमांटिक नज़ारे",
+                gp4Name: "हांगकांग नूह की सन्दूक", gp4Desc: "मा वान नेचर पार्क और पारिवारिक आकर्षण",
                 dep1Name: "लो वू चेकपॉइंट", dep1Desc: "सुबह 06:30 से मध्यरात्रि 00:00",
                 dep2Name: "लोक मा चाउ / फुतियान", dep2Desc: "सुबह 06:30 से रात 10:30",
                 dep3Name: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा", dep3Desc: "24 घंटे",
@@ -670,9 +812,11 @@
                 pHourly: "प्रति घंटा किराया (न्यूनतम 3 घंटे)",
                 carPriceNote: "💡 <strong>नोट:</strong> उपर्युक्त शुल्क पॉइंट-टू-पॉइंट ट्रांसफर सेवाओं पर लागू होते हैं। ओवरटाइम या यात्रा कार्यक्रम में बदलाव के लिए कृपया कंसर्ज से संपर्क करें।",
                 back: "⬅ मेनू पर वापस जाएं",
+                backGuidePlay: "⬅ हांगकांग यात्रा गाइड पर वापस जाएं",
                 busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएन वान वेस्ट",
                 stationH: "मुफ्त शटल बस बोर्डिंग स्थान",
                 guideH: "हांगकांग यात्रा गाइड",
+                guidePlayH: "हांगकांग यात्रा गाइड - मनोरंजन",
                 departureH: "प्रस्थान गाइड",
                 carH: "होटल कार सेवा",
                 facilityH: "होटल सुविधाएं",
@@ -698,6 +842,16 @@
                 c7t: "✈️ Gabay sa Pag-alis", c7d: "Transportasyon sa paliparan at Airport Express",
                 c8t: "🚐 Serbisyo ng Kotse sa Hotel", c8d: "Point-to-point at booking ng sasakyan",
                 c9t: "🏨 Mga Pasilidad ng Hotel", c9d: "Gym, kainan at iba pa",
+                guide1Name: "Pagkain", guide1Desc: "Lokal na meryenda at sikat na kainan",
+                guide2Name: "Pamimili", guide2Desc: "Mga mall at sikat na palengke",
+                guide3Name: "Libangan", guide3Desc: "Theme park at karanasan",
+                guide4Name: "Pasyalan", guide4Desc: "Mga sikat na landmark at tanawin",
+                guide5Name: "Ruta 1", guide5Desc: "Klasikong 1-araw na biyahe",
+                guide6Name: "Ruta 2", guide6Desc: "Malalim na pagtuklas sa kultura",
+                gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical na engkanto at paputok",
+                gp2Name: "Ocean Park Hong Kong", gp2Desc: "Nakatutuwang rides at mga polar animal",
+                gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantikong tanawin ng skyline sa Victoria Harbour",
+                gp4Name: "Hong Kong Noah's Ark", gp4Desc: "Ma Wan nature park at pampamilyang pasyalan",
                 dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 hanggang 00:00 Hatinggabi",
                 dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 hanggang 22:30",
                 dep3Name: "Hong Kong International Airport", dep3Desc: "24 Oras",
@@ -720,9 +874,11 @@
                 pHourly: "Pag-upa kada oras (Minimum na 3 oras)",
                 carPriceNote: "💡 <strong>Tandaan:</strong> Ang mga singil na ito ay para sa point-to-point transfer. Para sa overtime o pagbabago sa itinerary, mangyaring kumunsulta sa Concierge.",
                 back: "⬅ Bumalik sa Menu",
+                backGuidePlay: "⬅ Bumalik sa Gabay sa Paglalakbay",
                 busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai FongMTR) ➔ Tsuen Wan West MTR",
                 stationH: "Sakayan ng Libreng Shuttle Bus",
                 guideH: "Gabay sa Paglalakbay sa Hong Kong",
+                guidePlayH: "Gabay sa Paglalakbay - Libangan",
                 departureH: "Gabay sa Pag-alis",
                 carH: "Serbisyo ng Kotse sa Hotel",
                 facilityH: "Mga Pasilidad ng Hotel",
@@ -768,6 +924,22 @@
             document.getElementById('ui-card9-title').innerText = d.c9t;
             document.getElementById('ui-card9-desc').innerText = d.c9d;
 
+            // 更新香港旅遊攻略主選單 6 個方塊
+            for (let i = 1; i <= 6; i++) {
+                const titleEl = document.getElementById(`ui-guide-${i}-title`);
+                const descEl = document.getElementById(`ui-guide-${i}-desc`);
+                if (titleEl) titleEl.innerText = d[`guide${i}Name`];
+                if (descEl) descEl.innerText = d[`guide${i}Desc`];
+            }
+
+            // 更新「遊玩」子頁面內的 4 個專屬景點方塊
+            for (let i = 1; i <= 4; i++) {
+                const titleEl = document.getElementById(`ui-gp-${i}-title`);
+                const descEl = document.getElementById(`ui-gp-${i}-desc`);
+                if (titleEl) titleEl.innerText = d[`gp${i}Name`];
+                if (descEl) descEl.innerText = d[`gp${i}Desc`];
+            }
+
             // 更新出境攻略8個口岸的標題與描述
             for (let i = 1; i <= 8; i++) {
                 const titleEl = document.getElementById(`ui-dep-${i}-title`);
@@ -792,11 +964,13 @@
             document.getElementById('ui-back9').innerText = d.back;
             document.getElementById('ui-back-carprice').innerText = d.back;
             document.getElementById('ui-back-carterms').innerText = d.back;
+            document.getElementById('ui-back-guideplay').innerText = d.backGuidePlay;
 
             document.getElementById('ui-bus-header').innerText = d.busH;
             document.getElementById('ui-bus-sub').innerText = d.busSub;
             document.getElementById('ui-station-header').innerText = d.stationH;
             document.getElementById('ui-guide-header').innerText = d.guideH;
+            document.getElementById('ui-guideplay-header').innerText = d.guidePlayH;
             document.getElementById('ui-departure-header').innerText = d.departureH;
             document.getElementById('ui-car-header').innerText = d.carH;
             document.getElementById('ui-carprice-header').innerText = d.carPriceH;
