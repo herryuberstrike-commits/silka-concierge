@@ -21,6 +21,12 @@
         .back-btn { background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; margin-bottom: 15px; font-size: 14px; }
         .back-btn:hover { background: #5a6268; }
         .notice-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 15px; border-radius: 4px; font-size: 13px; line-height: 1.5; }
+        
+        /* 即時行車狀況大卡片樣式 */
+        .live-status-card { background: linear-gradient(135deg, #e3f2fd, #f0f4f8); border: 1.5px solid #90caf9; padding: 12px 15px; border-radius: 10px; margin-bottom: 15px; text-align: center; box-shadow: 0 2px 8px rgba(0,123,255,0.08); }
+        .live-status-title { font-size: 12px; color: #1565c0; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .live-status-text { font-size: 15px; font-weight: bold; color: #0d47a1; }
+
         .bus-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 13px; }
         .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; text-align: center; }
         .badge-bookable { background: #d4edda; color: #155724; }
@@ -39,6 +45,7 @@
         .map-item { background: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; border-left: 3px solid #17a2b8; }
         .room-tag { background: #e9ecef; padding: 6px 10px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: #495057; }
         .room-tag span { color: #007bff; cursor: pointer; text-decoration: underline; font-weight: normal; }
+        .placeholder-content { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; color: #6c757d; font-size: 14px; border: 1px dashed #ced4da; }
     </style>
 </head>
 <body>
@@ -68,10 +75,20 @@
                 <h3 id="ui-card1-title">免費穿梭巴士</h3>
                 <p id="ui-card1-desc">時間表與即時狀態</p>
             </div>
+            <div class="menu-card" onclick="showSection('stationSection')">
+                <div class="icon">🚏</div>
+                <h3 id="ui-card5-title">各站上下車位置</h3>
+                <p id="ui-card5-desc">站點詳細地圖與指引</p>
+            </div>
             <div class="menu-card" onclick="showSection('mapSection')">
                 <div class="icon">🗺️</div>
-                <h3 id="ui-card2-title">300米周邊地圖</h3>
+                <h3 id="ui-card2-title">酒店300米周邊實用指南</h3>
                 <p id="ui-card2-desc">地鐵站、美食與便利店</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideSection')">
+                <div class="icon">📖</div>
+                <h3 id="ui-card6-title">香港旅遊攻略</h3>
+                <p id="ui-card6-desc">熱門景點與行程推介</p>
             </div>
             <div class="menu-card" onclick="showSection('luggageSection')">
                 <div class="icon">🧳</div>
@@ -91,6 +108,12 @@
             <h3 id="ui-bus-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">穿梭巴士時間表與即時狀態</h3>
             <p id="ui-bus-sub" style="font-size: 12px; color: #666; margin-bottom: 15px;">酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站</p>
             
+            <!-- 即時行車狀況顯示頂部橫幅 -->
+            <div class="live-status-card">
+                <div class="live-status-title" id="ui-live-status-label">📍 即時行車狀況</div>
+                <div class="live-status-text" id="liveStatusText">載入中...</div>
+            </div>
+
             <div class="notice-box">
                 <div id="ui-notice-tel-title" style="font-weight: bold; margin-bottom: 4px;">禮賓部電話</div>
                 <div id="ui-notice-tel-val" style="margin-bottom: 8px; color: #d9534f; font-weight: bold;">3700 3824 (座機內線按 ''4'' 字)</div>
@@ -104,13 +127,31 @@
             <div id="busListContainer"></div>
         </div>
 
-        <!-- 2. 周邊地圖頁面 -->
+        <!-- 各站上下車位置 -->
+        <div id="stationSection" class="section-content">
+            <button class="back-btn" id="ui-back5" onclick="goBack()">⬅ 返回主選單</button>
+            <h3 id="ui-station-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">各站上下車位置指引</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增各站詳細上下車位置與地圖指引。</p>
+            </div>
+        </div>
+
+        <!-- 酒店300米周邊實用指南頁面 -->
         <div id="mapSection" class="section-content">
             <button class="back-btn" id="ui-back2" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-map-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">300米周邊熱點</h3>
+            <h3 id="ui-map-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店300米周邊實用指南</h3>
             <div class="map-item" id="ui-map-1"><strong>大窩口港鐵站</strong>：步行約 8 分鐘</div>
             <div class="map-item" id="ui-map-2"><strong>7-11 便利店</strong>：步行約 2 分鐘</div>
             <div class="map-item" id="ui-map-3"><strong>石圍角商場 / 街市</strong>：步行約 5 分鐘</div>
+        </div>
+
+        <!-- 香港旅遊攻略 -->
+        <div id="guideSection" class="section-content">
+            <button class="back-btn" id="ui-back6" onclick="goBack()">⬅ 返回主選單</button>
+            <h3 id="ui-guide-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增香港熱門景點、美食及行程推薦。</p>
+            </div>
         </div>
 
         <!-- 3. 行李寄存頁面 -->
@@ -125,7 +166,6 @@
             <button class="back-btn" id="ui-back4" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-chat-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">與禮賓部即時對話</h3>
             
-            <!-- 顯示當前設定的房號/稱呼，並支援隨時點擊更改 -->
             <div class="room-tag">
                 <div>🚪 身份：<span id="displayRoomId">未設定</span></div>
                 <span onclick="promptRoomId()">更改房號/稱呼</span>
@@ -149,16 +189,22 @@
             'zh-HK': {
                 title: "荃灣絲麗酒店 - 禮賓部",
                 c1t: "🚌 免費穿梭巴士", c1d: "時間表與即時狀態",
-                c2t: "🗺️ 300米周邊地圖", c2d: "地鐵站、美食與便利店",
+                c5t: "🚏 各站上下車位置", c5d: "站點詳細地圖與指引",
+                c2t: "🗺️ 酒店300米周邊實用指南", c2d: "地鐵站、美食與便利店",
+                c6t: "📖 香港旅遊攻略", c6d: "熱門景點與行程推介",
                 c3t: "🧳 行李寄存", c3d: "寄存服務條款與收費",
                 c4t: "💬 線上客服", c4d: "即時與禮賓部對話",
                 back: "⬅ 返回主選單",
                 busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
+                stationH: "各站上下車位置指引",
+                guideH: "香港旅遊攻略",
+                liveStatusLabel: "📍 即時行車狀況",
+                stDriving: "行車中 (前往葵芳)", stArrKwai: "🔵 到達葵芳", stDriving2: "行車中 (前往荃灣西)", stArrTsuen: "🔵 到達荃灣西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 準備發車中",
                 noticeTelTitle: "禮賓部電話", noticeTelVal: "3700 3824 (座機內線按 ''4'' 字)",
                 noticeContactTitle: "請提早聯絡禮賓部預留位置",
                 noticeTimeTitle: "敬請準時出席", noticeTimeDesc: "否則名額將開放予其他賓客",
                 noticeWeatherTitle: "惡劣天氣安排", noticeWeatherDesc: "若天文台發出黑色暴雨或八號或以上熱帶氣旋信號, 穿梭巴士將暫停服務",
-                mapH: "300米周邊熱點", m1: "大窩口港鐵站：步行約 8 分鐘", m2: "7-11 便利店：步行約 2 分鐘", m3: "石圍角商場 / 街市：步行約 5 分鐘",
+                mapH: "酒店300米周邊實用指南", m1: "大窩口港鐵站：步行約 8 分鐘", m2: "7-11 便利店：步行約 2 分鐘", m3: "石圍角商場 / 街市：步行約 5 分鐘",
                 lugH: "行李寄存服務", lugDesc: "🧳 入住及退房當天均可享免費行李寄存；如需長期寄存，則按每件每日 $10 計算。",
                 chatH: "與禮賓部即時對話", chatWel: "歡迎聯絡禮賓部，請輸入您的問題...", chatPh: "輸入訊息...", chatSend: "發送", sender: "住客",
                 kwaiFong: "葵芳", tsuenWanWest: "荃灣西", lunchBreak: "午飯時間 (暫停服務)", nextBusText: "⭐ 下一班次 (Next Bus)",
@@ -168,16 +214,22 @@
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
                 c1t: "🚌 免费穿梭巴士", c1d: "时间表与即时状态",
-                c2t: "🗺️ 300米周边地图", c2d: "地铁站、美食与便利店",
+                c5t: "🚏 各站上下车位置", c5d: "站点详细地图与指引",
+                c2t: "🗺️ 酒店300米周边实用指南", c2d: "地铁站、美食与便利店",
+                c6t: "📖 香港旅游攻略", c6d: "热门景点与行程推介",
                 c3t: "🧳 行李寄存", c3d: "寄存服务条款与收费",
                 c4t: "💬 线上客服", c4d: "即时与礼宾部对话",
                 back: "⬅ 返回主菜单",
                 busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
+                stationH: "各站上下车位置指引",
+                guideH: "香港旅游攻略",
+                liveStatusLabel: "📍 即时行车状况",
+                stDriving: "行车中 (前往葵芳)", stArrKwai: "🔵 到达葵芳", stDriving2: "行车中 (前往荃湾西)", stArrTsuen: "🔵 到达荃湾西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 准备发车中",
                 noticeTelTitle: "礼宾部电话", noticeTelVal: "3700 3824 (座机内线按 ''4'' 字)",
                 noticeContactTitle: "请提早联络礼宾部预留位置",
                 noticeTimeTitle: "敬请准时出席", noticeTimeDesc: "否则名额将开放予其他宾客",
                 noticeWeatherTitle: "恶劣天气安排", noticeWeatherDesc: "若天文台发出黑色暴雨或八号或以上热带气旋信号, 穿梭巴士将暂停服务",
-                mapH: "300米周边热点", m1: "大窝口地铁站：步行约 8 分钟", m2: "7-11 便利店：步行约 2 分钟", m3: "石围角商场 / 街市：步行约 5 分钟",
+                mapH: "酒店300米周边实用指南", m1: "大窝口地铁站：步行约 8 分钟", m2: "7-11 便利店：步行约 2 分钟", m3: "石围角商场 / 街市：步行约 5 分钟",
                 lugH: "行李寄存服务", lugDesc: "🧳 入住及退房当天均可享免费行李寄存；如需长期寄存，则按每件每日 $10 计算。",
                 chatH: "与礼宾部即时对话", chatWel: "欢迎联络礼宾部，请输入您的问题...", chatPh: "输入讯息...", chatSend: "发送", sender: "住客",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
@@ -187,16 +239,22 @@
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
                 c1t: "🚌 Free Shuttle Bus", c1d: "Schedule & live status",
-                c2t: "🗺️ 300m Area Map", c2d: "MTR, dining & convenience stores",
+                c5t: "🚏 Boarding Locations", c5d: "Detailed station guide & maps",
+                c2t: "🗺️ Hotel 300m Practical Guide", c2d: "MTR, dining & convenience stores",
+                c6t: "📖 HK Travel Guide", c6d: "Top attractions & itineraries",
                 c3t: "🧳 Luggage Storage", c3d: "Storage policy & fees",
                 c4t: "💬 Live Chat", c4d: "Chat with concierge instantly",
                 back: "⬅ Back to Menu",
                 busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
+                stationH: "Boarding Locations Guide",
+                guideH: "Hong Kong Travel Guide",
+                liveStatusLabel: "📍 Live Bus Status",
+                stDriving: "Driving to Kwai Fong", stArrKwai: "🔵 Arrived at Kwai Fong", stDriving2: "Driving to Tsuen Wan West", stArrTsuen: "🔵 Arrived at Tsuen Wan West", stReturning: "Returning to Hotel", stWaitingStandby: "Standby / Preparing",
                 noticeTelTitle: "Concierge Tel", noticeTelVal: "3700 3824 (Press '4' for extension)",
                 noticeContactTitle: "Please contact Concierge in advance to reserve a seat",
                 noticeTimeTitle: "Please be punctual", noticeTimeDesc: "Otherwise, seats may be released to other guests.",
                 noticeWeatherTitle: "Severe Weather", noticeWeatherDesc: "Shuttle bus service will be suspended if Black Rainstorm or Typhoon Signal No. 8 or above is issued.",
-                mapH: "300m Nearby Hotspots", m1: "Tai Wo Hau MTR Station: ~8 mins walk", m2: "7-11 Convenience Store: ~2 mins walk", m3: "Shek Wai Kok Shopping Centre / Market: ~5 mins walk",
+                mapH: "Hotel 300m Practical Guide", m1: "Tai Wo Hau MTR Station: ~8 mins walk", m2: "7-11 Convenience Store: ~2 mins walk", m3: "Shek Wai Kok Shopping Centre / Market: ~5 mins walk",
                 lugH: "Luggage Storage Service", lugDesc: "🧳 Complimentary luggage storage is available on both check-in and check-out days. For long-term storage, a fee of $10 per piece per day applies.",
                 chatH: "Live Chat with Concierge", chatWel: "Welcome, please type your question...", chatPh: "Type a message...", chatSend: "Send", sender: "Guest",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspended)", nextBusText: "⭐ Next Bus",
@@ -206,16 +264,22 @@
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
                 c1t: "🚌 無料シャトルバス", c1d: "時刻表とリアルタイム状況",
-                c2t: "🗺️ 300m周辺マップ", c2d: "駅、飲食店、コンビニ",
+                c5t: "🚏 乗降場所のご案内", c5d: "各駅の詳細マップとガイド",
+                c2t: "🗺️ ホテル300m周辺実用ガイド", c2d: "駅、飲食店、コンビニ",
+                c6t: "📖 香港観光ガイド", c6d: "おすすめスポットとモデルコース",
                 c3t: "🧳 手荷物預かり", c3d: "お預かりの案内と料金",
                 c4t: "💬 ライブチャット", c4d: "コンシェルジュとのお問い合わせ",
                 back: "⬅ メニューに戻る",
                 busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
+                stationH: "乗降場所のご案内",
+                guideH: "香港観光ガイド",
+                liveStatusLabel: "📍 リアルタイム運行状況",
+                stDriving: "運行中 (葵芳行き)", stArrKwai: "🔵 葵芳到着", stDriving2: "運行中 (荃湾西行き)", stArrTsuen: "🔵 荃湾西到着", stReturning: "ホテルへ帰還中", stWaitingStandby: "待機中 / 準備中",
                 noticeTelTitle: "コンシェルジュ電話", noticeTelVal: "3700 3824 (内線 '4')",
                 noticeContactTitle: "事前にコンシェルジュまで座席をご予約ください",
                 noticeTimeTitle: "時間厳守のお願い", noticeTimeDesc: "時間通りにお越しいただけない場合、他のお客様に譲る場合があります。",
                 noticeWeatherTitle: "悪天候時の運行", noticeWeatherDesc: "黒色暴風雨警報または台風警報8号以上が発令された場合、シャトルバスは運休します。",
-                mapH: "300m周辺スポット", m1: "大窩口 MTR駅：徒歩約8分", m2: "セブンイレブン：徒歩約2分", m3: "石囲角ショッピングセンター：徒歩約5分",
+                mapH: "ホテル300m周辺実用ガイド", m1: "大窩口 MTR駅：徒歩約8分", m2: "セブンイレブン：徒歩約2分", m3: "石囲角ショッピングセンター：徒歩約5分",
                 lugH: "手荷物預かりサービス", lugDesc: "🧳 チェックイン当日およびチェックアウト当日は手荷物を無料でお預かりいたします。長期預かりの場合は、1個あたり1日につき$10となります。",
                 chatH: "コンシェルジュチャット", chatWel: "ようこそ、ご質問を入力してください...", chatPh: "メッセージを入力...", chatSend: "送信", sender: "宿泊客",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "昼休み (運休)", nextBusText: "⭐ 次の便 (Next Bus)",
@@ -225,16 +289,22 @@
             'ko': {
                 title: "실카 취언완 - 컨시어지",
                 c1t: "🚌 무료 셔틀버스", c1d: "시간표 및 실시간 상태",
-                c2t: "🗺️ 300m 주변 지도", c2d: "역, 맛집, 편의점",
+                c5t: "🚏 승하차 장소 안내", c5d: "각 정류장 상세 지도 및 안내",
+                c2t: "🗺️ 호텔 300m 주변 실용 가이드", c2d: "역, 맛집, 편의점",
+                c6t: "📖 홍콩 여행 가이드", c6d: "인기 관광지 및 일정 추천",
                 c3t: "🧳 수하물 보관", c3d: "보관 규정 및 요금",
                 c4t: "💬 실시간 채팅", c4d: "컨시어지와 대화",
                 back: "⬅ 메뉴로 돌아가기",
                 busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
+                stationH: "승하차 장소 안내",
+                guideH: "홍콩 여행 가이드",
+                liveStatusLabel: "📍 실시간 운행 상태",
+                stDriving: "운행 중 (콰이퐁행)", stArrKwai: "🔵 콰이퐁 도착", stDriving2: "운행 중 (취언완 웨스트행)", stArrTsuen: "🔵 취언완 웨스트 도착", stReturning: "호텔로 복귀 중", stWaitingStandby: "대기 중 / 준비 중",
                 noticeTelTitle: "컨시어지 전화", noticeTelVal: "3700 3824 (내선 '4')",
                 noticeContactTitle: "사전에 컨시어지에 연락하여 좌석을 예약해 주세요",
                 noticeTimeTitle: "시간 준수 요청", noticeTimeDesc: "정시에 참석하지 않으실 경우, 다른 투숙객에게 좌석이 양도될 수 있습니다.",
                 noticeWeatherTitle: "악천후 안내", noticeWeatherDesc: "흑색 폭우 경보 또는 태풍 경보 8호 이상 발령 시 셔틀버스 운행이 중단됩니다.",
-                mapH: "300m 주변 명소", m1: "타이워호우 MTR 역: 도보 약 8분", m2: "세븐일레븐 편의점: 도보 약 2분", m3: "섹와이콕 쇼핑센터: 도보 약 5분",
+                mapH: "호텔 300m 주변 실용 가이드", m1: "타이워호우 MTR 역: 도보 약 8분", m2: "세븐일레븐 편의점: 도보 약 2분", m3: "섹와이콕 쇼핑센터: 도보 약 5분",
                 lugH: "수하물 보관 서비스", lugDesc: "🧳 체크인 및 체크아웃 당일에는 수하물을 무료로 보관하실 수 있습니다. 장기 보관의 경우 개당 1일 $10의 요금이 부과됩니다.",
                 chatH: "컨시어지 실시간 채팅", chatWel: "환영합니다. 문의사항을 입력해주세요...", chatPh: "메시지 입력...", chatSend: "전송", sender: "투숙객",
                 kwaiFong: "콰이퐁", tsuenWanWest: "취언완 웨스트", lunchBreak: "점심 시간 (운행 중단)", nextBusText: "⭐ 다음 차량 (Next Bus)",
@@ -244,16 +314,22 @@
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
                 c1t: "🚌 Xe buýt đưa đón", c1d: "Lịch trình & trạng thái",
-                c2t: "🗺️ Bản đồ 300m", c2d: "MTR, ẩm thực & cửa hàng tiện lợi",
+                c5t: "🚏 Vị trí đón/trả khách", c5d: "Bản đồ chi tiết các trạm",
+                c2t: "🗺️ Hướng dẫn thực tế quanh khách sạn 300m", c2d: "MTR, ẩm thực & cửa hàng tiện lợi",
+                c6t: "📖 Cẩm nang du lịch HK", c6d: "Địa điểm hot & gợi ý lịch trình",
                 c3t: "🧳 Giữ hành lý", c3d: "Quy định & phí giữ hành lý",
                 c4t: "💬 Trò chuyện trực tuyến", c4d: "Nhắn tin trực tiếp với lễ tân",
                 back: "⬅ Quay lại Menu",
                 busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
+                stationH: "Hướng dẫn vị trí đón/trả khách",
+                guideH: "Cẩm nang du lịch Hồng Kông",
+                liveStatusLabel: "📍 Trạng thái xe buýt trực tiếp",
+                stDriving: "Đang chạy tới Kwai Fong", stArrKwai: "🔵 Đã đến Kwai Fong", stDriving2: "Đang chạy tới Tsuen Wan West", stArrTsuen: "🔵 Đã đến Tsuen Wan West", stReturning: "Đang quay về khách sạn", stWaitingStandby: "Đang chờ / Chuẩn bị",
                 noticeTelTitle: "Điện thoại lễ tân", noticeTelVal: "3700 3824 (Nhấn '4' để kết nối nội bộ)",
                 noticeContactTitle: "Vui lòng liên hệ lễ tân sớm để đặt chỗ",
                 noticeTimeTitle: "Vui lòng đến đúng giờ", noticeTimeDesc: "Nếu không, suất đi sẽ được nhường cho khách khác.",
                 noticeWeatherTitle: "Lưu ý thời tiết xấu", noticeWeatherDesc: "Nếu có cảnh báo mưa bão màu đen hoặc bão cấp 8 trở lên, xe buýt sẽ tạm ngưng hoạt động.",
-                mapH: "Điểm đến trong bán kính 300m", m1: "Ga MTR Tai Wo Hau: khoảng 8 phút đi bộ", m2: "Cửa hàng 7-11: khoảng 2 phút đi bộ", m3: "Trung tâm thương mại Shek Wai Kok: khoảng 5 phút đi bộ",
+                mapH: "Hướng dẫn thực tế quanh khách sạn 300m", m1: "Ga MTR Tai Wo Hau: khoảng 8 phút đi bộ", m2: "Cửa hàng 7-11: khoảng 2 phút đi bộ", m3: "Trung tâm thương mại Shek Wai Kok: khoảng 5 phút đi bộ",
                 lugH: "Dịch vụ giữ hành lý", lugDesc: "🧳 Quý khách được miễn phí giữ hành lý vào ngày nhận phòng và trả phòng. Nếu gửi dài hạn, phí là $10 mỗi kiện mỗi ngày.",
                 chatH: "Trò chuyện với lễ tân", chatWel: "Chào mừng, vui lòng nhập câu hỏi của bạn...", chatPh: "Nhập tin nhắn...", chatSend: "Gửi", sender: "Khách",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Giờ nghỉ trưa (Tạm dừng)", nextBusText: "⭐ Chuyến tiếp theo",
@@ -262,17 +338,23 @@
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
-                c1t: "🚌 मुफ्त शटल बस", c1d: "समय सारणी और स्थिति",
-                c2t: "🗺️ 300मी आसपास का नक्शा", c2d: "मेट्रो, भोजन और दुकानें",
+                c1t: "🚌 मुफ्त शटल bus", c1d: "समय सारणी और स्थिति",
+                c5t: "🚏 बोर्डिंग स्थान", c5d: "विस्तृत स्टेशन गाइड और नक्शे",
+                c2t: "🗺️ होटल 300मी व्यावहारिक गाइड", c2d: "मेट्रो, भोजन और दुकानें",
+                c6t: "📖 हांगकांग यात्रा गाइड", c6d: "शीर्ष आकर्षण और यात्रा कार्यक्रम",
                 c3t: "🧳 सामान का भंडारण", c3d: "भंडारण नियम और शुल्क",
                 c4t: "💬 लाइव चैट", c4d: "कंसर्ज से बात करें",
                 back: "⬅ मेनू पर वापस जाएं",
                 busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएन वान वेस्ट",
+                stationH: "बोर्डिंग स्थान गाइड",
+                guideH: "हांगकांग यात्रा गाइड",
+                liveStatusLabel: "📍 लाइव बस स्थिति",
+                stDriving: "क्वाई फोंग जा रही है", stArrKwai: "🔵 क्वाई फोंग पहुंच गई", stDriving2: "त्सुएन वान वेस्ट जा रही है", stArrTsuen: "🔵 त्सुएन वान वेस्ट पहुंच गई", stReturning: "होटल वापस लौट रही है", stWaitingStandby: "प्रतीक्षा / तैयारी",
                 noticeTelTitle: "कंसर्ज फोन", noticeTelVal: "3700 3824 (एक्सटेंशन के लिए '4' दबाएं)",
-                noticeContactTitle: "कृपया सीट आरक्षित करने کے लिए पहले से कंसर्ज से संपर्क करें",
+                noticeContactTitle: "कृपया सीट आरक्षित करने के लिए पहले से कंसर्ज से संपर्क करें",
                 noticeTimeTitle: "समय पर उपस्थित रहें", noticeTimeDesc: "अन्यथा सीट अन्य अतिथियों को दे दी जाएगी।",
                 noticeWeatherTitle: "खराब मौसम व्यवस्था", noticeWeatherDesc: "ब्लैक रेनस्टॉर्म या तूफान सिग्नल 8 या अधिक जारी होने पर शटल bus सेवा स्थगित रहेगी।",
-                mapH: "300 मीटर के आसपास के आकर्षण", m1: "ताई वो हाऊ एमटीआर स्टेशन: ~8 मिनट पैदल", m2: "7-11 सुविधा स्टोर: ~2 मिनट पैदल", m3: "शेख वाई कोक मॉल: ~5 मिनट पैदल",
+                mapH: "होटल 300मी व्यावहारिक गाइड", m1: "ताई वो हाऊ एमटीआर स्टेशन: ~8 मिनट पैदल", m2: "7-11 सुविधा स्टोर: ~2 मिनट पैदल", m3: "शेख वाई कोक मॉल: ~5 मिनट पैदल",
                 lugH: "सामान भंडारण सेवा", lugDesc: "🧳 चेक-इन और चेक-आउट के दिन सामान का भंडारण निःशुल्क है। दीर्घकालिक भंडारण के लिए, प्रति पीस प्रति दिन $10 का शुल्क लागू है।",
                 chatH: "कंसर्ज से लाइव चैट", chatWel: "स्वागत है, कृपया अपना प्रश्न दर्ज करें...", chatPh: "संदेश टाइप करें...", chatSend: "भेजें", sender: "अतिथि",
                 kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएन वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली बस (Next Bus)",
@@ -282,16 +364,22 @@
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
                 c1t: "🚌 Libreng Shuttle Bus", c1d: "Iskedyul at live na status",
-                c2t: "🗺️ 300m Map sa Paligid", c2d: "MTR, kainan at convenience store",
+                c5t: "🚏 Lokasyon ng Sakayan", c5d: "Detalyadong gabay at mapa sa istasyon",
+                c2t: "🗺️ Gabay sa 300m Paligid ng Hotel", c2d: "MTR, kainan at convenience store",
+                c6t: "📖 Gabay sa Paglalakbay", c6d: "Mga pasyalan at gabay sa biyahe",
                 c3t: "🧳 Imbakan ng Bagahe", c3d: "Patakaran at bayarin sa bagahe",
                 c4t: "💬 Live Chat", c4d: "Mabilisang usapan sa concierge",
                 back: "⬅ Bumalik sa Menu",
                 busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
+                stationH: "Gabay sa Lokasyon ng Sakayan",
+                guideH: "Gabay sa Paglalakbay sa Hong Kong",
+                liveStatusLabel: "📍 Live na Status ng Bus",
+                stDriving: "Bumibiyahe patungong Kwai Fong", stArrKwai: "🔵 Dumating sa Kwai Fong", stDriving2: "Bumibiyahe patungong Tsuen Wan West", stArrTsuen: "🔵 Dumating sa Tsuen Wan West", stReturning: "Bumabalik sa Hotel", stWaitingStandby: "Naghihintay / Handa",
                 noticeTelTitle: "Concierge Tel", noticeTelVal: "3700 3824 (Pindutin ang '4' para sa extension)",
                 noticeContactTitle: "Mangyaring maagang makipag-ugnayan sa concierge upang magreserba ng upuan",
                 noticeTimeTitle: "Mangyaring dumating sa oras", noticeTimeDesc: "Kung hindi, ang puwesto ay ibibigay sa ibang bisita.",
                 noticeWeatherTitle: "Kondisyon sa Masamang Panahon", noticeWeatherDesc: "Kanselahin ang shuttle bus kung may Black Rainstorm o Typhoon Signal No. 8 pataas.",
-                mapH: "Mga Kalapit na Lugar (300m)", m1: "Tai Wo Hau MTR Station: ~8 minutong lakad", m2: "7-11 Convenience Store: ~2 minutong lakad", m3: "Shek Wai Kok Shopping Centre: ~5 minutong lakad",
+                mapH: "Gabay sa 300m Paligid ng Hotel", m1: "Tai Wo Hau MTR Station: ~8 minutong lakad", m2: "7-11 Convenience Store: ~2 minutong lakad", m3: "Shek Wai Kok Shopping Centre: ~5 minutong lakad",
                 lugH: "Serbisyo sa Imbakan ng Bagahe", lugDesc: "🧳 Libre ang pag-iimbak ng bagahe sa araw ng pag-check-in at pag-check-out. Para sa pangmatagalang imbakan, may bayad na $10 bawat piraso bawat araw.",
                 chatH: "Live Chat sa Concierge", chatWel: "Maligayang pagdating, mangyaring itanong...", chatPh: "Mag-type ng mensahe...", chatSend: "Ipadala", sender: "Bisita",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspendido)", nextBusText: "⭐ Susunod na Bus",
@@ -313,19 +401,31 @@
             document.getElementById('ui-title').innerText = d.title;
             document.getElementById('ui-card1-title').innerText = d.c1t;
             document.getElementById('ui-card1-desc').innerText = d.c1d;
+            document.getElementById('ui-card5-title').innerText = d.c5t;
+            document.getElementById('ui-card5-desc').innerText = d.c5d;
             document.getElementById('ui-card2-title').innerText = d.c2t;
             document.getElementById('ui-card2-desc').innerText = d.c2d;
+            document.getElementById('ui-card6-title').innerText = d.c6t;
+            document.getElementById('ui-card6-desc').innerText = d.c6d;
             document.getElementById('ui-card3-title').innerText = d.c3t;
             document.getElementById('ui-card3-desc').innerText = d.c3d;
             document.getElementById('ui-card4-title').innerText = d.c4t;
             document.getElementById('ui-card4-desc').innerText = d.c4d;
+
             document.getElementById('ui-back1').innerText = d.back;
             document.getElementById('ui-back2').innerText = d.back;
             document.getElementById('ui-back3').innerText = d.back;
             document.getElementById('ui-back4').innerText = d.back;
+            document.getElementById('ui-back5').innerText = d.back;
+            document.getElementById('ui-back6').innerText = d.back;
+
             document.getElementById('ui-bus-header').innerText = d.busH;
             document.getElementById('ui-bus-sub').innerText = d.busSub;
+            document.getElementById('ui-station-header').innerText = d.stationH;
+            document.getElementById('ui-guide-header').innerText = d.guideH;
             
+            document.getElementById('ui-live-status-label').innerText = d.liveStatusLabel;
+
             document.getElementById('ui-notice-tel-title').innerText = d.noticeTelTitle;
             document.getElementById('ui-notice-tel-val').innerText = d.noticeTelVal;
             document.getElementById('ui-notice-contact-title').innerText = d.noticeContactTitle;
@@ -349,6 +449,7 @@
             document.getElementById('displayRoomId').innerText = currentRoomId || '未設定';
 
             renderBusSchedule();
+            updateLiveStatusDisplay();
         }
 
         const rawBusData = [
@@ -377,6 +478,35 @@
             }
         }
 
+        function updateLiveStatusDisplay() {
+            const now = new Date();
+            const minute = now.getMinutes();
+            const hour = now.getHours();
+            const statusEl = document.getElementById('liveStatusText');
+            if (!statusEl) return;
+
+            const d = t[currentLang];
+            let text = "";
+
+            if (hour === 13) {
+                text = d.lunchBreak;
+            } else if (minute >= 1 && minute <= 14) {
+                text = d.stDriving;
+            } else if (minute >= 15 && minute <= 16) {
+                text = d.stArrKwai;
+            } else if (minute >= 17 && minute <= 29) {
+                text = d.stDriving2;
+            } else if (minute >= 30 && minute <= 31) {
+                text = d.stArrTsuen;
+            } else if (minute >= 32 && minute <= 45) {
+                text = d.stReturning;
+            } else {
+                text = d.stWaitingStandby;
+            }
+
+            statusEl.innerText = text;
+        }
+
         function getCalculatedStatus(hotelTimeStr, isBreak) {
             const d = t[currentLang];
             if (isBreak) return { text: d.lunchBreak, class: "badge-out" };
@@ -403,7 +533,6 @@
             let nextBusId = null;
             const now = new Date();
             
-            // 計算下一班車 (自動跳過已發車或暫停服務的班次)
             for (let item of rawBusData) {
                 if (!item.isBreak && overrides[item.id] !== 'OUT OF SVC') {
                     const [h, m] = item.hotel.split(':').map(Number);
@@ -422,14 +551,12 @@
                 } else {
                     let status = getCalculatedStatus(item.hotel, false);
                     
-                    // 手動覆蓋邏輯：若被設為「已滿」，但時間已經過了 HH+01（變左已離開），則以時間為準
                     if (overrides[item.id] === 'FULL') {
                         if (status.class !== 'badge-departed') {
                             status = { text: d.stFull, class: "badge-full" };
                         }
                     }
                     
-                    // 暫停服務 (OUT OF SVC) 則不受時間限制，繼續保持
                     if (overrides[item.id] === 'OUT OF SVC') {
                         status = { text: d.stOut, class: "badge-out" };
                     }
@@ -455,7 +582,10 @@
             document.getElementById('mainMenu').style.display = 'none';
             document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active-section'));
             document.getElementById(sectionId).classList.add('active-section');
-            if (sectionId === 'busSection') renderBusSchedule();
+            if (sectionId === 'busSection') {
+                renderBusSchedule();
+                updateLiveStatusDisplay();
+            }
         }
 
         function goBack() {
@@ -543,8 +673,11 @@
             });
 
             setInterval(() => {
-                if (document.getElementById('busSection').classList.contains('active-section')) renderBusSchedule();
-            }, 60000);
+                updateLiveStatusDisplay();
+                if (document.getElementById('busSection').classList.contains('active-section')) {
+                    renderBusSchedule();
+                }
+            }, 10000);
         }
     </script>
 </body>
