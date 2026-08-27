@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="ui-title">荃灣絲麗酒店 - 禮賓部</title>
+    
+    <!-- 引入 Firebase SDK (Compat 版本，最適合直接嵌入 HTML 使用) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 15px; color: #333; }
         .container { max-width: 500px; margin: 0 auto; background: #ffffff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -37,13 +42,6 @@
         .badge-out { background: #f8d7da; color: #721c24; }
         .next-bus-highlight { background-color: #e8f4fd !important; border: 1.5px solid #007bff; border-radius: 8px; margin: 4px 0; }
         .next-bus-badge { background: #007bff; color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; display: inline-block; margin-bottom: 2px; }
-        .chat-box { height: 220px; border: 1px solid #ced4da; border-radius: 8px; padding: 10px; overflow-y: scroll; background: #f9f9f9; margin-bottom: 10px; font-size: 13px; }
-        .chat-input-area { display: flex; gap: 8px; }
-        .chat-input-area input { flex: 1; padding: 8px 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 13px; }
-        .chat-input-area button { padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        .chat-input-area button:hover { background: #218838; }
-        .room-tag { background: #e9ecef; padding: 6px 10px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: #495057; }
-        .room-tag span { color: #007bff; cursor: pointer; text-decoration: underline; font-weight: normal; }
         .placeholder-content { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; color: #6c757d; font-size: 14px; border: 1px dashed #ced4da; }
     </style>
 </head>
@@ -94,10 +92,10 @@
                 <h3 id="ui-card3-title">行李寄存</h3>
                 <p id="ui-card3-desc">寄存服務條款與收費</p>
             </div>
-            <div class="menu-card" onclick="openChatSection()">
-                <div class="icon">💬</div>
+            <div class="menu-card" style="cursor: default;">
+                <div class="icon">✨</div>
                 <h3 id="ui-card4-title">線上客服</h3>
-                <p id="ui-card4-desc">即時與禮賓部對話</p>
+                <p id="ui-card4-desc">敬請期待</p>
             </div>
         </div>
 
@@ -159,30 +157,17 @@
             <h3 id="ui-lug-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">行李寄存服務</h3>
             <p id="ui-lug-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">🧳 入住及退房當天均可享免費行李寄存；如需長期寄存，則按每件每日 $10 計算。</p>
         </div>
-
-        <!-- 4. 線上客服頁面 (連房號/稱呼顯示標籤) -->
-        <div id="chatSection" class="section-content">
-            <button class="back-btn" id="ui-back4" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-chat-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">與禮賓部即時對話</h3>
-            
-            <div class="room-tag">
-                <div>🚪 身份：<span id="displayRoomId">未設定</span></div>
-                <span onclick="promptRoomId()">更改房號/稱呼</span>
-            </div>
-
-            <div class="chat-box" id="chatBox">
-                <div style="color:#888; font-size:12px; text-align:center;" id="ui-chat-welcome">歡迎聯絡禮賓部，請輸入您的問題...</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="輸入訊息..." onkeypress="if(event.key === 'Enter') sendMessage()">
-                <button id="ui-chat-send" onclick="sendMessage()">發送</button>
-            </div>
-        </div>
     </div>
 
     <script>
+        // ==================== Firebase 配置 ====================
+        const firebaseConfig = {
+            databaseURL: "https://silka-tsuen-wan-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
         let currentLang = 'zh-HK';
-        let currentRoomId = localStorage.getItem('guestRoomId') || '';
 
         const t = {
             'zh-HK': {
@@ -192,7 +177,7 @@
                 c2t: "🗺️ 酒店300米周邊實用指南", c2d: "地鐵站、美食與便利店",
                 c6t: "📖 香港旅遊攻略", c6d: "熱門景點與行程推介",
                 c3t: "🧳 行李寄存", c3d: "寄存服務條款與收費",
-                c4t: "💬 線上客服", c4d: "即時與禮賓部對話",
+                c4t: "💬 線上客服", c4d: "敬請期待",
                 back: "⬅ 返回主選單",
                 busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
                 stationH: "免費穿梭巴士上車地點",
@@ -205,10 +190,8 @@
                 noticeWeatherTitle: "惡劣天氣安排", noticeWeatherDesc: "若天文台發出黑色暴雨或八號或以上熱帶氣旋信號, 穿梭巴士將暫停服務",
                 mapH: "酒店300米周邊實用指南",
                 lugH: "行李寄存服務", lugDesc: "🧳 入住及退房當天均可享免費行李寄存；如需長期寄存，則按每件每日 $10 計算。",
-                chatH: "與禮賓部即時對話", chatWel: "歡迎聯絡禮賓部，請輸入您的問題...", chatPh: "輸入訊息...", chatSend: "發送", sender: "住客",
                 kwaiFong: "葵芳", tsuenWanWest: "荃灣西", lunchBreak: "午飯時間 (暫停服務)", nextBusText: "⭐ 下一班次 (Next Bus)",
-                stBookable: "可預約", stWaiting: "等待發車", stBoarding: "可以上車", stDeparted: "已離開", stFull: "已滿", stOut: "暫停服務",
-                promptMsg: "請輸入您的「房號」或「(姓)先生/女士」以開始對話："
+                stBookable: "可預約", stWaiting: "等待發車", stBoarding: "可以上車", stDeparted: "已離開", stFull: "已滿", stOut: "暫停服務"
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -217,7 +200,7 @@
                 c2t: "🗺️ 酒店300米周边实用指南", c2d: "地铁站、美食与便利店",
                 c6t: "📖 香港旅游攻略", c6d: "热门景点与行程推介",
                 c3t: "🧳 行李寄存", c3d: "寄存服务条款与收费",
-                c4t: "💬 线上客服", c4d: "即时与礼宾部对话",
+                c4t: "💬 线上客服", c4d: "敬请期待",
                 back: "⬅ 返回主菜单",
                 busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
                 stationH: "免费穿梭巴士上车地点",
@@ -230,10 +213,8 @@
                 noticeWeatherTitle: "恶劣天气安排", noticeWeatherDesc: "若天文台发出黑色暴雨或八号或以上热带气旋信号, 穿梭巴士将暂停服务",
                 mapH: "酒店300米周边实用指南",
                 lugH: "行李寄存服务", lugDesc: "🧳 入住及退房当天均可享免费行李寄存；如需长期寄存，则按每件每日 $10 计算。",
-                chatH: "与礼宾部即时对话", chatWel: "欢迎联络礼宾部，请输入您的问题...", chatPh: "输入讯息...", chatSend: "发送", sender: "住客",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
-                stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务",
-                promptMsg: "请输入您的「房号」或「(姓)先生/女士」以开始对话："
+                stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务"
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -242,7 +223,7 @@
                 c2t: "🗺️ Hotel 300m Practical Guide", c2d: "MTR, dining & convenience stores",
                 c6t: "📖 HK Travel Guide", c6d: "Top attractions & itineraries",
                 c3t: "🧳 Luggage Storage", c3d: "Storage policy & fees",
-                c4t: "💬 Live Chat", c4d: "Chat with concierge instantly",
+                c4t: "💬 Live Chat", c4d: "Coming Soon",
                 back: "⬅ Back to Menu",
                 busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
                 stationH: "Free Shuttle Bus Boarding Locations",
@@ -255,10 +236,8 @@
                 noticeWeatherTitle: "Severe Weather", noticeWeatherDesc: "Shuttle bus service will be suspended if Black Rainstorm or Typhoon Signal No. 8 or above is issued.",
                 mapH: "Hotel 300m Practical Guide",
                 lugH: "Luggage Storage Service", lugDesc: "🧳 Complimentary luggage storage is available on both check-in and check-out days. For long-term storage, a fee of $10 per piece per day applies.",
-                chatH: "Live Chat with Concierge", chatWel: "Welcome, please type your question...", chatPh: "Type a message...", chatSend: "Send", sender: "Guest",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspended)", nextBusText: "⭐ Next Bus",
-                stBookable: "Available", stWaiting: "Waiting", stBoarding: "Boarding", stDeparted: "Departed", stFull: "Full", stOut: "Suspended",
-                promptMsg: "Please enter your Room Number or Name (e.g., Room 808 / Mr. Chan):"
+                stBookable: "Available", stWaiting: "Waiting", stBoarding: "Boarding", stDeparted: "Departed", stFull: "Full", stOut: "Suspended"
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -267,7 +246,7 @@
                 c2t: "🗺️ ホテル300m周辺実用ガイド", c2d: "駅、飲食店、コンビニ",
                 c6t: "📖 香港観光ガイド", c6d: "おすすめスポットとモデルコース",
                 c3t: "🧳 手荷物預かり", c3d: "お預かりの案内と料金",
-                c4t: "💬 ライブチャット", c4d: "コンシェルジュとのお問い合わせ",
+                c4t: "💬 ライブチャット", c4d: "近日公開",
                 back: "⬅ メニューに戻る",
                 busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
                 stationH: "無料シャトルバス乗降場所",
@@ -280,10 +259,8 @@
                 noticeWeatherTitle: "悪天候時の運行", noticeWeatherDesc: "黒色暴風雨警報または台風警報8号以上が発令された場合、シャトルバスは運休します。",
                 mapH: "ホテル300m周辺実用ガイド",
                 lugH: "手荷物預かりサービス", lugDesc: "🧳 チェックイン当日およびチェックアウト当日は手荷物を無料でお預かりいたします。長期預かりの場合は、1個あたり1日につき$10となります。",
-                chatH: "コンシェルジュチャット", chatWel: "ようこそ、ご質問を入力してください...", chatPh: "メッセージを入力...", chatSend: "送信", sender: "宿泊客",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "昼休み (運休)", nextBusText: "⭐ 次の便 (Next Bus)",
-                stBookable: "予約可能", stWaiting: "まもなく", stBoarding: "乗車可能", stDeparted: "出発済み", stFull: "満席", stOut: "運休",
-                promptMsg: "部屋番号またはお名前を入力してください："
+                stBookable: "予約可能", stWaiting: "まもなく", stBoarding: "乗車可能", stDeparted: "出発済み", stFull: "満席", stOut: "運休"
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -292,7 +269,7 @@
                 c2t: "🗺️ 호텔 300m 주변 실용 가이드", c2d: "역, 맛집, 편의점",
                 c6t: "📖 홍콩 여행 가이드", c6d: "인기 관광지 및 일정 추천",
                 c3t: "🧳 수하물 보관", c3d: "보관 규정 및 요금",
-                c4t: "💬 실시간 채팅", c4d: "컨시어지와 대화",
+                c4t: "💬 실시간 채팅", c4d: "준비 중",
                 back: "⬅ 메뉴로 돌아가기",
                 busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
                 stationH: "무료 셔틀버스 승하차 장소",
@@ -305,10 +282,8 @@
                 noticeWeatherTitle: "악천후 안내", noticeWeatherDesc: "흑색 폭우 경보 또는 태풍 경보 8호 이상 발령 시 셔틀버스 운행이 중단됩니다.",
                 mapH: "호텔 300m 주변 실용 가이드",
                 lugH: "수하물 보관 서비스", lugDesc: "🧳 체크인 및 체크아웃 당일에는 수하물을 무료로 보관하실 수 있습니다. 장기 보관의 경우 개당 1일 $10의 요금이 부과됩니다.",
-                chatH: "컨시어지 실시간 채팅", chatWel: "환영합니다. 문의사항을 입력해주세요...", chatPh: "메시지 입력...", chatSend: "전송", sender: "투숙객",
                 kwaiFong: "콰이퐁", tsuenWanWest: "취언완 웨스트", lunchBreak: "점심 시간 (운행 중단)", nextBusText: "⭐ 다음 차량 (Next Bus)",
-                stBookable: "예약 가능", stWaiting: "대기 중", stBoarding: "탑승 가능", stDeparted: "출발함", stFull: "만석", stOut: "운행 중단",
-                promptMsg: "객실 번호 또는 성함을 입력해주세요:"
+                stBookable: "예약 가능", stWaiting: "대기 중", stBoarding: "탑승 가능", stDeparted: "출발함", stFull: "만석", stOut: "운행 중단"
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -317,7 +292,7 @@
                 c2t: "🗺️ Hướng dẫn thực tế quanh khách sạn 300m", c2d: "MTR, ẩm thực & cửa hàng tiện lợi",
                 c6t: "📖 Cẩm nang du lịch HK", c6d: "Địa điểm hot & gợi ý lịch trình",
                 c3t: "🧳 Giữ hành lý", c3d: "Quy định & phí giữ hành lý",
-                c4t: "💬 Trò chuyện trực tuyến", c4d: "Nhắn tin trực tiếp với lễ tân",
+                c4t: "💬 Trò chuyện trực tuyến", c4d: "Sắp ra mắt",
                 back: "⬅ Quay lại Menu",
                 busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
                 stationH: "Điểm đón xe buýt miễn phí",
@@ -330,10 +305,8 @@
                 noticeWeatherTitle: "Lưu ý thời tiết xấu", noticeWeatherDesc: "Nếu có cảnh báo mưa bão màu đen hoặc bão cấp 8 trở lên, xe buýt sẽ tạm ngưng hoạt động.",
                 mapH: "Hướng dẫn thực tế quanh khách sạn 300m",
                 lugH: "Dịch vụ giữ hành lý", lugDesc: "🧳 Quý khách được miễn phí giữ hành lý vào ngày nhận phòng và trả phòng. Nếu gửi dài hạn, phí là $10 mỗi kiện mỗi ngày.",
-                chatH: "Trò chuyện với lễ tân", chatWel: "Chào mừng, vui lòng nhập câu hỏi của bạn...", chatPh: "Nhập tin nhắn...", chatSend: "Gửi", sender: "Khách",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Giờ nghỉ trưa (Tạm dừng)", nextBusText: "⭐ Chuyến tiếp theo",
-                stBookable: "Có thể đặt", stWaiting: "Đang chờ", stBoarding: "Đang lên xe", stDeparted: "Đã đi", stFull: "Hết chỗ", stOut: "Tạm dừng",
-                promptMsg: "Vui lòng nhập Số phòng hoặc Tên của bạn:"
+                stBookable: "Có thể đặt", stWaiting: "Đang chờ", stBoarding: "Đang lên xe", stDeparted: "Đã đi", stFull: "Hết chỗ", stOut: "Tạm dừng"
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -342,7 +315,7 @@
                 c2t: "🗺️ होटल 300मी व्यावहारिक गाइड", c2d: "मेट्रो, भोजन और दुकानें",
                 c6t: "📖 हांगकांग यात्रा गाइड", c6d: "शीर्ष आकर्षण और यात्रा कार्यक्रम",
                 c3t: "🧳 सामान का भंडारण", c3d: "भंडारण नियम और शुल्क",
-                c4t: "💬 लाइव चैट", c4d: "कंसर्ज से बात करें",
+                c4t: "💬 लाइव चैट", c4d: "शीघ्र आ रहा है",
                 back: "⬅ मेनू पर वापस जाएं",
                 busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएन वान वेस्ट",
                 stationH: "मुफ्त शटल बस बोर्डिंग स्थान",
@@ -355,10 +328,8 @@
                 noticeWeatherTitle: "खराब मौसम व्यवस्था", noticeWeatherDesc: "ब्लैक रेनस्टॉर्म या तूफान सिग्नल 8 या अधिक जारी होने पर शटल bus सेवा स्थगित रहेगी।",
                 mapH: "होटल 300मी व्यावहारिक गाइड",
                 lugH: "सामान भंडारण सेवा", lugDesc: "🧳 चेक-इन और चेक-आउट के दिन सामान का भंडारण निःशुल्क है। दीर्घकालिक भंडारण के लिए, प्रति पीस प्रति दिन $10 का शुल्क लागू है।",
-                chatH: "कंसर्ज से लाइव चैट", chatWel: "स्वागत है, कृपया अपना प्रश्न दर्ज करें...", chatPh: "संदेश टाइप करें...", chatSend: "भेजें", sender: "अतिथि",
                 kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएन वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली बस (Next Bus)",
-                stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित",
-                promptMsg: "कृपया अपना कमरा नंबर या नाम दर्ज करें:"
+                stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित"
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -367,9 +338,9 @@
                 c2t: "🗺️ Gabay sa 300m Paligid ng Hotel", c2d: "MTR, kainan at convenience store",
                 c6t: "📖 Gabay sa Paglalakbay", c6d: "Mga pasyalan at gabay sa biyahe",
                 c3t: "🧳 Imbakan ng Bagahe", c3d: "Patakaran at bayarin sa bagahe",
-                c4t: "💬 Live Chat", c4d: "Mabilisang usapan sa concierge",
+                c4t: "💬 Live Chat", c4d: "Malapit na",
                 back: "⬅ Bumalik sa Menu",
-                busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
+                busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai FongMTR) ➔ Tsuen Wan West MTR",
                 stationH: "Sakayan ng Libreng Shuttle Bus",
                 guideH: "Gabay sa Paglalakbay sa Hong Kong",
                 liveStatusLabel: "📍 Live na Status ng Bus",
@@ -380,10 +351,8 @@
                 noticeWeatherTitle: "Kondisyon sa Masamang Panahon", noticeWeatherDesc: "Kanselahin ang shuttle bus kung may Black Rainstorm o Typhoon Signal No. 8 pataas.",
                 mapH: "Gabay sa 300m Paligid ng Hotel",
                 lugH: "Serbisyo sa Imbakan ng Bagahe", lugDesc: "🧳 Libre ang pag-iimbak ng bagahe sa araw ng pag-check-in at pag-check-out. Para sa pangmatagalang imbakan, may bayad na $10 bawat piraso bawat araw.",
-                chatH: "Live Chat sa Concierge", chatWel: "Maligayang pagdating, mangyaring itanong...", chatPh: "Mag-type ng mensahe...", chatSend: "Ipadala", sender: "Bisita",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspendido)", nextBusText: "⭐ Susunod na Bus",
-                stBookable: "Maaaring i-book", stWaiting: "Nagintahay", stBoarding: "Sumasakay", stDeparted: "Umalis na", stFull: "Puno", stOut: "Suspendido",
-                promptMsg: "Mangyaring ilagay ang iyong Room Number o Pangalan:"
+                stBookable: "Maaaring i-book", stWaiting: "Nagintahay", stBoarding: "Sumasakay", stDeparted: "Umalis na", stFull: "Puno", stOut: "Suspendido"
             }
         };
 
@@ -414,7 +383,6 @@
             document.getElementById('ui-back1').innerText = d.back;
             document.getElementById('ui-back2').innerText = d.back;
             document.getElementById('ui-back3').innerText = d.back;
-            document.getElementById('ui-back4').innerText = d.back;
             document.getElementById('ui-back5').innerText = d.back;
             document.getElementById('ui-back6').innerText = d.back;
 
@@ -438,12 +406,6 @@
             document.getElementById('ui-lug-header').innerText = d.lugH;
             document.getElementById('ui-lug-desc').innerText = d.lugDesc;
 
-            document.getElementById('ui-chat-header').innerText = d.chatH;
-            document.getElementById('ui-chat-welcome').innerText = d.chatWel;
-            document.getElementById('chatInput').placeholder = d.chatPh;
-            document.getElementById('ui-chat-send').innerText = d.chatSend;
-            document.getElementById('displayRoomId').innerText = currentRoomId || '未設定';
-
             renderBusSchedule();
             updateLiveStatusDisplay();
         }
@@ -463,16 +425,6 @@
             { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
             { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
         ];
-
-        function checkDailyReset() {
-            const lastResetDate = localStorage.getItem('lastResetDate');
-            const todayStr = new Date().toDateString();
-            const currentHour = new Date().getHours();
-            if (lastResetDate !== todayStr && currentHour >= 22) {
-                localStorage.removeItem('busManualOverrides');
-                localStorage.setItem('lastResetDate', todayStr);
-            }
-        }
 
         function updateLiveStatusDisplay() {
             const now = new Date();
@@ -519,18 +471,16 @@
         }
 
         function renderBusSchedule() {
-            checkDailyReset();
             const container = document.getElementById('busListContainer');
             if (!container) return;
             container.innerHTML = '';
-            const overrides = JSON.parse(localStorage.getItem('busManualOverrides') || '{}');
             const d = t[currentLang];
 
             let nextBusId = null;
             const now = new Date();
             
             for (let item of rawBusData) {
-                if (!item.isBreak && overrides[item.id] !== 'OUT OF SVC') {
+                if (!item.isBreak) {
                     const [h, m] = item.hotel.split(':').map(Number);
                     const busTime = new Date();
                     busTime.setHours(h, m, 0, 0);
@@ -546,17 +496,6 @@
                     container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 12px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; text-align: center; border: 1px solid #ffeeba; font-weight: bold;">🍽️ ${item.hotel} : ${d.lunchBreak}</div>`;
                 } else {
                     let status = getCalculatedStatus(item.hotel, false);
-                    
-                    if (overrides[item.id] === 'FULL') {
-                        if (status.class !== 'badge-departed') {
-                            status = { text: d.stFull, class: "badge-full" };
-                        }
-                    }
-                    
-                    if (overrides[item.id] === 'OUT OF SVC') {
-                        status = { text: d.stOut, class: "badge-out" };
-                    }
-
                     const isNext = (item.id === nextBusId);
                     const itemClass = isNext ? "bus-item next-bus-highlight" : "bus-item";
                     const badgeHtml = isNext ? `<span class="next-bus-badge">${d.nextBusText}</span><br>` : '';
@@ -589,85 +528,7 @@
             document.getElementById('mainMenu').style.display = 'grid';
         }
 
-        function openChatSection() {
-            if (!currentRoomId || currentRoomId.trim() === "") {
-                promptRoomId();
-            }
-            showSection('chatSection');
-            loadChatMessages();
-        }
-
-        function promptRoomId() {
-            const d = t[currentLang];
-            let inputName = prompt(d.promptMsg, currentRoomId || "");
-            if (inputName && inputName.trim() !== "") {
-                currentRoomId = inputName.trim();
-                localStorage.setItem('guestRoomId', currentRoomId);
-                document.getElementById('displayRoomId').innerText = currentRoomId;
-                loadChatMessages();
-            } else if (!currentRoomId) {
-                currentRoomId = "訪客 (未填房號)";
-                document.getElementById('displayRoomId').innerText = currentRoomId;
-            }
-        }
-
-        function loadChatMessages() {
-            let chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
-            renderChat(chatRooms[currentRoomId] || []);
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            if(!input.value.trim()) return;
-            
-            if (!currentRoomId) {
-                promptRoomId();
-                return;
-            }
-
-            let chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
-            if (!chatRooms[currentRoomId]) {
-                chatRooms[currentRoomId] = [];
-            }
-            
-            const d = t[currentLang];
-            chatRooms[currentRoomId].push({ 
-                sender: d.sender, 
-                text: input.value, 
-                time: new Date().toLocaleTimeString() 
-            });
-            
-            localStorage.setItem('hotelChatRooms', JSON.stringify(chatRooms));
-            renderChat(chatRooms[currentRoomId]);
-            input.value = '';
-        }
-
-        function renderChat(messages) {
-            const chatBox = document.getElementById('chatBox');
-            chatBox.innerHTML = '';
-            const d = t[currentLang];
-            if(!messages || messages.length === 0) {
-                chatBox.innerHTML = `<div style="color:#888; font-size:12px; text-align:center;" id="ui-chat-welcome">${d.chatWel}</div>`;
-                return;
-            }
-            messages.forEach(msg => {
-                chatBox.innerHTML += `<div style="margin-bottom:6px;"><strong>${msg.sender}:</strong> ${msg.text} <span style="font-size:10px; color:#aaa;">(${msg.time})</span></div>`;
-            });
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
         window.onload = function() {
-            if (currentRoomId) {
-                document.getElementById('displayRoomId').innerText = currentRoomId;
-            }
-
-            window.addEventListener('storage', () => {
-                if (currentRoomId) {
-                    let updatedRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
-                    renderChat(updatedRooms[currentRoomId] || []);
-                }
-            });
-
             setInterval(() => {
                 updateLiveStatusDisplay();
                 if (document.getElementById('busSection').classList.contains('active-section')) {

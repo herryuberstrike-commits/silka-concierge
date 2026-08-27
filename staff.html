@@ -47,19 +47,6 @@
         .btn-full { background: #dc3545; color: white; }
         .btn-out { background: #343a40; color: white; }
         .staff-btn.active { outline: 2px solid #000; box-shadow: 0 0 5px rgba(0,0,0,0.3); }
-
-        /* 一對多聊天排版 */
-        .chat-layout { display: flex; gap: 12px; height: 260px; }
-        .room-list { width: 35%; border: 1px solid #ced4da; border-radius: 8px; overflow-y: auto; background: #fdfdfd; }
-        .room-item { padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; font-size: 13px; }
-        .room-item:hover { background: #f1f3f5; }
-        .room-item.active { background: #343a40; color: white; }
-        
-        .chat-main { flex: 1; display: flex; flex-direction: column; border: 1px solid #ced4da; border-radius: 8px; background: #fdfdfd; padding: 10px; }
-        .chat-box { flex: 1; overflow-y: scroll; margin-bottom: 8px; font-size: 13px; padding-right: 5px; }
-        .chat-input-area { display: flex; gap: 6px; }
-        .chat-input-area input { flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 6px; font-size: 13px; }
-        .chat-input-area button { padding: 8px 14px; background: #343a40; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -84,29 +71,10 @@
             <h2>🚌 穿梭巴士即時狀態管理</h2>
             <div id="staffBusList"></div>
         </div>
-
-        <div class="section">
-            <h2>💬 住客即時對話管理 (一對多分流)</h2>
-            <div class="chat-layout">
-                <div class="room-list" id="roomList">
-                    <div style="color:#888; font-size:12px; text-align:center; padding:20px;">暫無住客對話</div>
-                </div>
-                <div class="chat-main">
-                    <div class="chat-box" id="staffChatBox">
-                        <div style="color:#888; font-size:12px; text-align:center; margin-top:20px;">請從左側選擇一個房間對話</div>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" id="staffChatInput" placeholder="請選擇房間後回覆...">
-                        <button onclick="staffSendMessage()">發送</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 <script>
     const CORRECT_PASSWORD = "Stw3824";
-    let activeRoom = null;
 
     function checkPassword() {
         if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
@@ -164,63 +132,8 @@
         renderStaffBusList();
     }
 
-    function loadRooms() {
-        const chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
-        const roomListEl = document.getElementById('roomList');
-        roomListEl.innerHTML = '';
-        const keys = Object.keys(chatRooms);
-
-        if (keys.length === 0) {
-            roomListEl.innerHTML = `<div style="color:#888; font-size:12px; text-align:center; padding:20px;">暫無住客對話</div>`;
-            return;
-        }
-
-        keys.forEach(roomId => {
-            const isSel = (roomId === activeRoom) ? 'active' : '';
-            roomListEl.innerHTML += `<div class="room-item ${isSel}" onclick="selectRoom('${roomId}')">🚪 房號/姓氏: <strong>${roomId}</strong></div>`;
-        });
-    }
-
-    function selectRoom(roomId) {
-        activeRoom = roomId;
-        loadRooms();
-        renderActiveChat();
-    }
-
-    function renderActiveChat() {
-        const chatBox = document.getElementById('staffChatBox');
-        if (!activeRoom) {
-            chatBox.innerHTML = `<div style="color:#888; font-size:12px; text-align:center; margin-top:20px;">請從左側選擇一個房間對話</div>`;
-            return;
-        }
-        const chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
-        const messages = chatRooms[activeRoom] || [];
-        chatBox.innerHTML = '';
-        messages.forEach(msg => {
-            chatBox.innerHTML += `<div style="margin-bottom:6px;"><strong>${msg.sender}:</strong> ${msg.text} <span style="font-size:10px; color:#aaa;">(${msg.time})</span></div>`;
-        });
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    function staffSendMessage() {
-        const input = document.getElementById('staffChatInput');
-        if (!activeRoom || !input.value.trim()) return;
-        let chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
-        if (!chatRooms[activeRoom]) chatRooms[activeRoom] = [];
-        
-        chatRooms[activeRoom].push({ sender: "禮賓部 (Concierge)", text: input.value, time: new Date().toLocaleTimeString() });
-        localStorage.setItem('hotelChatRooms', JSON.stringify(chatRooms));
-        input.value = '';
-        renderActiveChat();
-    }
-
     function initDashboard() {
         renderStaffBusList();
-        loadRooms();
-        window.addEventListener('storage', () => {
-            loadRooms();
-            if (activeRoom) renderActiveChat();
-        });
     }
 </script>
 </body>
