@@ -106,21 +106,22 @@
     }
     function handleKeyPress(e) { if (e.key === 'Enter') checkPassword(); }
 
-    const rawBusData = [
-        { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
-        { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
-        { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
-        { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
-        { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
-        { id: 6, hotel: "13:00 - 14:00", isBreak: true },
-        { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
-        { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
-        { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
-        { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
-        { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
-        { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
-        { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
-    ];
+ // 完全對齊前台的班次資料與 ID
+const rawBusData = [
+    { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
+    { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
+    { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
+    { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
+    { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
+    { id: 6, hotel: "13:00", isBreak: true },
+    { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
+    { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
+    { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
+    { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
+    { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
+    { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
+    { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
+];
 
     function renderStaffBusList() {
         const container = document.getElementById('staffBusList');
@@ -129,16 +130,16 @@
         
         rawBusData.forEach(item => {
             if (item.isBreak) {
-                container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; text-align: center;">🍽️ ${item.hotel} : 午飯時間</div>`;
+                container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; text-align: center;">🍽️ ${item.hotel} : 午飯時間 (暫停服務)</div>`;
             } else {
-                const st = manualOverrides[item.id] || 'NORMAL';
+                const st = manualOverrides[item.id] || 'normal';
                 container.innerHTML += `
                     <div class="staff-bus-item"><div class="staff-bus-row">
                         <span>🕒 <strong>${item.hotel}</strong></span>
                         <div class="btn-group">
-                            <button class="staff-btn btn-normal ${st==='NORMAL'?'active':''}" onclick="setBusStatus(${item.id}, 'NORMAL')">正常</button>
-                            <button class="staff-btn btn-full ${st==='FULL'?'active':''}" onclick="setBusStatus(${item.id}, 'FULL')">滿座</button>
-                            <button class="staff-btn btn-out ${st==='OUT OF SVC'?'active':''}" onclick="setBusStatus(${item.id}, 'OUT OF SVC')">停駛</button>
+                            <button class="staff-btn btn-normal ${st==='normal'?'active':''}" onclick="setBusStatus(${item.id}, 'normal')">正常</button>
+                            <button class="staff-btn btn-full ${st==='full'?'active':''}" onclick="setBusStatus(${item.id}, 'full')">滿座</button>
+                            <button class="staff-btn btn-out ${st==='out'?'active':''}" onclick="setBusStatus(${item.id}, 'out')">停駛</button>
                         </div>
                     </div></div>`;
             }
@@ -147,13 +148,13 @@
 
     function setBusStatus(id, status) {
         let updates = { ...manualOverrides };
-        if (status === 'NORMAL') {
+        if (status === 'normal') {
             delete updates[id];
         } else {
-            updates[id] = status;
+            updates[id] = status; // 寫入 'full' 或 'out'，精準觸發前台判斷
         }
         
-        // 直接寫入 Firebase 雲端資料庫，兩端即時同步
+        // 直接寫入 Firebase 雲端資料庫
         db.ref('busManualOverrides').set(updates);
     }
 </script>
