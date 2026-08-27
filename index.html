@@ -162,7 +162,7 @@
     <script>
         // ==================== Firebase 配置 ====================
         const firebaseConfig = {
-            databaseURL: "https://silka-tsuen-wan-default-rtdb.asia-southeast1.firebasedatabase.app/"
+            databaseURL: "https://silkatw-a5cf1-default-rtdb.asia-southeast1.firebasedatabase.app/"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
@@ -468,7 +468,7 @@
             const d = t[currentLang];
             if (item.isBreak) return { text: d.lunchBreak, class: "badge-out" };
             
-            // 檢查是否有來自職員後台的手動覆蓋狀態（如 FULL 或 OUT OF SVC）
+            // 檢查是否有來自 Firebase 後台的手動覆蓋狀態
             const manualStatus = manualOverrides[item.id];
             if (manualStatus === 'FULL') {
                 return { text: d.stFull, class: "badge-full" };

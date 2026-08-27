@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>荃灣絲麗酒店 - 禮賓部員工後台</title>
+    
+    <!-- 引入 Firebase SDK (Compat 版本) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: #eef2f7; color: #333; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
@@ -64,7 +69,7 @@
     <div class="container" id="mainContainer">
         <div class="header">
             <h1>荃灣絲麗酒店 - 禮賓部員工後台</h1>
-            <p>Staff Management Console</p>
+            <p>Staff Management Console (Cloud Synced)</p>
         </div>
 
         <div class="section">
@@ -74,14 +79,27 @@
     </div>
 
 <script>
+    // ==================== Firebase 配置 ====================
+    const firebaseConfig = {
+        databaseURL: "https://silkatw-a5cf1-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     const CORRECT_PASSWORD = "Stw3824";
-    const busChannel = new BroadcastChannel('silka_bus_channel');
+    let manualOverrides = {};
+
+    // 監聽後台雲端狀態
+    db.ref('busManualOverrides').on('value', (snapshot) => {
+        manualOverrides = snapshot.val() || {};
+        renderStaffBusList();
+    });
 
     function checkPassword() {
         if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
             document.getElementById('loginOverlay').style.display = 'none';
             document.getElementById('mainContainer').style.display = 'block';
-            initDashboard();
+            renderStaffBusList();
         } else {
             document.getElementById('errorMsg').style.display = 'block';
         }
@@ -106,13 +124,14 @@
 
     function renderStaffBusList() {
         const container = document.getElementById('staffBusList');
+        if (!container) return;
         container.innerHTML = '';
-        const overrides = JSON.parse(localStorage.getItem('busManualOverrides') || '{}');
+        
         rawBusData.forEach(item => {
             if (item.isBreak) {
                 container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; text-align: center;">🍽️ ${item.hotel} : 午飯時間</div>`;
             } else {
-                const st = overrides[item.id] || 'NORMAL';
+                const st = manualOverrides[item.id] || 'NORMAL';
                 container.innerHTML += `
                     <div class="staff-bus-item"><div class="staff-bus-row">
                         <span>🕒 <strong>${item.hotel}</strong></span>
@@ -127,18 +146,15 @@
     }
 
     function setBusStatus(id, status) {
-        let overrides = JSON.parse(localStorage.getItem('busManualOverrides') || '{}');
-        if (status === 'NORMAL') delete overrides[id]; else overrides[id] = status;
-        localStorage.setItem('busManualOverrides', JSON.stringify(overrides));
+        let updates = { ...manualOverrides };
+        if (status === 'NORMAL') {
+            delete updates[id];
+        } else {
+            updates[id] = status;
+        }
         
-        // 即時透過 BroadcastChannel 通知住客端更新
-        busChannel.postMessage({ type: 'UPDATE_BUS', overrides });
-        
-        renderStaffBusList();
-    }
-
-    function initDashboard() {
-        renderStaffBusList();
+        // 直接寫入 Firebase 雲端資料庫，兩端即時同步
+        db.ref('busManualOverrides').set(updates);
     }
 </script>
 </body>
