@@ -27,6 +27,13 @@
         .back-btn:hover { background: #5a6268; }
         .notice-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 15px; border-radius: 4px; font-size: 13px; line-height: 1.5; }
         
+        /* 專車收費表格樣式 */
+        .price-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e9ecef; }
+        .price-table th, .price-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .price-table th { background: #007bff; color: white; font-weight: bold; }
+        .price-table tr:last-child td { border-bottom: none; }
+        .price-table tr:nth-child(even) { background: #f8f9fa; }
+        
         /* 即時行車狀況大卡片樣式 */
         .live-status-card { background: linear-gradient(135deg, #e3f2fd, #f0f4f8); border: 1.5px solid #90caf9; padding: 12px 15px; border-radius: 10px; margin-bottom: 15px; text-align: center; box-shadow: 0 2px 8px rgba(0,123,255,0.08); }
         .live-status-title { font-size: 12px; color: #1565c0; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -179,50 +186,50 @@
             </div>
         </div>
 
-        <!-- 6. 出境攻略頁面 (已更新為 8 個方塊) -->
+        <!-- 6. 出境攻略頁面 -->
         <div id="departureSection" class="section-content">
             <button class="back-btn" id="ui-back7" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-departure-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">出境攻略</h3>
             <div class="menu-grid">
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🚆</div>
-                    <h3>羅湖口岸</h3>
-                    <p>早上 06:30 至午夜 00:00</p>
+                    <h3 id="ui-dep-1-title">羅湖口岸</h3>
+                    <p id="ui-dep-1-desc">早上 06:30 至午夜 00:00</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🚇</div>
-                    <h3>落馬洲/福田口岸</h3>
-                    <p>上午 06:30 至晚上 10:30</p>
+                    <h3 id="ui-dep-2-title">落馬洲/福田口岸</h3>
+                    <p id="ui-dep-2-desc">上午 06:30 至晚上 10:30</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">✈️</div>
-                    <h3>香港國際機場</h3>
-                    <p>24小時</p>
+                    <h3 id="ui-dep-3-title">香港國際機場</h3>
+                    <p id="ui-dep-3-desc">24小時</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🚄</div>
-                    <h3>香港西九龍站</h3>
-                    <p>上午 06:30 至晚上 11:30</p>
+                    <h3 id="ui-dep-4-title">香港西九龍站</h3>
+                    <p id="ui-dep-4-desc">上午 06:30 至晚上 11:30</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🚌</div>
-                    <h3>深圳灣口岸</h3>
-                    <p>上午 06:30 至午夜 12:00</p>
+                    <h3 id="ui-dep-5-title">深圳灣口岸</h3>
+                    <p id="ui-dep-5-desc">上午 06:30 至午夜 12:00</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🌉</div>
-                    <h3>香園圍/蓮塘口岸</h3>
-                    <p>上午 07:00 至晚上 10:00</p>
+                    <h3 id="ui-dep-6-title">香園圍/蓮塘口岸</h3>
+                    <p id="ui-dep-6-desc">上午 07:00 至晚上 10:00</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🛣️</div>
-                    <h3>港珠澳大橋</h3>
-                    <p>24小時</p>
+                    <h3 id="ui-dep-7-title">港珠澳大橋</h3>
+                    <p id="ui-dep-7-desc">24小時</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">⛴️</div>
-                    <h3>港澳客輪碼頭</h3>
-                    <p>上午 06:30 至午夜 12:00</p>
+                    <h3 id="ui-dep-8-title">港澳客輪碼頭</h3>
+                    <p id="ui-dep-8-desc">上午 06:30 至午夜 12:00</p>
                 </div>
             </div>
         </div>
@@ -231,8 +238,75 @@
         <div id="carSection" class="section-content">
             <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-car-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車服務</h3>
+            <div class="menu-grid">
+                <div class="menu-card" onclick="showSection('carPriceSection')">
+                    <div class="icon">💰</div>
+                    <h3 id="ui-car-card1-title">服務收費表</h3>
+                    <p id="ui-car-card1-desc">各路線點對點接送與包車收費</p>
+                </div>
+                <div class="menu-card" onclick="showSection('carTermsSection')">
+                    <div class="icon">📜</div>
+                    <h3 id="ui-car-card2-title">使用條款及細則</h3>
+                    <p id="ui-car-card2-desc">預約、取消與乘車須知</p>
+                </div>
+            </div>
+            <!-- 已加入的提示句 -->
+            <div id="ui-car-notice-box" style="margin-top: 20px; font-size: 13px; color: #555; background: #e8f4fd; padding: 12px; border-radius: 8px; border-left: 4px solid #007bff; line-height: 1.5;">
+                若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。
+            </div>
+        </div>
+
+        <!-- 7.1 酒店專車服務 - 服務收費表子頁面 -->
+        <div id="carPriceSection" class="section-content">
+            <button class="back-btn" id="ui-back-carprice" onclick="showSection('carSection')">⬅ 返回專車服務</button>
+            <h3 id="ui-carprice-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 服務收費表</h3>
+            
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th id="ui-th-dest">目的地 / 服務項目</th>
+                        <th id="ui-th-price">收費 (HKD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="ui-p-mongkok">由酒店出發到旺角</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td id="ui-p-chinachem">由酒店出發到中港城 / 高鐵站</td>
+                        <td>$400</td>
+                    </tr>
+                    <tr>
+                        <td id="ui-p-airport">由酒店出發到機場、迪士尼、港珠澳大橋</td>
+                        <td>$500</td>
+                    </tr>
+                    <tr>
+                        <td id="ui-p-oceanpark">由酒店出發到海洋公園</td>
+                        <td>$750</td>
+                    </tr>
+                    <tr>
+                        <td id="ui-p-surcharge">早上 8 點前 / 晚上 8 點後 附加費</td>
+                        <td>$200</td>
+                    </tr>
+                    <tr>
+                        <td id="ui-p-hourly">租用服務 (每小時，3小時起租)</td>
+                        <td>$500 / 小時</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div id="ui-carprice-note" style="font-size: 12px; color: #666; line-height: 1.5; background: #f8f9fa; padding: 10px; border-radius: 6px;">
+                💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。
+            </div>
+        </div>
+
+        <!-- 7.2 酒店專車服務 - 使用條款及細則子頁面 -->
+        <div id="carTermsSection" class="section-content">
+            <button class="back-btn" id="ui-back-carterms" onclick="showSection('carSection')">⬅ 返回專車服務</button>
+            <h3 id="ui-carterms-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 使用條款及細則</h3>
             <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增點對點接送與包車預約詳情。</p>
+                <p>🚧 內容準備中，稍后將在此處新增專車服務使用條款及細則。</p>
             </div>
         </div>
 
@@ -254,13 +328,11 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // 存儲由 Firebase 同步過來的手動覆蓋狀態
         let manualOverrides = {};
 
-        // 即時監聽 Firebase 數據庫中職員對巴士狀態的修改
         db.ref('busManualOverrides').on('value', (snapshot) => {
             manualOverrides = snapshot.val() || {};
-            renderBusSchedule(); // 當有更新時即時重繪時間表
+            renderBusSchedule();
         });
 
         let currentLang = 'zh-HK';
@@ -276,6 +348,27 @@
                 c7t: "✈️ 出境攻略", c7d: "離港交通與機場快線資訊",
                 c8t: "🚐 酒店專車服務", c8d: "點對點接送與包車預約",
                 c9t: "🏨 酒店設施", c9d: "健身房、餐廳與其他設施",
+                dep1Name: "羅湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
+                dep2Name: "落馬洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
+                dep3Name: "香港國際機場", dep3Desc: "24小時",
+                dep4Name: "香港西九龍站", dep4Desc: "上午 06:30 至晚上 11:30",
+                dep5Name: "深圳灣口岸", dep5Desc: "上午 06:30 至午夜 12:00",
+                dep6Name: "香園圍/蓮塘口岸", dep6Desc: "上午 07:00 至晚上 10:00",
+                dep7Name: "港珠澳大橋", dep7Desc: "24小時",
+                dep8Name: "港澳客輪碼頭", dep8Desc: "上午 06:30 至午夜 12:00",
+                carCard1T: "服務收費表", carCard1D: "各路線點對點接送與包車收費",
+                carCard2T: "使用條款及細則", carCard2D: "預約、取消與乘車須知",
+                carNoticeBox: "若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。",
+                carPriceH: "酒店專車 - 服務收費表",
+                carTermsH: "酒店專車 - 使用條款及細則",
+                thDest: "目的地 / 服務項目", thPrice: "收費 (HKD)",
+                pMongkok: "由酒店出發到旺角",
+                pChinachem: "由酒店出發到中港城 / 高鐵站",
+                pAirport: "由酒店出發到機場、迪士尼、港珠澳大橋",
+                pOceanpark: "由酒店出發到海洋公園",
+                pSurcharge: "早上 8 點前 / 晚上 8 點後 附加費",
+                pHourly: "租用服務 (每小時，3小時起租)",
+                carPriceNote: "💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。",
                 back: "⬅ 返回主選單",
                 busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
                 stationH: "免費穿梭巴士上車地點",
@@ -305,6 +398,27 @@
                 c7t: "✈️ 出境攻略", c7d: "离港交通与机场快线资讯",
                 c8t: "🚐 酒店专车服务", c8d: "点对点接送与包车预约",
                 c9t: "🏨 酒店设施", c9d: "健身房、餐厅与其他设施",
+                dep1Name: "罗湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
+                dep2Name: "落马洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
+                dep3Name: "香港国际机场", dep3Desc: "24小时",
+                dep4Name: "香港西九龙站", dep4Desc: "上午 06:30 至晚上 11:30",
+                dep5Name: "深圳湾口岸", dep5Desc: "上午 06:30 至午夜 12:00",
+                dep6Name: "香园围/莲塘口岸", dep6Desc: "上午 07:00 至晚上 10:00",
+                dep7Name: "港珠澳大桥", dep7Desc: "24小时",
+                dep8Name: "港澳客轮码头", dep8Desc: "上午 06:30 至午夜 12:00",
+                carCard1T: "服务收费表", carCard1D: "各路线点对点接送与包车收费",
+                carCard2T: "使用条款及细则", carCard2D: "预约、取消与乘车须知",
+                carNoticeBox: "若您需要任何协助、查询或使用此服务，恳请莅临礼宾部柜台，或致电 3700 3824，我们将竭诚为您服务。",
+                carPriceH: "酒店专车 - 服务收费表",
+                carTermsH: "酒店专车 - 使用条款及细则",
+                thDest: "目的地 / 服务项目", thPrice: "收费 (HKD)",
+                pMongkok: "由酒店出发到旺角",
+                pChinachem: "由酒店出发到中港城 / 高铁站",
+                pAirport: "由酒店出发到机场、迪士尼、港珠澳大桥",
+                pOceanpark: "由酒店出发到海洋公园",
+                pSurcharge: "早上 8 点前 / 晚上 8 点后 附加费",
+                pHourly: "租用服务 (每小时，3小时起租)",
+                carPriceNote: "💡 <strong>备注：</strong>以上收费适用于点对点接送服务。如需超时或更改行程，请向礼宾部查询。",
                 back: "⬅ 返回主菜单",
                 busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
                 stationH: "免费穿梭巴士上车地点",
@@ -320,7 +434,7 @@
                 noticeWeatherTitle: "恶劣天气安排", noticeWeatherDesc: "若天文台发出黑色暴雨或八号或以上热带气旋信号, 穿梭巴士将暂停服务",
                 mapH: "酒店300米周边实用指南",
                 lugH: "行李寄存服务", 
-                lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理条款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、损毁或被盗</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
+                lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理条款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、损毀或被盜</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
                 stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务"
             },
@@ -334,6 +448,27 @@
                 c7t: "✈️ Departure Guide", c7d: "Airport transport & Express info",
                 c8t: "🚐 Hotel Limousine Service", c8d: "Point-to-point & charter booking",
                 c9t: "🏨 Hotel Facilities", c9d: "Gym, dining & other amenities",
+                dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 to 00:00 Midnight",
+                dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 to 22:30",
+                dep3Name: "Hong Kong International Airport", dep3Desc: "24 Hours",
+                dep4Name: "Hong Kong West Kowloon Station", dep4Desc: "06:30 to 23:30",
+                dep5Name: "Shenzhen Bay Port", dep5Desc: "06:30 to 00:00 Midnight",
+                dep6Name: "Heung Yuen Wai / Liantang Port", dep6Desc: "07:00 to 22:30",
+                dep7Name: "Hong Kong-Zhuhai-Macao Bridge", dep7Desc: "24 Hours",
+                dep8Name: "Macau Ferry Terminal", dep8Desc: "06:30 to 00:00 Midnight",
+                carCard1T: "Service Rates", carCard1D: "Point-to-point & charter pricing",
+                carCard2T: "Terms & Conditions", carCard2D: "Booking, cancellation & policies",
+                carNoticeBox: "If you need any assistance, inquiries, or wish to use this service, please visit the Concierge desk or call 3700 3824. We are at your service.",
+                carPriceH: "Hotel Limousine - Service Rates",
+                carTermsH: "Hotel Limousine - Terms & Conditions",
+                thDest: "Destination / Service", thPrice: "Price (HKD)",
+                pMongkok: "From Hotel to Mong Kok",
+                pChinachem: "From Hotel to China Hong Kong City / High Speed Rail Station",
+                pAirport: "From Hotel to Airport, Disneyland, HK-Zhuhai-Macao Bridge",
+                pOceanpark: "From Hotel to Ocean Park",
+                pSurcharge: "Surcharge before 8:00 AM / after 8:00 PM",
+                pHourly: "Hourly Rental (Min. 3 hours)",
+                carPriceNote: "💡 <strong>Note:</strong> The above rates apply to point-to-point transfer services. For overtime or itinerary changes, please consult the Concierge.",
                 back: "⬅ Back to Menu",
                 busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
                 stationH: "Free Shuttle Bus Boarding Locations",
@@ -363,6 +498,27 @@
                 c7t: "✈️ 出国・空港ガイド", c7d: "空港アクセスと交通情報",
                 c8t: "🚐 ホテル送迎サービス", c8d: "送迎およびチャーター予約",
                 c9t: "🏨 ホテル施設", c9d: "ジム、レストラン、その他施設",
+                dep1Name: "羅湖イミグレーション", dep1Desc: "午前 06:30 ～ 深夜 00:00",
+                dep2Name: "落馬洲 / 福田口岸", dep2Desc: "午前 06:30 ～ 午後 10:30",
+                dep3Name: "香港国際空港", dep3Desc: "24時間",
+                dep4Name: "香港西九龍駅", dep4Desc: "午前 06:30 ～ 午後 11:30",
+                dep5Name: "深圳湾イミグレーション", dep5Desc: "午前 06:30 ～ 深夜 12:00",
+                dep6Name: "香園囲 / 蓮塘口岸", dep6Desc: "午前 07:00 ～ 午後 10:30",
+                dep7Name: "港珠澳大橋", dep7Desc: "24時間",
+                dep8Name: "マカオフェリーターミナル", dep8Desc: "午前 06:30 ～ 深夜 12:00",
+                carCard1T: "料金表", carCard1D: "送迎およびチャーター料金",
+                carCard2T: "利用規約", carCard2D: "予約、キャンセル、ご利用案内",
+                carNoticeBox: "ご不明な点やサービスのご利用については、コンシェルジュカウンター（内線3700 3824）までお気軽にお問い合わせください。",
+                carPriceH: "ホテル送迎 - 料金表",
+                carTermsH: "ホテル送迎 - 利用規約",
+                thDest: "目的地 / サービス", thPrice: "料金 (HKD)",
+                pMongkok: "ホテルから旺角（モンコク）まで",
+                pChinachem: "ホテルから中港城 / 高速鉄道駅まで",
+                pAirport: "ホテルから空港、ディズニーランド、港珠澳大橋まで",
+                pOceanpark: "ホテルからオーシャンパークまで",
+                pSurcharge: "午前8時前 / 午後8時以降の追加料金",
+                pHourly: "時間貸し（1時間あたり、最低3時間から）",
+                carPriceNote: "💡 <strong>備考：</strong>上記の料金はポイント・ツー・ポイントの送迎に適用されます。時間延長や行程変更についてはコンシェルジュにお問い合わせください。",
                 back: "⬅ メニューに戻る",
                 busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
                 stationH: "無料シャトルバス乗降場所",
@@ -392,6 +548,27 @@
                 c7t: "✈️ 출국 공항 가이드", c7d: "공항 교통 및 익스프레스 정보",
                 c8t: "🚐 호텔 차량 서비스", c8d: "공항/시내 픽업 및 대절 예약",
                 c9t: "🏨 호텔 부대시설", c9d: "피트니스, 레스토랑 및 편의시설",
+                dep1Name: "로후 검문소", dep1Desc: "오전 06:30 ~ 자정 00:00",
+                dep2Name: "낙마주 / 휜티안", dep2Desc: "오전 06:30 ~ 오후 10:30",
+                dep3Name: "홍콩 국제공항", dep3Desc: "24시간",
+                dep4Name: "홍콩 서구룡역", dep4Desc: "오전 06:30 ~ 오후 11:30",
+                dep5Name: "선전 만 검문소", dep5Desc: "오전 06:30 ~ 자정 12:00",
+                dep6Name: "향원위 / 롄탕", dep6Desc: "오전 07:00 ~ 오후 10:30",
+                dep7Name: "강주아오 대교", dep7Desc: "24시간",
+                dep8Name: "마카오 페리 터미널", dep8Desc: "오전 06:30 ~ 자정 12:00",
+                carCard1T: "서비스 요금표", carCard1D: "구간별 픽업 및 대절 요금",
+                carCard2T: "이용 약관", carCard2D: "예약, 취소 및 탑승 안내",
+                carNoticeBox: "도움이나 문의 사항이 있으시거나 이 서비스를 이용하시려면 컨시어지 데스크를 방문하시거나 3700 3824로 연락해 주시기 바랍니다.",
+                carPriceH: "호텔 차량 - 서비스 요금표",
+                carTermsH: "호텔 차량 - 이용 약관",
+                thDest: "목적지 / 서비스 항목", thPrice: "요금 (HKD)",
+                pMongkok: "호텔에서 몽콕까지",
+                pChinachem: "호텔에서 차이나홍콩시티 / 고속철도역까지",
+                pAirport: "호텔에서 공항, 디즈니랜드, 강주아오 대교까지",
+                pOceanpark: "호텔에서 오션파크까지",
+                pSurcharge: "오전 8시 이전 / 오후 8시 이후 할증료",
+                pHourly: "시간제 대여 (시간당, 최소 3시간)",
+                carPriceNote: "💡 <strong>참고:</strong> 위 요금은 포인트 투 포인트 픽업 서비스에 적용됩니다. 초과 시간이나 일정 변경은 컨시어지에 문의해 주세요.",
                 back: "⬅ 메뉴로 돌아가기",
                 busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
                 stationH: "무료 셔틀버스 승하차 장소",
@@ -421,6 +598,27 @@
                 c7t: "✈️ Hướng dẫn xuất cảnh", c7d: "Giao thông sân bay & Airport Express",
                 c8t: "🚐 Dịch vụ xe riêng", c8d: "Đưa đón sân bay & thuê xe",
                 c9t: "🏨 Tiện ích khách sạn", c9d: "Phòng gym, nhà hàng & tiện ích",
+                dep1Name: "Trạm kiểm soát La Hồ", dep1Desc: "06:30 đến 00:00 Đêm",
+                dep2Name: "Lok Ma Chau / Cảng Phúc Điền", dep2Desc: "06:30 đến 22:30",
+                dep3Name: "Sân bay Quốc tế Hồng Kông", dep3Desc: "24 Giờ",
+                dep4Name: "Ga Tây Cử Long Hồng Kông", dep4Desc: "06:30 đến 23:30",
+                dep5Name: "Cảng Thâm Quyến Bay", dep5Desc: "06:30 đến 00:00 Đêm",
+                dep6Name: "Heung Yuen Wai / Cảng Liantang", dep6Desc: "07:00 đến 22:30",
+                dep7Name: "Cầu Hồng Kông - Chu Hải - Ma Cao", dep7Desc: "24 Giờ",
+                dep8Name: "Bến phà Ma Cao", dep8Desc: "06:30 đến 00:00 Đêm",
+                carCard1T: "Bảng giá dịch vụ", carCard1D: "Giá đưa đón và thuê xe trọn gói",
+                carCard2T: "Điều khoản & Điều kiện", carCard2D: "Quy định đặt xe, hủy xe và lưu ý",
+                carNoticeBox: "Nếu quý khách cần hỗ trợ, giải đáp thắc mắc hoặc sử dụng dịch vụ này, vui lòng đến quầy lễ tân hoặc gọi 3700 3824, chúng tôi rất hân hạnh được phục vụ.",
+                carPriceH: "Xe riêng - Bảng giá dịch vụ",
+                carTermsH: "Xe riêng - Điều khoản & Điều kiện",
+                thDest: "Điểm đến / Dịch vụ", thPrice: "Giá (HKD)",
+                pMongkok: "Từ khách sạn đến Mong Kok",
+                pChinachem: "Từ khách sạn đến China Hong Kong City / Ga Tàu cao tốc",
+                pAirport: "Từ khách sạn đến Sân bay, Disneyland, Cầu Hô Trương Môn",
+                pOceanpark: "Từ khách sạn đến Ocean Park",
+                pSurcharge: "Phụ phí trước 8:00 sáng / sau 8:00 tối",
+                pHourly: "Thuê theo giờ (Tối thiểu 3 tiếng)",
+                carPriceNote: "💡 <strong>Lưu ý:</strong> Mức giá trên áp dụng cho dịch vụ đưa đón điểm-đến-điểm. Nếu cần quá giờ hoặc thay đổi lịch trình, vui lòng liên hệ lễ tân.",
                 back: "⬅ Quay lại Menu",
                 busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
                 stationH: "Điểm đón xe buýt miễn phí",
@@ -450,6 +648,27 @@
                 c7t: "✈️ प्रस्थान गाइड", c7d: "हवाई अड्डा परिवहन और एक्सप्रेस जानकारी",
                 c8t: "🚐 होटल कार सेवा", c8d: "पॉइंट-टू-पॉइंट और चार्टर बुकिंग",
                 c9t: "🏨 होटल सुविधाएं", c9d: "जिम, डाइनिंग और अन्य सुविधाएं",
+                dep1Name: "लो वू चेकपॉइंट", dep1Desc: "सुबह 06:30 से मध्यरात्रि 00:00",
+                dep2Name: "लोक मा चाउ / फुतियान", dep2Desc: "सुबह 06:30 से रात 10:30",
+                dep3Name: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा", dep3Desc: "24 घंटे",
+                dep4Name: "हांगकांग वेस्ट कॉवloon स्टेशन", dep4Desc: "सुबह 06:30 से रात 11:30",
+                dep5Name: "शेन्ज़ेन बे पोर्ट", dep5Desc: "सुबह 06:30 से मध्यरात्रि 12:00",
+                dep6Name: "हेउंग युएन वाई / लियान्तांग पोर्ट", dep6Desc: "सुबह 07:00 से रात 10:30",
+                dep7Name: "हांगकांग-झुहाई-मकाऊ ब्रिज", dep7Desc: "24 घंटे",
+                dep8Name: "मकाऊ फेरी टर्मिनल", dep8Desc: "सुबह 06:30 से मध्यरात्रि 12:00",
+                carCard1T: "सेवा शुल्क तालिका", carCard1D: "पॉइंट-टू-पॉइंट और चार्टर मूल्य निर्धारण",
+                carCard2T: "नियम एवं शर्तें", carCard2D: "बुकिंग, रद्दीकरण और नीतियां",
+                carNoticeBox: "यदि आपको किसी सहायता, पूछताछ या इस सेवा का उपयोग करने की आवश्यकता है, तो कृपया कंसर्ज डेस्क पर आएं या 3700 3824 पर कॉल करें।",
+                carPriceH: "होटल कार - सेवा शुल्क तालिका",
+                carTermsH: "होटल कार - नियम एवं शर्तें",
+                thDest: "गंतव्य / सेवा", thPrice: "शुल्क (HKD)",
+                pMongkok: "होटल से मोंग कोक",
+                pChinachem: "होटल से चाइना हांगकांग सिटी / हाई स्पीड रेल स्टेशन",
+                pAirport: "होटल से हवाई अड्डा, डिज्नीलैंड, हांगकांग-झुहाई-मकाऊ ब्रिज",
+                pOceanpark: "होटल से ओशन पार्क",
+                pSurcharge: "सुबह 8 बजे से पहले / रात 8 बजे के बाद अतिरिक्त शुल्क",
+                pHourly: "प्रति घंटा किराया (न्यूनतम 3 घंटे)",
+                carPriceNote: "💡 <strong>नोट:</strong> उपर्युक्त शुल्क पॉइंट-टू-पॉइंट ट्रांसफर सेवाओं पर लागू होते हैं। ओवरटाइम या यात्रा कार्यक्रम में बदलाव के लिए कृपया कंसर्ज से संपर्क करें।",
                 back: "⬅ मेनू पर वापस जाएं",
                 busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएन वान वेस्ट",
                 stationH: "मुफ्त शटल बस बोर्डिंग स्थान",
@@ -479,6 +698,27 @@
                 c7t: "✈️ Gabay sa Pag-alis", c7d: "Transportasyon sa paliparan at Airport Express",
                 c8t: "🚐 Serbisyo ng Kotse sa Hotel", c8d: "Point-to-point at booking ng sasakyan",
                 c9t: "🏨 Mga Pasilidad ng Hotel", c9d: "Gym, kainan at iba pa",
+                dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 hanggang 00:00 Hatinggabi",
+                dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 hanggang 22:30",
+                dep3Name: "Hong Kong International Airport", dep3Desc: "24 Oras",
+                dep4Name: "Hong Kong West Kowloon Station", dep4Desc: "06:30 hanggang 23:30",
+                dep5Name: "Shenzhen Bay Port", dep5Desc: "06:30 hanggang 00:00 Hatinggabi",
+                dep6Name: "Heung Yuen Wai / Liantang Port", dep6Desc: "07:00 hanggang 22:30",
+                dep7Name: "Hong Kong-Zhuhai-Macao Bridge", dep7Desc: "24 Oras",
+                dep8Name: "Macau Ferry Terminal", dep8Desc: "06:30 hanggang 00:00 Hatinggabi",
+                carCard1T: "Talaan ng Singilin", carCard1D: "Presyo ng point-to-point at charter",
+                carCard2T: "Mga Tuntunin at Kundisyon", carCard2D: "Pag-book, pagkansela at patakaran",
+                carNoticeBox: "Kung kailangan ninyo ng tulong, tanong, o nais gamitin ang serbisyong ito, mangyaring magtungo sa Concierge desk o tumawag sa 3700 3824.",
+                carPriceH: "Kotse sa Hotel - Talaan ng Singilin",
+                carTermsH: "Kotse sa Hotel - Mga Tuntunin at Kundisyon",
+                thDest: "Destinasyon / Serbisyo", thPrice: "Singil (HKD)",
+                pMongkok: "Mula Hotel hanggang Mong Kok",
+                pChinachem: "Mula Hotel hanggang China Hong Kong City / High Speed Rail Station",
+                pAirport: "Mula Hotel hanggang Airport, Disneyland, HK-Zhuhai-Macao Bridge",
+                pOceanpark: "Mula Hotel hanggang Ocean Park",
+                pSurcharge: "Karagdagang bayad bago mag-8:00 AM / pagkatapos ng 8:00 PM",
+                pHourly: "Pag-upa kada oras (Minimum na 3 oras)",
+                carPriceNote: "💡 <strong>Tandaan:</strong> Ang mga singil na ito ay para sa point-to-point transfer. Para sa overtime o pagbabago sa itinerary, mangyaring kumunsulta sa Concierge.",
                 back: "⬅ Bumalik sa Menu",
                 busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai FongMTR) ➔ Tsuen Wan West MTR",
                 stationH: "Sakayan ng Libreng Shuttle Bus",
@@ -528,6 +768,20 @@
             document.getElementById('ui-card9-title').innerText = d.c9t;
             document.getElementById('ui-card9-desc').innerText = d.c9d;
 
+            // 更新出境攻略8個口岸的標題與描述
+            for (let i = 1; i <= 8; i++) {
+                const titleEl = document.getElementById(`ui-dep-${i}-title`);
+                const descEl = document.getElementById(`ui-dep-${i}-desc`);
+                if (titleEl) titleEl.innerText = d[`dep${i}Name`];
+                if (descEl) descEl.innerText = d[`dep${i}Desc`];
+            }
+
+            document.getElementById('ui-car-card1-title').innerText = d.carCard1T;
+            document.getElementById('ui-car-card1-desc').innerText = d.carCard1D;
+            document.getElementById('ui-car-card2-title').innerText = d.carCard2T;
+            document.getElementById('ui-car-card2-desc').innerText = d.carCard2D;
+            document.getElementById('ui-car-notice-box').innerText = d.carNoticeBox;
+
             document.getElementById('ui-back1').innerText = d.back;
             document.getElementById('ui-back2').innerText = d.back;
             document.getElementById('ui-back3').innerText = d.back;
@@ -536,6 +790,8 @@
             document.getElementById('ui-back7').innerText = d.back;
             document.getElementById('ui-back8').innerText = d.back;
             document.getElementById('ui-back9').innerText = d.back;
+            document.getElementById('ui-back-carprice').innerText = d.back;
+            document.getElementById('ui-back-carterms').innerText = d.back;
 
             document.getElementById('ui-bus-header').innerText = d.busH;
             document.getElementById('ui-bus-sub').innerText = d.busSub;
@@ -543,8 +799,21 @@
             document.getElementById('ui-guide-header').innerText = d.guideH;
             document.getElementById('ui-departure-header').innerText = d.departureH;
             document.getElementById('ui-car-header').innerText = d.carH;
+            document.getElementById('ui-carprice-header').innerText = d.carPriceH;
+            document.getElementById('ui-carterms-header').innerText = d.carTermsH;
             document.getElementById('ui-facility-header').innerText = d.facilityH;
             
+            // 專車收費表內部文字多語言綁定
+            document.getElementById('ui-th-dest').innerText = d.thDest;
+            document.getElementById('ui-th-price').innerText = d.thPrice;
+            document.getElementById('ui-p-mongkok').innerText = d.pMongkok;
+            document.getElementById('ui-p-chinachem').innerText = d.pChinachem;
+            document.getElementById('ui-p-airport').innerText = d.pAirport;
+            document.getElementById('ui-p-oceanpark').innerText = d.pOceanpark;
+            document.getElementById('ui-p-surcharge').innerText = d.pSurcharge;
+            document.getElementById('ui-p-hourly').innerText = d.pHourly;
+            document.getElementById('ui-carprice-note').innerHTML = d.carPriceNote;
+
             document.getElementById('ui-live-status-label').innerText = d.liveStatusLabel;
 
             document.getElementById('ui-notice-tel-title').innerText = d.noticeTelTitle;
@@ -613,7 +882,6 @@
             const d = t[currentLang];
             if (item.isBreak) return { text: d.lunchBreak, class: "badge-out" };
             
-            // 檢查是否有來自 Firebase 後台的手動覆蓋狀態
             const manualStatus = manualOverrides[item.id];
             if (manualStatus === 'FULL') {
                 return { text: d.stFull, class: "badge-full" };
@@ -621,7 +889,6 @@
                 return { text: d.stOut, class: "badge-out" };
             }
 
-            // 否則按照原本的時間自動計算狀態
             const now = new Date();
             const [h, m] = item.hotel.split(':').map(Number);
             const busTime = new Date();
