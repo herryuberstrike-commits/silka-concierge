@@ -208,22 +208,22 @@
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🏬</div>
                     <h3 id="ui-gshop-1-title">海港城</h3>
-                    <p id="ui-gshop-1-desc">維港畔超大型购物商城与国际名品</p>
+                    <p id="ui-gshop-1-desc">維港畔超大型購物商城與國際名品</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🛍️</div>
                     <h3 id="ui-gshop-2-title">銅鑼灣購物商圈</h3>
-                    <p id="ui-gshop-2-desc">潮流百货、SOGO崇光与不夜天购物天堂</p>
+                    <p id="ui-gshop-2-desc">潮流百貨、SOGO崇光與不夜天購物天堂</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">🎨</div>
                     <h3 id="ui-gshop-3-title">中環蘇豪區與 PMQ元創方</h3>
-                    <p id="ui-gshop-3-desc">文创小店、独立设计与特色精品</p>
+                    <p id="ui-gshop-3-desc">文創小店、獨立設計與特色精品</p>
                 </div>
                 <div class="menu-card" style="cursor: default;">
                     <div class="icon">👟</div>
                     <h3 id="ui-gshop-4-title">女人街與波鞋街</h3>
-                    <p id="ui-gshop-4-desc">地道市集、潮流球鞋与港式市井风情</p>
+                    <p id="ui-gshop-4-desc">地道市集、潮流球鞋與港式市井風情</p>
                 </div>
             </div>
         </div>
@@ -427,16 +427,72 @@
             </div>
         </div>
 
-        <!-- 酒店設施頁面 -->
+        <!-- 酒店設施主頁面 -->
         <div id="facilitySection" class="section-content">
             <button class="back-btn" id="ui-back9" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-facility-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店設施</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增健身房、餐廳及其他酒店設施介紹。</p>
+            
+            <div class="menu-grid">
+                <div class="menu-card" onclick="showSection('fac1Section')">
+                    <div class="icon">🍽️</div>
+                    <h3 id="ui-fac-1-title">金林閣餐廳</h3>
+                    <p id="ui-fac-1-desc">(2樓)</p>
+                </div>
+                <div class="menu-card" onclick="showSection('fac2Section')">
+                    <div class="icon">🌿</div>
+                    <h3 id="ui-fac-2-title">空中花園</h3>
+                    <p id="ui-fac-2-desc">(5樓)</p>
+                </div>
+                <div class="menu-card" onclick="showSection('fac3Section')">
+                    <div class="icon">🏋️</div>
+                    <h3 id="ui-fac-3-title">健身室</h3>
+                    <p id="ui-fac-3-desc">(5樓)</p>
+                </div>
+                <div class="menu-card" onclick="showSection('fac4Section')">
+                    <div class="icon">🅿️</div>
+                    <h3 id="ui-fac-4-title">停車場</h3>
+                    <p id="ui-fac-4-desc">(地面)</p>
+                </div>
             </div>
         </div>
-    </div>
 
+        <!-- 酒店設施 -> 1. 金林閣餐廳 子頁面 -->
+        <div id="fac1Section" class="section-content">
+            <button class="back-btn" id="ui-back-fac1" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
+            <h3 id="ui-fac1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">金林閣餐廳 (2樓)</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增金林閣餐廳詳情。</p>
+            </div>
+        </div>
+
+        <!-- 酒店設施 -> 2. 空中花園 子頁面 -->
+        <div id="fac2Section" class="section-content">
+            <button class="back-btn" id="ui-back-fac2" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
+            <h3 id="ui-fac2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">空中花園 (5樓)</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增空中花園詳情。</p>
+            </div>
+        </div>
+
+        <!-- 酒店設施 -> 3. 健身室 子頁面 -->
+        <div id="fac3Section" class="section-content">
+            <button class="back-btn" id="ui-back-fac3" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
+            <h3 id="ui-fac3-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">健身室 (5樓)</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增健身室詳情。</p>
+            </div>
+        </div>
+
+        <!-- 酒店設施 -> 4. 停車場 子頁面 -->
+        <div id="fac4Section" class="section-content">
+            <button class="back-btn" id="ui-back-fac4" onclick="showSection('facilitySection')">⬅ 返回酒店設施</button>
+            <h3 id="ui-fac4-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">停車場 (地面)</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增停車場詳情。</p>
+            </div>
+        </div>
+
+    </div>
     <script>
         // ==================== Firebase 配置 ====================
         const firebaseConfig = {
@@ -471,7 +527,6 @@
                 guide4Name: "觀光", guide4Desc: "著名地標與打卡勝地",
                 guide5Name: "推薦行程1", guide5Desc: "經典一日遊路線",
                 guide6Name: "推薦行程2", guide6Desc: "深度文化探索之旅",
-                // 新增購物 4 個商圈的多語言翻譯 (繁中)
                 gshop1Name: "海港城", gshop1Desc: "維港畔超大型購物商場與國際名品",
                 gshop2Name: "銅鑼灣購物商圈", gshop2Desc: "潮流百貨、SOGO崇光與不夜天購物天堂",
                 gshop3Name: "中環蘇豪區與 PMQ元創方", gshop3Desc: "文創小店、獨立設計與特色精品",
@@ -484,6 +539,15 @@
                 gs2Name: "太平山頂與凌霄閣摩天台", gs2Desc: "鳥瞰維港兩岸壯麗全景",
                 gs3Name: "西九文化區（M+ 與香港故宮）", gs3Desc: "當代視覺文化與中華文物殿堂",
                 gs4Name: "大館與中環古蹟群", gs4Desc: "活化歷史建築與藝文消閒地標",
+                fac1Name: "金林閣餐廳", fac1Desc: "(2樓)",
+                fac2Name: "空中花園", fac2Desc: "(5樓)",
+                fac3Name: "健身室", fac3Desc: "(5樓)",
+                fac4Name: "停車場", fac4Desc: "(地面)",
+                fac1H: "金林閣餐廳 (2樓)",
+                fac2H: "空中花園 (5樓)",
+                fac3H: "健身室 (5樓)",
+                fac4H: "停車場 (地面)",
+                backFacility: "⬅ 返回酒店設施",
                 dep1Name: "羅湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
                 dep2Name: "落馬洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
                 dep3Name: "香港國際機場", dep3Desc: "24小時",
@@ -556,6 +620,15 @@
                 gs2Name: "太平山顶与凌霄阁摩天台", gs2Desc: "鸟瞰维港两岸壮丽全景",
                 gs3Name: "西九文化区（M+ 与香港故宫）", gs3Desc: "当代视觉文化与中华文物殿堂",
                 gs4Name: "大馆与中环古迹群", gs4Desc: "活化历史建筑与艺文消闲地标",
+                fac1Name: "金林阁餐厅", fac1Desc: "(2楼)",
+                fac2Name: "空中花园", fac2Desc: "(5楼)",
+                fac3Name: "健身室", fac3Desc: "(5楼)",
+                fac4Name: "停车场", fac4Desc: "(地面)",
+                fac1H: "金林阁餐厅 (2楼)",
+                fac2H: "空中花园 (5楼)",
+                fac3H: "健身室 (5楼)",
+                fac4H: "停车场 (地面)",
+                backFacility: "⬅ 返回酒店设施",
                 dep1Name: "罗湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
                 dep2Name: "落马洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
                 dep3Name: "香港国际机场", dep3Desc: "24小时",
@@ -628,6 +701,15 @@
                 gs2Name: "Victoria Peak & Peak Tower", gs2Desc: "Panoramic views of both sides of Victoria Harbour",
                 gs3Name: "West Kowloon Cultural District (M+ & Palace Museum)", gs3Desc: "Contemporary visual culture and Chinese heritage",
                 gs4Name: "Tai Kwun & Central Heritage Circuit", gs4Desc: "Revitalized historical architecture and arts hub",
+                fac1Name: "Kam Lam Restaurant", fac1Desc: "(2/F)",
+                fac2Name: "Sky Garden", fac2Desc: "(5/F)",
+                fac3Name: "Fitness Room", fac3Desc: "(5/F)",
+                fac4Name: "Car Park", fac4Desc: "(G/F)",
+                fac1H: "Kam Lam Restaurant (2/F)",
+                fac2H: "Sky Garden (5/F)",
+                fac3H: "Fitness Room (5/F)",
+                fac4H: "Car Park (G/F)",
+                backFacility: "⬅ Back to Hotel Facilities",
                 dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 to 00:00 Midnight",
                 dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 to 22:30",
                 dep3Name: "Hong Kong International Airport", dep3Desc: "24 Hours",
@@ -700,6 +782,15 @@
                 gs2Name: "ヴィクトリア・ピークとピーク・タワー", gs2Desc: "ヴィクトリア湾の両岸を一望する絶景パノラマ",
                 gs3Name: "西九文化区（M+と香港故宮文化博物館）", gs3Desc: "現代ビジュアルカルチャーと中国美術の殿堂",
                 gs4Name: "大館（タイクーン）と中環古跡群", gs4Desc: "歴史的建造物の再生とカルチャーの拠点",
+                fac1Name: "金林閣レストラン", fac1Desc: "(2階)",
+                fac2Name: "空中庭園", fac2Desc: "(5階)",
+                fac3Name: "フィットネスジム", fac3Desc: "(5階)",
+                fac4Name: "駐車場", fac4Desc: "(1階/地上)",
+                fac1H: "金林閣レストラン (2階)",
+                fac2H: "空中庭園 (5階)",
+                fac3H: "フィットネスジム (5階)",
+                fac4H: "駐車場 (1階/地上)",
+                backFacility: "⬅ ホテル施設に戻る",
                 dep1Name: "羅湖イミグレーション", dep1Desc: "午前 06:30 ～ 深夜 00:00",
                 dep2Name: "落馬洲 / 福田口岸", dep2Desc: "午前 06:30 ～ 午後 10:30",
                 dep3Name: "香港国際空港", dep3Desc: "24時間",
@@ -772,6 +863,15 @@
                 gs2Name: "빅토리아 피크 & 피크 타워", gs2Desc: "빅토리아 하버 양쪽의 아름다운 파노라마 뷰",
                 gs3Name: "서구룡 문화지구 (M+ 및 홍콩 고궁박물관)", gs3Desc: "현대 시각 문화와 중국 유물의 전당",
                 gs4Name: "대관(타이 큰) & 센트럴 유적군", gs4Desc: "역사 건축물 재생과 문화 예술의 랜드마크",
+                fac1Name: "금림각 레스토랑", fac1Desc: "(2층)",
+                fac2Name: "하늘정원", fac2Desc: "(5층)",
+                fac3Name: "피트니스룸", fac3Desc: "(5층)",
+                fac4Name: "주차장", fac4Desc: "(지상)",
+                fac1H: "금림각 레스토랑 (2층)",
+                fac2H: "하늘정원 (5층)",
+                fac3H: "피트니스룸 (5층)",
+                fac4H: "주차장 (지상)",
+                backFacility: "⬅ 호텔 부대시설로 돌아가기",
                 dep1Name: "로후 검문소", dep1Desc: "오전 06:30 ~ 자정 00:00",
                 dep2Name: "낙마주 / 휜티안", dep2Desc: "오전 06:30 ~ 오후 10:30",
                 dep3Name: "홍콩 국제공항", dep3Desc: "24시간",
@@ -844,6 +944,15 @@
                 gs2Name: "Đỉnh Thái Bình & Tháp Peak", gs2Desc: "Ngắm toàn cảnh ngoạn mục hai bên bờ Vịnh Victoria",
                 gs3Name: "Khu Văn hóa Tây Cử Long (M+ & Bảo tàng Cố cung)", gs3Desc: "Văn hóa thị giác đương đại và di sản Trung Hoa",
                 gs4Name: "Tai Kwun & Quần thể di tích Trung Hoàn", gs4Desc: "Kiến trúc lịch sử trùng tu và trung tâm nghệ thuật",
+                fac1Name: "Nhà hàng Kam Lam", fac1Desc: "(Tầng 2)",
+                fac2Name: "Vườn trên mái", fac2Desc: "(Tầng 5)",
+                fac3Name: "Phòng tập Gym", fac3Desc: "(Tầng 5)",
+                fac4Name: "Bãi đỗ xe", fac4Desc: "(Tầng trệt)",
+                fac1H: "Nhà hàng Kam Lam (Tầng 2)",
+                fac2H: "Vườn trên mái (Tầng 5)",
+                fac3H: "Phòng tập Gym (Tầng 5)",
+                fac4H: "Bãi đỗ xe (Tầng trệt)",
+                backFacility: "⬅ Quay lại Tiện ích khách sạn",
                 dep1Name: "Trạm kiểm soát La Hồ", dep1Desc: "06:30 đến 00:00 Đêm",
                 dep2Name: "Lok Ma Chau / Cảng Phúc Điền", dep2Desc: "06:30 đến 22:30",
                 dep3Name: "Sân bay Quốc tế Hồng Kông", dep3Desc: "24 Giờ",
@@ -916,6 +1025,15 @@
                 gs2Name: "विक्टोरिया पीक और पीक टॉवर", gs2Desc: "विक्टोरिया हार्बर के दोनों किनारों का मनोरम दृश्य",
                 gs3Name: "वेस्ट काउलून सांस्कृतिक जिला (M+ और पैलेस संग्रहालय)", gs3Desc: "समकालीन दृश्य संस्कृति और चीनी विरासत",
                 gs4Name: "ताई क्वून और सेंट्रल हेरिटेज सर्किट", gs4Desc: "पुनर्जीवित ऐतिहासिक वास्तुकला और कला केंद्र",
+                fac1Name: "कम लाम रेस्तरां", fac1Desc: "(दूसरी मंजिल)",
+                fac2Name: "स्काई गार्डन", fac2Desc: "(5वीं मंजिल)",
+                fac3Name: "जिम", fac3Desc: "(5वीं मंजिल)",
+                fac4Name: "पार्किंग", fac4Desc: "(ग्राउंड फ्लोर)",
+                fac1H: "कम लाम रेस्तरां (दूसरी मंजिल)",
+                fac2H: "स्काई गार्डन (5वीं मंजिल)",
+                fac3H: "जिम (5वीं मंजिल)",
+                fac4H: "पार्किंग (ग्राउंड फ्लोर)",
+                backFacility: "⬅ होटल सुविधाओं पर वापस जाएं",
                 dep1Name: "लो वू चेकपॉइंट", dep1Desc: "सुबह 06:30 से मध्यरात्रि 00:00",
                 dep2Name: "लोक मा चाउ / फुतियान", dep2Desc: "सुबह 06:30 से रात 10:30",
                 dep3Name: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा", dep3Desc: "24 घंटे",
@@ -956,7 +1074,7 @@
                 noticeWeatherTitle: "खराब मौसम व्यवस्था", noticeWeatherDesc: "ब्लैक रेनस्टॉर्म या तूफान सिग्नल 8 या अधिक जारी होने पर शटल bus सेवा स्थगित रहेगी।",
                 mapH: "होटल 300मी व्यावहारिक गाइड",
                 lugH: "सामान भंडारण सेवा", 
-                lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है。",
+                lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है।",
                 kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएन वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली बस (Next Bus)",
                 stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित"
             },
@@ -988,6 +1106,15 @@
                 gs2Name: "Victoria Peak at Peak Tower", gs2Desc: "Panoramic view ng magkabilang panig ng Victoria Harbour",
                 gs3Name: "West Kowloon Cultural District (M+ at Palace Museum)", gs3Desc: "Contemporary visual culture at Chinese heritage",
                 gs4Name: "Tai Kwun at Central Heritage Circuit", gs4Desc: "Binagong makasaysayang arkitektura at arts hub",
+                fac1Name: "Restawran ng Kam Lam", fac1Desc: "(Ika-2 Palapag)",
+                fac2Name: "Halaman sa Himpapawid", fac2Desc: "(Ika-5 Palapag)",
+                fac3Name: "Gym / Fitness Room", fac3Desc: "(Ika-5 Palapag)",
+                fac4Name: "Paradahan", fac4Desc: "(Ground Floor)",
+                fac1H: "Restawran ng Kam Lam (Ika-2 Palapag)",
+                fac2H: "Halaman sa Himpapawid (Ika-5 Palapag)",
+                fac3H: "Gym / Fitness Room (Ika-5 Palapag)",
+                fac4H: "Paradahan (Ground Floor)",
+                backFacility: "⬅ Bumalik sa Pasilidad ng Hotel",
                 dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 hanggang 00:00 Hatinggabi",
                 dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 hanggang 22:30",
                 dep3Name: "Hong Kong International Airport", dep3Desc: "24 Oras",
@@ -1008,10 +1135,10 @@
                 pOceanpark: "Mula Hotel hanggang Ocean Park",
                 pSurcharge: "Karagdagang bayad bago mag-8:00 AM / pagkatapos ng 8:00 PM",
                 pHourly: "Pag-upa kada oras (Minimum na 3 oras)",
-                carPriceNote: "💡 <strong>Tandaan:</strong> Ang mga singil na ito ay para sa point-to-point transfer. Para sa overtime o pagbabago sa itinerary, mangyaring kumunsulta sa Concierge.",
+                carPriceNote: "💡 <strong>Tandaan:</strong> Ang mga singil sa taas ay para sa point-to-point transfer. Para sa overtime o pagbabago ng ruta, magtanong sa Concierge.",
                 back: "⬅ Bumalik sa Menu",
                 backGuidePlay: "⬅ Bumalik sa Gabay sa Paglalakbay",
-                busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai FongMTR) ➔ Tsuen Wan West MTR",
+                busH: "Iskedyul ng Shuttle Bus at Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
                 stationH: "Sakayan ng Libreng Shuttle Bus",
                 guideH: "Gabay sa Paglalakbay sa Hong Kong",
                 guideShopH: "Gabay sa Paglalakbay - Pamimili",
@@ -1021,18 +1148,34 @@
                 carH: "Serbisyo ng Kotse sa Hotel",
                 facilityH: "Mga Pasilidad ng Hotel",
                 liveStatusLabel: "📍 Live na Status ng Bus",
-                stDriving: "Bumibiyahe patungong Kwai Fong", stArrKwai: "🔵 Dumating sa Kwai Fong", stDriving2: "Bumibiyahe patungong Tsuen Wan West", stArrTsuen: "🔵 Dumating sa Tsuen Wan West", stReturning: "Bumabalik sa Hotel", stWaitingStandby: "Naghihintay / Handa",
-                noticeTelTitle: "Concierge Tel", noticeTelVal: "3700 3824 (Pindutin ang '4' para sa extension)",
-                noticeContactTitle: "Mangyaring maagang makipag-ugnayan sa concierge upang magreserba ng upuan",
-                noticeTimeTitle: "Mangyaring dumating sa oras", noticeTimeDesc: "Kung hindi, ang puwesto ay ibibigay sa ibang bisita.",
-                noticeWeatherTitle: "Kondisyon sa Masamang Panahon", noticeWeatherDesc: "Kanselahin ang shuttle bus kung may Black Rainstorm o Typhoon Signal No. 8 pataas.",
+                stDriving: "Bumabiyahe papuntang Kwai Fong", stArrKwai: "🔵 Dumating na sa Kwai Fong", stDriving2: "Bumabiyahe papuntang Tsuen Wan West", stArrTsuen: "🔵 Dumating na sa Tsuen Wan West", stReturning: "Bumabalik sa Hotel", stWaitingStandby: "Naghihintay / Naghahanda",
+                noticeTelTitle: "Telepono ng Concierge", noticeTelVal: "3700 3824 (Pindutin ang '4' para sa extension)",
+                noticeContactTitle: "Mangyaring makipag-ugnayan sa Concierge nang maaga upang mag-reserba",
+                noticeTimeTitle: "Maging mabilis at maging sa oras", noticeTimeDesc: "Kung hindi, ang slot ay ibibigay sa ibang bisita.",
+                noticeWeatherTitle: "Masamang Panahon", noticeWeatherDesc: "Kanselado ang bus kapag may Black Rainstorm o Typhoon Signal No. 8 pataas.",
                 mapH: "Gabay sa 300m Paligid ng Hotel",
                 lugH: "Serbisyo sa Imbakan ng Bagahe", 
-                lugDesc: "🧳 **Patakaran sa Bagahe**<br><br><strong>【Patakaran at Bayarin】</strong><br>• **Araw ng Check-in at Check-out**：Libre.<br>• **Pangmatagalan**：<strong>$10</strong> bawat piraso bawat araw.<br><br><strong>【Pagkuha at Kaligtasan】</strong><br>• Ipakita ang tag at magtugma ang **lagda**.<br>• Nakalagay sa lugar na **walang aircon**.<br><br><strong>【Pananagutan】</strong><br>• Walang pananagutan sa pagkawala o pinsala.<br>• Ang hindi kinuha sa loob ng **dalawang buwan** ay maaaring itapon.",
-                kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspendido)", nextBusText: "⭐ Susunod na Bus",
-                stBookable: "Maaaring i-book", stWaiting: "Nagintahay", stBoarding: "Sumasakay", stDeparted: "Umalis na", stFull: "Puno", stOut: "Suspendido"
+                lugDesc: "🧳 **Paalala sa Imbakan ng Bagahe**<br><br><strong>【Bayad at Patakaran】</strong><br>• **Araw ng Check-in/out**：Libre.<br>• **Matagalang Imbakan**：<strong>$10</strong> kada gamit bawat araw.<br><br><strong>【Koleksyon at Siguridad】</strong><br>• Ipakita ang tag at **pirma**.<br>• Nakatabi sa **walang air-con** na lugar.<br><br><strong>【Disclaimers】</strong><br>• Walang pananagutan ang hotel sa nawala o nasira.<br>• Ang hindi kukunin lagpas **2 buwan** ay itatapon nang walang abiso.",
+                kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Oras ng Tanghalian (Walang Biyahe)", nextBusText: "⭐ Susunod na Bus",
+                stBookable: "Puwede i-book", stWaiting: "Naghihintay", stBoarding: "Puwede nang sumakay", stDeparted: "Nakaalis na", stFull: "Puno na", stOut: "Kanselado"
             }
         };
+
+        const staticSchedule = [
+            { time: "08:00", kTime: "08:15", tTime: "08:25" },
+            { time: "09:00", kTime: "09:15", tTime: "09:25" },
+            { time: "10:00", kTime: "10:15", tTime: "10:25" },
+            { time: "11:00", kTime: "11:15", tTime: "11:25" },
+            { time: "12:00", kTime: "12:15", tTime: "12:25" },
+            { time: "13:00", isLunch: true },
+            { time: "14:00", kTime: "14:15", tTime: "14:25" },
+            { time: "15:00", kTime: "15:15", tTime: "15:25" },
+            { time: "16:00", kTime: "16:15", tTime: "16:25" },
+            { time: "17:00", kTime: "17:15", tTime: "17:25" },
+            { time: "18:00", kTime: "18:15", tTime: "18:25" },
+            { time: "19:00", kTime: "19:15", tTime: "19:25" },
+            { time: "20:00", kTime: "20:15", tTime: "20:25" }
+        ];
 
         function selectLang(lang) {
             currentLang = lang;
@@ -1042,263 +1185,313 @@
         }
 
         function updateUI() {
-            const d = t[currentLang];
-            if (!d) return;
-            document.getElementById('ui-title').innerText = d.title;
-            document.getElementById('ui-card1-title').innerText = d.c1t;
-            document.getElementById('ui-card1-desc').innerText = d.c1d;
-            document.getElementById('ui-card5-title').innerText = d.c5t;
-            document.getElementById('ui-card5-desc').innerText = d.c5d;
-            document.getElementById('ui-card2-title').innerText = d.c2t;
-            document.getElementById('ui-card2-desc').innerText = d.c2d;
-            document.getElementById('ui-card6-title').innerText = d.c6t;
-            document.getElementById('ui-card6-desc').innerText = d.c6d;
-            document.getElementById('ui-card3-title').innerText = d.c3t;
-            document.getElementById('ui-card3-desc').innerText = d.c3d;
-            document.getElementById('ui-card7-title').innerText = d.c7t;
-            document.getElementById('ui-card7-desc').innerText = d.c7d;
-            document.getElementById('ui-card8-title').innerText = d.c8t;
-            document.getElementById('ui-card8-desc').innerText = d.c8d;
-            document.getElementById('ui-card9-title').innerText = d.c9t;
-            document.getElementById('ui-card9-desc').innerText = d.c9d;
-
-            // 更新香港旅遊攻略主選單 6 個方塊
-            for (let i = 1; i <= 6; i++) {
-                const titleEl = document.getElementById(`ui-guide-${i}-title`);
-                const descEl = document.getElementById(`ui-guide-${i}-desc`);
-                if (titleEl) titleEl.innerText = d[`guide${i}Name`];
-                if (descEl) descEl.innerText = d[`guide${i}Desc`];
-            }
-
-            // 更新「購物」子頁面內的 4 個專屬購物方塊
-            for (let i = 1; i <= 4; i++) {
-                const titleEl = document.getElementById(`ui-gshop-${i}-title`);
-                const descEl = document.getElementById(`ui-gshop-${i}-desc`);
-                if (titleEl) titleEl.innerText = d[`gshop${i}Name`];
-                if (descEl) descEl.innerText = d[`gshop${i}Desc`];
-            }
-
-            // 更新「遊玩」子頁面內的 4 個專屬景點方塊
-            for (let i = 1; i <= 4; i++) {
-                const titleEl = document.getElementById(`ui-gp-${i}-title`);
-                const descEl = document.getElementById(`ui-gp-${i}-desc`);
-                if (titleEl) titleEl.innerText = d[`gp${i}Name`];
-                if (descEl) descEl.innerText = d[`gp${i}Desc`];
-            }
-
-            // 更新「觀光」子頁面內的 4 個專屬景點方塊
-            for (let i = 1; i <= 4; i++) {
-                const titleEl = document.getElementById(`ui-gs-${i}-title`);
-                const descEl = document.getElementById(`ui-gs-${i}-desc`);
-                if (titleEl) titleEl.innerText = d[`gs${i}Name`];
-                if (descEl) descEl.innerText = d[`gs${i}Desc`];
-            }
-
-            // 更新出境攻略8個口岸的標題與描述
-            for (let i = 1; i <= 8; i++) {
-                const titleEl = document.getElementById(`ui-dep-${i}-title`);
-                const descEl = document.getElementById(`ui-dep-${i}-desc`);
-                if (titleEl) titleEl.innerText = d[`dep${i}Name`];
-                if (descEl) descEl.innerText = d[`dep${i}Desc`];
-            }
-
-            document.getElementById('ui-car-card1-title').innerText = d.carCard1T;
-            document.getElementById('ui-car-card1-desc').innerText = d.carCard1D;
-            document.getElementById('ui-car-card2-title').innerText = d.carCard2T;
-            document.getElementById('ui-car-card2-desc').innerText = d.carCard2D;
-            document.getElementById('ui-car-notice-box').innerText = d.carNoticeBox;
-
-            document.getElementById('ui-back1').innerText = d.back;
-            document.getElementById('ui-back2').innerText = d.back;
-            document.getElementById('ui-back3').innerText = d.back;
-            document.getElementById('ui-back5').innerText = d.back;
-            document.getElementById('ui-back6').innerText = d.back;
-            document.getElementById('ui-back7').innerText = d.back;
-            document.getElementById('ui-back8').innerText = d.back;
-            document.getElementById('ui-back9').innerText = d.back;
-            document.getElementById('ui-back-carprice').innerText = d.back;
-            document.getElementById('ui-back-carterms').innerText = d.back;
-            document.getElementById('ui-back-guideshop').innerText = d.backGuidePlay;
-            document.getElementById('ui-back-guideplay').innerText = d.backGuidePlay;
-            document.getElementById('ui-back-guidesight').innerText = d.backGuidePlay;
-
-            document.getElementById('ui-bus-header').innerText = d.busH;
-            document.getElementById('ui-bus-sub').innerText = d.busSub;
-            document.getElementById('ui-station-header').innerText = d.stationH;
-            document.getElementById('ui-guide-header').innerText = d.guideH;
-            document.getElementById('ui-guideshop-header').innerText = d.guideShopH;
-            document.getElementById('ui-guideplay-header').innerText = d.guidePlayH;
-            document.getElementById('ui-guidesight-header').innerText = d.guideSightH;
-            document.getElementById('ui-departure-header').innerText = d.departureH;
-            document.getElementById('ui-car-header').innerText = d.carH;
-            document.getElementById('ui-carprice-header').innerText = d.carPriceH;
-            document.getElementById('ui-carterms-header').innerText = d.carTermsH;
-            document.getElementById('ui-facility-header').innerText = d.facilityH;
+            const data = t[currentLang];
+            document.getElementById('ui-title').innerText = data.title;
             
-            // 專車收費表內部文字多語言綁定
-            document.getElementById('ui-th-dest').innerText = d.thDest;
-            document.getElementById('ui-th-price').innerText = d.thPrice;
-            document.getElementById('ui-p-mongkok').innerText = d.pMongkok;
-            document.getElementById('ui-p-chinachem').innerText = d.pChinachem;
-            document.getElementById('ui-p-airport').innerText = d.pAirport;
-            document.getElementById('ui-p-oceanpark').innerText = d.pOceanpark;
-            document.getElementById('ui-p-surcharge').innerText = d.pSurcharge;
-            document.getElementById('ui-p-hourly').innerText = d.pHourly;
-            document.getElementById('ui-carprice-note').innerHTML = d.carPriceNote;
+            // 主選單卡片
+            document.getElementById('ui-card1-title').innerText = data.c1t.replace('🚌 ', '');
+            document.getElementById('ui-card1-desc').innerText = data.c1d;
+            document.getElementById('ui-card5-title').innerText = data.c5t.replace('🚏 ', '');
+            document.getElementById('ui-card5-desc').innerText = data.c5d;
+            document.getElementById('ui-card2-title').innerText = data.c2t.replace('🗺️ ', '');
+            document.getElementById('ui-card2-desc').innerText = data.c2d;
+            document.getElementById('ui-card6-title').innerText = data.c6t.replace('📖 ', '');
+            document.getElementById('ui-card6-desc').innerText = data.c6d;
+            document.getElementById('ui-card3-title').innerText = data.c3t.replace('🧳 ', '');
+            document.getElementById('ui-card3-desc').innerText = data.c3d;
+            document.getElementById('ui-card7-title').innerText = data.c7t.replace('✈️ ', '');
+            document.getElementById('ui-card7-desc').innerText = data.c7d;
+            document.getElementById('ui-card8-title').innerText = data.c8t.replace('🚐 ', '');
+            document.getElementById('ui-card8-desc').innerText = data.c8d;
+            document.getElementById('ui-card9-title').innerText = data.c9t.replace('🏨 ', '');
+            document.getElementById('ui-card9-desc').innerText = data.c9d;
 
-            document.getElementById('ui-live-status-label').innerText = d.liveStatusLabel;
-
-            document.getElementById('ui-notice-tel-title').innerText = d.noticeTelTitle;
-            document.getElementById('ui-notice-tel-val').innerText = d.noticeTelVal;
-            document.getElementById('ui-notice-contact-title').innerText = d.noticeContactTitle;
-            document.getElementById('ui-notice-time-title').innerText = d.noticeTimeTitle;
-            document.getElementById('ui-notice-time-desc').innerText = d.noticeTimeDesc;
-            document.getElementById('ui-notice-weather-title').innerText = d.noticeWeatherTitle;
-            document.getElementById('ui-notice-weather-desc').innerText = d.noticeWeatherDesc;
-
-            document.getElementById('ui-map-header').innerText = d.mapH;
+            // 返回按鈕
+            document.getElementById('ui-back1').innerText = data.back;
+            if(document.getElementById('ui-back2')) document.getElementById('ui-back2').innerText = data.back;
+            if(document.getElementById('ui-back3')) document.getElementById('ui-back3').innerText = data.back;
+            if(document.getElementById('ui-back5')) document.getElementById('ui-back5').innerText = data.back;
+            if(document.getElementById('ui-back6')) document.getElementById('ui-back6').innerText = data.back;
+            if(document.getElementById('ui-back7')) document.getElementById('ui-back7').innerText = data.back;
+            if(document.getElementById('ui-back8')) document.getElementById('ui-back8').innerText = data.back;
+            if(document.getElementById('ui-back9')) document.getElementById('ui-back9').innerText = data.back;
+            if(document.getElementById('ui-back-carprice')) document.getElementById('ui-back-carprice').innerText = "⬅ " + data.carH;
+            if(document.getElementById('ui-back-carterms')) document.getElementById('ui-back-carterms').innerText = "⬅ " + data.carH;
+            if(document.getElementById('ui-back-guideshop')) document.getElementById('ui-back-guideshop').innerText = data.backGuidePlay;
+            if(document.getElementById('ui-back-guideplay')) document.getElementById('ui-back-guideplay').innerText = data.backGuidePlay;
+            if(document.getElementById('ui-back-guidesight')) document.getElementById('ui-back-guidesight').innerText = data.backGuidePlay;
             
-            document.getElementById('ui-lug-header').innerText = d.lugH;
-            document.getElementById('ui-lug-desc').innerHTML = d.lugDesc;
+            // 設施子頁面返回按鈕
+            if(document.getElementById('ui-back-fac1')) document.getElementById('ui-back-fac1').innerText = data.backFacility;
+            if(document.getElementById('ui-back-fac2')) document.getElementById('ui-back-fac2').innerText = data.backFacility;
+            if(document.getElementById('ui-back-fac3')) document.getElementById('ui-back-fac3').innerText = data.backFacility;
+            if(document.getElementById('ui-back-fac4')) document.getElementById('ui-back-fac4').innerText = data.backFacility;
+
+            // 頁面標題
+            document.getElementById('ui-bus-header').innerText = data.busH;
+            document.getElementById('ui-bus-sub').innerText = data.busSub;
+            document.getElementById('ui-station-header').innerText = data.stationH;
+            document.getElementById('ui-map-header').innerText = data.mapH;
+            document.getElementById('ui-guide-header').innerText = data.guideH;
+            document.getElementById('ui-guideshop-header').innerText = data.guideShopH;
+            document.getElementById('ui-guideplay-header').innerText = data.guidePlayH;
+            document.getElementById('ui-guidesight-header').innerText = data.guideSightH;
+            document.getElementById('ui-lug-header').innerText = data.lugH;
+            document.getElementById('ui-departure-header').innerText = data.departureH;
+            document.getElementById('ui-car-header').innerText = data.carH;
+            document.getElementById('ui-facility-header').innerText = data.facilityH;
+            
+            // 設施頁面內容翻譯
+            document.getElementById('ui-fac-1-title').innerText = data.fac1Name;
+            document.getElementById('ui-fac-1-desc').innerText = data.fac1Desc;
+            document.getElementById('ui-fac-2-title').innerText = data.fac2Name;
+            document.getElementById('ui-fac-2-desc').innerText = data.fac2Desc;
+            document.getElementById('ui-fac-3-title').innerText = data.fac3Name;
+            document.getElementById('ui-fac-3-desc').innerText = data.fac3Desc;
+            document.getElementById('ui-fac-4-title').innerText = data.fac4Name;
+            document.getElementById('ui-fac-4-desc').innerText = data.fac4Desc;
+
+            document.getElementById('ui-fac1-header').innerText = data.fac1H;
+            document.getElementById('ui-fac2-header').innerText = data.fac2H;
+            document.getElementById('ui-fac3-header').innerText = data.fac3H;
+            document.getElementById('ui-fac4-header').innerText = data.fac4H;
+
+            // 專車卡片
+            if(document.getElementById('ui-car-card1-title')) document.getElementById('ui-car-card1-title').innerText = data.carCard1T;
+            if(document.getElementById('ui-car-card1-desc')) document.getElementById('ui-car-card1-desc').innerText = data.carCard1D;
+            if(document.getElementById('ui-car-card2-title')) document.getElementById('ui-car-card2-title').innerText = data.carCard2T;
+            if(document.getElementById('ui-car-card2-desc')) document.getElementById('ui-car-card2-desc').innerText = data.carCard2D;
+            if(document.getElementById('ui-car-notice-box')) document.getElementById('ui-car-notice-box').innerText = data.carNoticeBox;
+            if(document.getElementById('ui-carprice-header')) document.getElementById('ui-carprice-header').innerText = data.carPriceH;
+            if(document.getElementById('ui-carterms-header')) document.getElementById('ui-carterms-header').innerText = data.carTermsH;
+
+            // 專車表格翻譯
+            if(document.getElementById('ui-th-dest')) document.getElementById('ui-th-dest').innerText = data.thDest;
+            if(document.getElementById('ui-th-price')) document.getElementById('ui-th-price').innerText = data.thPrice;
+            if(document.getElementById('ui-p-mongkok')) document.getElementById('ui-p-mongkok').innerText = data.pMongkok;
+            if(document.getElementById('ui-p-chinachem')) document.getElementById('ui-p-chinachem').innerText = data.pChinachem;
+            if(document.getElementById('ui-p-airport')) document.getElementById('ui-p-airport').innerText = data.pAirport;
+            if(document.getElementById('ui-p-oceanpark')) document.getElementById('ui-p-oceanpark').innerText = data.pOceanpark;
+            if(document.getElementById('ui-p-surcharge')) document.getElementById('ui-p-surcharge').innerText = data.pSurcharge;
+            if(document.getElementById('ui-p-hourly')) document.getElementById('ui-p-hourly').innerText = data.pHourly;
+            if(document.getElementById('ui-carprice-note')) document.getElementById('ui-carprice-note').innerHTML = data.carPriceNote;
+
+            // 出境攻略卡片翻譯
+            if(document.getElementById('ui-dep-1-title')) {
+                document.getElementById('ui-dep-1-title').innerText = data.dep1Name;
+                document.getElementById('ui-dep-1-desc').innerText = data.dep1Desc;
+                document.getElementById('ui-dep-2-title').innerText = data.dep2Name;
+                document.getElementById('ui-dep-2-desc').innerText = data.dep2Desc;
+                document.getElementById('ui-dep-3-title').innerText = data.dep3Name;
+                document.getElementById('ui-dep-3-desc').innerText = data.dep3Desc;
+                document.getElementById('ui-dep-4-title').innerText = data.dep4Name;
+                document.getElementById('ui-dep-4-desc').innerText = data.dep4Desc;
+                document.getElementById('ui-dep-5-title').innerText = data.dep5Name;
+                document.getElementById('ui-dep-5-desc').innerText = data.dep5Desc;
+                document.getElementById('ui-dep-6-title').innerText = data.dep6Name;
+                document.getElementById('ui-dep-6-desc').innerText = data.dep6Desc;
+                document.getElementById('ui-dep-7-title').innerText = data.dep7Name;
+                document.getElementById('ui-dep-7-desc').innerText = data.dep7Desc;
+                document.getElementById('ui-dep-8-title').innerText = data.dep8Name;
+                document.getElementById('ui-dep-8-desc').innerText = data.dep8Desc;
+            }
+
+            // 旅遊攻略翻譯
+            document.getElementById('ui-guide-1-title').innerText = data.guide1Name;
+            document.getElementById('ui-guide-1-desc').innerText = data.guide1Desc;
+            document.getElementById('ui-guide-2-title').innerText = data.guide2Name;
+            document.getElementById('ui-guide-2-desc').innerText = data.guide2Desc;
+            document.getElementById('ui-guide-3-title').innerText = data.guide3Name;
+            document.getElementById('ui-guide-3-desc').innerText = data.guide3Desc;
+            document.getElementById('ui-guide-4-title').innerText = data.guide4Name;
+            document.getElementById('ui-guide-4-desc').innerText = data.guide4Desc;
+            document.getElementById('ui-guide-5-title').innerText = data.guide5Name;
+            document.getElementById('ui-guide-5-desc').innerText = data.guide5Desc;
+            document.getElementById('ui-guide-6-title').innerText = data.guide6Name;
+            document.getElementById('ui-guide-6-desc').innerText = data.guide6Desc;
+
+            // 旅遊攻略 - 購物 4 個方塊翻譯
+            if(document.getElementById('ui-gshop-1-title')) {
+                document.getElementById('ui-gshop-1-title').innerText = data.gshop1Name;
+                document.getElementById('ui-gshop-1-desc').innerText = data.gshop1Desc;
+                document.getElementById('ui-gshop-2-title').innerText = data.gshop2Name;
+                document.getElementById('ui-gshop-2-desc').innerText = data.gshop2Desc;
+                document.getElementById('ui-gshop-3-title').innerText = data.gshop3Name;
+                document.getElementById('ui-gshop-3-desc').innerText = data.gshop3Desc;
+                document.getElementById('ui-gshop-4-title').innerText = data.gshop4Name;
+                document.getElementById('ui-gshop-4-desc').innerText = data.gshop4Desc;
+            }
+
+            // 旅遊攻略 - 遊玩 4 個方塊翻譯
+            if(document.getElementById('ui-gp-1-title')) {
+                document.getElementById('ui-gp-1-title').innerText = data.gp1Name;
+                document.getElementById('ui-gp-1-desc').innerText = data.gp1Desc;
+                document.getElementById('ui-gp-2-title').innerText = data.gp2Name;
+                document.getElementById('ui-gp-2-desc').innerText = data.gp2Desc;
+                document.getElementById('ui-gp-3-title').innerText = data.gp3Name;
+                document.getElementById('ui-gp-3-desc').innerText = data.gp3Desc;
+                document.getElementById('ui-gp-4-title').innerText = data.gp4Name;
+                document.getElementById('ui-gp-4-desc').innerText = data.gp4Desc;
+            }
+
+            // 旅遊攻略 - 觀光 4 個方塊翻譯
+            if(document.getElementById('ui-gs-1-title')) {
+                document.getElementById('ui-gs-1-title').innerText = data.gs1Name;
+                document.getElementById('ui-gs-1-desc').innerText = data.gs1Desc;
+                document.getElementById('ui-gs-2-title').innerText = data.gs2Name;
+                document.getElementById('ui-gs-2-desc').innerText = data.gs2Desc;
+                document.getElementById('ui-gs-3-title').innerText = data.gs3Name;
+                document.getElementById('ui-gs-3-desc').innerText = data.gs3Desc;
+                document.getElementById('ui-gs-4-title').innerText = data.gs4Name;
+                document.getElementById('ui-gs-4-desc').innerText = data.gs4Desc;
+            }
+
+            // Notice Box 翻譯
+            document.getElementById('ui-live-status-label').innerText = data.liveStatusLabel;
+            document.getElementById('ui-notice-tel-title').innerText = data.noticeTelTitle;
+            document.getElementById('ui-notice-tel-val').innerText = data.noticeTelVal;
+            document.getElementById('ui-notice-contact-title').innerText = data.noticeContactTitle;
+            document.getElementById('ui-notice-time-title').innerText = data.noticeTimeTitle;
+            document.getElementById('ui-notice-time-desc').innerText = data.noticeTimeDesc;
+            document.getElementById('ui-notice-weather-title').innerText = data.noticeWeatherTitle;
+            document.getElementById('ui-notice-weather-desc').innerText = data.noticeWeatherDesc;
+
+            document.getElementById('ui-lug-desc').innerHTML = data.lugDesc;
 
             renderBusSchedule();
-            updateLiveStatusDisplay();
-        }
-
-        const rawBusData = [
-            { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
-            { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
-            { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
-            { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
-            { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
-            { id: 6, hotel: "13:00 - 14:00", isBreak: true },
-            { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
-            { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
-            { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
-            { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
-            { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
-            { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
-            { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
-        ];
-
-        function updateLiveStatusDisplay() {
-            const now = new Date();
-            const minute = now.getMinutes();
-            const hour = now.getHours();
-            const statusEl = document.getElementById('liveStatusText');
-            if (!statusEl) return;
-
-            const d = t[currentLang];
-            let text = "";
-
-            if (hour === 13) {
-                text = d.lunchBreak;
-            } else if (minute >= 1 && minute <= 14) {
-                text = d.stDriving;
-            } else if (minute >= 15 && minute <= 16) {
-                text = d.stArrKwai;
-            } else if (minute >= 17 && minute <= 29) {
-                text = d.stDriving2;
-            } else if (minute >= 30 && minute <= 31) {
-                text = d.stArrTsuen;
-            } else if (minute >= 32 && minute <= 45) {
-                text = d.stReturning;
-            } else {
-                text = d.stWaitingStandby;
-            }
-
-            statusEl.innerText = text;
-        }
-
-        function getCalculatedStatus(item) {
-            const d = t[currentLang];
-            if (item.isBreak) return { text: d.lunchBreak, class: "badge-out" };
-            
-            const manualStatus = manualOverrides[item.id];
-            if (manualStatus === 'FULL') {
-                return { text: d.stFull, class: "badge-full" };
-            } else if (manualStatus === 'OUT OF SVC') {
-                return { text: d.stOut, class: "badge-out" };
-            }
-
-            const now = new Date();
-            const [h, m] = item.hotel.split(':').map(Number);
-            const busTime = new Date();
-            busTime.setHours(h, m, 0, 0);
-            const diffMinutes = Math.floor((now - busTime) / 60000);
-
-            if (diffMinutes >= 1) return { text: d.stDeparted, class: "badge-departed" };
-            else if (diffMinutes >= -5 && diffMinutes <= 0) return { text: d.stBoarding, class: "badge-boarding" };
-            else if (diffMinutes >= -20 && diffMinutes <= -6) return { text: d.stWaiting, class: "badge-waiting" };
-            else return { text: d.stBookable, class: "badge-bookable" };
-        }
-
-        function renderBusSchedule() {
-            const container = document.getElementById('busListContainer');
-            if (!container) return;
-            container.innerHTML = '';
-            const d = t[currentLang];
-
-            let nextBusId = null;
-            const now = new Date();
-            
-            for (let item of rawBusData) {
-                if (!item.isBreak) {
-                    const [h, m] = item.hotel.split(':').map(Number);
-                    const busTime = new Date();
-                    busTime.setHours(h, m, 0, 0);
-                    if (Math.floor((now - busTime) / 60000) <= 0) {
-                        nextBusId = item.id;
-                        break;
-                    }
-                }
-            }
-
-            rawBusData.forEach(item => {
-                if (item.isBreak) {
-                    container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 12px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; text-align: center; border: 1px solid #ffeeba; font-weight: bold;">🍽️ ${item.hotel} : ${d.lunchBreak}</div>`;
-                } else {
-                    let status = getCalculatedStatus(item);
-                    const isNext = (item.id === nextBusId);
-                    const itemClass = isNext ? "bus-item next-bus-highlight" : "bus-item";
-                    const badgeHtml = isNext ? `<span class="next-bus-badge">${d.nextBusText}</span><br>` : '';
-
-                    container.innerHTML += `
-                        <div class="${itemClass}">
-                            <div class="bus-time-info">
-                                ${badgeHtml}
-                                <span>🕒 <strong>${item.hotel}</strong> ➔ ${d.kwaiFong}: ${item.kMin} ➔ ${d.tsuenWanWest}: ${item.tMin}</span>
-                            </div>
-                            <span class="badge ${status.class}">${status.text}</span>
-                        </div>
-                    `;
-                }
-            });
         }
 
         function showSection(sectionId) {
             document.getElementById('mainMenu').style.display = 'none';
-            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active-section'));
-            document.getElementById(sectionId).classList.add('active-section');
-            if (sectionId === 'busSection') {
-                renderBusSchedule();
-                updateLiveStatusDisplay();
+            
+            // 隱藏所有分頁內容
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(sec => sec.classList.remove('active-section'));
+
+            // 顯示目標分頁
+            const target = document.getElementById(sectionId);
+            if(target) {
+                target.classList.add('active-section');
             }
         }
 
         function goBack() {
-            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active-section'));
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(sec => sec.classList.remove('active-section'));
             document.getElementById('mainMenu').style.display = 'grid';
         }
 
-        window.onload = function() {
-            setInterval(() => {
-                updateLiveStatusDisplay();
-                if (document.getElementById('busSection').classList.contains('active-section')) {
-                    renderBusSchedule();
+        function renderBusSchedule() {
+            const container = document.getElementById('busListContainer');
+            if(!container) return;
+            container.innerHTML = '';
+
+            const data = t[currentLang];
+            const now = new Date();
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+            let nextBusFound = false;
+
+            // 計算當前行車狀況 (Live Status)
+            let statusText = data.stWaitingStandby;
+            
+            for (let i = 0; i < staticSchedule.length; i++) {
+                const item = staticSchedule[i];
+                if (item.isLunch) continue;
+
+                const [h, m] = item.time.split(':').map(Number);
+                const depMin = h * 60 + m; // 酒店發車時間 (分鐘)
+                const kwaiMin = depMin + 15; // 到達葵芳時間
+                const tsuenMin = depMin + 25; // 到達荃灣西時間
+                const returnMin = depMin + 45; // 返回酒店時間
+
+                if (currentMinutes >= depMin && currentMinutes < kwaiMin) {
+                    statusText = `🚌 ${item.time} ${data.stDriving}`;
+                    break;
+                } else if (currentMinutes >= kwaiMin && currentMinutes < kwaiMin + 3) {
+                    statusText = `📍 ${item.time} ${data.stArrKwai}`;
+                    break;
+                } else if (currentMinutes >= kwaiMin + 3 && currentMinutes < tsuenMin) {
+                    statusText = `🚌 ${item.time} ${data.stDriving2}`;
+                    break;
+                } else if (currentMinutes >= tsuenMin && currentMinutes < tsuenMin + 3) {
+                    statusText = `📍 ${item.time} ${data.stArrTsuen}`;
+                    break;
+                } else if (currentMinutes >= tsuenWanWestArrEnd(tsuenMin) && currentMinutes < returnMin) {
+                    statusText = `🚍 ${item.time} ${data.stReturning}`;
+                    break;
                 }
-            }, 10000);
+            }
+
+            function tsuenWanWestArrEnd(tsuenMin) {
+                return tsuenMin + 3;
+            }
+
+            document.getElementById('liveStatusText').innerText = statusText;
+
+            staticSchedule.forEach((item, index) => {
+                const div = document.createElement('div');
+                
+                if (item.isLunch) {
+                    div.className = 'bus-item';
+                    div.style.background = '#f8f9fa';
+                    div.style.justifyContent = 'center';
+                    div.style.color = '#888';
+                    div.style.fontWeight = 'bold';
+                    div.innerHTML = `<span>🕒 ${item.time} - ${data.lunchBreak}</span>`;
+                    container.appendChild(div);
+                    return;
+                }
+
+                const [h, m] = item.time.split(':').map(Number);
+                const busMinutes = h * 60 + m;
+
+                let isNext = false;
+                if (!nextBusFound && busMinutes > currentMinutes) {
+                    isNext = true;
+                    nextBusFound = true;
+                }
+
+                div.className = `bus-item ${isNext ? 'next-bus-highlight' : ''}`;
+
+                let statusKey = 'stBookable';
+                if (manualOverrides[item.time]) {
+                    statusKey = manualOverrides[item.time];
+                } else {
+                    if (currentMinutes >= busMinutes) {
+                        statusKey = 'stDeparted';
+                    }
+                }
+
+                let badgeClass = 'badge-bookable';
+                if (statusKey === 'stWaiting') badgeClass = 'badge-waiting';
+                if (statusKey === 'stBoarding') badgeClass = 'badge-boarding';
+                if (statusKey === 'stDeparted') badgeClass = 'badge-departed';
+                if (statusKey === 'stFull') badgeClass = 'badge-full';
+                if (statusKey === 'stOut') badgeClass = 'badge-out';
+
+                const statusTextBadge = data[statusKey] || statusKey;
+
+                let nextBadgeHtml = isNext ? `<br><span class="next-bus-badge">${data.nextBusText}</span>` : '';
+
+                div.innerHTML = `
+                    <div>
+                        <strong style="font-size: 15px; color: #007bff;">${item.time}</strong> ${nextBadgeHtml}
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">
+                            ${data.kwaiFong}: ${item.kTime} | ${data.tsuenWanWest}: ${item.tTime}
+                        </div>
+                    </div>
+                    <div>
+                        <span class="badge ${badgeClass}">${statusTextBadge}</span>
+                    </div>
+                `;
+
+                container.appendChild(div);
+            });
         }
+
+        // 定時更新即時狀態與班次高亮 (每 30 秒更新一次)
+        setInterval(renderBusSchedule, 30000);
     </script>
 </body>
 </html>
