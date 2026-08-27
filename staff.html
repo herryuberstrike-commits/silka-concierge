@@ -75,6 +75,7 @@
 
 <script>
     const CORRECT_PASSWORD = "Stw3824";
+    const busChannel = new BroadcastChannel('silka_bus_channel');
 
     function checkPassword() {
         if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
@@ -129,6 +130,10 @@
         let overrides = JSON.parse(localStorage.getItem('busManualOverrides') || '{}');
         if (status === 'NORMAL') delete overrides[id]; else overrides[id] = status;
         localStorage.setItem('busManualOverrides', JSON.stringify(overrides));
+        
+        // 即時透過 BroadcastChannel 通知住客端更新
+        busChannel.postMessage({ type: 'UPDATE_BUS', overrides });
+        
         renderStaffBusList();
     }
 

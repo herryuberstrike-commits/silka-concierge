@@ -167,6 +167,15 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // 存儲由 Firebase 同步過來的手動覆蓋狀態
+        let manualOverrides = {};
+
+        // 即時監聽 Firebase 數據庫中職員對巴士狀態的修改
+        db.ref('busManualOverrides').on('value', (snapshot) => {
+            manualOverrides = snapshot.val() || {};
+            renderBusSchedule(); // 當有更新時即時重繪時間表
+        });
+
         let currentLang = 'zh-HK';
 
         const t = {
@@ -455,11 +464,21 @@
             statusEl.innerText = text;
         }
 
-        function getCalculatedStatus(hotelTimeStr, isBreak) {
+        function getCalculatedStatus(item) {
             const d = t[currentLang];
-            if (isBreak) return { text: d.lunchBreak, class: "badge-out" };
+            if (item.isBreak) return { text: d.lunchBreak, class: "badge-out" };
+            
+            // 檢查是否有來自職員後台的手動覆蓋狀態（如 FULL 或 OUT OF SVC）
+            const manualStatus = manualOverrides[item.id];
+            if (manualStatus === 'FULL') {
+                return { text: d.stFull, class: "badge-full" };
+            } else if (manualStatus === 'OUT OF SVC') {
+                return { text: d.stOut, class: "badge-out" };
+            }
+
+            // 否則按照原本的時間自動計算狀態
             const now = new Date();
-            const [h, m] = hotelTimeStr.split(':').map(Number);
+            const [h, m] = item.hotel.split(':').map(Number);
             const busTime = new Date();
             busTime.setHours(h, m, 0, 0);
             const diffMinutes = Math.floor((now - busTime) / 60000);
@@ -495,7 +514,7 @@
                 if (item.isBreak) {
                     container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 12px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; text-align: center; border: 1px solid #ffeeba; font-weight: bold;">🍽️ ${item.hotel} : ${d.lunchBreak}</div>`;
                 } else {
-                    let status = getCalculatedStatus(item.hotel, false);
+                    let status = getCalculatedStatus(item);
                     const isNext = (item.id === nextBusId);
                     const itemClass = isNext ? "bus-item next-bus-highlight" : "bus-item";
                     const badgeHtml = isNext ? `<span class="next-bus-badge">${d.nextBusText}</span><br>` : '';
