@@ -170,18 +170,18 @@
                     <h3 id="ui-guide-1-title">美食</h3>
                     <p id="ui-guide-1-desc">地道小吃與人氣餐廳</p>
                 </div>
-                <div class="menu-card" style="cursor: default;">
+                <!-- 點擊「購物」進入專屬 4 個購物方塊頁面 -->
+                <div class="menu-card" onclick="showSection('guideShoppingSection')">
                     <div class="icon">🛍️</div>
                     <h3 id="ui-guide-2-title">購物</h3>
                     <p id="ui-guide-2-desc">大型商場與熱門市集</p>
                 </div>
-                <!-- 點擊「遊玩」進入專屬 4 個景點方塊頁面 -->
                 <div class="menu-card" onclick="showSection('guidePlaySection')">
                     <div class="icon">🎢</div>
                     <h3 id="ui-guide-3-title">遊玩</h3>
                     <p id="ui-guide-3-desc">主題樂園與娛樂體驗</p>
                 </div>
-                <div class="menu-card" style="cursor: default;">
+                <div class="menu-card" onclick="showSection('guideSightseeingSection')">
                     <div class="icon">📸</div>
                     <h3 id="ui-guide-4-title">觀光</h3>
                     <p id="ui-guide-4-desc">著名地標與打卡勝地</p>
@@ -199,7 +199,36 @@
             </div>
         </div>
 
-        <!-- 香港旅遊攻略 -> 「遊玩」子頁面 (包含你指定的 4 個方塊) -->
+        <!-- 香港旅遊攻略 -> 「購物」子頁面 (包含你指定的 4 個方塊) -->
+        <div id="guideShoppingSection" class="section-content">
+            <button class="back-btn" id="ui-back-guideshop" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
+            <h3 id="ui-guideshop-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物</h3>
+            
+            <div class="menu-grid">
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🏬</div>
+                    <h3 id="ui-gshop-1-title">海港城</h3>
+                    <p id="ui-gshop-1-desc">維港畔超大型购物商城与国际名品</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🛍️</div>
+                    <h3 id="ui-gshop-2-title">銅鑼灣購物商圈</h3>
+                    <p id="ui-gshop-2-desc">潮流百货、SOGO崇光与不夜天购物天堂</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🎨</div>
+                    <h3 id="ui-gshop-3-title">中環蘇豪區與 PMQ元創方</h3>
+                    <p id="ui-gshop-3-desc">文创小店、独立设计与特色精品</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">👟</div>
+                    <h3 id="ui-gshop-4-title">女人街與波鞋街</h3>
+                    <p id="ui-gshop-4-desc">地道市集、潮流球鞋与港式市井风情</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 香港旅遊攻略 -> 「遊玩」子頁面 -->
         <div id="guidePlaySection" class="section-content">
             <button class="back-btn" id="ui-back-guideplay" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
             <h3 id="ui-guideplay-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩</h3>
@@ -224,6 +253,35 @@
                     <div class="icon">🚢</div>
                     <h3 id="ui-gp-4-title">香港挪亞方舟</h3>
                     <p id="ui-gp-4-desc">馬灣海峽自然博覽與合家歡景點</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 香港旅遊攻略 -> 「觀光」子頁面 -->
+        <div id="guideSightseeingSection" class="section-content">
+            <button class="back-btn" id="ui-back-guidesight" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
+            <h3 id="ui-guidesight-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光</h3>
+            
+            <div class="menu-grid">
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🌆</div>
+                    <h3 id="ui-gs-1-title">維多利亞港與星光大道</h3>
+                    <p id="ui-gs-1-desc">世界級天際線與璀璨燈光秀</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">⛰️</div>
+                    <h3 id="ui-gs-2-title">太平山頂與凌霄閣摩天台</h3>
+                    <p id="ui-gs-2-desc">鳥瞰維港兩岸壯麗全景</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🎨</div>
+                    <h3 id="ui-gs-3-title">西九文化區（M+ 與香港故宮）</h3>
+                    <p id="ui-gs-3-desc">當代視覺文化與中華文物殿堂</p>
+                </div>
+                <div class="menu-card" style="cursor: default;">
+                    <div class="icon">🏛️</div>
+                    <h3 id="ui-gs-4-title">大館與中環古蹟群</h3>
+                    <p id="ui-gs-4-desc">活化歷史建築與藝文消閒地標</p>
                 </div>
             </div>
         </div>
@@ -413,11 +471,19 @@
                 guide4Name: "觀光", guide4Desc: "著名地標與打卡勝地",
                 guide5Name: "推薦行程1", guide5Desc: "經典一日遊路線",
                 guide6Name: "推薦行程2", guide6Desc: "深度文化探索之旅",
-                // 新增遊玩 4 個景點的多語言翻譯 (繁中)
+                // 新增購物 4 個商圈的多語言翻譯 (繁中)
+                gshop1Name: "海港城", gshop1Desc: "維港畔超大型購物商場與國際名品",
+                gshop2Name: "銅鑼灣購物商圈", gshop2Desc: "潮流百貨、SOGO崇光與不夜天購物天堂",
+                gshop3Name: "中環蘇豪區與 PMQ元創方", gshop3Desc: "文創小店、獨立設計與特色精品",
+                gshop4Name: "女人街與波鞋街", gshop4Desc: "地道市集、潮流球鞋與港式市井風情",
                 gp1Name: "香港迪士尼樂園", gp1Desc: "夢幻童話與精彩煙花匯演",
                 gp2Name: "香港海洋公園", gp2Desc: "刺激機動遊戲與珍稀極地動物",
                 gp3Name: "香港摩天輪", gp3Desc: "維多利亞港畔浪漫高空景致",
                 gp4Name: "香港挪亞方舟", gp4Desc: "馬灣海峽自然博覽與合家歡景點",
+                gs1Name: "維多利亞港與星光大道", gs1Desc: "世界級天際線與璀璨燈光秀",
+                gs2Name: "太平山頂與凌霄閣摩天台", gs2Desc: "鳥瞰維港兩岸壯麗全景",
+                gs3Name: "西九文化區（M+ 與香港故宮）", gs3Desc: "當代視覺文化與中華文物殿堂",
+                gs4Name: "大館與中環古蹟群", gs4Desc: "活化歷史建築與藝文消閒地標",
                 dep1Name: "羅湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
                 dep2Name: "落馬洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
                 dep3Name: "香港國際機場", dep3Desc: "24小時",
@@ -444,7 +510,9 @@
                 busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
                 stationH: "免費穿梭巴士上車地點",
                 guideH: "香港旅遊攻略",
+                guideShopH: "香港旅遊攻略 - 購物",
                 guidePlayH: "香港旅遊攻略 - 遊玩",
+                guideSightH: "香港旅遊攻略 - 觀光",
                 departureH: "出境攻略",
                 carH: "酒店專車服務",
                 facilityH: "酒店設施",
@@ -476,10 +544,18 @@
                 guide4Name: "观光", guide4Desc: "著名地标与打卡胜地",
                 guide5Name: "推荐行程1", guide5Desc: "经典一日游路线",
                 guide6Name: "推荐行程2", guide6Desc: "深度文化探索之旅",
+                gshop1Name: "海港城", gshop1Desc: "维港畔超大型购物商城与国际名品",
+                gshop2Name: "铜锣湾购物商圈", gshop2Desc: "潮流百货、SOGO崇光与不夜天购物天堂",
+                gshop3Name: "中环苏豪区与 PMQ元创方", gshop3Desc: "文创小店、独立设计与特色精品",
+                gshop4Name: "女人街与波鞋街", gshop4Desc: "地道市集、潮流球鞋与港式市井风情",
                 gp1Name: "香港迪士尼乐园", gp1Desc: "梦幻童话与精彩烟花汇演",
                 gp2Name: "香港海洋公园", gp2Desc: "刺激机动游戏与珍稀极地动物",
                 gp3Name: "香港摩天轮", gp3Desc: "维多利亚港畔浪漫高空景致",
                 gp4Name: "香港挪亚方舟", gp4Desc: "马湾海峡自然博览与合家欢景点",
+                gs1Name: "维多利亚港与星光大道", gs1Desc: "世界级天际线与璀璨灯光秀",
+                gs2Name: "太平山顶与凌霄阁摩天台", gs2Desc: "鸟瞰维港两岸壮丽全景",
+                gs3Name: "西九文化区（M+ 与香港故宫）", gs3Desc: "当代视觉文化与中华文物殿堂",
+                gs4Name: "大馆与中环古迹群", gs4Desc: "活化历史建筑与艺文消闲地标",
                 dep1Name: "罗湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
                 dep2Name: "落马洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
                 dep3Name: "香港国际机场", dep3Desc: "24小时",
@@ -506,7 +582,9 @@
                 busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
                 stationH: "免费穿梭巴士上车地点",
                 guideH: "香港旅游攻略",
+                guideShopH: "香港旅游攻略 - 购物",
                 guidePlayH: "香港旅游攻略 - 游玩",
+                guideSightH: "香港旅游攻略 - 观光",
                 departureH: "出境攻略",
                 carH: "酒店专车服务",
                 facilityH: "酒店设施",
@@ -538,10 +616,18 @@
                 guide4Name: "Sightseeing", guide4Desc: "Famous landmarks & spots",
                 guide5Name: "Itinerary 1", guide5Desc: "Classic one-day tour route",
                 guide6Name: "Itinerary 2", guide6Desc: "In-depth cultural exploration",
+                gshop1Name: "Harbour City", gshop1Desc: "Mega waterfront mall and international luxury brands",
+                gshop2Name: "Causeway Bay Shopping District", gshop2Desc: "Trendy department stores, SOGO, and vibrant nightlife",
+                gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Creative boutiques, indie designers, and unique lifestyle goods",
+                gshop4Name: "Ladies' Market & Sneakers Street", gshop4Desc: "Bustling street markets, trendy kicks, and local flavor",
                 gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical fairy tales and fireworks",
                 gp2Name: "Ocean Park Hong Kong", gp2Desc: "Thrilling rides and polar animals",
                 gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantic skyline views by Victoria Harbour",
                 gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Ma Wan nature park and family fun",
+                gs1Name: "Victoria Harbour & Avenue of Stars", gs1Desc: "World-class skyline and light show",
+                gs2Name: "Victoria Peak & Peak Tower", gs2Desc: "Panoramic views of both sides of Victoria Harbour",
+                gs3Name: "West Kowloon Cultural District (M+ & Palace Museum)", gs3Desc: "Contemporary visual culture and Chinese heritage",
+                gs4Name: "Tai Kwun & Central Heritage Circuit", gs4Desc: "Revitalized historical architecture and arts hub",
                 dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 to 00:00 Midnight",
                 dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 to 22:30",
                 dep3Name: "Hong Kong International Airport", dep3Desc: "24 Hours",
@@ -568,7 +654,9 @@
                 busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
                 stationH: "Free Shuttle Bus Boarding Locations",
                 guideH: "Hong Kong Travel Guide",
+                guideShopH: "Hong Kong Travel Guide - Shopping",
                 guidePlayH: "Hong Kong Travel Guide - Leisure",
+                guideSightH: "Hong Kong Travel Guide - Sightseeing",
                 departureH: "Departure Guide",
                 carH: "Hotel Limousine Service",
                 facilityH: "Hotel Facilities",
@@ -600,10 +688,18 @@
                 guide4Name: "観光", guide4Desc: "有名ランドマークと撮影スポット",
                 guide5Name: "おすすめコース1", guide5Desc: "定番1日観光ルート",
                 guide6Name: "おすすめコース2", guide6Desc: "ディープな文化探索の旅",
+                gshop1Name: "ハーバー・シティ（海港城）", gshop1Desc: "ビクトリア湾沿いの超大型モールと高級ブランド",
+                gshop2Name: "銅鑼灣（コーズウェイベイ）ショッピング街", gshop2Desc: "トレンド百貨店、SOGO、眠らない街のショッピング天国",
+                gshop3Name: "中環ソーホー＆PMQ元創方", gshop3Desc: "クリエイティブな雑貨店、インディーズデザイナー、特選セレクト",
+                gshop4Name: "女人街＆スニーカー街", gshop4Desc: "ローカルな露店市場、スニーカーの聖地、香港の下町情緒",
                 gp1Name: "香港ディズニーランド", gp1Desc: "夢の童話と素晴らしい花火ショー",
                 gp2Name: "香港オーシャンパーク", gp2Desc: "スリリングなアトラクションと極地の動物",
                 gp3Name: "香港観覧車", gp3Desc: "ビクトリア・ハーバーのロマンチックな絶景",
                 gp4Name: "香港ノアの方舟", gp4Desc: "馬湾（マワン）自然公園とファミリー向けスポット",
+                gs1Name: "ビクトリア・ハーバーとスターフェリー通り", gs1Desc: "世界最高峰のスカイラインと光のショー",
+                gs2Name: "ヴィクトリア・ピークとピーク・タワー", gs2Desc: "ヴィクトリア湾の両岸を一望する絶景パノラマ",
+                gs3Name: "西九文化区（M+と香港故宮文化博物館）", gs3Desc: "現代ビジュアルカルチャーと中国美術の殿堂",
+                gs4Name: "大館（タイクーン）と中環古跡群", gs4Desc: "歴史的建造物の再生とカルチャーの拠点",
                 dep1Name: "羅湖イミグレーション", dep1Desc: "午前 06:30 ～ 深夜 00:00",
                 dep2Name: "落馬洲 / 福田口岸", dep2Desc: "午前 06:30 ～ 午後 10:30",
                 dep3Name: "香港国際空港", dep3Desc: "24時間",
@@ -630,7 +726,9 @@
                 busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
                 stationH: "無料シャトルバス乗降場所",
                 guideH: "香港観光ガイド",
+                guideShopH: "香港観光ガイド - ショッピング",
                 guidePlayH: "香港観光ガイド - レジャー",
+                guideSightH: "香港観光ガイド - 観光",
                 departureH: "出国・空港ガイド",
                 carH: "ホテル送迎サービス",
                 facilityH: "ホテル施設",
@@ -662,10 +760,18 @@
                 guide4Name: "관광", guide4Desc: "유명 랜드마크 및 포토존",
                 guide5Name: "추천 일정 1", guide5Desc: "클래식 하루 여행 코스",
                 guide6Name: "추천 일정 2", guide6Desc: "심층 문화 탐방 여행",
+                gshop1Name: "하버 시티", gshop1Desc: "빅토리아 하버변의 초대형 쇼핑몰 및 글로벌 명품",
+                gshop2Name: "코즈웨이베이 쇼핑가", gshop2Desc: "트렌디한 백화점, 소고(SOGO), 잠들지 않는 쇼핑 천국",
+                gshop3Name: "센트럴 소호 & PMQ 원촹팡", gshop3Desc: "소품샵, 독립 디자이너 브랜드 및 개성 있는 편집샵",
+                gshop4Name: "레이디스 마켓 & 스니커즈 스트리트", gshop4Desc: "로컬 야시장, 인기 스니커즈 거리와 홍콩 특유의 활기",
                 gp1Name: "홍콩 디즈니랜드", gp1Desc: "환상적인 동화와 화려한 불꽃놀이",
                 gp2Name: "홍콩 오션파크", gp2Desc: "스릴 넘치는 놀이기구와 극지 동물",
                 gp3Name: "홍콩 대관람차", gp3Desc: "빅토리아 하버의 로맨틱한 스카이라인 뷰",
                 gp4Name: "홍콩 노아의 방주", gp4Desc: "마완 자연공원과 온가족이 즐기는 명소",
+                gs1Name: "빅토리아 하버 & 스타의 거리", gs1Desc: "세계적인 스카이라인과 화려한 조명 쇼",
+                gs2Name: "빅토리아 피크 & 피크 타워", gs2Desc: "빅토리아 하버 양쪽의 아름다운 파노라마 뷰",
+                gs3Name: "서구룡 문화지구 (M+ 및 홍콩 고궁박물관)", gs3Desc: "현대 시각 문화와 중국 유물의 전당",
+                gs4Name: "대관(타이 큰) & 센트럴 유적군", gs4Desc: "역사 건축물 재생과 문화 예술의 랜드마크",
                 dep1Name: "로후 검문소", dep1Desc: "오전 06:30 ~ 자정 00:00",
                 dep2Name: "낙마주 / 휜티안", dep2Desc: "오전 06:30 ~ 오후 10:30",
                 dep3Name: "홍콩 국제공항", dep3Desc: "24시간",
@@ -692,7 +798,9 @@
                 busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
                 stationH: "무료 셔틀버스 승하차 장소",
                 guideH: "홍콩 여행 가이드",
+                guideShopH: "홍콩 여행 가이드 - 쇼핑",
                 guidePlayH: "홍콩 여행 가이드 - 즐길거리",
+                guideSightH: "홍콩 여행 가이드 - 관광",
                 departureH: "출국 공항 가이드",
                 carH: "호텔 차량 서비스",
                 facilityH: "호텔 부대시설",
@@ -724,10 +832,18 @@
                 guide4Name: "Tham quan", guide4Desc: "Địa danh nổi tiếng & điểm check-in",
                 guide5Name: "Lịch trình 1", guide5Desc: "Tuyến đường 1 ngày kinh điển",
                 guide6Name: "Lịch trình 2", guide6Desc: "Khám phá văn hóa chiều sâu",
+                gshop1Name: "Harbour City", gshop1Desc: "Trung tâm mua sắm siêu lớn ven vịnh và các thương hiệu cao cấp",
+                gshop2Name: "Khu mua sắm Causeway Bay", gshop2Desc: "Bách hóa thời trang, SOGO và thiên đường mua sắm không ngủ",
+                gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Cửa hàng sáng tạo, nhà thiết kế độc lập và sản phẩm đặc sắc",
+                gshop4Name: "Chợ Quý Bà & Phố Giày Thể Thao", gshop4Desc: "Chợ địa phương, giày thời trang và phong cách đậm chất Hồng Kông",
                 gp1Name: "Hong Kong Disneyland", gp1Desc: "Cổ tích diệu kỳ và màn pháo hoa hoành tráng",
                 gp2Name: "Ocean Park Hong Kong", gp2Desc: "Trò chơi cảm giác mạnh và động vật vùng cực",
                 gp3Name: "Vòng quay Quan sát Hồng Kông", gp3Desc: "Cảnh quan lãng mạn bên Vịnh Victoria",
                 gp4Name: "Noah's Ark Hong Kong", gp4Desc: "Công viên tự nhiên Mã Loan và điểm đến gia đình",
+                gs1Name: "Cảng Victoria & Đại lộ Ngôi sao", gs1Desc: "Đường chân trời đẳng cấp thế giới và biểu diễn ánh sáng",
+                gs2Name: "Đỉnh Thái Bình & Tháp Peak", gs2Desc: "Ngắm toàn cảnh ngoạn mục hai bên bờ Vịnh Victoria",
+                gs3Name: "Khu Văn hóa Tây Cử Long (M+ & Bảo tàng Cố cung)", gs3Desc: "Văn hóa thị giác đương đại và di sản Trung Hoa",
+                gs4Name: "Tai Kwun & Quần thể di tích Trung Hoàn", gs4Desc: "Kiến trúc lịch sử trùng tu và trung tâm nghệ thuật",
                 dep1Name: "Trạm kiểm soát La Hồ", dep1Desc: "06:30 đến 00:00 Đêm",
                 dep2Name: "Lok Ma Chau / Cảng Phúc Điền", dep2Desc: "06:30 đến 22:30",
                 dep3Name: "Sân bay Quốc tế Hồng Kông", dep3Desc: "24 Giờ",
@@ -754,7 +870,9 @@
                 busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
                 stationH: "Điểm đón xe buýt miễn phí",
                 guideH: "Cẩm nang du lịch Hồng Kông",
+                guideShopH: "Cẩm nang du lịch - Mua sắm",
                 guidePlayH: "Cẩm nang du lịch - Vui chơi",
+                guideSightH: "Cẩm nang du lịch - Tham quan",
                 departureH: "Hướng dẫn xuất cảnh",
                 carH: "Dịch vụ xe riêng của khách sạn",
                 facilityH: "Tiện ích khách sạn",
@@ -786,10 +904,18 @@
                 guide4Name: "दर्शनीय स्थल", guide4Desc: "प्रसिद्ध स्थल और फोटो स्पॉट",
                 guide5Name: "यात्रा कार्यक्रम 1", guide5Desc: "क्लासिक एक दिवसीय रूट",
                 guide6Name: "यात्रा कार्यक्रम 2", guide6Desc: "गहन सांस्कृतिक अन्वेषण यात्रा",
+                gshop1Name: "हार्बर सिटी", gshop1Desc: "वाटरफ्रंट मेगा मॉल और अंतरराष्ट्रीय लक्जरी ब्रांड",
+                gshop2Name: "कॉज़वे बे शॉपिंग जिला", gshop2Desc: "ट्रेंडी डिपार्टमेंट स्टोर, SOGO, और जीवंत नाइटलाइफ़",
+                gshop3Name: "सोहो और पीएमक्यू सेंट्रल", gshop3Desc: "रचनात्मक बुटीक, स्वतंत्र डिजाइनर और अनूठे सामान",
+                gshop4Name: "लेडीज मार्केट और स्नीकर्स स्ट्रीट", gshop4Desc: "हलचल भरे बाजार, ट्रेंडी जूते और स्थानीय स्वाद",
                 gp1Name: "हांगकांग डिज्नीलैंड", gp1Desc: "जादुई परी कथाएँ और आतिशबाजी शो",
                 gp2Name: "हांगकांग ओशन पार्क", gp2Desc: "रोमांचक सवारी और ध्रुवीय जानवर",
                 gp3Name: "हांगकांग ऑब्ज़र्वेशन व्हील", gp3Desc: "विक्टोरिया हार्बर पर रोमांटिक नज़ारे",
                 gp4Name: "हांगकांग नूह की सन्दूक", gp4Desc: "मा वान नेचर पार्क और पारिवारिक आकर्षण",
+                gs1Name: "विक्टोरिया हार्बर और एवेन्यू ऑफ स्टार्स", gs1Desc: "विश्व स्तरीय क्षितिज और लाइट शो",
+                gs2Name: "विक्टोरिया पीक और पीक टॉवर", gs2Desc: "विक्टोरिया हार्बर के दोनों किनारों का मनोरम दृश्य",
+                gs3Name: "वेस्ट काउलून सांस्कृतिक जिला (M+ और पैलेस संग्रहालय)", gs3Desc: "समकालीन दृश्य संस्कृति और चीनी विरासत",
+                gs4Name: "ताई क्वून और सेंट्रल हेरिटेज सर्किट", gs4Desc: "पुनर्जीवित ऐतिहासिक वास्तुकला और कला केंद्र",
                 dep1Name: "लो वू चेकपॉइंट", dep1Desc: "सुबह 06:30 से मध्यरात्रि 00:00",
                 dep2Name: "लोक मा चाउ / फुतियान", dep2Desc: "सुबह 06:30 से रात 10:30",
                 dep3Name: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा", dep3Desc: "24 घंटे",
@@ -816,7 +942,9 @@
                 busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएन वान वेस्ट",
                 stationH: "मुफ्त शटल बस बोर्डिंग स्थान",
                 guideH: "हांगकांग यात्रा गाइड",
+                guideShopH: "हांगकांग यात्रा गाइड - खरीदारी",
                 guidePlayH: "हांगकांग यात्रा गाइड - मनोरंजन",
+                guideSightH: "हांगकांग यात्रा गाइड - दर्शनीय स्थल",
                 departureH: "प्रस्थान गाइड",
                 carH: "होटल कार सेवा",
                 facilityH: "होटल सुविधाएं",
@@ -828,7 +956,7 @@
                 noticeWeatherTitle: "खराब मौसम व्यवस्था", noticeWeatherDesc: "ब्लैक रेनस्टॉर्म या तूफान सिग्नल 8 या अधिक जारी होने पर शटल bus सेवा स्थगित रहेगी।",
                 mapH: "होटल 300मी व्यावहारिक गाइड",
                 lugH: "सामान भंडारण सेवा", 
-                lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है।",
+                lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है。",
                 kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएन वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली बस (Next Bus)",
                 stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित"
             },
@@ -848,10 +976,18 @@
                 guide4Name: "Pasyalan", guide4Desc: "Mga sikat na landmark at tanawin",
                 guide5Name: "Ruta 1", guide5Desc: "Klasikong 1-araw na biyahe",
                 guide6Name: "Ruta 2", guide6Desc: "Malalim na pagtuklas sa kultura",
+                gshop1Name: "Harbour City", gshop1Desc: "Malaking waterfront mall at international luxury brands",
+                gshop2Name: "Causeway Bay Shopping District", gshop2Desc: "Trendy department stores, SOGO, at masiglang nightlife",
+                gshop3Name: "SoHo & PMQ Central", gshop3Desc: "Creative boutiques, indie designers, at natatanging items",
+                gshop4Name: "Ladies' Market & Sneakers Street", gshop4Desc: "Street markets, trendy kicks, at lokal na kultura",
                 gp1Name: "Hong Kong Disneyland", gp1Desc: "Magical na engkanto at paputok",
                 gp2Name: "Ocean Park Hong Kong", gp2Desc: "Nakatutuwang rides at mga polar animal",
                 gp3Name: "Hong Kong Observation Wheel", gp3Desc: "Romantikong tanawin ng skyline sa Victoria Harbour",
                 gp4Name: "Hong Kong Noah's Ark", gp4Desc: "Ma Wan nature park at pampamilyang pasyalan",
+                gs1Name: "Victoria Harbour at Avenue of Stars", gs1Desc: "World-class skyline at light show",
+                gs2Name: "Victoria Peak at Peak Tower", gs2Desc: "Panoramic view ng magkabilang panig ng Victoria Harbour",
+                gs3Name: "West Kowloon Cultural District (M+ at Palace Museum)", gs3Desc: "Contemporary visual culture at Chinese heritage",
+                gs4Name: "Tai Kwun at Central Heritage Circuit", gs4Desc: "Binagong makasaysayang arkitektura at arts hub",
                 dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 hanggang 00:00 Hatinggabi",
                 dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 hanggang 22:30",
                 dep3Name: "Hong Kong International Airport", dep3Desc: "24 Oras",
@@ -878,7 +1014,9 @@
                 busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai FongMTR) ➔ Tsuen Wan West MTR",
                 stationH: "Sakayan ng Libreng Shuttle Bus",
                 guideH: "Gabay sa Paglalakbay sa Hong Kong",
+                guideShopH: "Gabay sa Paglalakbay - Pamimili",
                 guidePlayH: "Gabay sa Paglalakbay - Libangan",
+                guideSightH: "Gabay sa Paglalakbay - Pasyalan",
                 departureH: "Gabay sa Pag-alis",
                 carH: "Serbisyo ng Kotse sa Hotel",
                 facilityH: "Mga Pasilidad ng Hotel",
@@ -932,12 +1070,28 @@
                 if (descEl) descEl.innerText = d[`guide${i}Desc`];
             }
 
+            // 更新「購物」子頁面內的 4 個專屬購物方塊
+            for (let i = 1; i <= 4; i++) {
+                const titleEl = document.getElementById(`ui-gshop-${i}-title`);
+                const descEl = document.getElementById(`ui-gshop-${i}-desc`);
+                if (titleEl) titleEl.innerText = d[`gshop${i}Name`];
+                if (descEl) descEl.innerText = d[`gshop${i}Desc`];
+            }
+
             // 更新「遊玩」子頁面內的 4 個專屬景點方塊
             for (let i = 1; i <= 4; i++) {
                 const titleEl = document.getElementById(`ui-gp-${i}-title`);
                 const descEl = document.getElementById(`ui-gp-${i}-desc`);
                 if (titleEl) titleEl.innerText = d[`gp${i}Name`];
                 if (descEl) descEl.innerText = d[`gp${i}Desc`];
+            }
+
+            // 更新「觀光」子頁面內的 4 個專屬景點方塊
+            for (let i = 1; i <= 4; i++) {
+                const titleEl = document.getElementById(`ui-gs-${i}-title`);
+                const descEl = document.getElementById(`ui-gs-${i}-desc`);
+                if (titleEl) titleEl.innerText = d[`gs${i}Name`];
+                if (descEl) descEl.innerText = d[`gs${i}Desc`];
             }
 
             // 更新出境攻略8個口岸的標題與描述
@@ -964,13 +1118,17 @@
             document.getElementById('ui-back9').innerText = d.back;
             document.getElementById('ui-back-carprice').innerText = d.back;
             document.getElementById('ui-back-carterms').innerText = d.back;
+            document.getElementById('ui-back-guideshop').innerText = d.backGuidePlay;
             document.getElementById('ui-back-guideplay').innerText = d.backGuidePlay;
+            document.getElementById('ui-back-guidesight').innerText = d.backGuidePlay;
 
             document.getElementById('ui-bus-header').innerText = d.busH;
             document.getElementById('ui-bus-sub').innerText = d.busSub;
             document.getElementById('ui-station-header').innerText = d.stationH;
             document.getElementById('ui-guide-header').innerText = d.guideH;
+            document.getElementById('ui-guideshop-header').innerText = d.guideShopH;
             document.getElementById('ui-guideplay-header').innerText = d.guidePlayH;
+            document.getElementById('ui-guidesight-header').innerText = d.guideSightH;
             document.getElementById('ui-departure-header').innerText = d.departureH;
             document.getElementById('ui-car-header').innerText = d.carH;
             document.getElementById('ui-carprice-header').innerText = d.carPriceH;
