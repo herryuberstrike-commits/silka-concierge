@@ -65,7 +65,7 @@
     <div class="container" id="mainContainer" style="display: none;">
         <h2 id="ui-title" style="text-align: center; color: #2c3e50; margin-top: 0; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">荃灣絲麗酒店 - 禮賓部</h2>
 
-        <!-- 主選單卡片網格 -->
+        <!-- 主選單卡片網格 (共8個方塊) -->
         <div class="menu-grid" id="mainMenu">
             <div class="menu-card" onclick="showSection('busSection')">
                 <div class="icon">🚌</div>
@@ -92,10 +92,20 @@
                 <h3 id="ui-card3-title">行李寄存</h3>
                 <p id="ui-card3-desc">寄存服務條款與收費</p>
             </div>
-            <div class="menu-card" style="cursor: default;">
-                <div class="icon">✨</div>
-                <h3 id="ui-card4-title">線上客服</h3>
-                <p id="ui-card4-desc">敬請期待</p>
+            <div class="menu-card" onclick="showSection('departureSection')">
+                <div class="icon">✈️</div>
+                <h3 id="ui-card7-title">出境攻略</h3>
+                <p id="ui-card7-desc">離港交通與機場快線資訊</p>
+            </div>
+            <div class="menu-card" onclick="showSection('carSection')">
+                <div class="icon">🚐</div>
+                <h3 id="ui-card8-title">酒店專車服務</h3>
+                <p id="ui-card8-desc">點對點接送與包車預約</p>
+            </div>
+            <div class="menu-card" onclick="showSection('facilitySection')">
+                <div class="icon">🏨</div>
+                <h3 id="ui-card9-title">酒店設施</h3>
+                <p id="ui-card9-desc">健身房、餐廳與其他設施</p>
             </div>
         </div>
 
@@ -151,11 +161,49 @@
             </div>
         </div>
 
-        <!-- 3. 行李寄存頁面 -->
+        <!-- 行李寄存頁面 -->
         <div id="luggageSection" class="section-content">
             <button class="back-btn" id="ui-back3" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-lug-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">行李寄存服務</h3>
-            <p id="ui-lug-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">🧳 入住及退房當天均可享免費行李寄存；如需長期寄存，則按每件每日 $10 計算。</p>
+            <div id="ui-lug-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                🧳 **行李寄存服務須知**<br><br>
+                <strong>【收費與政策】</strong><br>
+                • **入住及退房當日**：尊享全日免費行李寄存。<br>
+                • **長期寄存**：按每件每日 <strong>$10</strong> 計算。<br><br>
+                <strong>【領取與安全須知】</strong><br>
+                • 領取時請出示<strong>行李領取牌</strong>並核對簽名；如未能出示或簽名不符，本酒店有權拒絕交還。<br>
+                • 寄存物品存放於<strong>非空調環境</strong>。<br><br>
+                <strong>【免責與處理條款】</strong><br>
+                • 凡寄存於本酒店之行李或物品，如有任何<strong>遺失、損毀或被盜</strong>，香港荃灣絲麗酒店恕不負責。<br>
+                • 逾期超過 <strong>兩個月</strong> 未領回之物品，本酒店將有權自行處置，恕不另行通知。
+            </div>
+        </div>
+
+        <!-- 6. 出境攻略頁面 -->
+        <div id="departureSection" class="section-content">
+            <button class="back-btn" id="ui-back7" onclick="goBack()">⬅ 返回主選單</button>
+            <h3 id="ui-departure-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">出境攻略</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增離港交通、機場快線及出境注意事項。</p>
+            </div>
+        </div>
+
+        <!-- 7. 酒店專車服務頁面 -->
+        <div id="carSection" class="section-content">
+            <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
+            <h3 id="ui-car-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車服務</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增點對點接送與包車預約詳情。</p>
+            </div>
+        </div>
+
+        <!-- 8. 酒店設施頁面 -->
+        <div id="facilitySection" class="section-content">
+            <button class="back-btn" id="ui-back9" onclick="goBack()">⬅ 返回主選單</button>
+            <h3 id="ui-facility-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店設施</h3>
+            <div class="placeholder-content">
+                <p>🚧 內容準備中，稍后將在此處新增健身房、餐廳及其他酒店設施介紹。</p>
+            </div>
         </div>
     </div>
 
@@ -186,11 +234,16 @@
                 c2t: "🗺️ 酒店300米周邊實用指南", c2d: "地鐵站、美食與便利店",
                 c6t: "📖 香港旅遊攻略", c6d: "熱門景點與行程推介",
                 c3t: "🧳 行李寄存", c3d: "寄存服務條款與收費",
-                c4t: "💬 線上客服", c4d: "敬請期待",
+                c7t: "✈️ 出境攻略", c7d: "離港交通與機場快線資訊",
+                c8t: "🚐 酒店專車服務", c8d: "點對點接送與包車預約",
+                c9t: "🏨 酒店設施", c9d: "健身房、餐廳與其他設施",
                 back: "⬅ 返回主選單",
                 busH: "穿梭巴士時間表與即時狀態", busSub: "酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站",
                 stationH: "免費穿梭巴士上車地點",
                 guideH: "香港旅遊攻略",
+                departureH: "出境攻略",
+                carH: "酒店專車服務",
+                facilityH: "酒店設施",
                 liveStatusLabel: "📍 即時行車狀況",
                 stDriving: "行車中 (前往葵芳)", stArrKwai: "🔵 到達葵芳", stDriving2: "行車中 (前往荃灣西)", stArrTsuen: "🔵 到達荃灣西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 準備發車中",
                 noticeTelTitle: "禮賓部電話", noticeTelVal: "3700 3824 (座機內線按 ''4'' 字)",
@@ -198,7 +251,8 @@
                 noticeTimeTitle: "敬請準時出席", noticeTimeDesc: "否則名額將開放予其他賓客",
                 noticeWeatherTitle: "惡劣天氣安排", noticeWeatherDesc: "若天文台發出黑色暴雨或八號或以上熱帶氣旋信號, 穿梭巴士將暫停服務",
                 mapH: "酒店300米周邊實用指南",
-                lugH: "行李寄存服務", lugDesc: "🧳 入住及退房當天均可享免費行李寄存；如需長期寄存，則按每件每日 $10 計算。",
+                lugH: "行李寄存服務", 
+                lugDesc: "🧳 **行李寄存服務須知**<br><br><strong>【收費與政策】</strong><br>• **入住及退房當日**：尊享全日免費行李寄存。<br>• **長期寄存**：按每件每日 <strong>$10</strong> 計算。<br><br><strong>【領取與安全須知】</strong><br>• 領取時請出示<strong>行李領取牌</strong>並核對簽名；如未能出示或簽名不符，本酒店將有權拒絕交還。<br>• 寄存物品存放於<strong>非空調環境</strong>。<br><br><strong>【免責與處理條款】</strong><br>• 凡寄存於本酒店之行李或物品，如有任何<strong>遺失、損毀或被盜</strong>，香港荃灣絲麗酒店恕不負責。<br>• 逾期超過 <strong>兩個月</strong> 未領回之物品，本酒店將有權自行處置，恕不另行通知。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃灣西", lunchBreak: "午飯時間 (暫停服務)", nextBusText: "⭐ 下一班次 (Next Bus)",
                 stBookable: "可預約", stWaiting: "等待發車", stBoarding: "可以上車", stDeparted: "已離開", stFull: "已滿", stOut: "暫停服務"
             },
@@ -209,11 +263,16 @@
                 c2t: "🗺️ 酒店300米周边实用指南", c2d: "地铁站、美食与便利店",
                 c6t: "📖 香港旅游攻略", c6d: "热门景点与行程推介",
                 c3t: "🧳 行李寄存", c3d: "寄存服务条款与收费",
-                c4t: "💬 线上客服", c4d: "敬请期待",
+                c7t: "✈️ 出境攻略", c7d: "离港交通与机场快线资讯",
+                c8t: "🚐 酒店专车服务", c8d: "点对点接送与包车预约",
+                c9t: "🏨 酒店设施", c9d: "健身房、餐厅与其他设施",
                 back: "⬅ 返回主菜单",
                 busH: "穿梭巴士时间表与即时状态", busSub: "酒店 🕒 ➔ 新都会广场(港铁葵芳站) ➔ 港铁荃湾西站",
                 stationH: "免费穿梭巴士上车地点",
                 guideH: "香港旅游攻略",
+                departureH: "出境攻略",
+                carH: "酒店专车服务",
+                facilityH: "酒店设施",
                 liveStatusLabel: "📍 即时行车状况",
                 stDriving: "行车中 (前往葵芳)", stArrKwai: "🔵 到达葵芳", stDriving2: "行车中 (前往荃湾西)", stArrTsuen: "🔵 到达荃湾西", stReturning: "正在返回酒店", stWaitingStandby: "待命 / 准备发车中",
                 noticeTelTitle: "礼宾部电话", noticeTelVal: "3700 3824 (座机内线按 ''4'' 字)",
@@ -221,7 +280,8 @@
                 noticeTimeTitle: "敬请准时出席", noticeTimeDesc: "否则名额将开放予其他宾客",
                 noticeWeatherTitle: "恶劣天气安排", noticeWeatherDesc: "若天文台发出黑色暴雨或八号或以上热带气旋信号, 穿梭巴士将暂停服务",
                 mapH: "酒店300米周边实用指南",
-                lugH: "行李寄存服务", lugDesc: "🧳 入住及退房当天均可享免费行李寄存；如需长期寄存，则按每件每日 $10 计算。",
+                lugH: "行李寄存服务", 
+                lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理条款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、损毁或被盗</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
                 stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务"
             },
@@ -232,11 +292,16 @@
                 c2t: "🗺️ Hotel 300m Practical Guide", c2d: "MTR, dining & convenience stores",
                 c6t: "📖 HK Travel Guide", c6d: "Top attractions & itineraries",
                 c3t: "🧳 Luggage Storage", c3d: "Storage policy & fees",
-                c4t: "💬 Live Chat", c4d: "Coming Soon",
+                c7t: "✈️ Departure Guide", c7d: "Airport transport & Express info",
+                c8t: "🚐 Hotel Limousine Service", c8d: "Point-to-point & charter booking",
+                c9t: "🏨 Hotel Facilities", c9d: "Gym, dining & other amenities",
                 back: "⬅ Back to Menu",
                 busH: "Shuttle Bus Schedule & Live Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai Fong MTR) ➔ Tsuen Wan West MTR",
                 stationH: "Free Shuttle Bus Boarding Locations",
                 guideH: "Hong Kong Travel Guide",
+                departureH: "Departure Guide",
+                carH: "Hotel Limousine Service",
+                facilityH: "Hotel Facilities",
                 liveStatusLabel: "📍 Live Bus Status",
                 stDriving: "Driving to Kwai Fong", stArrKwai: "🔵 Arrived at Kwai Fong", stDriving2: "Driving to Tsuen Wan West", stArrTsuen: "🔵 Arrived at Tsuen Wan West", stReturning: "Returning to Hotel", stWaitingStandby: "Standby / Preparing",
                 noticeTelTitle: "Concierge Tel", noticeTelVal: "3700 3824 (Press '4' for extension)",
@@ -244,7 +309,8 @@
                 noticeTimeTitle: "Please be punctual", noticeTimeDesc: "Otherwise, seats may be released to other guests.",
                 noticeWeatherTitle: "Severe Weather", noticeWeatherDesc: "Shuttle bus service will be suspended if Black Rainstorm or Typhoon Signal No. 8 or above is issued.",
                 mapH: "Hotel 300m Practical Guide",
-                lugH: "Luggage Storage Service", lugDesc: "🧳 Complimentary luggage storage is available on both check-in and check-out days. For long-term storage, a fee of $10 per piece per day applies.",
+                lugH: "Luggage Storage Service", 
+                lugDesc: "🧳 **Luggage Storage Notice**<br><br><strong>【Policy & Fees】</strong><br>• **Check-in & Check-out Days**: Enjoy complimentary luggage storage.<br>• **Long-term Storage**: Charged at <strong>$10</strong> per piece per day.<br><br><strong>【Collection & Safety】</strong><br>• Please present the luggage claim tag and matching signature upon collection. The hotel reserves the right to refuse return if missing or unmatched.<br>• Stored in a <strong>non-air-conditioned</strong> environment.<br><br><strong>【Liability & Terms】</strong><br>• Silka Tsuen Wan is not liable for any <strong>loss, damage, or theft</strong> of items stored.<br>• Unclaimed items for <strong>over two months</strong> may be <strong>disposed of without prior notice</strong>.",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspended)", nextBusText: "⭐ Next Bus",
                 stBookable: "Available", stWaiting: "Waiting", stBoarding: "Boarding", stDeparted: "Departed", stFull: "Full", stOut: "Suspended"
             },
@@ -255,11 +321,16 @@
                 c2t: "🗺️ ホテル300m周辺実用ガイド", c2d: "駅、飲食店、コンビニ",
                 c6t: "📖 香港観光ガイド", c6d: "おすすめスポットとモデルコース",
                 c3t: "🧳 手荷物預かり", c3d: "お預かりの案内と料金",
-                c4t: "💬 ライブチャット", c4d: "近日公開",
+                c7t: "✈️ 出国・空港ガイド", c7d: "空港アクセスと交通情報",
+                c8t: "🚐 ホテル送迎サービス", c8d: "送迎およびチャーター予約",
+                c9t: "🏨 ホテル施設", c9d: "ジム、レストラン、その他施設",
                 back: "⬅ メニューに戻る",
                 busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
                 stationH: "無料シャトルバス乗降場所",
                 guideH: "香港観光ガイド",
+                departureH: "出国・空港ガイド",
+                carH: "ホテル送迎サービス",
+                facilityH: "ホテル施設",
                 liveStatusLabel: "📍 リアルタイム運行状況",
                 stDriving: "運行中 (葵芳行き)", stArrKwai: "🔵 葵芳到着", stDriving2: "運行中 (荃湾西行き)", stArrTsuen: "🔵 荃湾西到着", stReturning: "ホテルへ帰還中", stWaitingStandby: "待機中 / 準備中",
                 noticeTelTitle: "コンシェルジュ電話", noticeTelVal: "3700 3824 (内線 '4')",
@@ -267,7 +338,8 @@
                 noticeTimeTitle: "時間厳守のお願い", noticeTimeDesc: "時間通りにお越しいただけない場合、他のお客様に譲る場合があります。",
                 noticeWeatherTitle: "悪天候時の運行", noticeWeatherDesc: "黒色暴風雨警報または台風警報8号以上が発令された場合、シャトルバスは運休します。",
                 mapH: "ホテル300m周辺実用ガイド",
-                lugH: "手荷物預かりサービス", lugDesc: "🧳 チェックイン当日およびチェックアウト当日は手荷物を無料でお預かりいたします。長期預かりの場合は、1個あたり1日につき$10となります。",
+                lugH: "手荷物預かりサービス", 
+                lugDesc: "🧳 **手荷物預かりのご案内**<br><br><strong>【料金とポリシー】</strong><br>• **チェックイン/アウト当日**：全日無料でお預かり。<br>• **長期預かり**：1個あたり1日 <strong>$10</strong>。<br><br><strong>【お引き取りと安全】</strong><br>• お引き取り時は預かり札と**署名**を確認します。一致しない場合はお返しできません。<br>• **非空調環境**での保管となります。<br><br><strong>【免責事項】</strong><br>• 紛失、破損、盗難についてホテルは責任を負いません。<br>• **2ヶ月**以上引き取りのない物品は予告なく処分されます。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "昼休み (運休)", nextBusText: "⭐ 次の便 (Next Bus)",
                 stBookable: "予約可能", stWaiting: "まもなく", stBoarding: "乗車可能", stDeparted: "出発済み", stFull: "満席", stOut: "運休"
             },
@@ -278,11 +350,16 @@
                 c2t: "🗺️ 호텔 300m 주변 실용 가이드", c2d: "역, 맛집, 편의점",
                 c6t: "📖 홍콩 여행 가이드", c6d: "인기 관광지 및 일정 추천",
                 c3t: "🧳 수하물 보관", c3d: "보관 규정 및 요금",
-                c4t: "💬 실시간 채팅", c4d: "준비 중",
+                c7t: "✈️ 출국 공항 가이드", c7d: "공항 교통 및 익스프레스 정보",
+                c8t: "🚐 호텔 차량 서비스", c8d: "공항/시내 픽업 및 대절 예약",
+                c9t: "🏨 호텔 부대시설", c9d: "피트니스, 레스토랑 및 편의시설",
                 back: "⬅ 메뉴로 돌아가기",
                 busH: "셔틀버스 시간표 및 실시간 상태", busSub: "호텔 🕒 ➔ 메트로플라자(콰이퐁역) ➔ 취언완 웨스트역",
                 stationH: "무료 셔틀버스 승하차 장소",
                 guideH: "홍콩 여행 가이드",
+                departureH: "출국 공항 가이드",
+                carH: "호텔 차량 서비스",
+                facilityH: "호텔 부대시설",
                 liveStatusLabel: "📍 실시간 운행 상태",
                 stDriving: "운행 중 (콰이퐁행)", stArrKwai: "🔵 콰이퐁 도착", stDriving2: "운행 중 (취언완 웨스트행)", stArrTsuen: "🔵 취언완 웨스트 도착", stReturning: "호텔로 복귀 중", stWaitingStandby: "대기 중 / 준비 중",
                 noticeTelTitle: "컨시어지 전화", noticeTelVal: "3700 3824 (내선 '4')",
@@ -290,7 +367,8 @@
                 noticeTimeTitle: "시간 준수 요청", noticeTimeDesc: "정시에 참석하지 않으실 경우, 다른 투숙객에게 좌석이 양도될 수 있습니다.",
                 noticeWeatherTitle: "악천후 안내", noticeWeatherDesc: "흑색 폭우 경보 또는 태풍 경보 8호 이상 발령 시 셔틀버스 운행이 중단됩니다.",
                 mapH: "호텔 300m 주변 실용 가이드",
-                lugH: "수하물 보관 서비스", lugDesc: "🧳 체크인 및 체크아웃 당일에는 수하물을 무료로 보관하실 수 있습니다. 장기 보관의 경우 개당 1일 $10의 요금이 부과됩니다.",
+                lugH: "수하물 보관 서비스", 
+                lugDesc: "🧳 **수하물 보관 안내**<br><br><strong>【요금 및 정책】</strong><br>• **체크인 및 체크아웃 당일**：무료 보관。<br>• **장기 보관**：개당 1일 <strong>$10</strong>。<br><br><strong>【수령 및 안전】</strong><br>• 수령 시 보관증과 **서명** 확인 (불일치 시 반환 거부 가능).<br>• **에어컨이 없는 환경**에 보관됩니다。<br><br><strong>【면책 조항】</strong><br>• 분실, 손상, 도난에 대해 호텔은 책임지지 않습니다。<br>• **2개월** 이상 찾아가지 않은 물품은 임의 처분될 수 있습니다。",
                 kwaiFong: "콰이퐁", tsuenWanWest: "취언완 웨스트", lunchBreak: "점심 시간 (운행 중단)", nextBusText: "⭐ 다음 차량 (Next Bus)",
                 stBookable: "예약 가능", stWaiting: "대기 중", stBoarding: "탑승 가능", stDeparted: "출발함", stFull: "만석", stOut: "운행 중단"
             },
@@ -301,11 +379,16 @@
                 c2t: "🗺️ Hướng dẫn thực tế quanh khách sạn 300m", c2d: "MTR, ẩm thực & cửa hàng tiện lợi",
                 c6t: "📖 Cẩm nang du lịch HK", c6d: "Địa điểm hot & gợi ý lịch trình",
                 c3t: "🧳 Giữ hành lý", c3d: "Quy định & phí giữ hành lý",
-                c4t: "💬 Trò chuyện trực tuyến", c4d: "Sắp ra mắt",
+                c7t: "✈️ Hướng dẫn xuất cảnh", c7d: "Giao thông sân bay & Airport Express",
+                c8t: "🚐 Dịch vụ xe riêng", c8d: "Đưa đón sân bay & thuê xe",
+                c9t: "🏨 Tiện ích khách sạn", c9d: "Phòng gym, nhà hàng & tiện ích",
                 back: "⬅ Quay lại Menu",
                 busH: "Lịch trình xe buýt & Trạng thái", busSub: "Khách sạn 🕒 ➔ Metroplaza (Ga Kwai Fong) ➔ Ga Tsuen Wan West",
                 stationH: "Điểm đón xe buýt miễn phí",
                 guideH: "Cẩm nang du lịch Hồng Kông",
+                departureH: "Hướng dẫn xuất cảnh",
+                carH: "Dịch vụ xe riêng của khách sạn",
+                facilityH: "Tiện ích khách sạn",
                 liveStatusLabel: "📍 Trạng thái xe buýt trực tiếp",
                 stDriving: "Đang chạy tới Kwai Fong", stArrKwai: "🔵 Đã đến Kwai Fong", stDriving2: "Đang chạy tới Tsuen Wan West", stArrTsuen: "🔵 Đã đến Tsuen Wan West", stReturning: "Đang quay về khách sạn", stWaitingStandby: "Đang chờ / Chuẩn bị",
                 noticeTelTitle: "Điện thoại lễ tân", noticeTelVal: "3700 3824 (Nhấn '4' để kết nối nội bộ)",
@@ -313,7 +396,8 @@
                 noticeTimeTitle: "Vui lòng đến đúng giờ", noticeTimeDesc: "Nếu không, suất đi sẽ được nhường cho khách khác.",
                 noticeWeatherTitle: "Lưu ý thời tiết xấu", noticeWeatherDesc: "Nếu có cảnh báo mưa bão màu đen hoặc bão cấp 8 trở lên, xe buýt sẽ tạm ngưng hoạt động.",
                 mapH: "Hướng dẫn thực tế quanh khách sạn 300m",
-                lugH: "Dịch vụ giữ hành lý", lugDesc: "🧳 Quý khách được miễn phí giữ hành lý vào ngày nhận phòng và trả phòng. Nếu gửi dài hạn, phí là $10 mỗi kiện mỗi ngày.",
+                lugH: "Dịch vụ giữ hành lý", 
+                lugDesc: "🧳 **Quy định gửi hành lý**<br><br><strong>【Chính sách & Phí】</strong><br>• **Ngày nhận/trả phòng**：Miễn phí.<br>• **Gửi dài hạn**：<strong>$10</strong>/kiện/ngày.<br><br><strong>【Nhận đồ & An toàn】</strong><br>• Xuất trình thẻ và **chữ ký khớp**.<br>• **Không có điều hòa**.<br><br><strong>【Miễn trừ trách nhiệm】</strong><br>• Khách sạn không chịu trách nhiệm mất mát, hư hỏng.<br>• Quá **2 tháng** không nhận sẽ bị xử lý.",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Giờ nghỉ trưa (Tạm dừng)", nextBusText: "⭐ Chuyến tiếp theo",
                 stBookable: "Có thể đặt", stWaiting: "Đang chờ", stBoarding: "Đang lên xe", stDeparted: "Đã đi", stFull: "Hết chỗ", stOut: "Tạm dừng"
             },
@@ -324,11 +408,16 @@
                 c2t: "🗺️ होटल 300मी व्यावहारिक गाइड", c2d: "मेट्रो, भोजन और दुकानें",
                 c6t: "📖 हांगकांग यात्रा गाइड", c6d: "शीर्ष आकर्षण और यात्रा कार्यक्रम",
                 c3t: "🧳 सामान का भंडारण", c3d: "भंडारण नियम और शुल्क",
-                c4t: "💬 लाइव चैट", c4d: "शीघ्र आ रहा है",
+                c7t: "✈️ प्रस्थान गाइड", c7d: "हवाई अड्डा परिवहन और एक्सप्रेस जानकारी",
+                c8t: "🚐 होटल कार सेवा", c8d: "पॉइंट-टू-पॉइंट और चार्टर बुकिंग",
+                c9t: "🏨 होटल सुविधाएं", c9d: "जिम, डाइनिंग और अन्य सुविधाएं",
                 back: "⬅ मेनू पर वापस जाएं",
                 busH: "शटल bus समय सारणी और लाइव स्थिति", busSub: "होटल 🕒 ➔ मेट्रोप्लाजा (क्वाई फोंग) ➔ त्सुएन वान वेस्ट",
                 stationH: "मुफ्त शटल बस बोर्डिंग स्थान",
                 guideH: "हांगकांग यात्रा गाइड",
+                departureH: "प्रस्थान गाइड",
+                carH: "होटल कार सेवा",
+                facilityH: "होटल सुविधाएं",
                 liveStatusLabel: "📍 लाइव बस स्थिति",
                 stDriving: "क्वाई फोंग जा रही है", stArrKwai: "🔵 क्वाई फोंग पहुंच गई", stDriving2: "त्सुएन वान वेस्ट जा रही है", stArrTsuen: "🔵 त्सुएन वान वेस्ट पहुंच गई", stReturning: "होटल वापस लौट रही है", stWaitingStandby: "प्रतीक्षा / तैयारी",
                 noticeTelTitle: "कंसर्ज फोन", noticeTelVal: "3700 3824 (एक्सटेंशन के लिए '4' दबाएं)",
@@ -336,7 +425,8 @@
                 noticeTimeTitle: "समय पर उपस्थित रहें", noticeTimeDesc: "अन्यथा सीट अन्य अतिथियों को दे दी जाएगी।",
                 noticeWeatherTitle: "खराब मौसम व्यवस्था", noticeWeatherDesc: "ब्लैक रेनस्टॉर्म या तूफान सिग्नल 8 या अधिक जारी होने पर शटल bus सेवा स्थगित रहेगी।",
                 mapH: "होटल 300मी व्यावहारिक गाइड",
-                lugH: "सामान भंडारण सेवा", lugDesc: "🧳 चेक-इन और चेक-आउट के दिन सामान का भंडारण निःशुल्क है। दीर्घकालिक भंडारण के लिए, प्रति पीस प्रति दिन $10 का शुल्क लागू है।",
+                lugH: "सामान भंडारण सेवा", 
+                lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है।",
                 kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएन वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली बस (Next Bus)",
                 stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित"
             },
@@ -347,11 +437,16 @@
                 c2t: "🗺️ Gabay sa 300m Paligid ng Hotel", c2d: "MTR, kainan at convenience store",
                 c6t: "📖 Gabay sa Paglalakbay", c6d: "Mga pasyalan at gabay sa biyahe",
                 c3t: "🧳 Imbakan ng Bagahe", c3d: "Patakaran at bayarin sa bagahe",
-                c4t: "💬 Live Chat", c4d: "Malapit na",
+                c7t: "✈️ Gabay sa Pag-alis", c7d: "Transportasyon sa paliparan at Airport Express",
+                c8t: "🚐 Serbisyo ng Kotse sa Hotel", c8d: "Point-to-point at booking ng sasakyan",
+                c9t: "🏨 Mga Pasilidad ng Hotel", c9d: "Gym, kainan at iba pa",
                 back: "⬅ Bumalik sa Menu",
                 busH: "Iskedyul ng Shuttle Bus at Status", busSub: "Hotel 🕒 ➔ Metroplaza (Kwai FongMTR) ➔ Tsuen Wan West MTR",
                 stationH: "Sakayan ng Libreng Shuttle Bus",
                 guideH: "Gabay sa Paglalakbay sa Hong Kong",
+                departureH: "Gabay sa Pag-alis",
+                carH: "Serbisyo ng Kotse sa Hotel",
+                facilityH: "Mga Pasilidad ng Hotel",
                 liveStatusLabel: "📍 Live na Status ng Bus",
                 stDriving: "Bumibiyahe patungong Kwai Fong", stArrKwai: "🔵 Dumating sa Kwai Fong", stDriving2: "Bumibiyahe patungong Tsuen Wan West", stArrTsuen: "🔵 Dumating sa Tsuen Wan West", stReturning: "Bumabalik sa Hotel", stWaitingStandby: "Naghihintay / Handa",
                 noticeTelTitle: "Concierge Tel", noticeTelVal: "3700 3824 (Pindutin ang '4' para sa extension)",
@@ -359,7 +454,8 @@
                 noticeTimeTitle: "Mangyaring dumating sa oras", noticeTimeDesc: "Kung hindi, ang puwesto ay ibibigay sa ibang bisita.",
                 noticeWeatherTitle: "Kondisyon sa Masamang Panahon", noticeWeatherDesc: "Kanselahin ang shuttle bus kung may Black Rainstorm o Typhoon Signal No. 8 pataas.",
                 mapH: "Gabay sa 300m Paligid ng Hotel",
-                lugH: "Serbisyo sa Imbakan ng Bagahe", lugDesc: "🧳 Libre ang pag-iimbak ng bagahe sa araw ng pag-check-in at pag-check-out. Para sa pangmatagalang imbakan, may bayad na $10 bawat piraso bawat araw.",
+                lugH: "Serbisyo sa Imbakan ng Bagahe", 
+                lugDesc: "🧳 **Patakaran sa Bagahe**<br><br><strong>【Patakaran at Bayarin】</strong><br>• **Araw ng Check-in at Check-out**：Libre.<br>• **Pangmatagalan**：<strong>$10</strong> bawat piraso bawat araw.<br><br><strong>【Pagkuha at Kaligtasan】</strong><br>• Ipakita ang tag at magtugma ang **lagda**.<br>• Nakalagay sa lugar na **walang aircon**.<br><br><strong>【Pananagutan】</strong><br>• Walang pananagutan sa pagkawala o pinsala.<br>• Ang hindi kinuha sa loob ng **dalawang buwan** ay maaaring itapon.",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspendido)", nextBusText: "⭐ Susunod na Bus",
                 stBookable: "Maaaring i-book", stWaiting: "Nagintahay", stBoarding: "Sumasakay", stDeparted: "Umalis na", stFull: "Puno", stOut: "Suspendido"
             }
@@ -386,19 +482,29 @@
             document.getElementById('ui-card6-desc').innerText = d.c6d;
             document.getElementById('ui-card3-title').innerText = d.c3t;
             document.getElementById('ui-card3-desc').innerText = d.c3d;
-            document.getElementById('ui-card4-title').innerText = d.c4t;
-            document.getElementById('ui-card4-desc').innerText = d.c4d;
+            document.getElementById('ui-card7-title').innerText = d.c7t;
+            document.getElementById('ui-card7-desc').innerText = d.c7d;
+            document.getElementById('ui-card8-title').innerText = d.c8t;
+            document.getElementById('ui-card8-desc').innerText = d.c8d;
+            document.getElementById('ui-card9-title').innerText = d.c9t;
+            document.getElementById('ui-card9-desc').innerText = d.c9d;
 
             document.getElementById('ui-back1').innerText = d.back;
             document.getElementById('ui-back2').innerText = d.back;
             document.getElementById('ui-back3').innerText = d.back;
             document.getElementById('ui-back5').innerText = d.back;
             document.getElementById('ui-back6').innerText = d.back;
+            document.getElementById('ui-back7').innerText = d.back;
+            document.getElementById('ui-back8').innerText = d.back;
+            document.getElementById('ui-back9').innerText = d.back;
 
             document.getElementById('ui-bus-header').innerText = d.busH;
             document.getElementById('ui-bus-sub').innerText = d.busSub;
             document.getElementById('ui-station-header').innerText = d.stationH;
             document.getElementById('ui-guide-header').innerText = d.guideH;
+            document.getElementById('ui-departure-header').innerText = d.departureH;
+            document.getElementById('ui-car-header').innerText = d.carH;
+            document.getElementById('ui-facility-header').innerText = d.facilityH;
             
             document.getElementById('ui-live-status-label').innerText = d.liveStatusLabel;
 
@@ -413,7 +519,7 @@
             document.getElementById('ui-map-header').innerText = d.mapH;
             
             document.getElementById('ui-lug-header').innerText = d.lugH;
-            document.getElementById('ui-lug-desc').innerText = d.lugDesc;
+            document.getElementById('ui-lug-desc').innerHTML = d.lugDesc;
 
             renderBusSchedule();
             updateLiveStatusDisplay();
