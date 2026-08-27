@@ -3,172 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>荃灣絲麗酒店 - 員工後台控制台</title>
+    <title>荃灣絲麗酒店 - 禮賓部員工後台</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #eef2f7; color: #333; padding: 20px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 600px; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; }
+        body { background-color: #eef2f7; color: #333; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+        
+        #loginOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000;
+        }
+        .login-card {
+            background: #fff; padding: 30px; border-radius: 16px; width: 100%; max-width: 360px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); text-align: center;
+        }
+        .login-card h2 { font-size: 18px; margin-bottom: 8px; color: #343a40; }
+        .login-card p { font-size: 12px; color: #666; margin-bottom: 20px; }
+        .login-card input {
+            width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 8px; font-size: 14px; margin-bottom: 12px; text-align: center;
+        }
+        .login-card button {
+            width: 100%; padding: 10px; background: #343a40; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+        }
+        .error-msg { color: #dc3545; font-size: 12px; margin-top: 8px; display: none; }
+
+        .container { width: 100%; max-width: 700px; background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden; display: none; }
         .header { background: #343a40; color: #fff; padding: 20px; text-align: center; }
-        .header h1 { font-size: 20px; margin-bottom: 5px; }
-        .header p { font-size: 13px; opacity: 0.8; }
-        .section { padding: 20px; border-bottom: 1px solid #eee; }
-        .section h2 { font-size: 16px; color: #343a40; margin-bottom: 12px; border-left: 4px solid #0056b3; padding-left: 8px; }
-        .list-box { max-height: 180px; overflow-y: scroll; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: #fafafa; font-size: 13px; margin-bottom: 10px; }
-        .item-row { background: #fff; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
-        .chat-input-area { display: flex; gap: 5px; }
-        .chat-input-area input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
-        .chat-input-area button { padding: 8px 15px; background: #343a40; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        .header h1 { font-size: 18px; margin-bottom: 4px; }
+        .header p { font-size: 12px; color: #adb5bd; }
+        .section { padding: 20px; border-bottom: 1px solid #dee2e6; }
+        .section:last-child { border-bottom: none; }
+        h2 { font-size: 16px; color: #343a40; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        
+        .staff-bus-item {
+            background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px;
+            padding: 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 13px;
+        }
+        .staff-bus-row { display: flex; justify-content: space-between; align-items: center; }
+        .btn-group { display: flex; gap: 6px; }
+        .staff-btn {
+            padding: 6px 10px; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: bold;
+        }
+        .btn-normal { background: #6c757d; color: white; }
+        .btn-full { background: #dc3545; color: white; }
+        .btn-out { background: #343a40; color: white; }
+        .staff-btn.active { outline: 2px solid #000; box-shadow: 0 0 5px rgba(0,0,0,0.3); }
+
+        /* 一對多聊天排版 */
+        .chat-layout { display: flex; gap: 12px; height: 260px; }
+        .room-list { width: 35%; border: 1px solid #ced4da; border-radius: 8px; overflow-y: auto; background: #fdfdfd; }
+        .room-item { padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; font-size: 13px; }
+        .room-item:hover { background: #f1f3f5; }
+        .room-item.active { background: #343a40; color: white; }
+        
+        .chat-main { flex: 1; display: flex; flex-direction: column; border: 1px solid #ced4da; border-radius: 8px; background: #fdfdfd; padding: 10px; }
+        .chat-box { flex: 1; overflow-y: scroll; margin-bottom: 8px; font-size: 13px; padding-right: 5px; }
+        .chat-input-area { display: flex; gap: 6px; }
+        .chat-input-area input { flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 6px; font-size: 13px; }
+        .chat-input-area button { padding: 8px 14px; background: #343a40; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <h1>荃灣絲麗酒店 🏨</h1>
-        <p>員工後台管理系統 (Staff Control Panel)</p>
-    </div>
-
-    <!-- 1. 行李寄存管理 -->
-    <div class="section">
-        <h2>🧳 住客行李寄存請求</h2>
-        <div class="list-box" id="luggageListBox">
-            <div style="color:#888; font-size:12px; text-align:center;">暫無寄存請求</div>
+    <div id="loginOverlay">
+        <div class="login-card">
+            <h2>職員身分驗證</h2>
+            <p>荃灣絲麗酒店 - 禮賓部後台</p>
+            <input type="password" id="passwordInput" placeholder="請輸入員工密碼" onkeypress="handleKeyPress(event)">
+            <button onclick="checkPassword()">登入後台</button>
+            <div id="errorMsg" class="error-msg">密碼錯誤，請重新輸入！</div>
         </div>
     </div>
 
-    <!-- 2. 穿梭巴士狀態控制專區 -->
-    <div class="section">
-        <h2>🚌 穿梭巴士班次狀態控制</h2>
-        <p style="font-size:12px; color:#666; margin-bottom:10px;">營運時間：08:00 - 20:00 (往返葵芳及荃灣西)</p>
-        
-        <div style="display: flex; flex-direction: column; gap: 6px; max-height: 320px; overflow-y: auto;" id="staffBusList">
-            <!-- 由 JavaScript 自動動態載入班次清單 -->
+    <div class="container" id="mainContainer">
+        <div class="header">
+            <h1>荃灣絲麗酒店 - 禮賓部員工後台</h1>
+            <p>Staff Management Console</p>
         </div>
-    </div>
 
-    <!-- 3. 線上客服回覆 -->
-    <div class="section">
-        <h2>💬 線上客服即時對話</h2>
-        <div class="list-box" id="chatBox">
-            <div style="color:#888; font-size:12px; text-align:center;">尚無對話紀錄</div>
+        <div class="section">
+            <h2>🚌 穿梭巴士即時狀態管理</h2>
+            <div id="staffBusList"></div>
         </div>
-        <div class="chat-input-area">
-            <input type="text" id="staffChatInput" placeholder="以櫃台身份回覆住客...">
-            <button onclick="sendStaffMessage()">回覆</button>
-        </div>
-    </div>
-</div>
 
-<script>
-    // 定義 8 點到 20 點的班次（避開 13:00）
-    const busTimes = [
-        "08:00", "09:00", "10:00", "11:00", "12:00", 
-        "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"
-    ];
-
-    // 初始化載入
-    window.onload = function() {
-        loadLuggage();
-        loadStaffBus();
-        loadChat();
-    }
-
-    // 載入行李寄存列表
-    function loadLuggage() {
-        const box = document.getElementById('luggageListBox');
-        let requests = JSON.parse(localStorage.getItem('luggageRequests') || '[]');
-        if(requests.length === 0) {
-            box.innerHTML = '<div style="color:#888; font-size:12px; text-align:center;">暫無寄存請求</div>';
-            return;
-        }
-        box.innerHTML = '';
-        requests.forEach((req, index) => {
-            box.innerHTML += `<div class="item-row"><span>房號: <strong>${req.room}</strong> | 件數: <strong>${req.count}</strong>件 <span style="font-size:11px; color:#666;">(${req.time})</span></span><button onclick="removeLuggage(${index})" style="background:#dc3545; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">已處理</button></div>`;
-        });
-    }
-
-    function removeLuggage(index) {
-        let requests = JSON.parse(localStorage.getItem('luggageRequests') || '[]');
-        requests.splice(index, 1);
-        localStorage.setItem('luggageRequests', JSON.stringify(requests));
-        loadLuggage();
-    }
-
-    // 載入穿梭巴士狀態控制列表
-    function loadStaffBus() {
-        const container = document.getElementById('staffBusList');
-        if (!container) return;
-        container.innerHTML = '';
-
-        let busStatuses = JSON.parse(localStorage.getItem('busStatuses') || '{}');
-
-        busTimes.forEach(time => {
-            let status = busStatuses[time] || '可預約';
-            let badgeColor = '#5cb85c'; // 綠色 (正常)
-            
-            if (status === '已滿 / FULL') {
-                badgeColor = '#f0ad4e'; // 黃色
-            } else if (status === '暫停服務 / OUT OF SVC') {
-                badgeColor = '#d9534f'; // 紅色
-            }
-
-            container.innerHTML += `
-                <div class="item-row">
-                    <span style="font-size:13px;">🕒 <strong>${time}</strong> 往返葵芳及荃灣西 <span style="font-size:11px; color:${badgeColor}; font-weight:bold; margin-left:6px;">[${status}]</span></span>
-                    <div style="display: flex; gap: 4px;">
-                        <button onclick="changeBusStatus('${time}', '可預約')" style="background:#5cb85c; color:white; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:11px;">正常</button>
-                        <button onclick="changeBusStatus('${time}', '已滿 / FULL')" style="background:#f0ad4e; color:white; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:11px;">已滿</button>
-                        <button onclick="changeBusStatus('${time}', '暫停服務 / OUT OF SVC')" style="background:#d9534f; color:white; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:11px;">暫停</button>
+        <div class="section">
+            <h2>💬 住客即時對話管理 (一對多分流)</h2>
+            <div class="chat-layout">
+                <div class="room-list" id="roomList">
+                    <div style="color:#888; font-size:12px; text-align:center; padding:20px;">暫無住客對話</div>
+                </div>
+                <div class="chat-main">
+                    <div class="chat-box" id="staffChatBox">
+                        <div style="color:#888; font-size:12px; text-align:center; margin-top:20px;">請從左側選擇一個房間對話</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="staffChatInput" placeholder="請選擇房間後回覆...">
+                        <button onclick="staffSendMessage()">發送</button>
                     </div>
                 </div>
-            `;
+            </div>
+        </div>
+    </div>
+
+<script>
+    const CORRECT_PASSWORD = "Stw3824";
+    let activeRoom = null;
+
+    function checkPassword() {
+        if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContainer').style.display = 'block';
+            initDashboard();
+        } else {
+            document.getElementById('errorMsg').style.display = 'block';
+        }
+    }
+    function handleKeyPress(e) { if (e.key === 'Enter') checkPassword(); }
+
+    const rawBusData = [
+        { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
+        { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
+        { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
+        { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
+        { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
+        { id: 6, hotel: "13:00 - 14:00", isBreak: true },
+        { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
+        { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
+        { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
+        { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
+        { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
+        { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
+        { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
+    ];
+
+    function renderStaffBusList() {
+        const container = document.getElementById('staffBusList');
+        container.innerHTML = '';
+        const overrides = JSON.parse(localStorage.getItem('busManualOverrides') || '{}');
+        rawBusData.forEach(item => {
+            if (item.isBreak) {
+                container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; text-align: center;">🍽️ ${item.hotel} : 午飯時間</div>`;
+            } else {
+                const st = overrides[item.id] || 'NORMAL';
+                container.innerHTML += `
+                    <div class="staff-bus-item"><div class="staff-bus-row">
+                        <span>🕒 <strong>${item.hotel}</strong></span>
+                        <div class="btn-group">
+                            <button class="staff-btn btn-normal ${st==='NORMAL'?'active':''}" onclick="setBusStatus(${item.id}, 'NORMAL')">正常</button>
+                            <button class="staff-btn btn-full ${st==='FULL'?'active':''}" onclick="setBusStatus(${item.id}, 'FULL')">滿座</button>
+                            <button class="staff-btn btn-out ${st==='OUT OF SVC'?'active':''}" onclick="setBusStatus(${item.id}, 'OUT OF SVC')">停駛</button>
+                        </div>
+                    </div></div>`;
+            }
         });
     }
 
-    // 變更巴士狀態並儲存
-    function changeBusStatus(time, newStatus) {
-        let busStatuses = JSON.parse(localStorage.getItem('busStatuses') || '{}');
-        busStatuses[time] = newStatus;
-        localStorage.setItem('busStatuses', JSON.stringify(busStatuses));
-        loadStaffBus();
+    function setBusStatus(id, status) {
+        let overrides = JSON.parse(localStorage.getItem('busManualOverrides') || '{}');
+        if (status === 'NORMAL') delete overrides[id]; else overrides[id] = status;
+        localStorage.setItem('busManualOverrides', JSON.stringify(overrides));
+        renderStaffBusList();
     }
 
-    // 聊天相關
-    function loadChat() {
-        const chatBox = document.getElementById('chatBox');
-        let messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-        chatBox.innerHTML = '';
-        if(messages.length === 0) {
-            chatBox.innerHTML = '<div style="color:#888; font-size:12px; text-align:center;">尚無對話紀錄</div>';
+    function loadRooms() {
+        const chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
+        const roomListEl = document.getElementById('roomList');
+        roomListEl.innerHTML = '';
+        const keys = Object.keys(chatRooms);
+
+        if (keys.length === 0) {
+            roomListEl.innerHTML = `<div style="color:#888; font-size:12px; text-align:center; padding:20px;">暫無住客對話</div>`;
             return;
         }
+
+        keys.forEach(roomId => {
+            const isSel = (roomId === activeRoom) ? 'active' : '';
+            roomListEl.innerHTML += `<div class="room-item ${isSel}" onclick="selectRoom('${roomId}')">🚪 房號/姓氏: <strong>${roomId}</strong></div>`;
+        });
+    }
+
+    function selectRoom(roomId) {
+        activeRoom = roomId;
+        loadRooms();
+        renderActiveChat();
+    }
+
+    function renderActiveChat() {
+        const chatBox = document.getElementById('staffChatBox');
+        if (!activeRoom) {
+            chatBox.innerHTML = `<div style="color:#888; font-size:12px; text-align:center; margin-top:20px;">請從左側選擇一個房間對話</div>`;
+            return;
+        }
+        const chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
+        const messages = chatRooms[activeRoom] || [];
+        chatBox.innerHTML = '';
         messages.forEach(msg => {
             chatBox.innerHTML += `<div style="margin-bottom:6px;"><strong>${msg.sender}:</strong> ${msg.text} <span style="font-size:10px; color:#aaa;">(${msg.time})</span></div>`;
         });
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    function sendStaffMessage() {
+    function staffSendMessage() {
         const input = document.getElementById('staffChatInput');
-        if(!input.value.trim()) return;
-
-        let messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-        messages.push({ sender: '酒店櫃台', text: input.value, time: new Date().toLocaleTimeString() });
-        localStorage.setItem('chatMessages', JSON.stringify(messages));
-
-        loadChat();
+        if (!activeRoom || !input.value.trim()) return;
+        let chatRooms = JSON.parse(localStorage.getItem('hotelChatRooms') || '{}');
+        if (!chatRooms[activeRoom]) chatRooms[activeRoom] = [];
+        
+        chatRooms[activeRoom].push({ sender: "禮賓部 (Concierge)", text: input.value, time: new Date().toLocaleTimeString() });
+        localStorage.setItem('hotelChatRooms', JSON.stringify(chatRooms));
         input.value = '';
+        renderActiveChat();
     }
 
-    // 監聽前端變動即時同步
-    window.addEventListener('storage', function(event) {
-        if(event.key === 'luggageRequests') {
-            loadLuggage();
-        } else if(event.key === 'chatMessages') {
-            loadChat();
-        }
-    });
+    function initDashboard() {
+        renderStaffBusList();
+        loadRooms();
+        window.addEventListener('storage', () => {
+            loadRooms();
+            if (activeRoom) renderActiveChat();
+        });
+    }
 </script>
-
 </body>
 </html>
