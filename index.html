@@ -156,7 +156,7 @@
                 <div class="menu-card" style="cursor: default;"><div class="icon">🍜</div><h3 id="ui-guide-1-title">美食</h3><p id="ui-guide-1-desc">地道小吃與人氣餐廳</p></div>
                 <div class="menu-card" onclick="showSection('guideShoppingSection')"><div class="icon">🛍️</div><h3 id="ui-guide-2-title">購物</h3><p id="ui-guide-2-desc">大型商場與熱門市集</p></div>
                 <div class="menu-card" onclick="showSection('guidePlaySection')"><div class="icon">🎢</div><h3 id="ui-guide-3-title">遊玩</h3><p id="ui-guide-3-desc">主題樂園與娛樂體驗</p></div>
-                <div class="menu-card" onclick="showSection('guideSightseeingSection')"><div class="icon">📸</div><h3 id="ui-guide-4-title">觀光</h3><p id="ui-guide-4-desc">著名地標與打卡勝地</p></div>
+                <div class="menu-card" onclick="showSection('guideSightseeingSection')"><div class="icon">📸</div><h3 id="ui-guide-4-title">觀光</h3><p id="ui-guide-4-desc">熱門地標與打卡勝地</p></div>
                 <div class="menu-card" style="cursor: default;"><div class="icon">🗺️</div><h3 id="ui-guide-5-title">推薦行程1</h3><p id="ui-guide-5-desc">經典一日遊路線</p></div>
                 <div class="menu-card" style="cursor: default;"><div class="icon">⭐</div><h3 id="ui-guide-6-title">推薦行程2</h3><p id="ui-guide-6-desc">深度文化探索之旅</p></div>
             </div>
@@ -305,7 +305,23 @@
         <div id="carTermsSection" class="section-content">
             <button class="back-btn" id="ui-back-carterms" onclick="showSection('carSection')">⬅ 返回專車服務</button>
             <h3 id="ui-carterms-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 使用條款及細則</h3>
-            <div class="placeholder-content"><p>🚧 內容準備中，稍后將在此處新增專車服務使用條款及細則。</p></div>
+            <div id="ui-carterms-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                🚘 <strong>酒店專車 - 使用條款及細則</strong><br><br>
+                <strong>【預訂及供應情況】</strong><br>
+                • 接送服務必須提前 <strong>2 天</strong> 預訂。<br>
+                • 接送服務視乎禮賓部司機和豪華轎車的供應情況而定。<br><br>
+                <strong>【乘載限制與行李】</strong><br>
+                • 豪華車最多可接載 <strong>6 名乘客</strong>（不包括行李）。<br>
+                • 接載乘客人數會根據隨行行李的尺寸和數量而有所調整。<br><br>
+                <strong>【取消及變更政策】</strong><br>
+                • 取消預約需至少提前 <strong>24 小時</strong> 通知，否則將收取 <strong>50%</strong> 的服務費。<br>
+                • 當日取消或缺席使用服務將不予退款。<br><br>
+                <strong>【免責聲明與特別安排】</strong><br>
+                • 如懸掛八號或以上熱帶氣旋警告信號或黑色暴雨警告，香港荃灣絲麗酒店保留終止接送服務的權利，恕不另行通知。<br>
+                • 若因交通狀況、路況安全及/或惡劣天氣而導致抵達時間延誤或順延，香港荃灣絲麗酒店概不負責。<br>
+                • 如有任何爭議，香港荃灣絲麗酒店保留最終決定權。<br>
+                • 如果目的地不在清單中，請隨時聯絡禮賓部作進一步商討。
+            </div>
         </div>
 
         <div id="facilitySection" class="section-content">
@@ -457,6 +473,7 @@
             carNoticeBox: "若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。",
             carPriceH: "酒店專車 - 服務收費表",
             carTermsH: "酒店專車 - 使用條款及細則",
+            carTermsDetail: "🚘 <strong>酒店專車 - 使用條款及細則</strong><br><br><strong>【預訂及供應情況】</strong><br>• 接送服務必須提前 <strong>2 天</strong> 預訂。<br>• 接送服務視乎禮賓部司機和豪華轎車的供應情況而定。<br><br><strong>【乘載限制與行李】</strong><br>• 豪華車最多可接載 <strong>6 名乘客</strong>（不包括行李）。<br>• 接載乘客人數會根據隨行行李的尺寸和數量而有所調整。<br><br><strong>【取消及變更政策】</strong><br>• 取消預約需至少提前 <strong>24 小時</strong> 通知，否則將收取 <strong>50%</strong> 的服務費。<br>• 當日取消或缺席使用服務將不予退款。<br><br><strong>【免責聲明與特別安排】</strong><br>• 如懸掛八號或以上熱帶氣旋警告信號或黑色暴雨警告，香港荃灣絲麗酒店保留終止接送服務的權利，恕不另行通知。<br>• 若因交通狀況、路況安全及/或惡劣天氣而導致抵達時間延誤或順延，香港荃灣絲麗酒店概不負責。<br>• 如有任何爭議，香港荃灣絲麗酒店保留最終決定權。<br>• 如果目的地不在清單中，請隨時聯絡禮賓部作進一步商討。",
             thDest: "目的地 / 服務項目", thPrice: "收費 (HKD)",
             pMongkok: "由酒店出發到旺角",
             pChinachem: "由酒店出發到中港城 / 高鐵站",
@@ -522,7 +539,7 @@
             fac3Name: "健身室", fac3Desc: "(5楼)",
             fac4Name: "停车场", fac4Desc: "(地面)",
             fac1H: "金林阁餐厅 (2楼)",
-            fac1Detail: "🍽️ <strong>金林阁餐厅 (2/F)</strong><br><br><strong>【晨光美点 · 自助早餐】</strong><br>• <strong>时间</strong>：每日 07:30 - 10:00<br>• <strong>价目</strong>：HK$77 / 位<br>• <strong>内容</strong>：提供丰富的中西式自助早餐，为您开启充满活力的一天。<br><br><strong>【周末限定 · 怀旧音乐自助餐】</strong><br>• <strong>时间</strong>：每逢星期六下午及晚上<br>• <strong>详情</strong>：伴随经典金曲，享受悠闲时光，详情欢迎亲临或致电餐厅查询。<br><br><strong>【团体预订服务】</strong><br>• 餐厅诚挚接受各类团体预订自助午餐及晚餐，为您的聚会、庆典或商务活动提供专属餐饮安排。",
+            fac1Detail: "🍽️ <strong>金林阁餐厅 (2/F)</strong><br><br><strong>【晨光美点 · 自助早餐】</strong><br>• <strong>时间</strong>：每日 07:30 - 10:00<br>• <strong>价目</strong>：HK$77 / 位<br>• <strong>内容</strong>：提供丰富的中西式自助早餐，为您开启充满活力的一天。<br><br><strong>【周末限定 · 怀旧音乐自助餐】</strong><br>• <strong>时间</strong>：每逢星期六下午及晚上<br>• <strong>详情</strong>：伴随经典金曲，享受悠闲时光，详情欢迎亲临或致电餐厅查询。<br><br><strong>【团体预订服务】</strong><br>• 餐厅诚挚接受各类团体预订自助午餐及晚餐，为您聚会、庆典或商务活动提供专属餐饮安排。",
             fac2H: "空中花园 (5楼)",
             fac2Detail: "🌿 <strong>空中花园 (5/F)</strong><br><br><strong>【开放时间】</strong><br>• <strong>时间</strong>：每日 08:00 - 22:00，欢迎莅临放松身心，享受片刻悠闲。<br><br><strong>【吸烟区提示】</strong><br>• 为保障所有住客的健康与舒适，花园内仅限露天区域提供吸烟区，敬请配合及留意。",
             fac3H: "健身室 (5楼)",
@@ -548,6 +565,7 @@
             carNoticeBox: "若您需要任何协助、查询或使用此服务，恳请莅临礼宾部柜台，或致电 3700 3824，我们将竭诚为您服务。",
             carPriceH: "酒店专车 - 服务收费表",
             carTermsH: "酒店专车 - 使用条款及细则",
+            carTermsDetail: "🚘 <strong>酒店专车 - 使用条款及细则</strong><br><br><strong>【预订及供应情况】</strong><br>• 接送服务必须提前 <strong>2 天</strong> 预订。<br>• 接送服务视乎礼宾部司机和豪华轿车的供应情况而定。<br><br><strong>【乘载限制与行李】</strong><br>• 豪华车最多可接载 <strong>6 名乘客</strong>（不包括行李）。<br>• 接载乘客人数会根据随行行李的尺寸和数量而有所调整。<br><br><strong>【取消及变更政策】</strong><br>• 取消预约需至少提前 <strong>24 小时</strong> 通知，否则将收取 <strong>50%</strong> 的服务费。<br>• 当日取消或缺席使用服务将不予退款。<br><br><strong>【免责声明与特别安排】</strong><br>• 如悬挂八号或以上热带气旋警告信号或黑色暴雨警告，香港荃湾丝丽酒店保留终止接送服务的权利，恕不另行通知。<br>• 若因交通状况、路况安全及/或恶劣天气而导致抵达时间延迟或顺延，香港荃湾丝丽酒店概不负责。<br>• 如有任何争议，香港荃湾丝丽酒店保留最终决定权。<br>• 如果目的地不在清单中，请随时联络礼宾部作进一步商讨。",
             thDest: "目的地 / 服务项目", thPrice: "收费 (HKD)",
             pMongkok: "由酒店出发到旺角",
             pChinachem: "由酒店出发到中港城 / 高铁站",
@@ -639,6 +657,7 @@
             carNoticeBox: "If you need any assistance, inquiries, or wish to use this service, please visit the Concierge desk or call 3700 3824. We are at your service.",
             carPriceH: "Hotel Limousine - Service Rates",
             carTermsH: "Hotel Limousine - Terms & Conditions",
+            carTermsDetail: "🚘 <strong>Hotel Limousine - Terms & Conditions</strong><br><br><strong>【Booking & Availability】</strong><br>• Transfer services must be booked at least <strong>2 days in advance</strong>.<br>• Transfer services are subject to concierge driver and limousine availability.<br><br><strong>【Capacity & Luggage】</strong><br>• Limousines can accommodate up to <strong>6 passengers</strong> (excluding luggage).<br>• Passenger capacity will be adjusted according to the size and quantity of luggage.<br><br><strong>【Cancellation & Penalty】</strong><br>• Cancellations require at least <strong>24 hours prior notice</strong>, otherwise a <strong>50% service fee</strong> will be charged.<br>• Same-day cancellations or no-shows will not be refunded.<br><br><strong>【Disclaimers & Special Arrangements】</strong><br>• Silka Tsuen Wan reserves the right to terminate transfer services without prior notice in the event of Typhoon Signal No. 8 or above, or Black Rainstorm Warning.<br>• Silka Tsuen Wan is not responsible for any delays or schedule adjustments caused by traffic conditions, road safety, and/or severe weather.<br>• In case of any dispute, Silka Tsuen Wan reserves the right of final decision.<br>• If your destination is not listed, please feel free to contact the Concierge for further discussion.",
             thDest: "Destination / Service", thPrice: "Price (HKD)",
             pMongkok: "From Hotel to Mong Kok",
             pChinachem: "From Hotel to China Hong Kong City / High Speed Rail Station",
@@ -730,6 +749,7 @@
             carNoticeBox: "ご不明な点やサービスのご利用については、コンシェルジュカウンター（内線3700 3824）までお気軽にお問い合わせください。",
             carPriceH: "ホテル送迎 - 料金表",
             carTermsH: "ホテル送迎 - 利用規約",
+            carTermsDetail: "🚘 <strong>ホテル送迎 - 利用規約</strong><br><br><strong>【予約および空き状況】</strong><br>• 送迎サービスは<strong>2日前</strong>までに予約が必要です。<br>• 送迎サービスはコンシェルジュドライバーおよびリムジンの空き状況によります。<br><br><strong>【乗車定員と手荷物】</strong><br>• リムジンは最大<strong>6名様</strong>までご乗車いただけます（手荷物を除く）。<br>• ご乗車人数は手荷物のサイズや個数に応じて調整されます。<br><br><strong>【キャンセル規定】</strong><br>• キャンセルは少なくとも<strong>24時間前</strong>までのご連絡が必要となり、それを過ぎた場合は<strong>50%</strong>の料金を申し受けます。<br>• 当日のキャンセルおよび無連絡キャンセルの場合は返金いたしかねます。<br><br><strong>【免責事項および特別案内】</strong><br>• 台風警報8号以上または黒色暴風雨警報が発令された場合、シルカ・ツェンワンは予告なくサービスを中止する権利を有します。<br>• 交通状況、道路状況の安全、悪天候による到着の遅延について、シルカ・ツェンワンは責任を負いかねます。<br>• 紛争が生じた場合、シルカ・ツェンワンが最終決定権を有します。<br>• 目的地がリストにない場合は、コンシェルジュまでお気軽にお問い合わせください。",
             thDest: "目的地 / サービス", thPrice: "料金 (HKD)",
             pMongkok: "ホテルから旺角（モンコク）まで",
             pChinachem: "ホテルから中港城 / 高速鉄道駅まで",
@@ -821,6 +841,7 @@
             carNoticeBox: "도움이나 문의 사항이 있으시거나 이 서비스를 이용하시려면 컨시어지 데스크를 방문하시거나 3700 3824로 연락해 주시기 바랍니다.",
             carPriceH: "호텔 차량 - 서비스 요금표",
             carTermsH: "호텔 차량 - 이용 약관",
+            carTermsDetail: "🚘 <strong>호텔 차량 - 이용 약관</strong><br><br><strong>【예약 및 가능 여부】</strong><br>• 픽업/샌딩 서비스는 최소 <strong>2일 전</strong>에 예약하셔야 합니다.<br>• 서비스는 컨시어지 기사 및 리무진의 차량 상황에 따라 제한될 수 있습니다.<br><br><strong>【탑승 인원 및 수하물】</strong><br>• 리무진 최대 탑승 인원은 <strong>6명</strong>입니다 (수하물 제외).<br>• 동반 수하물의 크기 및 수량에 따라 탑승 인원이 조정될 수 있습니다.<br><br><strong>【취소 및 변경 규정】</strong><br>• 예약 취소는 최소 <strong>24시간 전</strong>에 통보하셔야 하며, 그렇지 않을 경우 <strong>50%</strong>의 수수료가 부과됩니다.<br>• 당일 취소 또는 노쇼(No-show)의 경우 환불되지 않습니다.<br><br><strong>【면책 조항 및 특별 안내】</strong><br>• 태풍 경보 8호 이상 또는 흑색 폭우 경보 발령 시, 실카 취언완 호텔은 사전 통보 없이 서비스를 중단할 권리를 보유합니다.<br>• 교통 상황, 도로 안전 및 악천후로 인한 도착 지연에 대해 실카 취언완 호텔은 책임을 지지 않습니다.<br>• 분쟁 발생 시 최종 결정권은 실카 취언완 호텔에 있습니다.<br>• 목적지가 목록에 없는 경우 언제든지 컨시어지에 문의해 주시기 바랍니다.",
             thDest: "목적지 / 서비스 항목", thPrice: "요금 (HKD)",
             pMongkok: "호텔에서 몽콕까지",
             pChinachem: "호텔에서 차이나홍콩시티 / 고속철도역까지",
@@ -912,6 +933,7 @@
             carNoticeBox: "Nếu quý khách cần hỗ trợ, giải đáp thắc mắc hoặc sử dụng dịch vụ này, vui lòng đến quầy lễ tân hoặc gọi 3700 3824, chúng tôi rất hân hạnh được phục vụ.",
             carPriceH: "Xe riêng - Bảng giá dịch vụ",
             carTermsH: "Điều khoản & Điều kiện",
+            carTermsDetail: "🚘 <strong>Xe riêng - Điều khoản & Điều kiện</strong><br><br><strong>【Đặt xe & Tình trạng xe】</strong><br>• Dịch vụ đưa đón phải được đặt trước ít nhất <strong>2 ngày</strong>.<br>• Dịch vụ phụ thuộc vào tình trạng sẵn có của tài xế và xe limousine.<br><br><strong>【Sức chứa & Hành lý】</strong><br>• Xe limousine chở tối đa <strong>6 hành khách</strong> (không bao gồm hành lý).<br>• Số lượng hành khách sẽ được điều chỉnh tùy theo kích thước và số lượng hành lý đi kèm.<br><br><strong>【Chính sách Hủy xe】</strong><br>• Hủy đặt xe cần thông báo trước ít nhất <strong>24 giờ</strong>, nếu không sẽ tính phí <strong>50%</strong> giá dịch vụ.<br>• Hủy trong ngày hoặc không đến sẽ không được hoàn tiền.<br><br><strong>【Miễn trừ trách nhiệm】</strong><br>• Trong trường hợp có cảnh báo bão cấp 8 trở lên hoặc cảnh báo mưa bão màu đen, Khách sạn Silka Tsuen Wan có quyền chấm dứt dịch vụ mà không cần thông báo trước.<br>• Khách sạn Silka Tsuen Wan không chịu trách nhiệm về việc chậm trễ do tình trạng giao thông, an toàn đường bộ và/hoặc thời tiết xấu.<br>• Trong trường hợp có tranh chấp, Khách sạn Silka Tsuen Wan bảo lưu quyền quyết định cuối cùng.<br>• Nếu điểm đến không có trong danh sách, vui lòng liên hệ lễ tân để trao đổi thêm.",
             thDest: "Điểm đến / Dịch vụ", thPrice: "Giá (HKD)",
             pMongkok: "Từ khách sạn đến Mong Kok",
             pChinachem: "Từ khách sạn đến China Hong Kong City / Ga Tàu cao tốc",
@@ -1003,6 +1025,7 @@
             carNoticeBox: "यदि आपको किसी सहायता, पूछताछ या इस सेवा का उपयोग करने की आवश्यकता है, तो कृपया कंसर्ज डेस्क पर आएं या 3700 3824 पर कॉल करें।",
             carPriceH: "होटल कार - सेवा शुल्क तालिका",
             carTermsH: "होटल कार - नियम एवं शर्तें",
+            carTermsDetail: "🚘 <strong>होटल कार - नियम एवं शर्तें</strong><br><br><strong>【बुकिंग और उपलब्धता】</strong><br>• पिकअप सेवा कम से कम <strong>2 दिन पहले</strong> बुक की जानी चाहिए।<br>• सेवा ड्राइवर और लक्जरी कार की उपलब्धता पर निर्भर करती है।<br><br><strong>【क्षमता और सामान】</strong><br>• लक्जरी कार में अधिकतम <strong>6 यात्री</strong> बैठ सकते हैं (सामान को छोड़कर)।<br>• यात्रियों की संख्या सामान के आकार और मात्रा के अनुसार समायोजित की जाएगी।<br><br><strong>【रद्दीकरण नीति】</strong><br>• रद्दीकरण के लिए कम से कम <strong>24 घंटे पहले</strong> सूचना देना आवश्यक है, अन्यथा <strong>50%</strong> शुल्क लिया जाएगा।<br>• उसी दिन रद्द करने या न आने पर कोई रिफंड नहीं दिया जाएगा।<br><br><strong>【अस्वीकरण】</strong><br>• तूफान सिग्नल 8 या अधिक या ब्लैक रेनस्टॉर्म अलर्ट की स्थिति में, सिलका त्सुएन वान सेवा समाप्त करने का अधिकार सुरक्षित रखता है।<br>• यातायात स्थितियों, सड़क सुरक्षा और/या खराब मौसम के कारण देरी के लिए होटल जिम्मेदार नहीं है।<br>• विवाद की स्थिति में, सिलका त्सुएन वान का निर्णय अंतिम होगा।<br>• यदि आपका गंतव्य सूची में नहीं है, तो कृपया परामर्श के लिए कंसर्ज से संपर्क करें।",
             thDest: "गंतव्य / सेवा", thPrice: "शुल्क (HKD)",
             pMongkok: "होटल से मोंग कोक",
             pChinachem: "होटल से चाइना हांगकांग सिटी / हाई स्पीड रेल स्टेशन",
@@ -1094,6 +1117,7 @@
             carNoticeBox: "Kung kailangan ninyo ng tulong, tanong, o nais gamitin ang serbisyong ito, mangyaring magtungo sa Concierge desk o tumawag sa 3700 3824.",
             carPriceH: "Kotse sa Hotel - Talaan ng Singilin",
             carTermsH: "Mga Tuntunin at Kundisyon",
+            carTermsDetail: "🚘 <strong>Kotse sa Hotel - Mga Tuntunin at Kundisyon</strong><br><br><strong>【Pag-book at Availability】</strong><br>• Ang serbisyo sa paghatid ay kailangang i-book nang mas maaga ng <strong>2 araw</strong>.<br>• Ang serbisyo ay nakadepende sa availability ng driver at limousine.<br><br><strong>【Kapasidad at Bagahe】</strong><br>• Ang limousine ay kasya ang hanggang <strong>6 na pasahero</strong> (hindi kasama ang bagahe).<br>• Ang bilang ng pasahero ay iaayos batay sa laki at dami ng bagahe.<br><br><strong>【Patakaran sa Pagkansela】</strong><br>• Ang pagkansela ay kailangang ipaalam nang mas maaga ng <strong>24 oras</strong>, kundi ay maniningil ng <strong>50%</strong> service fee.<br>• Walang refund para sa same-day cancellation o no-show.<br><br><strong>【Disclaimer at Espesyal na Patakaran】</strong><br>• Kung may Typhoon Signal No. 8 pataas o Black Rainstorm Warning, ang Silka Tsuen Wan ay may karapatang itigil ang serbisyo nang walang paunang abiso.<br>• Ang Silka Tsuen Wan ay hindi panagot sa anumang pagkaantala dulot ng trapiko, kaligtasan sa kalsada, at/o masamang panahon.<br>• Sa anumang alitan, ang Silka Tsuen Wan ang may huling desisyon.<br>• Kung ang destinasyon ay wala sa listahan, makipag-ugnayan sa Concierge para sa karagdagang detalye.",
             thDest: "Destinasyon / Serbisyo", thPrice: "Singil (HKD)",
             pMongkok: "Mula Hotel hanggang Mong Kok",
             pChinachem: "Mula Hotel hanggang China Hong Kong City / High Speed Rail Station",
@@ -1127,7 +1151,6 @@
             stBookable: "Maaaring I-book", stWaiting: "Naghihintay", stBoarding: "Sumasakay", stDeparted: "Umalis Na", stFull: "Puno", stOut: "Suspendido"
         }
     };
-
     function selectLang(lang) {
         currentLang = lang;
         document.getElementById('lang-modal').style.display = 'none';
@@ -1174,6 +1197,7 @@
             'ui-p-hourly': langData.pHourly,
             'ui-carprice-note': langData.carPriceNote,
             'ui-carterms-header': langData.carTermsH,
+            'ui-carterms-desc': langData.carTermsDetail,
             'ui-facility-header': langData.facilityH,
             'ui-fac-1-title': langData.fac1Name, 'ui-fac-1-desc': langData.fac1Desc,
             'ui-fac-2-title': langData.fac2Name, 'ui-fac-2-desc': langData.fac2Desc,
@@ -1288,7 +1312,7 @@
         for (let h of activeHours) {
             const depMins = h * 60; // 發車時間 (分鐘)
 
-            // 發車前20分鐘 (HH-15至HH+00) 顯示等待發車
+            // 發車前15分鐘 (HH-15至HH+00) 顯示等待發車
             if (currentMinutes >= depMins - 15 && currentMinutes <= depMins) {
                 return langData.stWaitingDepart;
             }
