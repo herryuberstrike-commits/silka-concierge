@@ -156,7 +156,7 @@
                 <div class="menu-card" style="cursor: default;"><div class="icon">🍜</div><h3 id="ui-guide-1-title">美食</h3><p id="ui-guide-1-desc">地道小吃與人氣餐廳</p></div>
                 <div class="menu-card" onclick="showSection('guideShoppingSection')"><div class="icon">🛍️</div><h3 id="ui-guide-2-title">購物</h3><p id="ui-guide-2-desc">大型商場與熱門市集</p></div>
                 <div class="menu-card" onclick="showSection('guidePlaySection')"><div class="icon">🎢</div><h3 id="ui-guide-3-title">遊玩</h3><p id="ui-guide-3-desc">主題樂園與娛樂體驗</p></div>
-                <div class="menu-card" onclick="showSection('guideSightseeingSection')"><div class="icon">📸</div><h3 id="ui-guide-4-title">觀光</h3><p id="ui-guide-4-desc">熱門地標與打卡勝地</p></div>
+                <div class="menu-card" onclick="showSection('guideSightseeingSection')"><div class="icon">📸</div><h3 id="ui-guide-4-title">觀光</h3><p id="ui-guide-4-desc">著名地標與打卡勝地</p></div>
                 <div class="menu-card" style="cursor: default;"><div class="icon">🗺️</div><h3 id="ui-guide-5-title">推薦行程1</h3><p id="ui-guide-5-desc">經典一日遊路線</p></div>
                 <div class="menu-card" style="cursor: default;"><div class="icon">⭐</div><h3 id="ui-guide-6-title">推薦行程2</h3><p id="ui-guide-6-desc">深度文化探索之旅</p></div>
             </div>
@@ -218,7 +218,7 @@
             <div class="menu-grid">
                 <div class="menu-card" onclick="showSection('dep1Section')"><div class="icon">🚆</div><h3 id="ui-dep-1-title">羅湖口岸</h3><p id="ui-dep-1-desc">早上 06:30 至午夜 00:00</p></div>
                 <div class="menu-card" onclick="showSection('dep2Section')"><div class="icon">🚇</div><h3 id="ui-dep-2-title">落馬洲/福田口岸</h3><p id="ui-dep-2-desc">上午 06:30 至晚上 10:30</p></div>
-                <div class="menu-card" style="cursor: default;"><div class="icon">✈️</div><h3 id="ui-dep-3-title">香港國際機場</h3><p id="ui-dep-3-desc">24小時</p></div>
+                <div class="menu-card" onclick="showSection('dep3Section')"><div class="icon">✈️</div><h3 id="ui-dep-3-title">香港國際機場</h3><p id="ui-dep-3-desc">24小時</p></div>
                 <div class="menu-card" style="cursor: default;"><div class="icon">🚄</div><h3 id="ui-dep-4-title">香港西九龍站</h3><p id="ui-dep-4-desc">上午 06:30 至晚上 11:30</p></div>
                 <div class="menu-card" style="cursor: default;"><div class="icon">🚌</div><h3 id="ui-dep-5-title">深圳灣口岸</h3><p id="ui-dep-5-desc">上午 06:30 至午夜 12:00</p></div>
                 <div class="menu-card" style="cursor: default;"><div class="icon">🌉</div><h3 id="ui-dep-6-title">香園圍/蓮塘口岸</h3><p id="ui-dep-6-desc">上午 07:00 至晚上 10:00</p></div>
@@ -270,6 +270,29 @@
                 • <strong>交通優勢與路線</strong>：<br>
                 • <strong>由福田口岸出發（最推薦）</strong>：在福田口岸過關後，直接在口岸地下一層的「福田口岸地鐵站」乘搭 深圳地鐵 4 號線（往牛湖方向），無需轉車，坐 4 個站（約 10-12 分鐘）即可直達「深圳北站」。<br>
                 • <strong>由羅湖口岸出發（備選）</strong>：如果經羅湖過關，則需乘搭地鐵 1 號線到老街站轉 3 號線，再轉 4 號線，轉車次數較多。因此，去深圳北站首選經福田口岸（落馬洲）過關最為順暢！
+            </div>
+        </div>
+
+        <!-- 出境攻略 -> 3. 香港國際機場 子頁面 -->
+        <div id="dep3Section" class="section-content">
+            <button class="back-btn" id="ui-back-dep3" onclick="showSection('departureSection')">⬅ 返回出境攻略</button>
+            <h3 id="ui-dep3-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港國際機場</h3>
+            <div id="ui-dep3-desc" style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                ✈️ <strong>荃灣絲麗酒店 ➔ 香港國際機場交通指南</strong><br>
+                為配合您的行程需求與行李攜帶情況，我們為您提供以下四種便捷的出行方案：<br><br>
+                <strong>1. 漫步輕裝出發：步行乘搭 A30 機場巴士</strong><br>
+                • <strong>路線詳情</strong>：從酒店出發，步行約 500 米（沿途為輕鬆的下坡路）至屏麗徑巴士站，登上 A30 巴士 直達機場。<br>
+                • <strong>適合對象</strong>：輕裝簡行、喜歡沿途欣賞街景的旅客。<br><br>
+                <strong>2. 轉乘接駁至葵芳：港鐵接駁 + A30 機場巴士</strong><br>
+                • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳地鐵站，穿過新都會廣場後，轉乘 A30 巴士 直達機場。<br>
+                • <strong>適合對象</strong>：配合酒店穿梭巴士，省時舒適。<br><br>
+                <strong>3. 鐵路極速連線：地鐵轉乘機場快線</strong><br>
+                • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士抵達葵芳地鐵站 ➔ 乘地鐵至荔景站轉乘東湧綫到青衣站 ➔ 再轉乘機場快線直達機場。<br>
+                • <strong>適合對象</strong>：追求準時、希望避開路面交通堵塞的旅客。<br><br>
+                <strong>4. 點對點尊享：網約車或的士直達</strong><br>
+                • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴打車，或在酒店門口截乘市區出租車 (的士) 直達機場。<br>
+                • <strong>參考費用</strong>：約 HK$220 - $250（具體視乎實時路面情況及行李費而定）。<br>
+                • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。
             </div>
         </div>
 
@@ -396,6 +419,7 @@
         </div>
 
     </div>
+
     <script>
     // ==================== Firebase 配置 ====================
     const firebaseConfig = {
@@ -460,6 +484,8 @@
             dep1Detail: "<strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>前往羅湖口岸主要有以下兩種便捷方式：<br><br><strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>• <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達羅湖站。<br>• <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br><strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>• <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫 直達羅湖站。<br>• <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站是「羅湖」還是「落馬洲」，切勿上錯車！<br><br><strong>二、 深圳目的地與過關優選</strong><br>如果你計劃前往以下深圳地點，選擇經羅湖口岸過關絕對是首選（優選）：<br><br><strong>深圳火車站（羅湖火車站）：</strong><br>• <strong>交通優勢</strong>：完美對接！過關後一出大樓即達深圳火車站，步行只需約 1 分鐘。<br><br><strong>東門老街：</strong><br>• <strong>交通優勢</strong>：位置極近。過關後轉乘深圳地鐵 1 號線（羅寶線），由「羅湖站」出發只需坐 1 個站（到老街站），車程僅約 2-3 分鐘；亦可選擇步行約 10-15 分鐘直達。",
             dep2H: "落馬洲/福田口岸",
             dep2Detail: "<strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>前往口岸主要有以下兩種便捷方式：<br><br><strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>• <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達。<br>• <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br><strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>• <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫。<br>• <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站（前往羅湖或落馬洲），切勿上錯車！<br><br><strong>二、 深圳目的地：福田口岸與深圳北站</strong><br>如果你計劃前往以下地點，最推薦的過關口岸與交通方式如下：<br><br><strong>1. 福田口岸</strong><br>• <strong>過關路線</strong>：東鐵綫北上時，必須乘搭以「落馬洲」為終點站的列車。到達落馬洲站後直接過關，即到達福田口岸。<br>• <strong>交通優勢</strong>：過關後直接連接深圳地鐵 4號線（龍華線） 及 10號線（坂田線），前往福田CBD或市中心非常快捷。<br><br><strong>2. 深圳北站（高鐵站）</strong><br>• <strong>交通優勢與路線</strong>：<br>• <strong>由福田口岸出發（最推薦）</strong>：在福田口岸過關後，直接在口岸地下一層的「福田口岸地鐵站」乘搭 深圳地鐵 4 號線（往牛湖方向），無需轉車，坐 4 個站（約 10-12 分鐘）即可直達「深圳北站」。<br>• <strong>由羅湖口岸出發（備選）</strong>：如果經羅湖過關，則需乘搭地鐵 1 號線到老街站轉 3 號線，再轉 4 號線，轉車次數較多。因此，去深圳北站首選經福田口岸（落馬洲）過關最為順暢！",
+            dep3H: "香港國際機場",
+            dep3Detail: "✈️ <strong>荃灣絲麗酒店 ➔ 香港國際機場交通指南</strong><br>為配合您的行程需求與行李攜帶情況，我們為您提供以下四種便捷的出行方案：<br><br><strong>1. 漫步輕裝出發：步行乘搭 A30 機場巴士</strong><br>• <strong>路線詳情</strong>：從酒店出發，步行約 500 米（沿途為輕鬆的下坡路）至屏麗徑巴士站，登上 A30 巴士 直達機場。<br>• <strong>適合對象</strong>：輕裝簡行、喜歡沿途欣賞街景的旅客。<br><br><strong>2. 轉乘接駁至葵芳：港鐵接駁 + A30 機場巴士</strong><br>• <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳地鐵站，穿過新都會廣場後，轉乘 A30 巴士 直達機場。<br>• <strong>適合對象</strong>：配合酒店穿梭巴士，省時舒適。<br><br><strong>3. 鐵路極速連線：地鐵轉乘機場快線</strong><br>• <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士抵達葵芳地鐵站 ➔ 乘地鐵至荔景站轉乘東湧綫到青衣站 ➔ 再轉乘機場快線直達機場。<br>• <strong>適合對象</strong>：追求準時、希望避開路面交通堵塞的旅客。<br><br><strong>4. 點對點尊享：網約車或的士直達</strong><br>• <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴打車，或在酒店門口截乘市區出租車 (的士) 直達機場。<br>• <strong>參考費用</strong>：約 HK$220 - $250（具體視乎實時路面情況及行李費而定）。<br>• <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。",
             dep1Name: "羅湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
             dep2Name: "落馬洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
             dep3Name: "香港國際機場", dep3Desc: "24小時",
@@ -552,6 +578,8 @@
             dep1Detail: "<strong>一、 交通路线指南（由荃湾丝丽酒店出发）</strong><br>前往罗湖口岸主要有以下两种便捷方式：<br><br><strong>路线 A：乘坐专线小巴 ➔ 沙田/大围 ➔ 东铁线直达</strong><br>• <strong>具体步骤</strong>：于酒店附近乘坐 403、403P 或 403X 专线小巴前往沙田或大围，转乘 东铁线 直达罗湖站。<br>• <strong>支付方式</strong>：小巴仅支持八达通、支付宝及现金，请提前准备。<br><br><strong>路线 B：乘坐酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子换乘 ➔ 九龙塘换乘 ➔ 东铁线</strong><br>• <strong>具体步骤</strong>：乘坐酒店免费穿梭巴士或 31M 巴士前往葵芳站，乘地铁至太子站换乘，再到九龙塘站转乘 东铁线 直达罗湖站。<br>• <strong>重要提醒</strong>：乘坐东铁线北上时，务必留意列车的终点站是“罗湖”还是“落马洲”，切勿上错车！<br><br><strong>二、 深圳目的地与过关优选</strong><br>如果你计划前往以下深圳地点，选择经罗湖口岸过关绝对是首选（优选）：<br><br><strong>深圳火车站（罗湖火车站）：</strong><br>• <strong>交通优势</strong>：完美对接！过关后一出大楼即达深圳火车站，步行只需约 1 分钟。<br><br><strong>东门老街：</strong><br>• <strong>交通优势</strong>：位置极近。过关后转乘深圳地铁 1 号线（罗宝线），由“罗湖站”出发只需坐 1 个站（到老街站），车程仅约 2-3 分钟；亦可选择步行约 10-15 分钟直达。",
             dep2H: "落马洲/福田口岸",
             dep2Detail: "<strong>一、 交通路线指南（由荃湾丝丽酒店出发）</strong><br>前往口岸主要有以下两种便捷方式：<br><br><strong>路线 A：乘坐专线小巴 ➔ 沙田/大围 ➔ 东铁线直达</strong><br>• <strong>具体步骤</strong>：于酒店附近乘坐 403、403P 或 403X 专线小巴前往沙田或大围，转乘 东铁线 直达。<br>• <strong>支付方式</strong>：小巴仅支持八达通、支付宝及现金，请提前准备。<br><br><strong>路线 B：乘坐酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子换乘 ➔ 九龙塘换乘 ➔ 东铁线</strong><br>• <strong>具体步骤</strong>：乘坐酒店免费穿梭巴士或 31M 巴士前往葵芳站，乘地铁至太子站换乘，再到九龙塘站转乘 东铁线。<br>• <strong>重要提醒</strong>：乘坐东铁线北上时，务必留意列车的终点站（前往罗湖或落马洲），切勿上错车！<br><br><strong>二、 深圳目的地：福田口岸与深圳北站</strong><br>如果你计划前往以下地点，最推荐的过关口岸与交通方式如下：<br><br><strong>1. 福田口岸</strong><br>• <strong>过关路线</strong>：东铁线北上时，必须乘坐以“落马洲”为终点站的列车。到达落马洲站后直接过关，即到达福田口岸。<br>• <strong>交通优势</strong>：过关后直接连接深圳地铁 4号线（龙华线） 及 10号线（坂田线），前往福田CBD或市中心非常快捷。<br><br><strong>2. 深圳北站（高铁站）</strong><br>• <strong>交通优势与路线</strong>：<br>• <strong>由福田口岸出发（最推荐）</strong>：在福田口岸过关后，直接在口岸地下一层的“福田口岸地铁站”乘坐 深圳地铁 4 号线（往牛湖方向），无需换乘，坐 4 个站（约 10-12 分钟）即可直达“深圳北站”。<br>• <strong>由罗湖口岸出发（备选）</strong>：如果经罗湖过关，则需乘坐地铁 1 号线到老街站转 3 号线，再转 4 号线，换乘次数较多。因此，去深圳北站首选经福田口岸（落马洲）过关最顺畅！",
+            dep3H: "香港国际机场",
+            dep3Detail: "✈️ <strong>荃湾丝丽酒店 ➔ 香港国际机场交通指南</strong><br>为配合您的行程需求与行李携带情况，我们为您提供以下四种便捷的出行方案：<br><br><strong>1. 漫步轻装出发：步行乘坐 A30 机场巴士</strong><br>• <strong>路线详情</strong>：从酒店出发，步行约 500 米（沿途为轻松的下坡路）至屏丽径巴士站，登上 A30 巴士 直达机场。<br>• <strong>适合对象</strong>：轻装简行、喜欢沿途欣赏街景的旅客。<br><br><strong>2. 转乘接驳至葵芳：港铁接驳 + A30 机场巴士</strong><br>• <strong>路线详情</strong>：乘坐酒店免费穿梭巴士或 31M 巴士前往葵芳地铁站，穿过新都会广场后，转乘 A30 巴士 直达机场。<br>• <strong>适合对象</strong>：配合酒店穿梭巴士，省时舒适。<br><br><strong>3. 铁路极速连线：地铁转乘机场快线</strong><br>• <strong>路线详情</strong>：乘坐酒店免费穿梭巴士或 31M 巴士抵达葵芳地铁站 ➔ 乘地铁至荔景站转乘东涌线到青衣站 ➔ 再转乘机场快线直达机场。<br>• <strong>适合对象</strong>：追求准时、希望避开路面交通堵塞的旅客。<br><br><strong>4. 点对点尊享：网约车或出租车直达</strong><br>• <strong>路线详情</strong>：使用 Uber、高德打车、滴滴打车，或在酒店门口截乘市区出租车 直达机场。<br>• <strong>参考费用</strong>：约 HK$220 - $250（具体视乎实时路面情况及行李费而定）。<br>• <strong>适合对象</strong>：家庭出行、携带大量行李或同行人数较多的旅客。",
             dep1Name: "罗湖口岸", dep1Desc: "早上 06:30 至午夜 00:00",
             dep2Name: "落马洲/福田口岸", dep2Desc: "上午 06:30 至晚上 10:30",
             dep3Name: "香港国际机场", dep3Desc: "24小时",
@@ -562,7 +590,7 @@
             dep8Name: "港澳客轮码头", dep8Desc: "上午 06:30 至午夜 12:00",
             carCard1T: "服务收费表", carCard1D: "各路线点对点接送与包车收费",
             carCard2T: "使用条款及细则", carCard2D: "预约、取消与乘车须知",
-            carNoticeBox: "若您需要任何协助、查询或使用此服务，恳请莅临礼宾部柜台，或致电 3700 3824，我们将竭诚为您服务。",
+            carNoticeBox: "若您需要任何协助、查询或使用此服务，恳请蒞临礼宾部柜台，或致电 3700 3824，我们将竭诚为您服务。",
             carPriceH: "酒店专车 - 服务收费表",
             carTermsH: "酒店专车 - 使用条款及细则",
             carTermsDetail: "🚘 <strong>酒店专车 - 使用条款及细则</strong><br><br><strong>【预订及供应情况】</strong><br>• 接送服务必须提前 <strong>2 天</strong> 预订。<br>• 接送服务视乎礼宾部司机和豪华轿车的供应情况而定。<br><br><strong>【乘载限制与行李】</strong><br>• 豪华车最多可接载 <strong>6 名乘客</strong>（不包括行李）。<br>• 接载乘客人数会根据随行行李的尺寸和数量而有所调整。<br><br><strong>【取消及变更政策】</strong><br>• 取消预约需至少提前 <strong>24 小时</strong> 通知，否则将收取 <strong>50%</strong> 的服务费。<br>• 当日取消或缺席使用服务将不予退款。<br><br><strong>【免责声明与特别安排】</strong><br>• 如悬挂八号或以上热带气旋警告信号或黑色暴雨警告，香港荃湾丝丽酒店保留终止接送服务的权利，恕不另行通知。<br>• 若因交通状况、路况安全及/或恶劣天气而导致抵达时间延迟或顺延，香港荃湾丝丽酒店概不负责。<br>• 如有任何争议，香港荃湾丝丽酒店保留最终决定权。<br>• 如果目的地不在清单中，请随时联络礼宾部作进一步商讨。",
@@ -644,6 +672,8 @@
             dep1Detail: "<strong>1. Transportation Guide (From Silka Tsuen Wan)</strong><br>There are two convenient routes to reach Lo Wu Control Point:<br><br><strong>Route A: Minibus ➔ Sha Tin/Tai Wai ➔ East Rail Line (Direct)</strong><br>• <strong>Steps</strong>: Take green minibus 403, 403P, or 403X near the hotel to Sha Tin or Tai Wai, then transfer to the East Rail Line directly to Lo Wu Station.<br>• <strong>Payment</strong>: Minibuses only accept Octopus, Alipay, and cash. Please prepare in advance.<br><br><strong>Route B: Hotel Shuttle/Bus ➔ Kwai Fong ➔ Transfer at Prince Edward ➔ Transfer at Kowloon Tong ➔ East Rail Line</strong><br>• <strong>Steps</strong>: Take the free hotel shuttle or Bus 31M to Kwai Fong Station, take the MTR to Prince Edward, transfer to Kowloon Tong Station, then switch to the East Rail Line to Lo Wu Station.<br>• <strong>Important Reminder</strong>: When taking the East Rail Line northbound, make sure to check if the train's destination is Lo Wu or Lok Ma Chau so you don't board the wrong train!<br><br><strong>2. Preferred Shenzhen Destinations via Lo Wu</strong><br>If you plan to visit the following places in Shenzhen, crossing via Lo Wu Control Point is your best choice:<br><br><strong>Shenzhen Railway Station (Lo Wu Station):</strong><br>• <strong>Advantage</strong>: Perfect connection! Right outside the immigration building. Just a 1-minute walk.<br><br><strong>Dongmen Pedestrian Street (Laojie):</strong><br>• <strong>Advantage</strong>: Very close. Take Shenzhen Metro Line 1 (Luobao Line) from Luohu Station for just 1 stop to Laojie Station (approx. 2-3 minutes), or walk for 10-15 minutes.",
             dep2H: "Lok Ma Chau / Futian Control Point",
             dep2Detail: "<strong>1. Transportation Guide (From Silka Tsuen Wan)</strong><br>There are two convenient routes to reach the control point:<br><br><strong>Route A: Minibus ➔ Sha Tin/Tai Wai ➔ East Rail Line (Direct)</strong><br>• <strong>Steps</strong>: Take green minibus 403, 403P, or 403X near the hotel to Sha Tin or Tai Wai, then transfer to the East Rail Line directly.<br>• <strong>Payment</strong>: Minibuses only accept Octopus, Alipay, and cash. Please prepare in advance.<br><br><strong>Route B: Hotel Shuttle/Bus ➔ Kwai Fong ➔ Transfer at Prince Edward ➔ Transfer at Kowloon Tong ➔ East Rail Line</strong><br>• <strong>Steps</strong>: Take the free hotel shuttle or Bus 31M to Kwai Fong Station, take the MTR to Prince Edward, transfer to Kowloon Tong Station, then switch to the East Rail Line.<br>• <strong>Important Reminder</strong>: When taking the East Rail Line northbound, make sure to check the train's destination (Lo Wu or Lok Ma Chau) so you don't board the wrong train!<br><br><strong>2. Shenzhen Destinations: Futian Port & Shenzhen North Station</strong><br>If you plan to visit the following places, crossing via Futian Control Point is highly recommended:<br><br><strong>1. Futian Port</strong><br>• <strong>Crossing Route</strong>: Board the northbound East Rail Line train with 'Lok Ma Chau' as the terminal station. Walk across the border from Lok Ma Chau Station directly into Futian Port.<br>• <strong>Advantage</strong>: Directly connected to Shenzhen Metro Line 4 (Longhua Line) and Line 10 (Sankou Line), providing quick access to Futian CBD and city center.<br><br><strong>2. Shenzhen North Railway Station (High-Speed Rail)</strong><br>• <strong>Route via Futian Port (Recommended)</strong>: After crossing Futian Port, go to B1 level 'Futian Port Metro Station' and take Line 4 (towards Niuhu) for 4 stops directly to 'Shenzhen North Station' (approx. 10-12 mins) without transfers.<br>• <strong>Route via Lo Wu Port (Alternative)</strong>: Crossing via Lo Wu requires multiple transfers (Line 1 ➔ Line 3 at Laojie ➔ Line 4). Therefore, Futian Port (Lok Ma Chau) is much smoother for reaching Shenzhen North Station!",
+            dep3H: "Hong Kong International Airport",
+            dep3Detail: "✈️ <strong>Silka Tsuen Wan ➔ Hong Kong International Airport Transport Guide</strong><br>To suit your schedule and luggage needs, we provide four convenient travel options:<br><br><strong>1. Light Walk: Walk to Bus A30</strong><br>• <strong>Route Details</strong>: Walk approx. 500m downhill from the hotel to Ping Lai Path Bus Stop, take Bus A30 direct to the airport.<br>• <strong>Best for</strong>: Guests traveling light who enjoy a scenic walk.<br><br><strong>2. Shuttle Transfer via Kwai Fong: MTR Shuttle + Bus A30</strong><br>• <strong>Route Details</strong>: Take free hotel shuttle or Bus 31M to Kwai Fong MTR Station, walk through Metroplaza, transfer to Bus A30 to the airport.<br>• <strong>Best for</strong>: Time-saving and comfortable travel using hotel shuttle.<br><br><strong>3. Express Rail: MTR + Airport Express</strong><br>• <strong>Route Details</strong>: Take hotel shuttle or Bus 31M to Kwai Fong MTR Station ➔ MTR to Lai King Station, switch to Tung Chung Line to Tsing Yi Station ➔ Transfer to Airport Express to the airport.<br>• <strong>Best for</strong>: Punctual travelers avoiding traffic jams.<br><br><strong>4. Point-to-Point: Ride-Hailing / Taxi Direct</strong><br>• <strong>Route Details</strong>: Use Uber, Amap, Didi, or hail an urban Red Taxi outside the hotel directly to the airport.<br>• <strong>Reference Fee</strong>: Approx. HK$220 - $250 (subject to real-time traffic & luggage fee).<br>• <strong>Best for</strong>: Families, guests with heavy luggage, or groups.",
             dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 to 00:00 Midnight",
             dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 to 22:30",
             dep3Name: "Hong Kong International Airport", dep3Desc: "24 Hours",
@@ -736,6 +766,8 @@
             dep1Detail: "<strong>一、 交通アクセスガイド（シルカ・ツェンワン発）</strong><br>羅湖口岸へは主に以下の2つの便利なルートがあります：<br><br><strong>ルート A：ミニバス ➔ 沙田/大圍 ➔ 東鉄線直行</strong><br>• <strong>手順</strong>：ホテル近くから緑のミニバス（403、403P、403X）で沙田または大圍へ行き、東鉄線に乗り換えて羅湖駅まで直行します。<br>• <strong>支払い方法</strong>：ミニバスはオクトパスカード、Alipay、現金のみ対応しています。<br><br><strong>ルート B：無料シャトル/路線バス ➔ 葵芳 ➔ 太子乗換 ➔ 九龍塘乗換 ➔ 東鉄線</strong><br>• <strong>手順</strong>：無料シャトルバスまたは31Mバスで葵芳駅へ行き、MTRで太子駅・九龍塘駅経由で東鉄線に乗り換え、羅湖駅へ向かいます。<br>• <strong>注意点</strong>：東鉄線（北行き）に乗車する際、行先が「羅湖」か「落馬洲」か必ずご確認ください。<br><br><strong>二、 羅湖口岸からのアクセスが最適な深センの目的地</strong><br>以下の目的地へ向かう場合は、羅湖口岸のご利用が最適です：<br><br><strong>深セン駅（羅湖火車站）：</strong><br>• <strong>メリット</strong>：イミグレーションを出てすぐ！徒歩約1分で到着します。<br><br><strong>東門老街：</strong><br>• <strong>メリット</strong>：イミグレーション通過後、深セン地下鉄1号線（羅湖駅）から1駅（老街駅まで約2〜3分）、または徒歩10〜15分です。",
             dep2H: "落馬洲/福田口岸",
             dep2Detail: "<strong>一、 交通アクセスガイド（シルカ・ツェンワン発）</strong><br>口岸へは主に以下の2つの便利なルートがあります：<br><br><strong>ルート A：ミニバス ➔ 沙田/大圍 ➔ 東鉄線直行</strong><br>• <strong>手順</strong>：ホテル近くから緑のミニバス（403、403P、403X）で沙田または大圍へ行き、東鉄線に乗り換えて直行します。<br>• <strong>支払い方法</strong>：ミニバスはオクトパスカード、Alipay、現金のみ対応しています。<br><br><strong>ルート B：無料シャトル/路線バス ➔ 葵芳 ➔ 太子乗換 ➔ 九龍塘乗換 ➔ 東鉄線</strong><br>• <strong>手順</strong>：無料シャトルバスまたは31Mバスで葵芳駅へ行き、MTRで太子駅・九龍塘駅経由で東鉄線に乗り換えます。<br>• <strong>注意点</strong>：東鉄線（北行き）に乗車する際、行先（羅湖または落馬洲）を必ずご確認ください。<br><br><strong>二、 深センの目的地：福田口岸および深セン北駅</strong><br>以下の目的地へ向かう場合は、福田口岸のご利用が最もおすすめです：<br><br><strong>1. 福田口岸</strong><br>• <strong>アクセス方法</strong>：東鉄線乗車時、「落馬洲」行きの列車にご乗車ください。落馬洲駅到着後、国境を越えると福田口岸に直結します。<br>• <strong>メリット</strong>：深セン地下鉄4号線および10号線に直接接続しており、福田中心街への移動が非常にスムーズです。<br><br><strong>2. 深セン北駅（高速鉄道駅）</strong><br>• <strong>福田口岸経由（最もおすすめ）</strong>：福田口岸通過後、地下1階の「福田口岸駅」から深セン地下鉄4号線に乗車し、乗り換えなし4駅（約10〜12分）で「深セン北駅」に到着します。<br>• <strong>羅湖口岸経由（参考）</strong>：羅湖経由の場合、地下鉄1号線➔老街駅で3号線➔4号線と乗り換えが多くなります。そのため深セン北駅へは福田口岸（落馬洲）経由が最も快適です！",
+            dep3H: "香港国際空港",
+            dep3Detail: "✈️ <strong>シルカ・ツェンワン ➔ 香港国際空港 交通アクセスガイド</strong><br>お客様のスケジュールや手荷物の状況に合わせて選べる4つの便利なアクセス方法をご案内いたします：<br><br><strong>1. 軽装で徒歩出発：徒歩 ➔ A30 空港バス</strong><br>• <strong>詳細</strong>：ホテルから徒歩約500m（緩やかな下り坂）で屏麗徑（Ping Lai Path）バス停へ向かい、A30バスで空港へ直行。<br>• <strong>おすすめ</strong>：荷物が少なく、街並みを楽しみながら移動したい方。<br><br><strong>2. 葵芳經由の乗り換え：港鐵接駁 + A30 空港バス</strong><br>• <strong>詳細</strong>：無料シャトルバスまたは31Mバスで葵芳（クワイフォン）駅へ行き、新都會廣場（メトロプラザ）を通り抜けてA30バスに乗り換え空港へ直行。<br>• <strong>おすすめ</strong>：シャトルバスを利用して快適・スムーズに移動したい方。<br><br><strong>3. 鐵路で確実・高速移動：MTR ➔ エアポートエクスプレス</strong><br>• <strong>詳細</strong>：シャトルバスまたは31Mバスで葵芳駅 ➔ MTRで荔景（ライキン）駅へ、東涌線に乗り換えて青衣（チンイ）駅 ➔ エアポートエクスプレスに乗り換えて空港へ直行。<br>• <strong>おすすめ</strong>：道路の渋滞を避け、正確な時間で移動したい方。<br><br><strong>4. ポイント・ツー・ポイント直行：配車アプリまたはタクシー</strong><br>• <strong>詳細</strong>：Uber、高德、滴滴などのアプリ、またはホテル前でタクシー（赤色の市區的士）に乗車して直行。<br>• <strong>概算料金</strong>：約 HK$220 - $250（交通状況や荷物数により変動）。<br>• <strong>おすすめ</strong>：ファミリー、荷物が多い方、グループでの移動。",
             dep1Name: "羅湖口岸", dep1Desc: "午前 06:30 ～ 深夜 00:00",
             dep2Name: "落馬洲 / 福田口岸", dep2Desc: "午前 06:30 ～ 午後 10:30",
             dep3Name: "香港国際空港", dep3Desc: "24時間",
@@ -760,7 +792,7 @@
             carPriceNote: "💡 <strong>備考：</strong>上記の料金はポイント・ツー・ポイントの送迎に適用されます。時間延長や行程変更についてはコンシェルジュにお問い合わせください。",
             back: "⬅ メニューに戻る",
             backGuidePlay: "⬅ 香港観光ガイドに戻る",
-            busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃湾西駅",
+            busH: "シャトルバス時刻表とリアルタイム状況", busSub: "ホテル 🕒 ➔ メトロプラザ(葵芳駅) ➔ 荃灣西駅",
             stationH: "無料シャトルバス乗降場所",
             guideH: "香港観光ガイド",
             guideShopH: "香港観光ガイド - ショッピング",
@@ -828,6 +860,8 @@
             dep1Detail: "<strong>1. 교통 안내 (실카 취언완 출발)</strong><br>로후 검문소로 가는 주 경로 2가지:<br><br><strong>경로 A: 미니버스 ➔ 샤틴/타이와이 ➔ 동철선 (직행)</strong><br>• <strong>방법</strong>: 호텔 근처에서 403, 403P, 403X 미니버스를 타고 샤틴 또는 타이와이로 이동 후 동철선(East Rail Line)으로 환승하여 로후역 직행.<br>• <strong>결제 방식</strong>: 옥토퍼스 카드, 알리페이, 현금만 가능합니다.<br><br><strong>경로 B: 셔틀버스/시내버스 ➔ 콰이퐁 ➔ 프린스에드워드 환승 ➔ 구룡통 환승 ➔ 동철선</strong><br>• <strong>방법</strong>: 무료 셔틀버스 또는 31M 버스로 콰이퐁역 이동, 지하철을 타고 프린스에드워드역 및 구룡통역에서 환승하여 동철선 이용.<br>• <strong>주의사항</strong>: 동철선 탑승 시 종착지가 '로후(Lo Wu)'인지 '락마차우(Lok Ma Chau)'인지 확인하세요.<br><br><strong>2. 로후 검문소 이용 추천 심천 목적지</strong><br>다음 목적지로 가시는 경우 로후 검문소 이용을 강력 추천합니다:<br><br><strong>심천 기차역 (로후역):</strong><br>• <strong>장점</strong>: 입국장 건물 출구 바로 앞! 도보 약 1분 소요.<br><br><strong>동문 라오지에 (Dongmen):</strong><br>• <strong>장점</strong>: 입국 후 심천 지하철 1호선(로후역) 탑승 시 1정거장(라오지에역, 약 2-3분 소요) 또는 도보 10-15분.",
             dep2H: "락마차우 / 푸톈 검문소",
             dep2Detail: "<strong>1. 교통 안내 (실카 취언완 출발)</strong><br>검문소로 가는 주요 경로 2가지:<br><br><strong>경로 A: 미니버스 ➔ 샤틴/타이와이 ➔ 동철선 (직행)</strong><br>• <strong>방법</strong>: 호텔 근처에서 403, 403P, 403X 미니버스를 타고 샤틴 또는 타이와이로 이동 후 동철선으로 환승하여 직행.<br>• <strong>결제 방식</strong>: 옥토퍼스 카드, 알리페이, 현금만 가능합니다.<br><br><strong>경로 B: 셔틀버스/시내버스 ➔ 콰이퐁 ➔ 프린스에드워드 환승 ➔ 구룡통 환승 ➔ 동철선</strong><br>• <strong>방법</strong>: 무료 셔틀버스 또는 31M 버스로 콰이퐁역 이동, 지하철을 타고 프린스에드워드역 및 구룡통역에서 환승하여 동철선 이용.<br>• <strong>주의사항</strong>: 동철선 탑승 시 열차의 종착지(로후 또는 락마차우)를 반드시 확인하세요.<br><br><strong>2. 추천 심천 목적지: 푸톈 검문소 및 심천북역</strong><br>다음 목적지로 이동 시 푸톈 검문소 이용을 추천합니다:<br><br><strong>1. 푸톈 검문소</strong><br>• <strong>이동 경로</strong>: 동철선 탑승 시 반드시 '락마차우(Lok Ma Chau)'행 열차를 이용하세요. 락마차우역 하차 후 도보로 검문소를 지나면 푸톈 검문소에 도착합니다.<br>• <strong>교통 장점</strong>: 심천 지하철 4호선 및 10호선과 바로 연결되어 푸톈 중심가로 이동하기 매우 편리합니다.<br><br><strong>2. 심천북역 (고속철도역)</strong><br>• <strong>푸톈 검문소 출발 (강력 추천)</strong>: 푸톈 검문소 통과 후 지하 1층 '푸톈검문소역'에서 지하철 4호선 탑승, 환승 없이 4개 정거장(약 10-12분) 직행으로 '심천북역' 도착.<br>• <strong>로후 검문소 출발 (참고)</strong>: 로후 이용 시 환승 횟수가 많아 불편합니다. 따라서 심천북역 이동 시 푸톈 검문소(락마차우) 이용이 가장 편리합니다!",
+            dep3H: "홍콩 국제공항",
+            dep3Detail: "✈️ <strong>실카 취언완 ➔ 홍콩 국제공항 교통 가이드</strong><br>고객님의 일정과 수하물 상황에 맞춰 선택하실 수 있는 4가지 편리한 이동 방법을 안내해 드립니다:<br><br><strong>1. 가벼운 도보 출발: 도보 ➔ A30 공항버스</strong><br>• <strong>상세 경로</strong>: 호텔에서 도보 약 500m (완만한 내리막길) 이동 후 핑라이 패스(Ping Lai Path) 버스정류장에서 A30 버스 탑승하여 공항 직행.<br>• <strong>추천 대상</strong>: 짐이 적고 거리 풍경을 즐기며 이동하고 싶으신 분.<br><br><strong>2. 콰이퐁 환승: 셔틀/MTR ➔ A30 공항버스</strong><br>• <strong>상세 경로</strong>: 호텔 무료 셔틀버스 또는 31M 버스로 콰이퐁역 이동 후 메트로플라자를 지나 A30 버스로 환승하여 공항 직행.<br>• <strong>추천 대상</strong>: 호텔 셔틀버스를 활용해 편안하고 빠르게 이동하고 싶으신 분.<br><br><strong>3. 정시성 철도 이용: MTR ➔ 공항철도(Airport Express)</strong><br>• <strong>상세 경로</strong>: 셔틀/31M 버스로 콰이퐁역 ➔ MTR 탑승 후 라이킹역에서 퉁청선 환승, 칭이역 하차 ➔ 공항철도(AEL) 환승하여 공항 직행.<br>• <strong>추천 대상</strong>: 도로 정체를 피하고 정확한 시간에 도착하고 싶으신 분.<br><br><strong>4. 도어 투 도어 편의: 차량 호출 앱 또는 택시</strong><br>• <strong>상세 경로</strong>: Uber, 가오더, 디디 앱을 사용하거나 호텔 정문에서 택시 탑승하여 공항 직행.<br>• <strong>예상 요금</strong>: 약 HK$220 - $250 (도로 상황 및 수하물 수량에 따라 변동).<br>• <strong>추천 대상</strong>: 가족 단위 여행객, 대형 수하물 소지자, 동행 인원이 많은 분.",
             dep1Name: "로후 검문소", dep1Desc: "오전 06:30 ~ 자정 00:00",
             dep2Name: "낙마주 / 휜티안", dep2Desc: "오전 06:30 ~ 오후 10:30",
             dep3Name: "홍콩 국제공항", dep3Desc: "24시간",
@@ -920,6 +954,8 @@
             dep1Detail: "<strong>1. Hướng dẫn di chuyển (Từ Silka Tsuen Wan)</strong><br>Có 2 tuyến đường thuận tiện đến Trạm kiểm soát La Hồ:<br><br><strong>Tuyến A: Xe buýt nhỏ ➔ Sha Tin/Tai Wai ➔ Tuyến East Rail (Thẳng)</strong><br>• <strong>Các bước</strong>: Bắt xe buýt nhỏ 403, 403P hoặc 403X gần khách sạn đến Sha Tin hoặc Tai Wai, chuyển sang Tuyến East Rail đi thẳng đến Ga La Hồ (Lo Wu).<br>• <strong>Thanh toán</strong>: Xe buýt nhỏ chỉ nhận thẻ Octopus, Alipay và tiền mặt.<br><br><strong>Tuyến B: Xe đưa đón/Bus ➔ Kwai Fong ➔ Đổi tuyến tại Prince Edward ➔ Đổi tuyến tại Kowloon Tong ➔ Tuyến East Rail</strong><br>• <strong>Các bước</strong>: Đi xe đưa đón miễn phí hoặc Bus 31M đến Ga Kwai Fong, đi MTR đổi tuyến tại Prince Edward và Kowloon Tong sang Tuyến East Rail đến Ga La Hồ.<br>• <strong>Lưu ý quan trọng</strong>: Hãy kiểm tra hướng đi của tàu East Rail là 'Lo Wu' hay 'Lok Ma Chau' để tránh lên nhầm tàu!<br><br><strong>2. Điểm đến Thâm Quyến ưu tiên qua Cửa khẩu La Hồ</strong><br>Nếu bạn có kế hoạch đến các địa điểm sau, Cửa khẩu La Hồ là lựa chọn tốt nhất:<br><br><strong>Ga tàu Thâm Quyến (Ga La Hồ):</strong><br>• <strong>Ưu điểm</strong>: Ngay bên ngoài tòa nhà cửa khẩu! Chỉ mất khoảng 1 phút đi bộ.<br><br><strong>Phố đi bộ Đông Môn (Laojie):</strong><br>• <strong>Ưu điểm</strong>: Rất gần. Đi tàu điện ngầm Thâm Quyến Tuyến 1 từ Ga La Hồ chỉ 1 trạm (đến Ga Laojie khoảng 2-3 phút) hoặc đi bộ 10-15 phút.",
             dep2H: "Lok Ma Chau / Cảng Phúc Điền",
             dep2Detail: "<strong>1. Hướng dẫn di chuyển (Từ Silka Tsuen Wan)</strong><br>Có 2 tuyến đường thuận tiện đến cửa khẩu:<br><br><strong>Tuyến A: Xe buýt nhỏ ➔ Sha Tin/Tai Wai ➔ Tuyến East Rail (Thẳng)</strong><br>• <strong>Các bước</strong>: Bắt xe buýt nhỏ 403, 403P hoặc 403X gần khách sạn đến Sha Tin hoặc Tai Wai, chuyển sang Tuyến East Rail đi thẳng.<br>• <strong>Thanh toán</strong>: Xe buýt nhỏ chỉ nhận thẻ Octopus, Alipay và tiền mặt.<br><br><strong>Tuyến B: Xe đưa đón/Bus ➔ Kwai Fong ➔ Đổi tuyến tại Prince Edward ➔ Đổi tuyến tại Kowloon Tong ➔ Tuyến East Rail</strong><br>• <strong>Các bước</strong>: Đi xe đưa đón miễn phí hoặc Bus 31M đến Ga Kwai Fong, đi MTR đổi tuyến tại Prince Edward và Kowloon Tong sang Tuyến East Rail.<br>• <strong>Lưu ý quan trọng</strong>: Chú ý ga cuối của tàu East Rail (đi Lo Wu hay Lok Ma Chau), tránh lên nhầm tàu!<br><br><strong>2. Điểm đến Thâm Quyến: Cửa khẩu Phúc Điền & Ga Thâm Quyến Bắc</strong><br>Nếu bạn định đến các địa điểm sau, Cửa khẩu Phúc Điền là lựa chọn hàng đầu:<br><br><strong>1. Cửa khẩu Phúc Điền</strong><br>• <strong>Tuyến đi</strong>: Bắt tàu East Rail hướng đi ga cuối 'Lok Ma Chau'. Qua cửa khẩu từ Ga Lok Ma Chau để sang Cửa khẩu Phúc Điền.<br>• <strong>Ưu điểm</strong>: Kết nối trực tiếp với Tàu điện ngầm Thâm Quyến Tuyến 4 và Tuyến 10, vào trung tâm Phúc Điền rất nhanh chóng.<br><br><strong>2. Ga Thâm Quyến Bắc (Tàu cao tốc)</strong><br>• <strong>Đi từ Cửa khẩu Phúc Điền (Khuyên dùng)</strong>: Sau khi qua cửa khẩu, xuống tầng B1 'Ga Tàu điện ngầm Cửa khẩu Phúc Điền' đi Tuyến 4 (hướng Niuhu) qua 4 trạm (10-12 phút) đến thẳng Ga Thâm Quyến Bắc.<br>• <strong>Đi từ Cửa khẩu La Hồ (Dự phòng)</strong>: Đi từ La Hồ phải đổi tuyến nhiều lần. Vì vậy đi Ga Thâm Quyến Bắc qua Cửa khẩu Phúc Điền (Lok Ma Chau) là thuận tiện nhất!",
+            dep3H: "Sân bay Quốc tế Hồng Kông",
+            dep3Detail: "✈️ <strong>Silka Tsuen Wan ➔ Hướng dẫn di chuyển đến Sân bay Quốc tế Hồng Kông</strong><br>Tùy theo lịch trình và hành lý, chúng tôi xin gợi ý 4 phương án di chuyển thuận tiện nhất:<br><br><strong>1. Đi bộ nhẹ nhàng: Đi bộ ➔ Xe buýt A30</strong><br>• <strong>Chi tiết</strong>: Đi bộ khoảng 500m (đường xuống dốc nhẹ) đến trạm xe buýt Ping Lai Path, bắt xe A30 đi thẳng đến sân bay.<br>• <strong>Phù hợp</strong>: Khách đi hành lý gọn nhẹ, thích ngắm cảnh đường phố.<br><br><strong>2. Quá cảnh qua Kwai Fong: Xe đưa đón + Xe buýt A30</strong><br>• <strong>Chi tiết</strong>: Đi xe đưa đón miễn phí hoặc Bus 31M đến Ga Kwai Fong, đi qua Metroplaza và chuyển sang xe buýt A30 đi thẳng đến sân bay.<br>• <strong>Phù hợp</strong>: Kết hợp xe đưa đón khách sạn, tiết kiệm thời gian.<br><br><strong>3. Tàu hỏa siêu tốc: MTR ➔ Airport Express</strong><br>• <strong>Chi tiết</strong>: Đi xe đưa đón hoặc Bus 31M đến Ga Kwai Fong ➔ Đi MTR đến Ga Lai King, đổi sang Tuyến Tung Chung đến Ga Tsing Yi ➔ Đổi sang Airport Express đi thẳng đến sân bay.<br>• <strong>Phù hợp</strong>: Khách cần đúng giờ, tránh tắc đường.<br><br><strong>4. Đưa đón tận nơi: Taxi / Xe công nghệ</strong><br>• <strong>Chi tiết</strong>: Sử dụng Uber, Amap, Didi hoặc đón Taxi đỏ ngay trước cửa khách sạn đi thẳng đến sân bay.<br>• <strong>Chi phí tham khảo</strong>: Khoảng HK$220 - $250 (tùy tình trạng giao thông và phí hành lý).<br>• <strong>Phù hợp</strong>: Gia đình, khách mang nhiều hành lý hoặc đi nhóm đông.",
             dep1Name: "Trạm kiểm soát La Hồ", dep1Desc: "06:30 đến 00:00 Đêm",
             dep2Name: "Lok Ma Chau / Cảng Phúc Điền", dep2Desc: "06:30 đến 22:30",
             dep3Name: "Sân bay Quốc tế Hồng Kông", dep3Desc: "24 Giờ",
@@ -1012,6 +1048,8 @@
             dep1Detail: "<strong>1. परिवहन गाइड (सिलका त्सुएन वान से)</strong><br>लो वू चेकपॉइंट तक पहुंचने के 2 सुविधाजनक रास्ते:<br><br><strong>मार्ग A: मिनीबस ➔ शा तिन/ताई वाई ➔ ईस्ट रेल लाइन (डायरेक्ट)</strong><br>• <strong>चरण</strong>: होटल के पास ग्रीन मिनीबस 403, 403P या 403X से शा तिन या ताई वाई जाएं, फिर ईस्ट रेल लाइन से लो वू स्टेशन जाएं।<br>• <strong>भुगतान</strong>: मिनीबस में केवल ऑक्टोपस, अलीपे और कैश स्वीकार्य है।<br><br><strong>मार्ग B: होटल शटल/बस ➔ क्वाई फोंग ➔ प्रिंस एडवर्ड ट्रांसफर ➔ काउलून टोंग ट्रांसफर ➔ ईस्ट रेल लाइन</strong><br>• <strong>चरण</strong>: मुफ्त होटल शटल या बस 31M से क्वाई फोंग स्टेशन जाएं, एमटीआर से प्रिंस एडवर्ड और काउलून टोंग में ईस्ट रेल लाइन पर ट्रांसफर करें।<br>• <strong>महत्वपूर्ण सूचना</strong>: ट्रेन में चढ़ते समय ध्यान दें कि गंतव्य 'लो वू' (Lo Wu) है या 'लोक मा चाउ' (Lok Ma Chau)।<br><br><strong>2. लो वू के माध्यम से पसंदीदा शेन्ज़ेन गंतव्य</strong><br>यदि आप निम्नलिखित स्थानों पर जाने की योजना बना रहे हैं, तो लो वू चेकपॉइंट सबसे अच्छा विकल्प है:<br><br><strong>शेन्ज़ेन रेलवे स्टेशन (लो वू स्टेशन):</strong><br>• <strong>लाभ</strong>: इमीग्रेशन बिल्डिंग के ठीक बाहर! केवल 1 मिनट की पैदल दूरी।<br><br><strong>दॉन्गमैन पेडेस्ट्रियन स्ट्रीट (लाओजी):</strong><br>• <strong>लाभ</strong>: बहुत पास। शेन्ज़ेन मेट्रो लाइन 1 से केवल 1 स्टॉप (लगभग 2-3 मिनट) या 10-15 मिनट पैदल दूरी।",
             dep2H: "लोक मा चाउ / फुतियान चेकपॉइंट",
             dep2Detail: "<strong>1. परिवहन गाइड (सिलका त्सुएन वान से)</strong><br>चेकपॉइंट तक पहुंचने के 2 सुविधाजनक रास्ते:<br><br><strong>मार्ग A: मिनीबस ➔ शा तिन/ताई वाई ➔ ईस्ट रेल लाइन (डायरेक्ट)</strong><br>• <strong>चरण</strong>: होटल के पास मिनीबस 403, 403P या 403X से शा तिन या ताई वाई जाएं, फिर ईस्ट रेल लाइन से डायरेक्ट जाएं।<br>• <strong>भुगतान</strong>: मिनीबस में केवल ऑक्टोपस, अलीपे और कैश स्वीकार्य है।<br><br><strong>मार्ग B: होटल शटल/बस ➔ क्वाई फोंग ➔ प्रिंस एडवर्ड ट्रांसफर ➔ काउलून टोंग ट्रांसफर ➔ ईस्ट रेल लाइन</strong><br>• <strong>चरण</strong>: मुफ्त शटल या बस 31M से क्वाई फोंग स्टेशन जाएं, एमटीआर से प्रिंस एडवर्ड और काउलून टोंग में ईस्ट रेल लाइन पर ट्रांसफर करें।<br>• <strong>महत्वपूर्ण सूचना</strong>: ट्रेन का गंतव्य (लो वू या लोक मा चाउ) अवश्य जांचें!<br><br><strong>2. शेन्ज़ेन गंतव्य: फुतियान चेकपॉइंट और शेन्ज़ेन नॉर्थ स्टेशन</strong><br>यदि आप निम्नलिखित स्थानों पर जाने की योजना बना रहे हैं, तो फुतियान चेकपॉइंट सबसे अच्छा विकल्प है:<br><br><strong>1. फुतियान चेकपॉइंट</strong><br>• <strong>मार्ग</strong>: 'लोक मा चाउ' गंतव्य वाली ईस्ट रेल लाइन ट्रेन लें। लोक मा चाउ स्टेशन से सीधे फुतियान चेकपॉइंट में प्रवेश करें।<br>• <strong>लाभ</strong>: शेन्ज़ेन मेट्रो लाइन 4 और 10 से सीधा संबंध, फुतियान सीबीडी तक तेजी से पहुंच।<br><br><strong>2. शेन्ज़ेन नॉर्थ रेलवे स्टेशन (हाई-स्पीड रेल)</strong><br>• <strong>फुतियान चेकपॉइंट से (अनुशंसित)</strong>: सीमा पार करने के बाद B1 स्तर 'फुतियान चेकपॉइंट मेट्रो स्टेशन' से लाइन 4 (निउहू की ओर) लें, बिना ट्रांसफर 4 स्टॉप (10-12 मिनट) में शेन्ज़ेन नॉर्थ स्टेशन पहुंचें।<br>• <strong>लो वू से (वैकल्पिक)</strong>: लो वू के माध्यम से कई ट्रांसफर की आवश्यकता होती है। इसलिए फुतियान चेकपॉइंट सबसे आसान है!",
+            dep3H: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा",
+            dep3Detail: "✈️ <strong>सिलका त्सुएन वान ➔ हांगकांग अंतरराष्ट्रीय हवाई अड्डा परिवहन गाइड</strong><br>आपकी यात्रा की जरूरतों और सामान के अनुसार 4 सुविधाजनक विकल्प:<br><br><strong>1. पैदल मार्ग: पैदल ➔ A30 एयरपोर्ट बस</strong><br>• <strong>विवरण</strong>: होटल से लगभग 500 मीटर (ढलान वाला रास्ता) पैदल चलकर पिंग लाई पाथ बस स्टॉप जाएं, फिर A30 बस से सीधे हवाई अड्डे जाएं।<br>• <strong>उपयुक्त</strong>: कम सामान वाले और रास्ते के दृश्यों का आनंद लेने वाले यात्री।<br><br><strong>2. क्वाई फोंग से ट्रांसफर: शटल/बस ➔ A30 एयरपोर्ट बस</strong><br>• <strong>विवरण</strong>: मुफ्त शटल या 31M बस से क्वाई फोंग स्टेशन जाएं, मेट्रोप्लाजा से होते हुए A30 बस में बदलें और सीधे हवाई अड्डे जाएं।<br>• <strong>उपयुक्त</strong>: शटल बस का उपयोग करके आरामदायक यात्रा के लिए।<br><br><strong>3. फास्ट रेल कनेक्ट: MTR ➔ एयरपोर्ट एक्सप्रेस</strong><br>• <strong>विवरण</strong>: शटल या 31M बस से क्वाई फोंग स्टेशन ➔ MTR से लाई किंग स्टेशन, तुंग चुंग लाइन से त्सिंग यी स्टेशन ➔ एयरपोर्ट एक्सप्रेस में बदलकर सीधे हवाई अड्डे जाएं।<br>• <strong>उपयुक्त</strong>: समय के पाबंद और ट्रैफिक से बचने वाले यात्री।<br><br><strong>4. पॉइंट-टू-पॉइंट: टैक्सी / राइड-हेलिंग</strong><br>• <strong>विवरण</strong>: Uber, Amap, Didi का उपयोग करें या होटल के बाहर से रेड टैक्सी लेकर सीधे हवाई अड्डे जाएं।<br>• <strong>अनुमानित शुल्क</strong>: लगभग HK$220 - $250 (ट्रैफिक और सामान शुल्क के अनुसार)।<br>• <strong>उपयुक्त</strong>: परिवार, भारी सामान वाले या बड़े समूह।",
             dep1Name: "लो वू चेकपॉइंट", dep1Desc: "सुबह 06:30 से मध्यरात्रि 00:00",
             dep2Name: "लोक मा चाउ / फुतियान", dep2Desc: "सुबह 06:30 से रात 10:30",
             dep3Name: "हांगकांग अंतरराष्ट्रीय हवाई अड्डा", dep3Desc: "24 घंटे",
@@ -1104,6 +1142,8 @@
             dep1Detail: "<strong>1. Gabay sa Transportasyon (Mula Silka Tsuen Wan)</strong><br>Mayroong 2 maginhawang ruta papuntang Lo Wu Control Point:<br><br><strong>Ruta A: Minibus ➔ Sha Tin/Tai Wai ➔ East Rail Line (Direkta)</strong><br>• <strong>Mga Hakbang</strong>: Sumakay ng green minibus 403, 403P, o 403X malapit sa hotel papuntang Sha Tin o Tai Wai, pagkatapos ay lumipat sa East Rail Line papuntang Lo Wu Station.<br>• <strong>Pagbabayad</strong>: Octopus, Alipay, at cash lamang ang tinatanggap sa minibus.<br><br><strong>Ruta B: Hotel Shuttle/Bus ➔ Kwai Fong ➔ Lipat sa Prince Edward ➔ Lipat sa Kowloon Tong ➔ East Rail Line</strong><br>• <strong>Mga Hakbang</strong>: Sumakay ng libreng hotel shuttle o Bus 31M papuntang Kwai Fong Station, mag-MTR at lumipat sa Prince Edward at Kowloon Tong papuntang East Rail Line.<br>• <strong>Mahalagang Paalala</strong>: Tiyaking suriin kung ang destinasyon ng tren ay 'Lo Wu' o 'Lok Ma Chau' upang hindi magkamali ng sakay!<br><br><strong>2. Inirerekomendang Destinasyon sa Shenzhen sa pamamagitan ng Lo Wu</strong><br>Kung plano mong pumunta sa mga sumusunod na lugar, ang Lo Wu Control Point ang pinakamagandang opsyon:<br><br><strong>Shenzhen Railway Station (Lo Wu Station):</strong><br>• <strong>Kalamangan</strong>: Paglabas mismo ng immigration building! 1 minutong lakad lamang.<br><br><strong>Dongmen Pedestrian Street (Laojie):</strong><br>• <strong>Kalamangan</strong>: Napakalapit. Sumakay ng Shenzhen Metro Line 1 mula Luohu Station nang 1 stop lamang papuntang Laojie Station (mga 2-3 minuto) o maglakad nang 10-15 minuto.",
             dep2H: "Lok Ma Chau / Futian Control Point",
             dep2Detail: "<strong>1. Gabay sa Transportasyon (Mula Silka Tsuen Wan)</strong><br>Mayroong 2 maginhawang ruta papunta sa kontrol punto:<br><br><strong>Ruta A: Minibus ➔ Sha Tin/Tai Wai ➔ East Rail Line (Direkta)</strong><br>• <strong>Mga Hakbang</strong>: Sumakay ng green minibus 403, 403P, o 403X malapit sa hotel papuntang Sha Tin o Tai Wai, pagkatapos ay lumipat sa East Rail Line.<br>• <strong>Pagbabayad</strong>: Octopus, Alipay, at cash lamang ang tinatanggap sa minibus.<br><br><strong>Ruta B: Hotel Shuttle/Bus ➔ Kwai Fong ➔ Lipat sa Prince Edward ➔ Lipat sa Kowloon Tong ➔ East Rail Line</strong><br>• <strong>Mga Hakbang</strong>: Sumakay ng libreng hotel shuttle o Bus 31M papuntang Kwai Fong Station, mag-MTR at lumipat sa Prince Edward at Kowloon Tong papuntang East Rail Line.<br>• <strong>Mahalagang Paalala</strong>: Tiyaking suriin ang huling hantungan ng tren (Lo Wu o Lok Ma Chau) upang hindi magkamali ng sakay!<br><br><strong>2. Destinasyon sa Shenzhen: Futian Port & Shenzhen North Station</strong><br>Kung plano mong pumunta sa mga sumusunod, ang Futian Control Point ang pinaka-inirerekomenda:<br><br><strong>1. Futian Port</strong><br>• <strong>Ruta sa Pagtawid</strong>: Sumakay ng East Rail Line na tren patungong 'Lok Ma Chau'. Pagbaba sa Lok Ma Chau Station, maglakad patawid ng border papuntang Futian Port.<br>• <strong>Kalamangan</strong>: Direktang nakakonekta sa Shenzhen Metro Line 4 at Line 10, mabilis makarating sa Futian CBD.<br><br><strong>2. Shenzhen North Railway Station (High-Speed Rail)</strong><br>• <strong>Mula Futian Port (Inirerekomenda)</strong>: Pagkatawid sa Futian Port, pumunta sa B1 level 'Futian Port Metro Station' at sumakay ng Line 4 (papuntang Niuhu) nang 4 na hinto (mga 10-12 mins) papuntang Shenzhen North Station nang walang lipat.<br>• <strong>Mula Lo Wu Port (Alternatibo)</strong>: Ang pagtawid sa Lo Wu ay nangangailangan ng maraming lipat ng tren. Kaya mas mabilis at komportable sa Futian Port (Lok Ma Chau)!",
+            dep3H: "Hong Kong International Airport",
+            dep3Detail: "✈️ <strong>Silka Tsuen Wan ➔ Gabay sa Transportasyon papuntang Hong Kong International Airport</strong><br>Batay sa inyong iskedyul at bagahe, narito ang 4 na maginhawang opsyon sa paglalakbay:<br><br><strong>1. Maglakad nang Mapepera: Lakad ➔ Bus A30</strong><br>• <strong>Detalyado</strong>: Maglakad nang humigit-kumulang 500m (pababang daan) papuntang Ping Lai Path Bus Stop, sumakay ng Bus A30 direkta sa airport.<br>• <strong>Bagay sa</strong>: Manganood ng tanawin at konti lang ang dalang bagahe.<br><br><strong>2. Lipat sa Kwai Fong: Shuttle + Bus A30</strong><br>• <strong>Detalyado</strong>: Sumakay ng libreng hotel shuttle o Bus 31M papuntang Kwai Fong Station, dumaan sa Metroplaza, at lumipat sa Bus A30 papuntang airport.<br>• <strong>Bagay sa</strong>: Mabilis at komportableng pagbiyahe gamit ang shuttle.<br><br><strong>3. Mabilis na Tren: MTR ➔ Airport Express</strong><br>• <strong>Detalyado</strong>: Sumakay ng shuttle o Bus 31M papuntang Kwai Fong Station ➔ Mag-MTR papuntang Lai King Station, lumipat sa Tung Chung Line papuntang Tsing Yi Station ➔ Lumipat sa Airport Express papuntang airport.<br>• <strong>Bagay sa</strong>: Ayaw ma-trapik at gustong makarating nang sakto sa oras.<br><br><strong>4. Direktang Hatid: Taxi / Ride-Hailing App</strong><br>• <strong>Detalyado</strong>: Gumamit ng Uber, Amap, Didi, o sumakay ng Red Taxi sa labas ng hotel direkta sa airport.<br>• <strong>Kalkuladong Bayad</strong>: Sektor na HK$220 - $250 (depende sa trapik at bayad sa bagahe).<br>• <strong>Bagay sa</strong>: Pamilya, maraming bagahe, o grupo.",
             dep1Name: "Lo Wu Control Point", dep1Desc: "06:30 hanggang 00:00 Hatinggabi",
             dep2Name: "Lok Ma Chau / Futian Port", dep2Desc: "06:30 hanggang 22:30",
             dep3Name: "Hong Kong International Airport", dep3Desc: "24 Oras",
@@ -1151,6 +1191,7 @@
             stBookable: "Maaaring I-book", stWaiting: "Naghihintay", stBoarding: "Sumasakay", stDeparted: "Umalis Na", stFull: "Puno", stOut: "Suspendido"
         }
     };
+
     function selectLang(lang) {
         currentLang = lang;
         document.getElementById('lang-modal').style.display = 'none';
@@ -1183,6 +1224,7 @@
             'ui-departure-header': langData.departureH,
             'ui-dep1-header': langData.dep1H, 'ui-dep1-desc': langData.dep1Detail, 'ui-back-dep1': langData.backDeparture,
             'ui-dep2-header': langData.dep2H, 'ui-dep2-desc': langData.dep2Detail, 'ui-back-dep2': langData.backDeparture,
+            'ui-dep3-header': langData.dep3H, 'ui-dep3-desc': langData.dep3Detail, 'ui-back-dep3': langData.backDeparture,
             'ui-car-header': langData.carH,
             'ui-car-card1-title': langData.carCard1T, 'ui-car-card1-desc': langData.carCard1D,
             'ui-car-card2-title': langData.carCard2T, 'ui-car-card2-desc': langData.carCard2D,
@@ -1291,48 +1333,38 @@
 
     // 計算即時行車狀況 (頂部 Banner)
     function getRealtimeStatusText(currentMinutes, langData) {
-        // 00:00 至 07:44 -> 今天服務尚未開始
         if (currentMinutes >= 0 && currentMinutes <= 464) {
             return langData.stNotStarted;
         }
 
-        // 12:45 至 13:44 -> 午休中
         if (currentMinutes >= 765 && currentMinutes <= 824) {
             return langData.stLunchBreak;
         }
 
-        // 20:45 至 23:59 -> 今天服務已完結
         if (currentMinutes >= 1245 && currentMinutes <= 1439) {
             return langData.stServiceEnded;
         }
 
-        // 班次時間 (發車小時)
         const activeHours = [8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20];
 
         for (let h of activeHours) {
-            const depMins = h * 60; // 發車時間 (分鐘)
+            const depMins = h * 60;
 
-            // 發車前15分鐘 (HH-15至HH+00) 顯示等待發車
             if (currentMinutes >= depMins - 15 && currentMinutes <= depMins) {
                 return langData.stWaitingDepart;
             }
-            // HH+01 至 HH+14 顯示行駛至葵芳中
             if (currentMinutes >= depMins + 1 && currentMinutes <= depMins + 14) {
                 return langData.stDrivingToKwai;
             }
-            // HH+15 顯示到達葵芳站
             if (currentMinutes === depMins + 15) {
                 return langData.stArrivedKwai;
             }
-            // HH+16 至 HH+29 顯示駛往荃灣西
             if (currentMinutes >= depMins + 16 && currentMinutes <= depMins + 29) {
                 return langData.stDrivingToTsuen;
             }
-            // HH+30 顯示到達荃灣西
             if (currentMinutes === depMins + 30) {
                 return langData.stArrivedTsuen;
             }
-            // HH+31 至 HH+44 顯示返回酒店中
             if (currentMinutes >= depMins + 31 && currentMinutes <= depMins + 44) {
                 return langData.stReturningHotel;
             }
@@ -1350,10 +1382,8 @@
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-        // 22:00 重置邏輯標記
         const isNightReset = (currentMinutes >= 1320 || currentMinutes < 460);
 
-        // 尋找下一班車
         let nextBusId = null;
         let minDiff = Infinity;
 
@@ -1374,13 +1404,11 @@
             nextBusId = 1;
         }
 
-        // 1. 更新頂部即時狀況 Banner
         const liveStatusTextEl = document.getElementById('liveStatusText');
         if (liveStatusTextEl) {
             liveStatusTextEl.innerText = getRealtimeStatusText(currentMinutes, langData);
         }
 
-        // 2. 更新下方動態標籤列表
         busScheduleData.forEach(bus => {
             const item = document.createElement('div');
             item.className = 'bus-item';
@@ -1396,7 +1424,6 @@
             } else {
                 const override = manualOverrides[bus.id];
 
-                // 暫停服務：等到22:00自動重置，不被時間覆蓋
                 if (override === 'out') {
                     badgeClass = 'badge-out';
                     badgeText = langData.stOut;
@@ -1406,26 +1433,21 @@
                         badgeText = langData.stBookable;
                     } else {
                         const busMinutes = timeToMinutes(bus.hotel);
-                        const diff = busMinutes - currentMinutes; // 發車時間 - 當前時間
+                        const diff = busMinutes - currentMinutes;
 
-                        // HH+01 起（發車後 1 分鐘起）：更新為 已離開 (覆蓋手動滿員)
                         if (diff < 0) {
                             badgeClass = 'badge-departed';
                             badgeText = langData.stDeparted;
                         } else if (override === 'full') {
-                            // 手動設置已滿員 (尚未過發車時間)
                             badgeClass = 'badge-full';
                             badgeText = langData.stFull;
                         } else if (diff >= 0 && diff <= 5) {
-                            // HH-05 至 HH+00（發車前 5 至 0 分鐘）：自動更新為 可以上車
                             badgeClass = 'badge-boarding';
                             badgeText = langData.stBoarding;
                         } else if (diff >= 6 && diff <= 20) {
-                            // HH-20 至 HH-06（發車前 20 至 6 分鐘）：自動更新為 等待發車
                             badgeClass = 'badge-waiting';
                             badgeText = langData.stWaiting;
                         } else {
-                            // 預設 / 初始狀態 (HH-21 以上) : 可預約
                             badgeClass = 'badge-bookable';
                             badgeText = langData.stBookable;
                         }
