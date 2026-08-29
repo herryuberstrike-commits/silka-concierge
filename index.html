@@ -2386,29 +2386,28 @@
                     const override = manualOverrides[bus.id];
                     const busMinutes = timeToMinutes(bus.hotel);
                     const diff = busMinutes - currentMinutes;
-
+                    // 1. 手動狀態永遠最優先（無論過左鐘定夜晚重置都好）
                     if (override === 'out') {
                         badgeClass = 'badge-out';
                         badgeText = langData.stOut;
-                    } else if (override === 'full' && diff >= 0) {
-                        // 💡 只要架車仲未夠鐘開出（diff >= 0），就算喺夜晚重置時段內，「已滿」指令都會優先顯示！
+                    } else if (override === 'full') {
                         badgeClass = 'badge-full';
                         badgeText = langData.stFull;
-                    } else if (isNightReset) {
+                    }
+                    // 2. 其次先係夜晚重置
+                    else if (isNightReset) {
                         badgeClass = 'badge-bookable';
                         badgeText = langData.stBookable;
-                    } else {
-                        // 💡 一旦過咗車嘅時間（diff < 0），就會自動行下面嘅時間判定
+                    }
+                    // 3. 最後至係正常時間自動倒數邏輯
+                    else {
                         if (diff < 0) {
                             badgeClass = 'badge-departed';
                             badgeText = langData.stDeparted;
-                        } else if (override === 'full') {
-                            badgeClass = 'badge-full';
-                            badgeText = langData.stFull;
-                        } else if (diff >= 0 && diff <= 5) {
+                        } else if (diff <= 5) {
                             badgeClass = 'badge-boarding';
                             badgeText = langData.stBoarding;
-                        } else if (diff >= 6 && diff <= 20) {
+                        } else if (diff <= 20) {
                             badgeClass = 'badge-waiting';
                             badgeText = langData.stWaiting;
                         } else {
