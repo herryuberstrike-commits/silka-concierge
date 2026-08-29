@@ -405,7 +405,7 @@
                     <h3 id="ui-guide-4-title">觀光</h3>
                     <p id="ui-guide-4-desc">著名地標與打卡勝地</p>
                 </div>
-                <div class="menu-card" style="cursor: default;">
+                <div class="menu-card" onclick="showSection('guideRoute1Section')">
                     <div class="icon">🗺️</div>
                     <h3 id="ui-guide-5-title">推薦行程1</h3>
                     <p id="ui-guide-5-desc">經典一日遊路線</p>
@@ -499,6 +499,54 @@
             </div>
         </div>
 
+        <!-- 香港旅遊攻略 -> 推薦行程1 子頁面 -->
+        <div id="guideRoute1Section" class="section-content">
+            <button class="back-btn" id="ui-back-guideroute1" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
+            <h3 id="ui-guideroute1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 推薦行程1</h3>
+            <div id="ui-guideroute1-desc"
+                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                🗺️ <strong>經典一日遊行程總覽</strong><br>
+                09:00 – 09:30｜酒店出發，乘搭免費穿梭巴士或 31M 巴士前往葵芳地鐵站<br>
+                09:30 – 10:00｜乘搭港鐵由葵芳站出發（經荔景站轉乘東涌線）抵達東涌站<br>
+                10:00 – 10:30｜搭乘昂坪360纜車（享受 25 分鐘海景與山景）<br>
+                10:30 – 11:00｜昂坪市集漫步、打卡<br>
+                11:00 – 12:30｜參拜天壇大佛與寶蓮禪寺<br>
+                12:30 – 13:30｜昂坪市集午餐（品嚐素齋或港式茶餐廳）<br>
+                13:30 – 14:15｜心經簡林（沉浸於山林與心經意境中）<br>
+                14:30 – 15:00｜搭乘纜車返回東涌（或加碼前往大澳漁村）<br>
+                15:00 – 17:00｜東薈城名店倉（Citygate Outlets）血拼購物<br><br>
+
+                📌 <strong>詳細行程拆解與亮點</strong><br><br>
+                <strong>1. 早晨出發：酒店 ➔ 葵芳地鐵站 ➔ 東涌站</strong><br>
+                • <strong>交通方式</strong>：<br>
+                &nbsp;&nbsp;第一段（前往葵芳）：可選擇乘搭酒店提供的免費穿梭巴士，或乘搭 31M 巴士 前往葵芳地鐵站。<br>
+                &nbsp;&nbsp;第二段（前往東涌）：到達葵芳站後，乘搭港鐵荃灣線（往中環方向）至荔景站，同站平臺轉乘東涌線直達東涌站（B出口），步行約2分鐘即可抵達昂坪纜車站。<br>
+                •
+                <strong>亮點體驗</strong>：推薦提前預訂來回車票（可選擇標準車廂或視野刺激的水晶車廂，腳底為透明玻璃）。纜車全長約5.7公里，乘車時可以俯瞰遼闊的南中國海、香港國際機場飛機升降，以及北大嶼山郊野公園的翠綠山巒。<br><br>
+
+                <strong>2. 上午探訪：昂坪市集 ➔ 天壇大佛 ➔ 寶蓮禪寺</strong><br>
+                • <strong>昂坪市集</strong>：出纜車站後會先經過充滿中國傳統文化特色的昂坪市集，這裡有許多特色商店、拍照景點。<br>
+                • <strong>天壇大佛</strong>：全球最高戶外青銅坐佛。穿過牌樓後，挑戰步行 268級石階 登上大佛腳下，不僅能近距離感受宏偉莊嚴的佛像，還能遠眺昂坪高原與群山環抱的遼闊視野。<br>
+                • <strong>寶蓮禪寺</strong>：參觀歷史悠久、香火鼎盛的寶蓮禪寺，欣賞宏偉的大雄寶殿與清幽的蓮花池。<br><br>
+
+                <strong>3. 午餐與心靈漫步：齋菜午餐 ➔ 心經簡林</strong><br>
+                • <strong>午餐推薦</strong>：可以直接在寶蓮禪寺內的齋堂享用傳統的佛教素齋，或者在昂坪市集的餐廳享用港式輕食與常餐。<br>
+                •
+                <strong>心經簡林</strong>：從昂坪市集步行約15–20分鐘即可到達。這裡是由38根刻有國學大師饒宗頤教授《心經》墨寶的木柱依山而建，排列成「∞」（無限大）的符號，四周環繞山林，環境非常寧靜祥和。<br><br>
+
+                <strong>4. 下午回程與血拼：東薈城名店倉</strong><br>
+                • <strong>回程纜車</strong>：下午搭乘昂坪纜車返回東涌站（下山時視野同樣絕佳）。<br>
+                • <strong>東薈城名店倉 (Citygate
+                    Outlets)</strong>：就位於東涌港鐵站旁，是香港大型的戶外Outlet購物商場，集結了國際知名服飾品牌、運動品牌及美妝，非常適合在行程尾聲順便血拼一番、享用下午茶。<br><br>
+
+                💡 <strong>實用小貼士（Tips）</strong><br>
+                • <strong>門票建議</strong>：建議出發前先在網上預訂昂坪360來回纜車門票，並選擇指定時段，可以省去現場排隊購票的時間。<br>
+                •
+                <strong>彈性加碼行程（大澳漁村）</strong>：如果你腳力好、想玩得更充實，可以在昂坪市集旁搭乘「新大嶼山巴士21號」前往有「香港威尼斯」之稱的大澳漁村（車程約20分鐘），體驗水上棚屋與乘小艇看中華白海豚，玩完後再坐巴士返回東涌。<br>
+                • <strong>穿著建議</strong>：當天請穿著舒適好走的步行鞋（攀爬大佛階梯與行山路段需要）；大嶼山山頂風大且日照較強，建議根據季節攜帶防風外套或防曬用品。
+            </div>
+        </div>
+
         <div id="luggageSection" class="section-content">
             <button class="back-btn" id="ui-back3" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-lug-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">行李寄存服務</h3>
@@ -556,7 +604,7 @@
                     <h3 id="ui-dep-7-title">港珠澳大橋</h3>
                     <p id="ui-dep-7-desc">24小時</p>
                 </div>
-              <div class="menu-card" onclick="showSection('dep8Section')">
+                <div class="menu-card" onclick="showSection('dep8Section')">
                     <div class="icon">⛴️</div>
                     <h3 id="ui-dep-8-title">港澳客輪碼頭</h3>
                     <p id="ui-dep-8-desc">上午 06:30 至午夜 12:00</p>
@@ -742,7 +790,8 @@
                 🚗 <strong>荃灣絲麗酒店 ➔ 港澳客輪碼頭交通指南</strong><br>
                 為配合您的行程需求與行李攜帶情況，我們為您精心整理了以下前往上環港澳客輪碼頭的便捷出行方案：<br><br>
                 <strong>1. 港鐵直達（經濟實惠 🚇）</strong><br>
-                • <strong>路線詳情</strong>： 乘搭酒店免費穿梭巴士或 31M 巴士 抵達葵芳地鐵站 ➔ 乘搭港鐵荃灣綫往中環方向，直接到達中環站，再經行人通道步行前往上環港澳客輪碼頭（約需時 47 分鐘）。<br>
+                • <strong>路線詳情</strong>： 乘搭酒店免費穿梭巴士或 31M 巴士 抵達葵芳地鐵站 ➔ 乘搭港鐵荃灣綫往中環方向，直接到達中環站，再經行人通道步行前往上環港澳客輪碼頭（約需時 47
+                分鐘）。<br>
                 • <strong>適合對象</strong>： 熟悉香港鐵路網絡、希望避開路面交通擁堵的旅客。<br><br>
                 <strong>2. 點對點尊享（快捷舒適 ✨）</strong><br>
                 • <strong>路線詳情</strong>： 使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士，經西區海底隧道直接前往上環港澳客輪碼頭（車程約 17 分鐘）。<br>
@@ -753,7 +802,7 @@
                 • <strong>地理優勢</strong>： 位於上環信德中心的港澳客輪碼頭，提供往返香港與澳門（外港客運碼頭及氹仔客運碼頭）的高速客輪服務（如噴射飛航、金光飛航），通關效率高且班次頻密。
             </div>
         </div>
-        
+
         <div id="carSection" class="section-content">
             <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-car-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車服務</h3>
@@ -1055,7 +1104,9 @@
                 lugH: "行李寄存服務",
                 lugDesc: "🧳 **行李寄存服務須知**<br><br><strong>【收費與政策】</strong><br>• **入住及退房當日**：尊享全日免費行李寄存。<br>• **長期寄存**：按每件每日 <strong>$10</strong> 計算。<br><br><strong>【領取與安全須知】</strong><br>• 領取時請出示<strong>行李領取牌</strong>並核對簽名；如未能出示或簽名不符，本酒店有權拒絕交還。<br>• 寄存物品存放於<strong>非空調環境</strong>。<br><br><strong>【免責與處理條款】</strong><br>• 凡寄存於本酒店之行李或物品，如有任何<strong>遺失、損毀或被盜</strong>，香港荃灣絲麗酒店恕不負責。<br>• 逾期超過 <strong>兩個月</strong> 未領回之物品，本酒店將有權自行處置，恕不另行通知。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃灣西", lunchBreak: "午飯時間 (暫停服務)", nextBusText: "⭐ 下一班次 (Next Bus)",
-                stBookable: "可預約", stWaiting: "等待發車", stBoarding: "可以上車", stDeparted: "已離開", stFull: "已滿", stOut: "暫停服務"
+                stBookable: "可預約", stWaiting: "等待發車", stBoarding: "可以上車", stDeparted: "已離開", stFull: "已滿", stOut: "暫停服務",
+                guideRoute1H: "香港旅遊攻略 - 推薦行程1",
+                guideRoute1Detail: `🗺️ <strong>經典一日遊行程總覽</strong><br>09:00 – 09:30｜酒店出發，乘搭免費穿梭巴士或 31M 巴士前往葵芳地鐵站<br>09:30 – 10:00｜乘搭港鐵由葵芳站出發（經荔景站轉乘東涌線）抵達東涌站<br>10:00 – 10:30｜搭乘昂坪360纜車（享受 25 分鐘海景與山景）<br>10:30 – 11:00｜昂坪市集漫步、打卡<br>11:00 – 12:30｜參拜天壇大佛與寶蓮禪寺<br>12:30 – 13:30｜昂坪市集午餐（品嚐素齋或港式茶餐廳）<br>13:30 – 14:15｜心經簡林（沉浸於山林與心經意境中）<br>14:30 – 15:00｜搭乘纜車返回東涌（或加碼前往大澳漁村）<br>15:00 – 17:00｜東薈城名店倉（Citygate Outlets）血拼購物<br><br>📌 <strong>詳細行程拆解與亮點</strong><br><br><strong>1. 早晨出發：酒店 ➔ 葵芳地鐵站 ➔ 東涌站</strong><br>• <strong>交通方式</strong>：<br>&nbsp;&nbsp;第一段（前往葵芳）：可選擇乘搭酒店提供的免費穿梭巴士，或乘搭 31M 巴士 前往葵芳地鐵站。<br>&nbsp;&nbsp;第二段（前往東涌）：到達葵芳站後，乘搭港鐵荃灣線（往中環方向）至荔景站，同站平臺轉乘東涌線直達東涌站（B出口），步行約2分鐘即可抵達昂坪纜車站。<br>• <strong>亮點體驗</strong>：推薦提前預訂來回車票（可選擇標準車廂或視野刺激的水晶車廂，腳底為透明玻璃）。纜車全長約5.7公里，乘車時可以俯瞰遼闊的南中國海、香港國際機場飛機升降，以及北大嶼山郊野公園的翠綠山巒。<br><br><strong>2. 上午探訪：昂坪市集 ➔ 天壇大佛 ➔ 寶蓮禪寺</strong><br>• <strong>昂坪市集</strong>：出纜車站後會先經過充滿中國傳統文化特色的昂坪市集，這裡有許多特色商店、拍照景點。<br>• <strong>天壇大佛</strong>：全球最高戶外青銅坐佛。穿過牌樓後，挑戰步行 268級石階 登上大佛腳下，不僅能近距離感受宏偉莊嚴的佛像，還能遠眺昂坪高原與群山環抱的遼闊視野。<br>• <strong>寶蓮禪寺</strong>：參觀歷史悠久、香火鼎盛的寶蓮禪寺，欣賞宏偉的大雄寶殿與清幽的蓮花池。<br><br><strong>3. 午餐與心靈漫步：齋菜午餐 ➔ 心經簡林</strong><br>• <strong>午餐推薦</strong>：可以直接在寶蓮禪寺內的齋堂享用傳統的佛教素齋，或者在昂坪市集的餐廳享用港式輕食與常餐。<br>• <strong>心經簡林</strong>：從昂坪市集步行約15–20分鐘即可到達。這裡是由38根刻有國學大師饒宗頤教授《心經》墨寶的木柱依山而建，排列成「∞」（無限大）的符號，四周環繞山林，環境非常寧靜祥和。<br><br><strong>4. 下午回程與血拼：東薈城名店倉</strong><br>• <strong>回程纜車</strong>：下午搭乘昂坪纜車返回東涌站（下山時視野同樣絕佳）。<br>• <strong>東薈城名店倉 (Citygate Outlets)</strong>：就位於東涌港鐵站旁，是香港大型的戶外Outlet購物商場，集結了國際知名服飾品牌、運動品牌及美妝，非常適合在行程尾聲順便血拼一番、享用下午茶。<br><br>💡 <strong>實用小貼士（Tips）</strong><br>• <strong>門票建議</strong>：建議出發前先在網上預訂昂坪360來回纜車門票，並選擇指定時段，可以省去現場排隊購票的時間。<br>• <strong>彈性加碼行程（大澳漁村）</strong>：如果你腳力好、想玩得更充實，可以在昂坪市集旁搭乘「新大嶼山巴士21號」前往有「香港威尼斯」之稱的大澳漁村（車程約20分鐘），體驗水上棚屋與乘小艇看中華白海豚，玩完後再坐巴士返回東涌。<br>• <strong>穿著建議</strong>：當天請穿著舒適好走的步行鞋（攀爬大佛階梯與行山路段需要）；大嶼山山頂風大且日照較強，建議根據季節攜帶防風外套或防曬用品。`
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -1161,7 +1212,9 @@
                 lugH: "行李寄存服务",
                 lugDesc: "🧳 **行李寄存服务须知**<br><br><strong>【收费与政策】</strong><br>• **入住及退房当日**：尊享全日免费行李寄存。<br>• **长期寄存**：按每件每日 <strong>$10</strong> 计算。<br><br><strong>【领取与安全须知】</strong><br>• 领取时请出示<strong>行李领取牌</strong>并核对签名；如未能出示或签名不符，本酒店有权拒绝交还。<br>• 寄存物品存放于<strong>非空调环境</strong>。<br><br><strong>【免责与处理條款】</strong><br>• 凡寄存于本酒店之行李或物品，如有任何<strong>遗失、損毀或被盜</strong>，香港荃湾丝丽酒店一概无须负上任何责任。<br>• 逾期超过 <strong>两个月</strong> 未领回之物品，本酒店将有权自行处置，恕不另行通知。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "午饭时间 (暂停服务)", nextBusText: "⭐ 下一班次 (Next Bus)",
-                stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务"
+                stBookable: "可预约", stWaiting: "等待发车", stBoarding: "可以上车", stDeparted: "已离开", stFull: "已满", stOut: "暂停服务",
+                guideRoute1H: "香港旅游攻略 - 推荐行程1",
+                guideRoute1Detail: `🗺️ <strong>经典一日游行程总览</strong><br>09:00 – 09:30｜酒店出发，乘坐免费穿梭巴士或 31M 巴士前往葵芳地铁站<br>09:30 – 10:00｜乘坐港铁由葵芳站出发（经荔景站换乘东涌线）抵达东涌站<br>10:00 – 10:30｜搭乘昂坪360缆车（享受 25 分钟海景与山景）<br>10:30 – 11:00｜昂坪市集漫步、打卡<br>11:00 – 12:30｜参拜天坛大佛与宝莲禅寺<br>12:30 – 13:30｜昂坪市集午餐（品尝素斋或港式茶餐厅）<br>13:30 – 14:15｜心经简林（沉浸于山林与心经意境中）<br>14:30 – 15:00｜搭乘缆车返回东涌（或加码前往大澳渔村）<br>15:00 – 17:00｜东荟城名店仓（Citygate Outlets）血拼购物<br><br>📌 <strong>详细行程拆解与亮点</strong><br><br><strong>1. 早晨出发：酒店 ➔ 葵芳地铁站 ➔ 东涌站</strong><br>• <strong>交通方式</strong>：<br>&nbsp;&nbsp;第一段（前往葵芳）：可选择乘坐酒店提供的免费穿梭巴士，或乘坐 31M 巴士 前往葵芳地铁站。<br>&nbsp;&nbsp;第二段（前往东涌）：到达葵芳站后，乘坐港铁荃湾线（往中环方向）至荔景站，同站平台换乘东涌线直达东涌站（B出口），步行约2分钟即可抵达昂坪缆车站。<br>• <strong>亮点体验</strong>：推荐提前预订来回车票（可选择标准车厢或视野刺激的水晶车厢，脚底为透明玻璃）。缆车全长约5.7公里，乘车时可以俯瞰辽阔的南中国海、香港国际机场飞机升降，以及北大屿山郊野公园的翠绿山峦。<br><br><strong>2. 上午探访：昂坪市集 ➔ 天坛大佛 ➔ 宝莲禅寺</strong><br>• <strong>昂坪市集</strong>：出缆车站后会先经过充满中国传统文化特色的昂坪市集，这里有许多特色商店、拍照景点。<br>• <strong>天坛大佛</strong>：全球最高户外青铜坐佛。穿过牌楼后，挑战步行 268级石阶 登上大佛脚下，不仅能近距离感受宏伟庄严的佛像，还能远眺昂坪高原与群山环抱的辽阔视野。<br>• <strong>宝莲禅寺</strong>：参观历史悠久、香火鼎盛的宝莲禅寺，欣赏宏伟的大雄宝殿与清幽的莲花池。<br><br><strong>3. 午餐与心灵漫步：斋菜午餐 ➔ 心经简林</strong><br>• <strong>午餐推荐</strong>：可以直接在宝莲禅寺内的斋堂享用传统的佛教素斋，或者在昂坪市集的餐厅享用港式轻食与常餐。<br>• <strong>心经简林</strong>：从昂坪市集步行约15–20分钟即可到达。这里是由38根刻有国学大师饶宗颐教授《心经》墨宝的木柱依山而建，排列成“∞”（无限大）的符号，四周环绕山林，环境非常宁静祥和。<br><br><strong>4. 下午回程与血拼：东荟城名店仓</strong><br>• <strong>回程缆车</strong>：下午搭乘昂坪缆车返回东涌站（下山时视野同样绝佳）。<br>• <strong>东荟城名店仓 (Citygate Outlets)</strong>：就位于东涌港铁站旁，是香港大型的户外Outlet购物商场，集结了国际知名服饰品牌、运动品牌及美妆，非常适合在行程尾声顺便血拼一番、享用下午茶。<br><br>💡 <strong>实用小贴士（Tips）</strong><br>• <strong>门票建议</strong>：建议出发前先在网上预订昂坪360来回缆车门票，并选择指定时段，可以省去现场排队购票的时间。<br>• <strong>弹性加码行程（大澳渔村）</strong>：如果你脚力好、想玩得更充实，可以在昂坪市集旁搭乘“新大屿山巴士21号”前往有“香港威尼斯”之称的大澳渔村（车程约20分钟），体验水上棚屋与乘小艇看中华白海豚，玩完后再坐巴士返回东涌。<br>• <strong>穿着建议</strong>：当天请穿着舒适好走的步行鞋（攀爬大佛阶梯与行山路段需要）；大屿山山顶风大且日照较强，建议根据季节携带防风外套或防晒用品。`
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -1267,7 +1320,9 @@
                 lugH: "Luggage Storage Service",
                 lugDesc: "🧳 **Luggage Storage Notice**<br><br><strong>【Policy & Fees】</strong><br>• **Check-in & Check-out Days**: Enjoy complimentary luggage storage.<br>• **Long-term Storage**: Charged at <strong>$10</strong> per piece per day.<br><br><strong>【Collection & Safety】</strong><br>• Please present the luggage claim tag and matching signature upon collection. The hotel reserves the right to refuse return if missing or unmatched.<br>• Stored in a <strong>non-air-conditioned</strong> environment.<br><br><strong>【Liability & Terms】</strong><br>• Silka Tsuen Wan is not liable for any <strong>loss, damage, or theft</strong> of items stored.<br>• Unclaimed items for <strong>over two months</strong> may be <strong>disposed of without prior notice</strong>.",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Lunch Break (Suspended)", nextBusText: "⭐ Next Bus",
-                stBookable: "Available", stWaiting: "Waiting for Departure", stBoarding: "Boarding", stDeparted: "Departed", stFull: "Full", stOut: "Suspended"
+                stBookable: "Available", stWaiting: "Waiting for Departure", stBoarding: "Boarding", stDeparted: "Departed", stFull: "Full", stOut: "Suspended",
+                guideRoute1H: "HK Travel Guide - Itinerary 1",
+                guideRoute1Detail: `🗺️ <strong>Classic Day Tour Overview</strong><br>09:00 – 09:30｜Depart from hotel via free shuttle bus or Bus 31M to Kwai Fong MTR Station<br>09:30 – 10:00｜Take MTR from Kwai Fong Station (transfer at Lai King to Tung Chung Line) to Tung Chung Station<br>10:00 – 10:30｜Ride Ngong Ping 360 Cable Car (25-min scenic sea & mountain view)<br>10:30 – 11:00｜Stroll & photo spots at Ngong Ping Village<br>11:00 – 12:30｜Visit Tian Tan Buddha & Po Lin Monastery<br>12:30 – 13:30｜Lunch at Ngong Ping Village (Vegetarian meal or Hong Kong style cafe)<br>13:30 – 14:15｜Wisdom Path (Peaceful mountain walk)<br>14:30 – 15:00｜Return to Tung Chung by cable car (or optional side trip to Tai O Fishing Village)<br>15:00 – 17:00｜Shopping at Citygate Outlets<br><br>📌 <strong>Detailed Itinerary & Highlights</strong><br><br><strong>1. Morning Departure: Hotel ➔ Kwai Fong MTR ➔ Tung Chung MTR</strong><br>• <strong>Transport</strong>: Take free hotel shuttle or Bus 31M to Kwai Fong Station. Take Tsuen Wan Line towards Central, transfer at Lai King Station across the platform to Tung Chung Line straight to Tung Chung Station (Exit B). Walk 2 mins to Ngong Ping Cable Car Terminal.<br>• <strong>Highlight</strong>: Booking round-trip tickets in advance is recommended (Crystal Cabin with glass floor for extra thrill). The 5.7km ride offers panoramic views of South China Sea, HK Airport, and Lantau country park.<br><br><strong>2. Morning Sightseeing: Ngong Ping Village ➔ Tian Tan Buddha ➔ Po Lin Monastery</strong><br>• <strong>Ngong Ping Village</strong>: Culturally themed village with shops and photo spots.<br>• <strong>Tian Tan Buddha</strong>: World's tallest outdoor seated bronze Buddha. Climb 268 steps for close-up view and panoramic mountain vistas.<br>• <strong>Po Lin Monastery</strong>: Visit historic monastery with magnificent halls and lotus ponds.<br><br><strong>3. Lunch & Peaceful Walk: Vegetarian Lunch ➔ Wisdom Path</strong><br>• <strong>Lunch</strong>: Enjoy vegetarian dining at Po Lin Monastery or casual HK food at Ngong Ping Village.<br>• <strong>Wisdom Path</strong>: 15-20 min walk from Ngong Ping Village. Features 38 wooden steles carved with Heart Sutra verses arranged in an infinity symbol.<br><br><strong>4. Afternoon Shopping: Citygate Outlets</strong><br>• <strong>Return Cable Car</strong>: Ride cable car back to Tung Chung with great views.<br>• <strong>Citygate Outlets</strong>: Located next to Tung Chung MTR, HK's major outlet mall with international fashion, sports, and beauty brands.<br><br>💡 <strong>Practical Tips</strong><br>• <strong>Tickets</strong>: Book cable car tickets online in advance to skip queue lines.<br>• <strong>Optional Add-on (Tai O Village)</strong>: Take NLB Bus 21 from Ngong Ping to Tai O ("Venice of Hong Kong", 20-min ride) to see stilt houses and pink dolphins.<br>• <strong>Clothing</strong>: Wear comfortable walking shoes for stairs and trails; bring windbreaker or sunscreen as mountain weather varies.`
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -1373,7 +1428,9 @@
                 lugH: "手荷物預かりサービス",
                 lugDesc: "🧳 **手荷物預かりのご案内**<br><br><strong>【料金とポリシー】</strong><br>• **チェックイン/アウト当日**：全日無料でお預かり。<br>• **長期預かり**：1個あたり1日 <strong>$10</strong>。<br><br><strong>【お引き取りと安全】</strong><br>• お引き取り時は預かり札と**署名**を確認します。一致しない場合はお返しできません。<br>• **非空調環境**での保管となります。<br><br><strong>【免責事項】</strong><br>• 紛失、破損、盗難についてホテルは責任を負いかねます。<br>• **2ヶ月**以上引き取りのない物品は予告なく処分されます。",
                 kwaiFong: "葵芳", tsuenWanWest: "荃湾西", lunchBreak: "昼休み (運休)", nextBusText: "⭐ 次の便 (Next Bus)",
-                stBookable: "予約可能", stWaiting: "発車待ち", stBoarding: "乗車可能", stDeparted: "出発済み", stFull: "満席", stOut: "運休"
+                stBookable: "予約可能", stWaiting: "発車待ち", stBoarding: "乗車可能", stDeparted: "出発済み", stFull: "満席", stOut: "運休",
+                guideRoute1H: "香港観光ガイド - おすすめコース1",
+                guideRoute1Detail: `🗺️ <strong>定番一日観光ツアー概要</strong><br>09:00 – 09:30｜ホテル出発、無料シャトルバスまたは31Mバスで葵芳（クワイフォン）駅へ<br>09:30 – 10:00｜MTR葵芳駅から（荔景駅で東涌線へ乗り換え）東涌（トンチョン）駅に到着<br>10:00 – 10:30｜昂坪（ゴンピン）360ロープウェイに乗車（25分間の海の絶景）<br>10:30 – 11:00｜昂坪市集（ゴンピンビレッジ）を散策・写真撮影<br>11:00 – 12:30｜天壇大仏と寶蓮禅寺（ポーリンぜんじ）を参拝<br>12:30 – 13:30｜昂坪市集でランチ（精進料理または香港風喫茶店）<br>13:30 – 14:15｜心経簡林（ウィズダムパス）で自然散策<br>14:30 – 15:00｜ロープウェイで東涌へ戻る（または大澳漁村へ足を延ばす）<br>15:00 – 17:00｜シティゲート・アウトレット（Citygate Outlets）でショッピング<br><br>📌 <strong>詳細ガイドとハイライト</strong><br><br><strong>1. 朝の出発：ホテル ➔ 葵芳駅 ➔ 東涌駅</strong><br>• <strong>アクセス</strong>：無料シャトルバスまたは31Mバスで葵芳駅へ。荃湾線で荔景駅へ行き、同じホームで東涌線に乗り換えて東涌駅（B出口）下車。徒歩約2分でロープウェイ乗り場へ。<br>• <strong>ハイライト</strong>：事前予約がおすすめ（足元が透明ガラスのクリスタルキャビンも人気）。全長5.7kmの空中散歩で、南シナ海や香港国際空港の絶景を一望できます。<br><br><strong>2. 午前中の観光：昂坪市集 ➔ 天壇大仏 ➔ 寶蓮禅寺</strong><br>• <strong>昂坪市集</strong>：中国の伝統文化を感じられるショッピング＆写真スポット。<br>• <strong>天壇大仏</strong>：世界最大級の屋外青銅座像。268段の石段を登ると、雄大な仏像と群山の絶景を楽しめます。<br>• <strong>寶蓮禅寺</strong>：歴史ある名刹で、豪華なお堂やハスの池を鑑賞。<br><br><strong>3. 昼食と癒やしの散策：精進料理 ➔ 心経簡林</strong><br>• <strong>おすすめランチ</strong>：寶蓮禅寺の精進料理、または昂坪市集の香港ローカルフード。<br>• <strong>心経簡林</strong>：昂坪市集から徒歩15〜20分。般若心経が刻まれた38本の木柱が無限（∞）の形に並ぶ幻想的なパワースポット。<br><br><strong>4. 午後のショッピング：シティゲート・アウトレット</strong><br>• <strong>復路ロープウェイ</strong>：ロープウェイで東涌へ下山。<br>• <strong>シティゲート・アウトレット</strong>：東涌駅直結の香港最大級アウトレットモール。国際的ブランドやスポーツ用品が勢揃い。<br><br>💡 <strong>役に立つアドバイス（Tips）</strong><br>• <strong>チケット</strong>：昂坪360の往復チケットは事前にオンライン予約すると並ばずに乗車できます。<br>• <strong>オプショナル（大澳漁村）</strong>：昂坪からバス21番で「香港のヴェネツィア」と呼ばれる大澳漁村（約20分）へ行き、水上家屋やイルカウォッチングを楽しむことも可能。<br>• <strong>服装</strong>：大仏の階段や散策路を歩くため、歩きやすい靴でお越しください。山頂は風が強いため羽織るものがあると便利です。`
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -1479,7 +1536,9 @@
                 lugH: "수하물 보관 서비스",
                 lugDesc: "🧳 **수하물 보관 안내**<br><br><strong>【요금 및 정책】</strong><br>• **체크인 및 체크아웃 당일**：무료 보관。<br>• **장기 보관**：개당 1일 <strong>$10</strong>。<br><br><strong>【수령 및 안전】</strong><br>• 수령 시 보관증과 **서명** 확인 (불일치 시 반환 거부 가능).<br>• **에어컨이 없는 환경**에 보관됩니다。<br><br><strong>【면책 조항】</strong><br>• 분실, 손상, 도난에 대해 호텔은 책임지지 않습니다。<br>• **2개월** 이상 찾아가지 않은 물품은 임의 처분될 수 있습니다。",
                 kwaiFong: "콰이퐁", tsuenWanWest: "취언완 웨스트", lunchBreak: "점심 시간 (운행 중단)", nextBusText: "⭐ 다음 차량 (Next Bus)",
-                stBookable: "예약 가능", stWaiting: "출발 대기", stBoarding: "탑승 가능", stDeparted: "출발 완료", stFull: "만석", stOut: "운행 중단"
+                stBookable: "예약 가능", stWaiting: "출발 대기", stBoarding: "탑승 가능", stDeparted: "출발 완료", stFull: "만석", stOut: "운행 중단",
+                guideRoute1H: "홍콩 여행 가이드 - 추천 일정 1",
+                guideRoute1Detail: `🗺️ <strong>클래식 하루 여행 일정 개요</strong><br>09:00 – 09:30｜호텔 출발, 무료 셔틀버스 또는 31M 버스로 콰이퐁 지하철역 이동<br>09:30 – 10:00｜콰이퐁역에서 MTR 탑승(라이킹역에서 퉁청선 환승) 후 퉁청역 도착<br>10:00 – 10:30｜옹핑 360 케이블카 탑승 (25분간 오션뷰 & 마운틴뷰 감상)<br>10:30 – 11:00｜옹핑 빌리지 산책 및 포토존 촬영<br>11:00 – 12:30｜청탄 대불 및 보련선사 참배<br>12:30 – 13:30｜옹핑 빌리지 점심 식사 (사찰 채식 또는 홍콩식 차찬탱)<br>13:30 – 14:15｜지혜의 길 (산림 속 마음 힐링 산책)<br>14:30 – 15:00｜케이블카를 타고 퉁청으로 복귀 (또는 타이오 어촌 마을 추가 방문)<br>15:00 – 17:00｜시티게이트 아울렛 (Citygate Outlets) 쇼핑<br><br>📌 <strong>상세 일정 안내 및 하이라이트</strong><br><br><strong>1. 아침 출발: 호텔 ➔ 콰이퐁역 ➔ 퉁청역</strong><br>• <strong>교통편</strong>: 무료 셔틀버스 또는 31M 버스로 콰이퐁역 이동. 졋완선 탑승 후 라이킹역에서 반대편 승강장 퉁청선 환승 후 퉁청역(B출구) 하차. 도보 2분 거리에 케이블카 승강장 위치.<br>• <strong>하이라이트</strong>: 사전 예약을 권장합니다 (바닥이 유리로 된 크리스탈 캐빈 추천). 5.7km 구간 동안 남중국해와 홍콩 공항의 전망을 감상할 수 있습니다.<br><br><strong>2. 오전 관람: 옹핑 빌리지 ➔ 청탄 대불 ➔ 보련선사</strong><br>• <strong>옹핑 빌리지</strong>: 전통 문화 테마 거리로 상점과 포토존이 다양합니다.<br>• <strong>청탄 대불</strong>: 세계 최대 야외 청동 좌불상. 268개 계단을 올라가 웅장한 불상과 탁 트인 고원 풍경을 감상해보세요.<br>• <strong>보련선사</strong>: 역사 깊은 사찰로 화려한 대웅전과 연꽃못을 볼 수 있습니다.<br><br><strong>3. 점심 식사 & 산책: 사찰 채식 ➔ 지혜의 길</strong><br>• <strong>점심 추천</strong>: 보련선사 내 사찰 채식 요리 또는 옹핑 빌리지의 홍콩식 가벼운 식사.<br>• <strong>지혜의 길</strong>: 옹핑 빌리지에서 도보 15~20분. 반야심경이 새겨진 38개 목기둥이 무한대(∞) 모양으로 펼쳐진 정용한 산책로.<br><br><strong>4. 오후 쇼핑: 시티게이트 아울렛</strong><br>• <strong>복귀 케이블카</strong>: 케이블카를 타고 퉁청역으로 하산.<br>• <strong>시티게이트 아울렛</strong>: 퉁청역 바로 옆에 위치한 홍콩 최대 아울렛 쇼핑몰로 유명 브랜드 및 스포츠 용품 쇼핑 가능.<br><br>💡 <strong>실용 팁 (Tips)</strong><br>• <strong>티켓</strong>: 옹핑 360 왕복 티켓을 온라인으로 미리 예매하면 대기 시간을 줄일 수 있습니다.<br>• <strong>추가 추천 (타이오 어촌)</strong>: 옹핑에서 21번 버스를 타면 '홍콩의 베니스' 타이오 어촌(20분 소요)에서 수상 가옥 및 핑크 돌고래 투어가 가능합니다.<br>• <strong>복장</strong>: 계단과 산책로가 있으므로 편한 운동화를 착용하세요. 산 정상은 바람이 불 수 있으니 겉옷을 준비하세요.`
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -1585,7 +1644,9 @@
                 lugH: "Dịch vụ giữ hành lý",
                 lugDesc: "🧳 **Quy định gửi hành lý**<br><br><strong>【Chính sách & Phí】</strong><br>• **Ngày nhận/trả phòng**：Miễn phí.<br>• **Gửi dài hạn**：<strong>$10</strong>/kiện/ngày.<br><br><strong>【Nhận đồ & An toàn】</strong><br>• Xuất trình thẻ và **chữ ký khớp**.<br>• **Không có điều hòa**.<br><br><strong>【Miễn trừ trách nhiệm】</strong><br>• Khách sạn không chịu trách nhiệm mất mát, hư hỏng.<br>• Quá **2 tháng** không nhận sẽ bị xử lý.",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Giờ nghỉ trưa (Tạm dừng)", nextBusText: "⭐ Chuyến tiếp theo",
-                stBookable: "Có thể đặt", stWaiting: "Đang chờ", stBoarding: "Đang lên xe", stDeparted: "Đã đi", stFull: "Hết chỗ", stOut: "Tạm dừng"
+                stBookable: "Có thể đặt", stWaiting: "Đang chờ", stBoarding: "Đang lên xe", stDeparted: "Đã đi", stFull: "Hết chỗ", stOut: "Tạm dừng",
+                guideRoute1H: "Cẩm nang du lịch HK - Lịch trình 1",
+                guideRoute1Detail: `🗺️ <strong>Tổng quan Tour 1 Ngày Kinh Điển</strong><br>09:00 – 09:30｜Khởi hành từ khách sạn bằng xe buýt miễn phí hoặc Bus 31M đến Ga Kwai Fong<br>09:30 – 10:00｜Đi MTR từ Kwai Fong (đổi tuyến tại Lai King sang Tung Chung Line) đến Ga Tung Chung<br>10:00 – 10:30｜Đi cáp treo Ngong Ping 360 (ngắm cảnh biển & núi 25 phút)<br>10:30 – 11:00｜Dạo chơi & chụp ảnh tại Làng Ngong Ping<br>11:00 – 12:30｜Viếng Đại Phật Thiên Đàn & Tu viện Bửu Liên<br>12:30 – 13:30｜Ăn trưa tại Làng Ngong Ping (Thưởng thức đồ chay hoặc quán trà Hồng Kông)<br>13:30 – 14:15｜Con đường Tâm Kinh (Dạo bước thư thái giữa thiên nhiên)<br>14:30 – 15:00｜Đi cáp treo trở về Tung Chung (hoặc đi thêm Làng chài Tai O)<br>15:00 – 17:00｜Mua sắm tại Citygate Outlets<br><br>📌 <strong>Chi tiết lịch trình & Điểm nổi bật</strong><br><br><strong>1. Buổi sáng khởi hành: Khách sạn ➔ Ga Kwai Fong ➔ Ga Tung Chung</strong><br>• <strong>Phương tiện</strong>: Đi xe buýt đưa đón hoặc Bus 31M đến Ga Kwai Fong. Đi MTR Tsuen Wan Line, đổi sang Tung Chung Line tại Ga Lai King để đến Ga Tung Chung (Cổng B). Đi bộ 2 phút đến trạm cáp treo Ngong Ping.<br>• <strong>Trải nghiệm</strong>: Nên đặt vé trước trực tuyến (có cabin đáy kính Crystal Cabin). Tuyến cáp treo 5.7km ngắm toàn cảnh biển Nam Trung Hoa và sân bay Hồng Kông.<br><br><strong>2. Buổi sáng tham quan: Làng Ngong Ping ➔ Đại Phật ➔ Tu viện Bửu Liên</strong><br>• <strong>Làng Ngong Ping</strong>: Khu làng mang phong cách văn hóa truyền thống với nhiều cửa hàng và điểm chụp ảnh.<br>• <strong>Đại Phật Thiên Đàn</strong>: Tượng Phật bằng đồng ngoài trời lớn. Leo 268 bậc thang để đến chân tượng Phật ngắm toàn cảnh núi rừng.<br>• <strong>Tu viện Bửu Liên</strong>: Tu viện cổ kính nguy nga với các điện thờ và hồ sen thanh tịnh.<br><br><strong>3. Ăn trưa & Dạo bước tâm linh: Cơm chay ➔ Con đường Tâm Kinh</strong><br>• <strong>Ăn trưa</strong>: Thưởng thức món chay tại Tu viện Bửu Liên hoặc ăn món Hồng Kông tại Làng Ngong Ping.<br>• <strong>Con đường Tâm Kinh</strong>: Đi bộ 15-20 phút từ Làng Ngong Ping. Nơi có 38 cột gỗ khắc bài Tâm Kinh xếp thành hình vô cực (∞).<br><br><strong>4. Buổi chiều mua sắm: Citygate Outlets</strong><br>• <strong>Cáp treo lượt về</strong>: Đi cáp treo trở lại Tung Chung.<br>• <strong>Citygate Outlets</strong>: TTTM Outlet lớn ngay cạnh Ga MTR Tung Chung với nhiều thương hiệu quốc tế giảm giá.<br><br>💡 <strong>Mẹo nhỏ thực tế (Tips)</strong><br>• <strong>Vé cáp treo</strong>: Nên đặt vé Ngong Ping 360 trực tuyến trước để tiết kiệm thời gian xếp hàng.<br>• <strong>Lịch trình thêm (Làng chài Tai O)</strong>: Bắt Bus NLB 21 từ Ngong Ping đi Làng chài Tai O (20 phút) ngắm nhà sàn và cá heo hồng.<br>• <strong>Trang phục</strong>: Mặc giày đi bộ thoải mái; mang theo áo khoác nhẹ vì trên núi nhiều gió.`
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -1691,7 +1752,9 @@
                 lugH: "सामान भंडारण सेवा",
                 lugDesc: "🧳 **सामान भंडारण सूचना**<br><br><strong>【शुल्क और नीति】</strong><br>• **चेक-इन/आउट के दिन**：निःशुल्क。<br>• **दीर्घकालिक**：प्रति पीस प्रतिदिन <strong>$10</strong>。<br><br><strong>【सुरक्षा】</strong><br>• रसीद और हस्ताक्षर आवश्यक。<br>• **बिना एसी (नॉन-एसी)** वातावरण。<br><br><strong>【अस्वीकरण】</strong><br>• नुकसान या चोरी के लिए होटल जिम्मेदार नहीं है。<br>• **दो महीने** से अधिक समय तक न लेने पर सामान नष्ट किया जा सकता है。",
                 kwaiFong: "क्वाई fोंग", tsuenWanWest: "त्सुएं वान वेस्ट", lunchBreak: "लंच ब्रेक (स्थगित)", nextBusText: "⭐ अगली bus (Next Bus)",
-                stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित"
+                stBookable: "उपलब्ध", stWaiting: "प्रतीक्षा", stBoarding: "बोर्डिंग", stDeparted: "प्रस्थान किया", stFull: "पूर्ण", stOut: "स्थगित",
+                guideRoute1H: "हांगकांग यात्रा गाइड - यात्रा कार्यक्रम 1",
+                guideRoute1Detail: `🗺️ <strong>क्लासिक एक दिवसीय यात्रा का विवरण</strong><br>09:00 – 09:30｜होटल से मुफ्त शटल बस या बस 31M द्वारा क्वाई फोंग एमटीआर स्टेशन जाएं<br>09:30 – 10:00｜क्वाई फोंग से एमटीआर (लाई किंग में तुंग चुंग लाइन में बदलें) से तुंग चुंग स्टेशन जाएं<br>10:00 – 10:30｜न्गाँग पिंग 360 केबल कार की सवारी (25 मिनट का सुंदर नजारा)<br>10:30 – 11:00｜न्गाँग पिंग विलेज में घूमें और तस्वीरें लें<br>11:00 – 12:30｜तियांन तान बुद्ध और पो लिन मठ के दर्शन करें<br>12:30 – 13:30｜न्गाँग पिंग विलेज में दोपहर का भोजन (शाकाहारी भोजन या हांगकांग कैफे)<br>13:30 – 14:15｜विजडम पाथ (शांतिपूर्ण प्रकृति यात्रा)<br>14:30 – 15:00｜केबल कार से तुंग चुंग वापस लौटें (या ताई ओ मछली पकड़ने वाले गांव जाएं)<br>15:00 – 17:00｜सिटीगेट आउटलेट्स में खरीदारी करें<br><br>📌 <strong>विस्तृत यात्रा कार्यक्रम और मुख्य आकर्षण</strong><br><br><strong>1. सुबह की शुरुआत: होटल ➔ क्वाई फोंग एमटीआर ➔ तुंग चुंग एमटीआर</strong><br>• <strong>परिवहन</strong>: मुफ्त शटल या बस 31M से क्वाई फोंग जाएं। एमटीआर से लाई किंग स्टेशन पर तुंग चुंग लाइन बदलकर तुंग चुंग स्टेशन (एग्जिट B) उतरें। 2 मिनट पैदल चलकर न्गाँग पिंग केबल कार स्टेशन पहुंचे।<br>• <strong>विशेष अनुभव</strong>: ऑनलाइन टिकट पहले से बुक करने की सलाह दी जाती है। 5.7 किमी की यात्रा में समुद्र और हवाई अड्डे के दृश्य दिखाई देते हैं।<br><br><strong>2. सुबह का दर्शनीय स्थल: न्गाँग पिंग विलेज ➔ तियांन तान बुद्ध ➔ पो लिन मठ</strong><br>• <strong>न्गाँग पिंग विलेज</strong>: पारंपरिक सांस्कृतिक गांव जिसमें दुकानें और फोटो स्पॉट हैं।<br>• <strong>तियांन तान बुद्ध</strong>: दुनिया की सबसे बड़ी आउटडोर कांस्य बुद्ध मूर्ति। 268 सीढ़ियाँ चढ़कर ऊपर जाएँ।<br>• <strong>पो लिन मठ</strong>: सुंदर दृश्यों के साथ ऐतिहासिक बौद्ध मठ।<br><br><strong>3. दोपहर का भोजन और शांतिपूर्ण पैदल यात्रा: पो लिन शाकाहारी भोजन ➔ विजडम पाथ</strong><br>• <strong>भोजन</strong>: पो लिन मठ में बौद्ध शाकाहारी भोजन का आनंद लें या न्गाँग पिंग में स्थानीय भोजन खाएं।<br>• <strong>विजडम पाथ</strong>: न्गाँग पिंग विलेज से 15-20 मिनट पैदल। 38 लकड़ी के स्तंभों पर लिखे मंत्रों वाला शांतिपूर्ण स्थान।<br><br><strong>4. दोपहर की खरीदारी: सिटीगेट आउटलेट्स</strong><br>• <strong>वापसी केबल कार</strong>: केबल कार से तुंग चुंग वापस आएं।<br>• <strong>सिटीगेट आउटलेट्स</strong>: तुंग चुंग एमटीआर के पास स्थित बड़ा आउटलेट शॉपिंग मॉल।<br><br>💡 <strong>व्यावहारिक टिप्स</strong><br>• <strong>टिकट</strong>: लाइन से बचने के लिए न्गाँग पिंग 360 टिकट पहले से ऑनलाइन बुक करें।<br>• <strong>अतिरिक्त यात्रा (ताई ओ गांव)</strong>: न्गाँग पिंग से बस 21 लेकर ताई ओ गांव (20 मिनट) जा सकते हैं।<br>• <strong>पोशाक</strong>: आरामदायक जूते पहनें और पहाड़ों के लिए हल्का जैकेट साथ रखें।`
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -1797,7 +1860,9 @@
                 lugH: "Serbisyo sa Imbakan ng Bagahe",
                 lugDesc: "🧳 **Paalala sa Imbakan ng Bagahe**<br><br><strong>【Patakaran at Bayarin】</strong><br>• **Araw ng Pag-check-in at Check-out**：Libreng imbakan.<br>• **Mahabang Panahong Imbakan**：<strong>$10</strong> bawat piraso bawat araw.<br><br><strong>【Pagkolekta at Kaligtasan】</strong><br>• Mangyaring ipakita ang claim tag at **tugmang lagda**.<br>• Nakaimbak sa **hindi naka-aircon** na kapaligiran.<br><br><strong>【Pananagutan】</strong><br>• Ang hotel ay hindi panagot sa anumang **pagkawala, pinsala, o pagnanakaw**.<br>• Ang mga hindi kinuha sa loob ng **dalawang buwan** ay maaaring itapon nang walang abiso.",
                 kwaiFong: "Kwai Fong", tsuenWanWest: "Tsuen Wan West", lunchBreak: "Oras ng Tanghalian (Suspendido)", nextBusText: "⭐ Susunod na Bus",
-                stBookable: "Maaaring I-book", stWaiting: "Naghihintay", stBoarding: "Sumasakay", stDeparted: "Umalis Na", stFull: "Puno", stOut: "Suspendido"
+                stBookable: "Maaaring I-book", stWaiting: "Naghihintay", stBoarding: "Sumasakay", stDeparted: "Umalis Na", stFull: "Puno", stOut: "Suspendido",
+                guideRoute1H: "Gabay sa Paglalakbay - Ruta 1",
+                guideRoute1Detail: `🗺️ <strong>Pangkalahatang Tanawin ng Klasikong 1-Araw na Biyahe</strong><br>09:00 – 09:30｜Umalis sa hotel papuntang Kwai Fong MTR Station gamit ang libreng shuttle bus o Bus 31M<br>09:30 – 10:00｜Mag-MTR mula Kwai Fong (lumipat sa Lai King papuntang Tung Chung Line) papuntang Tung Chung Station<br>10:00 – 10:30｜Sumakay sa Ngong Ping 360 Cable Car (25-minutong tanawin ng dagat at bundok)<br>10:30 – 11:00｜Maglakad-lakad at kumuha ng litrato sa Ngong Ping Village<br>11:00 – 12:30｜Bumisita sa Tian Tan Buddha at Po Lin Monastery<br>12:30 – 13:30｜Mananghalian sa Ngong Ping Village (Pagkaing vegetarian o Hong Kong style cafe)<br>13:30 – 14:15｜Wisdom Path (Tahimik na paglalakad sa kalikasan)<br>14:30 – 15:00｜Bumalik sa Tung Chung sakay ng cable car (opsyonal na pumunta sa Tai O Fishing Village)<br>15:00 – 17:00｜Magsimulang mamili sa Citygate Outlets<br><br>📌 <strong>Detalyadong Iskedyul at Mga Tampok</strong><br><br><strong>1. Umagang Pag-alis: Hotel ➔ Kwai Fong MTR ➔ Tung Chung MTR</strong><br>• <strong>Transportasyon</strong>: Sumakay sa libreng shuttle bus o Bus 31M papuntang Kwai Fong Station. Mag-MTR papuntang Lai King Station, lumipat sa Tung Chung Line direkta sa Tung Chung Station (Exit B). Maglakad ng 2 minuto papuntang Ngong Ping Cable Car Terminal.<br>• <strong>Karanasan</strong>: Inirerekomendang mag-book ng tiket online nang maaga. Ang 5.7km na biyahe ay nag-aalok ng magandang tanawin ng dagat at paliparan.<br><br><strong>2. Pasyalan sa Umaga: Ngong Ping Village ➔ Tian Tan Buddha ➔ Po Lin Monastery</strong><br>• <strong>Ngong Ping Village</strong>: Kultural na nayon na may mga tindahan at kunan ng litrato.<br>• <strong>Tian Tan Buddha</strong>: Malaking outdoor bronze Buddha. Umakyat ng 268 na baitang para sa magandang tanawin.<br>• <strong>Po Lin Monastery</strong>: Makasaysayang monasteryo na may magagandang bulwagan.<br><br><strong>3. Tanghalian at Tahimik na Paglalakad: Vegetarian Lunch ➔ Wisdom Path</strong><br>• <strong>Kainan</strong>: Mag-enjoy ng vegetarian meal sa Po Lin Monastery o lokal na pagkain sa Ngong Ping Village.<br>• <strong>Wisdom Path</strong>: 15-20 minutong lakad mula Ngong Ping Village. May 38 na posteng kahoy na may nakaukit na dasal.<br><br><strong>4. Pamimili sa Hapon: Citygate Outlets</strong><br>• <strong>Pabalik na Cable Car</strong>: Sumakay ng cable car pabalik sa Tung Chung.<br>• <strong>Citygate Outlets</strong>: Malaking outlet mall na matatagpuan sa tabi ng Tung Chung MTR Station.<br><br>💡 <strong>Praktikal na Payo (Tips)</strong><br>• <strong>Tiket</strong>: Mag-book ng Ngong Ping 360 tiket online nang maaga para makaiwas sa mahabang pila.<br>• <strong>Karagdagang Pasyalan (Tai O)</strong>: Sumakay ng NLB Bus 21 mula Ngong Ping papuntang Tai O Fishing Village (20 minuto) para makakita ng mga stilt house.<br>• <strong>Kasuotan</strong>: Magsuot ng komportableng sapatos para sa paglalakad; magdala ng jacket dahil maahang sa tuktok ng bundok.`
             }
         };
 
@@ -1900,7 +1965,9 @@
                 'ui-dep-5-title': langData.dep5Name, 'ui-dep-5-desc': langData.dep5Desc,
                 'ui-dep-6-title': langData.dep6Name, 'ui-dep-6-desc': langData.dep6Desc,
                 'ui-dep-7-title': langData.dep7Name, 'ui-dep-7-desc': langData.dep7Desc,
-                'ui-dep-8-title': langData.dep8Name, 'ui-dep-8-desc': langData.dep8Desc
+                'ui-dep-8-title': langData.dep8Name, 'ui-dep-8-desc': langData.dep8Desc,
+                'ui-guideroute1-header': (langData.guideRoute1H || '香港旅遊攻略 - 推薦行程1'),
+                'ui-guideroute1-desc': (langData.guideRoute1Detail || '')
             };
 
             for (const [id, text] of Object.entries(elements)) {
