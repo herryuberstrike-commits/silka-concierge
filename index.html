@@ -443,852 +443,861 @@
                     <h3 id="ui-gfood-4-title">傳統粉麵與燒味</h3>
                     <p id="ui-gfood-4-desc">經典粉麵與燒臘</p>
                 </div>
-                <div class="menu-card" style="cursor: default; opacity: 0.8;">
-                    <div class="icon">🌐</div>
+                <div class="menu-card" onclick="showSection('guideGlobalFoodSection')">
+                    <div class="icon">🍕</div>
                     <h3 id="ui-gfood-5-title">環球與異國美食</h3>
-                    <p id="ui-gfood-5-desc">國際美食之都</p>
-                </div>
-                <div class="menu-card" style="cursor: default; opacity: 0.8;">
-                    <div class="icon">🍧</div>
-                    <h3 id="ui-gfood-6-title">港式甜品與傳統糖水</h3>
-                    <p id="ui-gfood-6-desc">餐後與宵夜必備</p>
-                </div>
+                    <p id="ui-gfood-5-desc">多元風味</p>
+            </div>
+            <div class="menu-card" style="cursor: default; opacity: 0.8;">
+                <div class="icon">🍧</div>
+                <h3 id="ui-gfood-6-title">港式甜品與傳統糖水</h3>
+                <p id="ui-gfood-6-desc">餐後與宵夜必備</p>
+            </div>
 
+        </div>
+    </div>
+
+    <div id="guideShoppingSection" class="section-content">
+        <button class="back-btn" id="ui-back-guideshop" onclick="showSection('guideSection')">⬅
+            返回香港旅遊攻略</button>
+        <h3 id="ui-guideshop-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物
+        </h3>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="showSection('guideHarbourCitySection')">
+                <div class="icon">🛍️</div>
+                <h3 id="ui-gshop-1-title">海港城</h3>
+                <p id="ui-gshop-1-desc">全港最大型購物中心，匯聚頂級名牌與海景</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideCausewayBaySection')">
+                <div class="icon">🛍️</div>
+                <h3 id="ui-gshop-2-title">銅鑼灣購物商圈</h3>
+                <p id="ui-gshop-2-desc">潮流百貨、SOGO崇光與不夜天購物天堂</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideSohoSection')">
+                <div class="icon">🎨</div>
+                <h3 id="ui-gshop-3-title">中環蘇豪區與 PMQ元創方</h3>
+                <p id="ui-gshop-3-desc">文創小店、獨立設計與特色精品</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideLadiesMarketSection')">
+                <div class="icon">👟</div>
+                <h3 id="ui-gshop-4-title">女人街與波鞋街</h3>
+                <p id="ui-gshop-4-desc">地道市集、潮流球鞋與港式市井風情</p>
             </div>
         </div>
+    </div>
 
-        <div id="guideShoppingSection" class="section-content">
-            <button class="back-btn" id="ui-back-guideshop" onclick="showSection('guideSection')">⬅
-                返回香港旅遊攻略</button>
-            <h3 id="ui-guideshop-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物
-            </h3>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('guideHarbourCitySection')">
-                    <div class="icon">🛍️</div>
-                    <h3 id="ui-gshop-1-title">海港城</h3>
-                    <p id="ui-gshop-1-desc">全港最大型購物中心，匯聚頂級名牌與海景</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideCausewayBaySection')">
-                    <div class="icon">🛍️</div>
-                    <h3 id="ui-gshop-2-title">銅鑼灣購物商圈</h3>
-                    <p id="ui-gshop-2-desc">潮流百貨、SOGO崇光與不夜天購物天堂</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideSohoSection')">
-                    <div class="icon">🎨</div>
-                    <h3 id="ui-gshop-3-title">中環蘇豪區與 PMQ元創方</h3>
-                    <p id="ui-gshop-3-desc">文創小店、獨立設計與特色精品</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideLadiesMarketSection')">
-                    <div class="icon">👟</div>
-                    <h3 id="ui-gshop-4-title">女人街與波鞋街</h3>
-                    <p id="ui-gshop-4-desc">地道市集、潮流球鞋與港式市井風情</p>
-                </div>
+    <div id="guidePlaySection" class="section-content">
+        <button class="back-btn" id="ui-back-guideplay" onclick="showSection('guideSection')">⬅
+            返回香港旅遊攻略</button>
+        <h3 id="ui-guideplay-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩
+        </h3>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="showSection('guideDisneySection')">
+                <div class="icon">🏰</div>
+                <h3 id="ui-gp-1-title">香港迪士尼樂園</h3>
+                <p id="ui-gp-1-desc">夢幻童話與精彩煙花匯演</p>
+            </div>
+            <!-- 1. 將 guidePlaySection 內的海洋公園卡片替換為： -->
+            <div class="menu-card" onclick="showSection('guideOceanParkSection')">
+                <div class="icon">🐼</div>
+                <h3 id="ui-gp-2-title">香港海洋公園</h3>
+                <p id="ui-gp-2-desc">刺激機動遊戲與珍稀極地動物</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideFerrisWheelSection')">
+                <div class="icon">🎡</div>
+                <h3 id="ui-gp-3-title">香港摩天輪</h3>
+                <p id="ui-gp-3-desc">維多利亞港畔浪漫高空景致</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideNoahSection')">
+                <div class="icon">🚢</div>
+                <h3 id="ui-gp-4-title">香港挪亞方舟</h3>
+                <p id="ui-gp-4-desc">馬灣海峽自然博覽與合家歡景點</p>
             </div>
         </div>
+    </div>
 
-        <div id="guidePlaySection" class="section-content">
-            <button class="back-btn" id="ui-back-guideplay" onclick="showSection('guideSection')">⬅
-                返回香港旅遊攻略</button>
-            <h3 id="ui-guideplay-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩
-            </h3>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('guideDisneySection')">
-                    <div class="icon">🏰</div>
-                    <h3 id="ui-gp-1-title">香港迪士尼樂園</h3>
-                    <p id="ui-gp-1-desc">夢幻童話與精彩煙花匯演</p>
-                </div>
-                <!-- 1. 將 guidePlaySection 內的海洋公園卡片替換為： -->
-                <div class="menu-card" onclick="showSection('guideOceanParkSection')">
-                    <div class="icon">🐼</div>
-                    <h3 id="ui-gp-2-title">香港海洋公園</h3>
-                    <p id="ui-gp-2-desc">刺激機動遊戲與珍稀極地動物</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideFerrisWheelSection')">
-                    <div class="icon">🎡</div>
-                    <h3 id="ui-gp-3-title">香港摩天輪</h3>
-                    <p id="ui-gp-3-desc">維多利亞港畔浪漫高空景致</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideNoahSection')">
-                    <div class="icon">🚢</div>
-                    <h3 id="ui-gp-4-title">香港挪亞方舟</h3>
-                    <p id="ui-gp-4-desc">馬灣海峽自然博覽與合家歡景點</p>
-                </div>
+    <div id="guideSightseeingSection" class="section-content">
+        <button class="back-btn" id="ui-back-guidesight" onclick="showSection('guideSection')">⬅
+            返回香港旅遊攻略</button>
+        <h3 id="ui-guidesight-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光
+        </h3>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="showSection('guideVictoriaHarbourSection')">
+                <div class="icon">🌆</div>
+                <h3 id="ui-gs-1-title">維多利亞港與星光大道</h3>
+                <p id="ui-gs-1-desc">世界級天際線與璀璨燈光秀</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guidePeakSection')">
+                <div class="icon">⛰️</div>
+                <h3 id="ui-gs-2-title">太平山頂與凌霄閣摩天台</h3>
+                <p id="ui-gs-2-desc">鳥瞰維港兩岸壯麗全景</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideWestKowloonSection')">
+                <div class="icon">🎨</div>
+                <h3 id="ui-gs-3-title">西九文化區（M+ 與香港故宮）</h3>
+                <p id="ui-gs-3-desc">當代視覺文化與中華文物殿堂</p>
+            </div>
+            <div class="menu-card" onclick="showSection('guideTaiKwunSection')">
+                <div class="icon">🏛️</div>
+                <h3 id="ui-gs-4-title">大館與中環古蹟群</h3>
+                <p id="ui-gs-4-desc">歷史建築與當代藝術復合地標</p>
             </div>
         </div>
+    </div>
 
-        <div id="guideSightseeingSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidesight" onclick="showSection('guideSection')">⬅
-                返回香港旅遊攻略</button>
-            <h3 id="ui-guidesight-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光
-            </h3>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('guideVictoriaHarbourSection')">
-                    <div class="icon">🌆</div>
-                    <h3 id="ui-gs-1-title">維多利亞港與星光大道</h3>
-                    <p id="ui-gs-1-desc">世界級天際線與璀璨燈光秀</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guidePeakSection')">
-                    <div class="icon">⛰️</div>
-                    <h3 id="ui-gs-2-title">太平山頂與凌霄閣摩天台</h3>
-                    <p id="ui-gs-2-desc">鳥瞰維港兩岸壯麗全景</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideWestKowloonSection')">
-                    <div class="icon">🎨</div>
-                    <h3 id="ui-gs-3-title">西九文化區（M+ 與香港故宮）</h3>
-                    <p id="ui-gs-3-desc">當代視覺文化與中華文物殿堂</p>
-                </div>
-                <div class="menu-card" onclick="showSection('guideTaiKwunSection')">
-                    <div class="icon">🏛️</div>
-                    <h3 id="ui-gs-4-title">大館與中環古蹟群</h3>
-                    <p id="ui-gs-4-desc">歷史建築與當代藝術復合地標</p>
-                </div>
+    <!-- 香港旅遊攻略 -> 推薦行程1 子頁面 -->
+    <div id="guideRoute1Section" class="section-content">
+        <button class="back-btn" id="ui-back-guideroute1" onclick="showSection('guideSection')">⬅
+            返回香港旅遊攻略</button>
+        <h3 id="ui-guideroute1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
+            推薦行程1</h3>
+        <div id="ui-guideroute1-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🗺️ <strong>經典一日遊行程總覽</strong><br>
+            09:00 – 09:30｜酒店出發，乘搭免費穿梭巴士或 31M 巴士前往葵芳地鐵站<br>
+            09:30 – 10:00｜乘搭港鐵由葵芳站出發（經荔景站轉乘東涌線）抵達東涌站<br>
+            10:00 – 10:30｜搭乘昂坪360纜車（享受 25 分鐘海景與山景）<br>
+            10:30 – 11:00｜昂坪市集漫步、打卡<br>
+            11:00 – 12:30｜參拜天壇大佛與寶蓮禪寺<br>
+            12:30 – 13:30｜昂坪市集午餐（品嚐素齋或港式茶餐廳）<br>
+            13:30 – 14:15｜心經簡林（沉浸於山林與心經意境中）<br>
+            14:30 – 15:00｜搭乘纜車返回東涌（或加碼前往大澳漁村）<br>
+            15:00 – 17:00｜東薈城名店倉（Citygate Outlets）血拼購物<br><br>
+
+            📌 <strong>詳細行程拆解與亮點</strong><br><br>
+            <strong>1. 早晨出發：酒店 ➔ 葵芳地鐵站 ➔ 東涌站</strong><br>
+            • <strong>交通方式</strong>：<br>
+            &nbsp;&nbsp;第一段（前往葵芳）：可選擇乘搭酒店提供的免費穿梭巴士，或乘搭 31M 巴士 前往葵芳地鐵站。<br>
+            &nbsp;&nbsp;第二段（前往東涌）：到達葵芳站後，乘搭港鐵荃灣線（往中環方向）至荔景站，同站平臺轉乘東涌線直達東涌站（B出口），步行約2分鐘即可抵達昂坪纜車站。<br>
+            •
+            <strong>亮點體驗</strong>：推薦提前預訂來回車票（可選擇標準車廂或視野刺激的水晶車廂，腳底為透明玻璃）。纜車全長約5.7公里，乘車時可以俯瞰遼闊的南中國海、香港國際機場飛機升降，以及北大嶼山郊野公園的翠綠山巒。<br><br>
+
+            <strong>2. 上午探訪：昂坪市集 ➔ 天壇大佛 ➔ 寶蓮禪寺</strong><br>
+            • <strong>昂坪市集</strong>：出纜車站後會先經過充滿中國傳統文化特色的昂坪市集，這裡有許多特色商店、拍照景點。<br>
+            • <strong>天壇大佛</strong>：全球最高戶外青銅坐佛。穿過牌樓後，挑戰步行 268級石階
+            登上大佛腳下，不僅能近距離感受宏偉莊嚴的佛像，還能遠眺昂坪高原與群山環抱的遼闊視野。<br>
+            • <strong>寶蓮禪寺</strong>：參觀歷史悠久、香火鼎盛的寶蓮禪寺，欣賞宏偉的大雄寶殿與清幽的蓮花池。<br><br>
+
+            <strong>3. 午餐與心靈漫步：齋菜午餐 ➔ 心經簡林</strong><br>
+            • <strong>午餐推薦</strong>：可以直接在寶蓮禪寺內的齋堂享用傳統的佛教素齋，或者在昂坪市集的餐廳享用港式輕食與常餐。<br>
+            •
+            <strong>心經簡林</strong>：從昂坪市集步行約15–20分鐘即可到達。這裡是由38根刻有國學大師饒宗頤教授《心經》墨寶的木柱依山而建，排列成「∞」（無限大）的符號，四周環繞山林，環境非常寧靜祥和。<br><br>
+
+            <strong>4. 下午回程與血拼：東薈城名店倉</strong><br>
+            • <strong>回程纜車</strong>：下午搭乘昂坪纜車返回東涌站（下山時視野同樣絕佳）。<br>
+            • <strong>東薈城名店倉 (Citygate
+                Outlets)</strong>：就位於東涌港鐵站旁，是香港大型的戶外Outlet購物商場，集結了國際知名服飾品牌、運動品牌及美妝，非常適合在行程尾聲順便血拼一番、享用下午茶。<br><br>
+
+            💡 <strong>實用小貼士（Tips）</strong><br>
+            • <strong>門票建議</strong>：建議出發前先在網上預訂昂坪360來回纜車門票，並選擇指定時段，可以省去現場排隊購票的時間。<br>
+            •
+            <strong>彈性加碼行程（大澳漁村）</strong>：如果你腳力好、想玩得更充實，可以在昂坪市集旁搭乘「新大嶼山巴士21號」前往有「香港威尼斯」之稱的大澳漁村（車程約20分鐘），體驗水上棚屋與乘小艇看中華白海豚，玩完後再坐巴士返回東涌。<br>
+            • <strong>穿著建議</strong>：當天請穿著舒適好走的步行鞋（攀爬大佛階梯與行山路段需要）；大嶼山山頂風大且日照較強，建議根據季節攜帶防風外套或防曬用品。
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 推薦行程2 子頁面 -->
+    <div id="guideRoute2Section" class="section-content">
+        <button class="back-btn" id="ui-back-guideroute2" onclick="showSection('guideSection')">⬅
+            返回香港旅遊攻略</button>
+        <h3 id="ui-guideroute2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
+            推薦行程2</h3>
+        <div id="ui-guideroute2-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🗺️ <strong>長洲深度文化探索一日遊行程總覽</strong><br>
+            08:45 – 09:30｜由荃灣絲麗酒店出發，乘搭免費穿梭巴士或 31M 巴士前往葵芳地鐵站<br>
+            09:30 – 10:15｜乘搭港鐵由葵芳站出發（經荔景站轉乘東涌線）至香港站，步行前往中環5號碼頭<br>
+            10:30 – 11:15｜中環5號碼頭乘搭渡輪前往長洲<br>
+            11:15 – 12:30｜北帝廟（玉虛宮）與北社街歷史探索<br>
+            12:30 – 13:00｜長洲東灣、滑浪風帆紀念碑<br>
+            13:00 – 14:30｜長洲海傍街午餐與地道小食（大魚蛋、芒果糯米糍）<br>
+            14:30 – 15:45｜張保仔洞與西灣天后廟（探索海盜傳說與岩洞）<br>
+            15:45 – 16:45｜長洲西堤道（美景日落前漫步、打卡彩虹亭）<br>
+            16:45 – 17:45｜長洲碼頭手信街買平安包、手信，乘船返回中環，賦歸<br><br>
+
+            📌 <strong>詳細行程拆解與亮點</strong><br><br>
+            <strong>1. 早晨出發：荃灣絲麗酒店 ➔ 葵芳 ➔ 中環碼頭 ➔ 長洲</strong><br>
+            • <strong>交通方式（第一段）</strong>：由荃灣絲麗酒店出發，可選擇乘搭酒店提供的免費穿梭巴士，或乘搭 31M 巴士 前往葵芳地鐵站。<br>
+            • <strong>交通方式（第二段）</strong>：到達葵芳站後，乘搭港鐵荃灣線至荔景站，同站平臺轉乘東涌線直達香港站，出站後步行約10分鐘前往中環5號碼頭。<br>
+            • <strong>交通方式（第三段）</strong>：於中環5號碼頭乘搭渡輪前往長洲（可選擇「高速船」約35至40分鐘，或「普通渡輪」約55至60分鐘）。<br><br>
+
+            <strong>2. 上午歷史文化探秘：北帝廟（玉虛宮）與北社街</strong><br>
+            •
+            <strong>北帝廟（玉虛宮）</strong>：長洲歷史最悠久的古廟之一（建於1783年），被列為香港法定古蹟。廟內供奉北帝，每年著名的「長洲太平清醮」（搶包山活動）正是以這座廟宇為核心，充滿濃厚傳統文化氣息。<br>
+            • <strong>北社街</strong>：漫步於古廟旁的北社街，保留了許多傳統老房子與街坊鄰里的生活面貌。<br><br>
+
+            <strong>3. 自然風光與體育傳奇：東灣與滑浪風帆紀念碑</strong><br>
+            • <strong>長洲東灣</strong>：離開北帝廟後步行至東灣，這是長洲最著名、水清沙幼的泳灘，背山面海，視野開闊。<br>
+            • <strong>滑浪風帆紀念碑</strong>：位於東灣沿岸的小公園，是為了紀念香港滑浪風帆運動員李麗珊在1996年奧運會上為香港奪得歷史上首面奧運金牌而設立的。<br><br>
+
+            <strong>4. 地道美食午餐：海傍街尋寶</strong><br>
+            • <strong>午餐推薦</strong>：前往長洲海傍街或巷弄間的茶餐廳或海鮮酒家享用午餐。<br>
+            • <strong>必食小食</strong>：餐後必試長洲招牌的特大魚蛋、芒果糯米糍以及寓意吉祥的平安包。<br><br>
+
+            <strong>5. 下午海盜傳奇：張保仔洞與西灣</strong><br>
+            • <strong>乘小艇或步行</strong>：由長洲碼頭或海傍街乘搭「街渡」（舢舨小艇）前往張保仔碼頭，或由東灣沿岸行山徑步行前往。<br>
+            • <strong>張保仔洞</strong>：傳說中清代著名海盜張保仔藏寶的洞穴，帶備手電筒入洞體驗探險樂趣。<br>
+            • <strong>西灣天后廟</strong>：位於張保仔洞附近，是一座面向大海的寧靜古廟。<br><br>
+
+            <strong>6. 日落美景與回程：西堤道漫步 ➔ 中環賦歸</strong><br>
+            • <strong>長洲西堤道</strong>：回程沿著西堤道漫步，欣賞黃昏夕陽沉入海平面的絕佳景色，沿途設有色彩繽紛的打卡點。<br>
+            • <strong>手信與回程</strong>：在碼頭手信街購買平安包或蝦醬作伴手禮，隨後乘渡輪返回中環，再轉乘港鐵及巴士返回荃灣絲麗酒店。<br><br>
+
+            💡 <strong>實用小貼士</strong><br>
+            • <strong>交通工具</strong>：長洲是個無車島，島上主要靠步行或租單車代步。<br>
+            • <strong>現金準備</strong>：島上多數商戶支援電子支付，但乘搭街渡小艇或部分老字號小店仍以現金為主，建議準備適量港幣現金。
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 遊玩 -> 迪士尼分頁 -->
+    <div id="guideDisneySection" class="section-content">
+        <button class="back-btn" id="ui-back-guidedisney" onclick="showSection('guidePlaySection')">⬅
+            返回香港旅遊攻略 -
+            遊玩</button>
+        <h3 id="ui-guidedisney-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩 -
+            香港迪士尼樂園
+        </h3>
+        <div id="ui-guidedisney-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 遊玩 -> 海洋公園分頁 -->
+    <div id="guideOceanParkSection" class="section-content">
+        <button class="back-btn" id="ui-back-guideoceanpark" onclick="showSection('guidePlaySection')">⬅
+            返回香港旅遊攻略 -
+            遊玩</button>
+        <h3 id="ui-guideoceanpark-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
+            遊玩 -
+            香港海洋公園</h3>
+        <div id="ui-guideoceanpark-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 遊玩 -> 香港摩天輪分頁 -->
+    <div id="guideFerrisWheelSection" class="section-content">
+        <button class="back-btn" id="ui-back-guideferriswheel" onclick="showSection('guidePlaySection')">⬅
+            返回香港旅遊攻略
+            - 遊玩</button>
+        <h3 id="ui-guideferriswheel-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
+            遊玩 -
+            香港摩天輪</h3>
+        <div id="ui-guideferriswheel-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 遊玩 -> 香港挪亞方舟分頁 -->
+    <div id="guideNoahSection" class="section-content">
+        <button class="back-btn" id="ui-back-guidenoah" onclick="showSection('guidePlaySection')">⬅ 返回香港旅遊攻略
+            -
+            遊玩</button>
+        <h3 id="ui-guidenoah-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩 -
+            香港挪亞方舟
+        </h3>
+        <div id="ui-guidenoah-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 購物 -> 海港城分頁 -->
+    <div id="guideHarbourCitySection" class="section-content">
+        <button class="back-btn" onclick="showSection('guideShoppingSection')">⬅ 返回購物攻略</button>
+        - 購物</button>
+        <h3 id="ui-guideharbourcity-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
+            購物 -
+            海港城</h3>
+        <div id="ui-guideharbourcity-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 購物 -> 銅鑼灣購物商圈分頁 -->
+    <div id="guideCausewayBaySection" class="section-content">
+        <button class="back-btn" id="ui-back-guidecausewaybay" onclick="showSection('guideShoppingSection')">⬅
+            返回香港旅遊攻略 - 購物</button>
+        <h3 id="ui-guidecausewaybay-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
+            購物 -
+            銅鑼灣購物商圈</h3>
+        <div id="ui-guidecausewaybay-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 購物 -> 中環蘇豪區與PMQ元創坊分頁 -->
+    <div id="guideSohoSection" class="section-content">
+        <button class="back-btn" id="ui-back-guidesoho" onclick="showSection('guideShoppingSection')">⬅
+            返回香港旅遊攻略 -
+            購物</button>
+        <h3 id="ui-guidesoho-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物 -
+            中環蘇豪區與
+            PMQ元創方</h3>
+        <div id="ui-guidesoho-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 購物 -> 女人街與波鞋街分頁 -->
+    <div id="guideLadiesMarketSection" class="section-content">
+        <button class="back-btn" id="ui-back-guideladies" onclick="showSection('guideShoppingSection')">⬅
+            返回香港旅遊攻略 -
+            購物</button>
+        <h3 id="ui-guideladies-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物 -
+            女人街與波鞋街
+        </h3>
+        <div id="ui-guideladies-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 觀光 -> 維多利亞港與星光大道分頁 -->
+    <div id="guideVictoriaHarbourSection" class="section-content">
+        <button class="back-btn" id="ui-back-guidevictoria" onclick="showSection('guideSightseeingSection')">⬅
+            返回香港旅遊攻略 - 觀光</button>
+        <h3 id="ui-guidevictoria-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光
+            -
+            維多利亞港與星光大道</h3>
+        <div id="ui-guidevictoria-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 觀光 -> 太平山頂與凌霄閣摩天台分頁 -->
+    <div id="guidePeakSection" class="section-content">
+        <button class="back-btn" id="ui-back-guidepeak" onclick="showSection('guideSightseeingSection')">⬅
+            返回香港旅遊攻略
+            - 觀光</button>
+        <h3 id="ui-guidepeak-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光 -
+            太平山頂與凌霄閣摩天台</h3>
+        <div id="ui-guidepeak-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 觀光 -> 西九文化區（M+ 與香港故宮）分頁 -->
+    <div id="guideWestKowloonSection" class="section-content">
+        <button class="back-btn" id="ui-back-guidewestkowloon" onclick="showSection('guideSightseeingSection')">⬅
+            返回香港旅遊攻略 - 觀光</button>
+        <h3 id="ui-guidewestkowloon-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
+            觀光 -
+            西九文化區（M+ 與香港故宮）</h3>
+        <div id="ui-guidewestkowloon-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 觀光 -> 大館與中環古蹟群分頁 -->
+    <div id="guideTaiKwunSection" class="section-content">
+        <button class="back-btn" id="ui-back-guidetaikwun" onclick="showSection('guideSightseeingSection')">⬅
+            返回香港旅遊攻略 - 觀光</button>
+        <h3 id="ui-guidetaikwun-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光
+            -
+            大館與中環古蹟群</h3>
+        <div id="ui-guidetaikwun-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        </div>
+    </div>
+
+    <div id="guideChaChaanTengSection" class="section-content">
+        <button class="back-btn" id="ui-back-chachaan" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
+        <h3 id="ui-chachaan-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 港式茶餐廳與冰室
+        </h3>
+        <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
+            id="ui-chachaan-detail">
+        </div>
+    </div>
+
+    <!-- 香港旅遊攻略 -> 美食 -> 傳統酒樓與點心分頁 -->
+    <div id="guideDimSumSection" class="section-content">
+        <button class="back-btn" id="ui-back-dimsum" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
+        <h3 id="ui-dimsum-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統酒樓與點心</h3>
+        <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
+            id="ui-dimsum-detail">
+        </div>
+    </div>
+
+    <div id="guideStreetFoodSection" class="section-content">
+        <button class="back-btn" id="ui-back-streetfood" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
+        <h3 id="ui-streetfood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 街頭小食與大排檔
+        </h3>
+        <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
+            id="ui-streetfood-detail">
+        </div>
+    </div>
+
+    <div id="guideNoodleSection" class="section-content">
+        <button class="back-btn" id="ui-back-noodle" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
+        <h3 id="ui-noodle-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統粉麵與燒味</h3>
+        <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
+            id="ui-noodle-detail">
+        </div>
+    </div>
+
+    <div id="guideGlobalFoodSection" class="section-content">
+        <button class="back-btn" id="ui-back-globalfood" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
+        <h3 id="ui-globalfood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 環球與異國美食
+        </h3>
+        <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
+            id="ui-globalfood-detail">
+        </div>
+    </div>
+
+    <div id="luggageSection" class="section-content">
+        <button class="back-btn" id="ui-back3" onclick="goBack()">⬅ 返回主選單</button>
+        <h3 id="ui-lug-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">行李寄存服務</h3>
+        <div id="ui-lug-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🧳 **行李寄存服務須知**<br><br>
+            <strong>【收費與政策】</strong><br>
+            • **入住及退房當日**：尊享全日免費行李寄存。<br>
+            • **長期寄存**：按每件每日 <strong>$10</strong> 計算。<br><br>
+            <strong>【領取與安全須知】</strong><br>
+            • 領取時請出示<strong>行李領取牌</strong>並核對簽名；如未能出示或簽名不符，本酒店有權拒絕交還。<br>
+            • 寄存物品存放於<strong>非空調環境</strong>。<br><br>
+            <strong>【免責與處理條款】</strong><br>
+            • 凡寄存於本酒店之行李或物品，如有任何<strong>遺失、損毀或被盜</strong>，香港荃灣絲麗酒店恕不負責。<br>
+            • 逾期超過 <strong>兩個月</strong> 未領回之物品，本酒店將有權自行處置，恕不另行通知。
+        </div>
+    </div>
+
+    <div id="departureSection" class="section-content">
+        <button class="back-btn" id="ui-back7" onclick="goBack()">⬅ 返回主選單</button>
+        <h3 id="ui-departure-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">出境攻略</h3>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="showSection('dep1Section')">
+                <div class="icon">🚆</div>
+                <h3 id="ui-dep-1-title">羅湖口岸</h3>
+                <p id="ui-dep-1-desc">早上 06:30 至午夜 00:00</p>
+            </div>
+            <div class="menu-card" onclick="showSection('dep2Section')">
+                <div class="icon">🚇</div>
+                <h3 id="ui-dep-2-title">落馬洲/福田口岸</h3>
+                <p id="ui-dep-2-desc">上午 06:30 至晚上 10:30</p>
+            </div>
+            <div class="menu-card" onclick="showSection('dep3Section')">
+                <div class="icon">✈️</div>
+                <h3 id="ui-dep-3-title">香港國際機場</h3>
+                <p id="ui-dep-3-desc">24小時</p>
+            </div>
+            <div class="menu-card" onclick="showSection('dep4Section')">
+                <div class="icon">🚄</div>
+                <h3 id="ui-dep-4-title">香港西九龍站</h3>
+                <p id="ui-dep-4-desc">上午 06:30 至晚上 11:30</p>
+            </div>
+            <div class="menu-card" onclick="showSection('dep5Section')">
+                <div class="icon">🚌</div>
+                <h3 id="ui-dep-5-title">深圳灣口岸</h3>
+                <p id="ui-dep-5-desc">上午 06:30 至午夜 12:00</p>
+            </div>
+            <div class="menu-card" onclick="showSection('dep6Section')">
+                <div class="icon">🌉</div>
+                <h3 id="ui-dep-6-title">香園圍/蓮塘口岸</h3>
+                <p id="ui-dep-6-desc">上午 07:00 至晚上 10:00</p>
+            </div>
+            <div class="menu-card" onclick="showSection('dep7Section')">
+                <div class="icon">🛣️</div>
+                <h3 id="ui-dep-7-title">港珠澳大橋</h3>
+                <p id="ui-dep-7-desc">24小時</p>
+            </div>
+            <div class="menu-card" onclick="showSection('dep8Section')">
+                <div class="icon">⛴️</div>
+                <h3 id="ui-dep-8-title">港澳客輪碼頭</h3>
+                <p id="ui-dep-8-desc">上午 06:30 至午夜 12:00</p>
             </div>
         </div>
+    </div>
 
-        <!-- 香港旅遊攻略 -> 推薦行程1 子頁面 -->
-        <div id="guideRoute1Section" class="section-content">
-            <button class="back-btn" id="ui-back-guideroute1" onclick="showSection('guideSection')">⬅
-                返回香港旅遊攻略</button>
-            <h3 id="ui-guideroute1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
-                推薦行程1</h3>
-            <div id="ui-guideroute1-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🗺️ <strong>經典一日遊行程總覽</strong><br>
-                09:00 – 09:30｜酒店出發，乘搭免費穿梭巴士或 31M 巴士前往葵芳地鐵站<br>
-                09:30 – 10:00｜乘搭港鐵由葵芳站出發（經荔景站轉乘東涌線）抵達東涌站<br>
-                10:00 – 10:30｜搭乘昂坪360纜車（享受 25 分鐘海景與山景）<br>
-                10:30 – 11:00｜昂坪市集漫步、打卡<br>
-                11:00 – 12:30｜參拜天壇大佛與寶蓮禪寺<br>
-                12:30 – 13:30｜昂坪市集午餐（品嚐素齋或港式茶餐廳）<br>
-                13:30 – 14:15｜心經簡林（沉浸於山林與心經意境中）<br>
-                14:30 – 15:00｜搭乘纜車返回東涌（或加碼前往大澳漁村）<br>
-                15:00 – 17:00｜東薈城名店倉（Citygate Outlets）血拼購物<br><br>
+    <!-- 出境攻略 -> 1. 羅湖口岸 子頁面 -->
+    <div id="dep1Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep1" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">羅湖口岸</h3>
+        <div id="ui-dep1-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            <strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>
+            前往羅湖口岸主要有以下兩種便捷方式：<br><br>
+            <strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>
+            • <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達羅湖站。<br>
+            • <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br>
+            <strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>
+            • <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫 直達羅湖站。<br>
+            • <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站是「羅湖」還是「落馬洲」，切勿上錯車！<br><br>
+            <strong>二、 深圳目的地與過關優選</strong><br>
+            如果你計劃前往以下深圳地點，選擇經羅湖口岸過關絕對是首選（優選）：<br><br>
+            <strong>深圳火車站（羅湖火車站）：</strong><br>
+            • <strong>交通優勢</strong>：完美對接！過關後一出大樓即達深圳火車站，步行只需約 1 分鐘。<br><br>
+            <strong>東門老街：</strong><br>
+            • <strong>交通優勢</strong>：位置極近。過關後轉乘深圳地鐵 1 號線（羅寶線），由「羅湖站」出發只需坐 1 個站（到老街站），車程僅約 2-3 分鐘；亦可選擇步行約
+            10-15 分鐘直達。
+        </div>
+    </div>
 
-                📌 <strong>詳細行程拆解與亮點</strong><br><br>
-                <strong>1. 早晨出發：酒店 ➔ 葵芳地鐵站 ➔ 東涌站</strong><br>
-                • <strong>交通方式</strong>：<br>
-                &nbsp;&nbsp;第一段（前往葵芳）：可選擇乘搭酒店提供的免費穿梭巴士，或乘搭 31M 巴士 前往葵芳地鐵站。<br>
-                &nbsp;&nbsp;第二段（前往東涌）：到達葵芳站後，乘搭港鐵荃灣線（往中環方向）至荔景站，同站平臺轉乘東涌線直達東涌站（B出口），步行約2分鐘即可抵達昂坪纜車站。<br>
-                •
-                <strong>亮點體驗</strong>：推薦提前預訂來回車票（可選擇標準車廂或視野刺激的水晶車廂，腳底為透明玻璃）。纜車全長約5.7公里，乘車時可以俯瞰遼闊的南中國海、香港國際機場飛機升降，以及北大嶼山郊野公園的翠綠山巒。<br><br>
+    <!-- 出境攻略 -> 2. 落馬洲/福田口岸 子頁面 -->
+    <div id="dep2Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep2" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">落馬洲/福田口岸</h3>
+        <div id="ui-dep2-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            <strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>
+            前往口岸主要有以下兩種便捷方式：<br><br>
+            <strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>
+            • <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達。<br>
+            • <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br>
+            <strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>
+            • <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫。<br>
+            • <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站（前往羅湖或落馬洲），切勿上錯車！<br><br>
+            <strong>二、 深圳目的地：福田口岸與深圳北站</strong><br>
+            如果你計劃前往以下地點，最推薦的過關口岸與交通方式如下：<br><br>
+            <strong>1. 福田口岸</strong><br>•
+            <strong>過關路線</strong>：東鐵綫北上時，必須乘搭以「落馬洲」為終點站的列車。到達落馬洲站後直接過關，即到達福田口岸。<br>
+            • <strong>交通優勢</strong>：過關後直接連接深圳地鐵 4號線（龍華線） 及 10號線（坂田線），前往福田CBD或市中心非常快捷。<br><br>
+            <strong>2. 深圳北站（高鐵站）</strong><br>
+            • <strong>交通優勢與路線</strong>：<br>
+            • <strong>由福田口岸出發（最推薦）</strong>：在福田口岸過關後，直接在口岸地下一層的「福田口岸地鐵站」乘搭 深圳地鐵 4 號線（往牛湖方向），無需轉車，坐 4 個站（約
+            10-12
+            分鐘）即可直達「深圳北站」。<br>
+            • <strong>由羅湖口岸出發（備選）</strong>：如果經羅湖過關，則需乘搭地鐵 1 號線到老街站轉 3 號線，再轉 4
+            號線，轉車次數較多。因此，去深圳北站首選經福田口岸（落馬洲）過關最為順暢！
+        </div>
+    </div>
 
-                <strong>2. 上午探訪：昂坪市集 ➔ 天壇大佛 ➔ 寶蓮禪寺</strong><br>
-                • <strong>昂坪市集</strong>：出纜車站後會先經過充滿中國傳統文化特色的昂坪市集，這裡有許多特色商店、拍照景點。<br>
-                • <strong>天壇大佛</strong>：全球最高戶外青銅坐佛。穿過牌樓後，挑戰步行 268級石階
-                登上大佛腳下，不僅能近距離感受宏偉莊嚴的佛像，還能遠眺昂坪高原與群山環抱的遼闊視野。<br>
-                • <strong>寶蓮禪寺</strong>：參觀歷史悠久、香火鼎盛的寶蓮禪寺，欣賞宏偉的大雄寶殿與清幽的蓮花池。<br><br>
+    <!-- 出境攻略 -> 3. 香港國際機場 子頁面 -->
+    <div id="dep3Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep3" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep3-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港國際機場</h3>
+        <div id="ui-dep3-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            ✈️ <strong>荃灣絲麗酒店 ➔ 香港國際機場交通指南</strong><br>
+            為配合您的行程需求與行李攜帶情況，我們為您提供以下四種便捷的出行方案：<br><br>
+            <strong>1. 漫步輕裝出發：步行乘搭 A30 機場巴士</strong><br>
+            • <strong>路線詳情</strong>：從酒店出發，步行約 500 米（沿途為輕鬆的下坡路）至屏麗徑巴士站，登上 A30 巴士 直達機場。<br>
+            • <strong>適合對象</strong>：輕裝簡行、喜歡沿途欣賞街景的旅客。<br><br>
+            <strong>2. 轉乘接駁至葵芳：港鐵接駁 + A30 機場巴士</strong><br>
+            • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳地鐵站，穿過新都會廣場後，轉乘 A30 巴士 直達機場。<br>
+            • <strong>適合對象</strong>：配合酒店穿梭巴士，省時舒適。<br><br>
+            <strong>3. 鐵路極速連線：地鐵轉乘機場快線</strong><br>
+            • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士抵達葵芳地鐵站 ➔ 乘地鐵至荔景站轉乘東湧綫到青衣站 ➔ 再轉乘機場快線直達機場。<br>
+            • <strong>適合對象</strong>：追求準時、希望避開路面交通堵塞的旅客。<br><br>
+            <strong>4. 點對點尊享：網約車或的士直達</strong><br>
+            • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴打車，或在酒店門口截乘市區出租車 (的士) 直達機場。<br>
+            • <strong>參考費用</strong>：約 HK$220 - $250（具體視乎實時路面情況及行李費而定）。<br>
+            • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。
+        </div>
+    </div>
 
-                <strong>3. 午餐與心靈漫步：齋菜午餐 ➔ 心經簡林</strong><br>
-                • <strong>午餐推薦</strong>：可以直接在寶蓮禪寺內的齋堂享用傳統的佛教素齋，或者在昂坪市集的餐廳享用港式輕食與常餐。<br>
-                •
-                <strong>心經簡林</strong>：從昂坪市集步行約15–20分鐘即可到達。這裡是由38根刻有國學大師饒宗頤教授《心經》墨寶的木柱依山而建，排列成「∞」（無限大）的符號，四周環繞山林，環境非常寧靜祥和。<br><br>
+    <!-- 出境攻略 -> 4. 香港西九龍站 子頁面 -->
+    <div id="dep4Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep4" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep4-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港西九龍站</h3>
+        <div id="ui-dep4-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🚄 <strong>荃灣絲麗酒店 ➔ 香港西九龍高鐵站交通指南</strong><br>
+            為配合您的行程需求與行李攜帶情況，我們為您提供以下三種便捷的出行方案：<br><br>
+            <strong>1. 步行輕鬆直達：藍田街巴士站乘搭 36B</strong><br>
+            • <strong>路線詳情</strong>：從酒店對面馬路步行約 100 米至藍田街巴士站，登上 36B 巴士 直達高鐵站附近。<br>
+            • <strong>適合對象</strong>：輕裝簡行、想免去轉車麻煩的旅客。<br><br>
+            <strong>2. 鐵路極速連線：穿梭巴士/31號巴士 + 港鐵直達</strong><br>
+            • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31號巴士 前往荃灣西地鐵站 ➔ 轉乘屯馬綫坐 3 個站直達柯士甸站 ➔ 由 C出口
+            離開，即可直接抵達高鐵檢票大堂。<br>
+            • <strong>適合對象</strong>：追求準時、希望避開路面交通堵塞的旅客。<br><br>
+            <strong>3. 點對點尊享：網約車或的士直達</strong><br>
+            • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士直達高鐵站。<br>
+            • <strong>參考費用</strong>：約 HK$110 - $150（具體視乎實時路面交通情況而定）。<br>
+            • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。
+        </div>
+    </div>
 
-                <strong>4. 下午回程與血拼：東薈城名店倉</strong><br>
-                • <strong>回程纜車</strong>：下午搭乘昂坪纜車返回東涌站（下山時視野同樣絕佳）。<br>
-                • <strong>東薈城名店倉 (Citygate
-                    Outlets)</strong>：就位於東涌港鐵站旁，是香港大型的戶外Outlet購物商場，集結了國際知名服飾品牌、運動品牌及美妝，非常適合在行程尾聲順便血拼一番、享用下午茶。<br><br>
+    <!-- 出境攻略 -> 5. 深圳灣口岸 子頁面 -->
+    <div id="dep5Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep5" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep5-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">深圳灣口岸</h3>
+        <div id="ui-dep5-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🚗 <strong>荃灣絲麗酒店 ➔ 深圳灣口岸交通指南</strong><br>
+            為配合您的行程需求與行李攜帶情況，我們為您提供以下三種便捷的出行方案：<br><br>
+            <strong>直通巴士直達（舒適便捷）</strong><br>
+            • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31M
+            號巴士前往葵芳站（新都會廣場），於新都會廣場地面乘搭永東直通巴士直達深圳灣口岸（具體班次與購票詳情請在永東巴士小程序查詢）。<br>
+            • <strong>適合對象</strong>：希望免去中途頻繁轉車、輕鬆直達的旅客。<br><br>
+            <strong>鐵路轉乘巴士（經濟實惠）</strong><br>
+            • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31 號巴士前往荃灣西地鐵站 ➔ 乘搭屯馬線至屯門站 ➔ 從 C 出口步行至屯門市中心轉乘 B3X
+            巴士直達深圳灣口岸。<br>
+            • <strong>適合對象</strong>：行程時間容易掌握、喜愛高靈活性行程的旅客。<br><br>
+            <strong>點對點尊享（快捷舒適）</strong><br>
+            • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士直接前往深圳灣口岸。<br>
+            • <strong>參考費用</strong>：約 HK$200 - $300（具體視乎實時路面交通情況而定）。<br>
+            • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
+            <strong>二、 深圳目的地與過關優選</strong><br>
+            <strong>前往南山區</strong><br>
+            •
+            <strong>地理優勢</strong>：深圳灣口岸本身就位於南山區的核心地帶，過關後前往南山各大熱門商圈（如海岸城、后海）、科技園區或景點極為便利，搭乘地鐵或短途打車皆可輕鬆抵達。<br><br>
+            <strong>前往深圳寶安國際機場</strong><br>
+            • <strong>交通優勢</strong>：經深圳灣口岸過關後，乘搭地鐵約 20 多分鐘即可直達機場，路程短、省時高效，非常適合搭乘航班的旅客。
+        </div>
+    </div>
 
-                💡 <strong>實用小貼士（Tips）</strong><br>
-                • <strong>門票建議</strong>：建議出發前先在網上預訂昂坪360來回纜車門票，並選擇指定時段，可以省去現場排隊購票的時間。<br>
-                •
-                <strong>彈性加碼行程（大澳漁村）</strong>：如果你腳力好、想玩得更充實，可以在昂坪市集旁搭乘「新大嶼山巴士21號」前往有「香港威尼斯」之稱的大澳漁村（車程約20分鐘），體驗水上棚屋與乘小艇看中華白海豚，玩完後再坐巴士返回東涌。<br>
-                • <strong>穿著建議</strong>：當天請穿著舒適好走的步行鞋（攀爬大佛階梯與行山路段需要）；大嶼山山頂風大且日照較強，建議根據季節攜帶防風外套或防曬用品。
+    <!-- 出境攻略 -> 6. 香園圍/蓮塘口岸 子頁面 -->
+    <div id="dep6Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep6" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep6-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香園圍/蓮塘口岸</h3>
+        <div id="ui-dep6-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🚗 <strong>荃灣絲麗酒店 ➔ 蓮塘口岸（香園圍邊境管制站）交通指南</strong><br><br>
+            為配合您的行程需求與行李攜帶情況，我們為您提供以下三種便捷的出行方案：<br><br>
+            <strong>直通巴士直達（舒適便捷）</strong><br>
+            • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31M 號巴士前往葵芳站（新都會廣場），乘搭永東蓮塘快線直達蓮塘口岸（具體班次與購票詳情請在永東巴士小程序查詢）。<br>
+            • <strong>適合對象</strong>：希望免去中途頻繁轉車、輕鬆直達的旅客。<br><br>
+            <strong>專線小巴轉乘鐵路與巴士（靈活便捷）</strong><br>
+            • <strong>路線詳情</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍 ➔ 轉乘東鐵綫至粉嶺站 / 上水站 ➔ 再轉乘 B7
+            巴士直達香園圍口岸（蓮塘口岸）。<br>
+            • <strong>適合對象</strong>：喜愛公共交通網絡、行程時間容易掌握的旅客。<br><br>
+            <strong>點對點尊享（快捷舒適）</strong><br>
+            • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士直接前往蓮塘口岸。<br>
+            • <strong>參考費用</strong>：約 HK$250 - $350（跨區長途行程，具體視乎實時路面交通情況而定）。<br>
+            • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
+            <strong>二、 深圳目的地與過關優選</strong><br>
+            <strong>前往深圳東部及鹽田、羅湖方向</strong><br>
+            • <strong>地理優勢</strong>：蓮塘口岸過關後即連接深圳地鐵 2/8 號線（蓮塘口岸站），前往羅湖區、鹽田區（如大梅沙、小梅沙度假區）或深圳東部極為快捷。
+        </div>
+    </div>
+
+    <!-- 出境攻略 -> 7. 港珠澳大橋 子頁面 -->
+    <div id="dep7Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep7" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep7-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">港珠澳大橋</h3>
+        <div id="ui-dep7-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🚗 <strong>荃灣絲麗酒店 ➔ 港珠澳大橋香港口岸交通指南</strong><br>
+            為配合您的行程需求與行李攜帶情況，我們為您精心整理了以下三種便捷的出行方案：<br><br>
+            <strong>1. 直達巴士（輕裝簡行 🧳）</strong><br>
+            • <strong>路線詳情</strong>：從酒店出發，步行約 500 米（沿途為輕鬆的下坡路）至屏麗徑巴士站，登上 A30 巴士 直達目的地。<br>
+            • <strong>適合對象</strong>：輕裝簡行、喜歡沿途欣賞街景的旅客。<br><br>
+            <strong>2. 鐵路與巴士轉乘：港鐵轉欣澳站 ➔ B5 巴士（順暢快捷 🚇）</strong><br>
+            • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士 抵達葵芳地鐵站 ➔ 乘地鐵至荔景站轉乘東涌綫到欣澳站 ➔ 於欣澳站轉乘 B5 巴士 直達口岸。<br>
+            • <strong>適合對象</strong>：喜愛善用鐵路轉乘、希望避開市區塞車的旅客。<br><br>
+            <strong>3. 點對點尊享（快捷舒適 ✨）</strong><br>
+            • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士，經 8 號幹線 直接前往港珠澳大橋香港口岸人工島。<br>
+            • <strong>參考費用</strong>：約 HK$200 - $300（跨區長途行程，具體視乎實時路面交通情況而定）。<br>
+            • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
+            <strong>二、 口岸目的地與過關優選</strong><br>
+            <strong>前往珠海、澳門及大灣區西岸 🌉</strong><br>
+            • <strong>地理優勢</strong>：港珠澳大橋香港口岸設有完善的出入境及通關設施，旅客可在此直接乘搭穿梭巴士（金巴）前往珠海或澳門，或轉乘跨境客車深入廣東省其他城市。
+        </div>
+    </div>
+
+    <!-- 出境攻略 -> 8. 港澳客輪碼頭 子頁面 -->
+    <div id="dep8Section" class="section-content">
+        <button class="back-btn" id="ui-back-dep8" onclick="showSection('departureSection')">⬅
+            返回出境攻略</button>
+        <h3 id="ui-dep8-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">港澳客輪碼頭</h3>
+        <div id="ui-dep8-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🚗 <strong>荃灣絲麗酒店 ➔ 港澳客輪碼頭交通指南</strong><br>
+            為配合您的行程需求與行李攜帶情況，我們為您精心整理了以下前往上環港澳客輪碼頭的便捷出行方案：<br><br>
+            <strong>1. 港鐵直達（經濟實惠 🚇）</strong><br>
+            • <strong>路線詳情</strong>： 乘搭酒店免費穿梭巴士或 31M 巴士 抵達葵芳地鐵站 ➔
+            乘搭港鐵荃灣綫往中環方向，直接到達中環站，再經行人通道步行前往上環港澳客輪碼頭（約需時 47
+            分鐘）。<br>
+            • <strong>適合對象</strong>： 熟悉香港鐵路網絡、希望避開路面交通擁堵的旅客。<br><br>
+            <strong>2. 點對點尊享（快捷舒適 ✨）</strong><br>
+            • <strong>路線詳情</strong>： 使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士，經西區海底隧道直接前往上環港澳客輪碼頭（車程約 17 分鐘）。<br>
+            • <strong>參考費用</strong>： 約 HK$120 - $180（具體視乎實時路面交通及隧道收費情況而定）。<br>
+            • <strong>適合對象</strong>： 家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
+            <strong>二、 碼頭目的地與客運優選</strong><br>
+            <strong>前往澳門及跨境航線 🚢</strong><br>
+            • <strong>地理優勢</strong>： 位於上環信德中心的港澳客輪碼頭，提供往返香港與澳門（外港客運碼頭及氹仔客運碼頭）的高速客輪服務（如噴射飛航、金光飛航），通關效率高且班次頻密。
+        </div>
+    </div>
+
+    <div id="carSection" class="section-content">
+        <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
+        <h3 id="ui-car-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車服務</h3>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="showSection('carPriceSection')">
+                <div class="icon">💰</div>
+                <h3 id="ui-car-card1-title">服務收費表</h3>
+                <p id="ui-car-card1-desc">各路線點對點接送與包車收費</p>
+            </div>
+            <div class="menu-card" onclick="showSection('carTermsSection')">
+                <div class="icon">📜</div>
+                <h3 id="ui-car-card2-title">使用條款及細則</h3>
+                <p id="ui-car-card2-desc">預約、取消與乘車須知</p>
             </div>
         </div>
+        <div id="ui-car-notice-box"
+            style="margin-top: 20px; font-size: 13px; color: #555; background: #e8f4fd; padding: 12px; border-radius: 8px; border-left: 4px solid #007bff; line-height: 1.5;">
+            若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。
+        </div>
+    </div>
 
-        <!-- 香港旅遊攻略 -> 推薦行程2 子頁面 -->
-        <div id="guideRoute2Section" class="section-content">
-            <button class="back-btn" id="ui-back-guideroute2" onclick="showSection('guideSection')">⬅
-                返回香港旅遊攻略</button>
-            <h3 id="ui-guideroute2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
-                推薦行程2</h3>
-            <div id="ui-guideroute2-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🗺️ <strong>長洲深度文化探索一日遊行程總覽</strong><br>
-                08:45 – 09:30｜由荃灣絲麗酒店出發，乘搭免費穿梭巴士或 31M 巴士前往葵芳地鐵站<br>
-                09:30 – 10:15｜乘搭港鐵由葵芳站出發（經荔景站轉乘東涌線）至香港站，步行前往中環5號碼頭<br>
-                10:30 – 11:15｜中環5號碼頭乘搭渡輪前往長洲<br>
-                11:15 – 12:30｜北帝廟（玉虛宮）與北社街歷史探索<br>
-                12:30 – 13:00｜長洲東灣、滑浪風帆紀念碑<br>
-                13:00 – 14:30｜長洲海傍街午餐與地道小食（大魚蛋、芒果糯米糍）<br>
-                14:30 – 15:45｜張保仔洞與西灣天后廟（探索海盜傳說與岩洞）<br>
-                15:45 – 16:45｜長洲西堤道（美景日落前漫步、打卡彩虹亭）<br>
-                16:45 – 17:45｜長洲碼頭手信街買平安包、手信，乘船返回中環，賦歸<br><br>
+    <div id="carPriceSection" class="section-content">
+        <button class="back-btn" id="ui-back-carprice" onclick="showSection('carSection')">⬅ 返回專車服務</button>
+        <h3 id="ui-carprice-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 服務收費表
+        </h3>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th id="ui-th-dest">目的地 / 服務項目</th>
+                    <th id="ui-th-price">收費 (HKD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="ui-p-mongkok">由酒店出發到旺角</td>
+                    <td>$300</td>
+                </tr>
+                <tr>
+                    <td id="ui-p-chinachem">由酒店出發到中港城 / 高鐵站</td>
+                    <td>$400</td>
+                </tr>
+                <tr>
+                    <td id="ui-p-airport">由酒店出發到機場、迪士尼、港珠澳大橋</td>
+                    <td>$500</td>
+                </tr>
+                <tr>
+                    <td id="ui-p-oceanpark">由酒店出發到海洋公園</td>
+                    <td>$750</td>
+                </tr>
+                <tr>
+                    <td id="ui-p-surcharge">早上 8 點前 / 晚上 8 點後 附加費</td>
+                    <td>$200</td>
+                </tr>
+                <tr>
+                    <td id="ui-p-hourly">租用服務 (每小時，3小時起租)</td>
+                    <td>$500 / 小時</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="ui-carprice-note"
+            style="font-size: 12px; color: #666; line-height: 1.5; background: #f8f9fa; padding: 10px; border-radius: 6px;">
+            💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。</div>
+    </div>
 
-                📌 <strong>詳細行程拆解與亮點</strong><br><br>
-                <strong>1. 早晨出發：荃灣絲麗酒店 ➔ 葵芳 ➔ 中環碼頭 ➔ 長洲</strong><br>
-                • <strong>交通方式（第一段）</strong>：由荃灣絲麗酒店出發，可選擇乘搭酒店提供的免費穿梭巴士，或乘搭 31M 巴士 前往葵芳地鐵站。<br>
-                • <strong>交通方式（第二段）</strong>：到達葵芳站後，乘搭港鐵荃灣線至荔景站，同站平臺轉乘東涌線直達香港站，出站後步行約10分鐘前往中環5號碼頭。<br>
-                • <strong>交通方式（第三段）</strong>：於中環5號碼頭乘搭渡輪前往長洲（可選擇「高速船」約35至40分鐘，或「普通渡輪」約55至60分鐘）。<br><br>
+    <div id="carTermsSection" class="section-content">
+        <button class="back-btn" id="ui-back-carterms" onclick="showSection('carSection')">⬅ 返回專車服務</button>
+        <h3 id="ui-carterms-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 使用條款及細則
+        </h3>
+        <div id="ui-carterms-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🚘 <strong>酒店專車 - 使用條款及細則</strong><br><br>
+            <strong>【預訂及供應情況】</strong><br>
+            • 接送服務必須提前 <strong>2 天</strong> 預訂。<br>
+            • 接送服務視乎禮賓部司機和豪華轎車的供應情況而定。<br><br>
+            <strong>【乘載限制與行李】</strong><br>
+            • 豪華車最多可接載 <strong>6 名乘客</strong>（不包括行李）。<br>
+            • 接載乘客人數會根據隨行行李的尺寸和數量而有所調整。<br><br>
+            <strong>【取消及變更政策】</strong><br>
+            • 取消預約需至少提前 <strong>24 小時</strong> 通知，否則將收取 <strong>50%</strong> 的服務費。<br>
+            • 當日取消或缺席使用服務將不予退款。<br><br>
+            <strong>【免責聲明與特別安排】</strong><br>
+            • 如懸掛八號或以上熱帶氣旋警告信號或黑色暴雨警告，香港荃灣絲麗酒店保留終止接送服務的權利，恕不另行通知。<br>
+            • 若因交通狀況、路況安全及/或惡劣天氣而導致抵達時間延誤或順延，香港荃灣絲麗酒店概不負責。<br>
+            • 如有任何爭議，香港荃灣絲麗酒店保留最終決定權。<br>
+            • 如果目的地不在清單中，請隨時聯絡禮賓部作進一步商討。
+        </div>
+    </div>
 
-                <strong>2. 上午歷史文化探秘：北帝廟（玉虛宮）與北社街</strong><br>
-                •
-                <strong>北帝廟（玉虛宮）</strong>：長洲歷史最悠久的古廟之一（建於1783年），被列為香港法定古蹟。廟內供奉北帝，每年著名的「長洲太平清醮」（搶包山活動）正是以這座廟宇為核心，充滿濃厚傳統文化氣息。<br>
-                • <strong>北社街</strong>：漫步於古廟旁的北社街，保留了許多傳統老房子與街坊鄰里的生活面貌。<br><br>
-
-                <strong>3. 自然風光與體育傳奇：東灣與滑浪風帆紀念碑</strong><br>
-                • <strong>長洲東灣</strong>：離開北帝廟後步行至東灣，這是長洲最著名、水清沙幼的泳灘，背山面海，視野開闊。<br>
-                • <strong>滑浪風帆紀念碑</strong>：位於東灣沿岸的小公園，是為了紀念香港滑浪風帆運動員李麗珊在1996年奧運會上為香港奪得歷史上首面奧運金牌而設立的。<br><br>
-
-                <strong>4. 地道美食午餐：海傍街尋寶</strong><br>
-                • <strong>午餐推薦</strong>：前往長洲海傍街或巷弄間的茶餐廳或海鮮酒家享用午餐。<br>
-                • <strong>必食小食</strong>：餐後必試長洲招牌的特大魚蛋、芒果糯米糍以及寓意吉祥的平安包。<br><br>
-
-                <strong>5. 下午海盜傳奇：張保仔洞與西灣</strong><br>
-                • <strong>乘小艇或步行</strong>：由長洲碼頭或海傍街乘搭「街渡」（舢舨小艇）前往張保仔碼頭，或由東灣沿岸行山徑步行前往。<br>
-                • <strong>張保仔洞</strong>：傳說中清代著名海盜張保仔藏寶的洞穴，帶備手電筒入洞體驗探險樂趣。<br>
-                • <strong>西灣天后廟</strong>：位於張保仔洞附近，是一座面向大海的寧靜古廟。<br><br>
-
-                <strong>6. 日落美景與回程：西堤道漫步 ➔ 中環賦歸</strong><br>
-                • <strong>長洲西堤道</strong>：回程沿著西堤道漫步，欣賞黃昏夕陽沉入海平面的絕佳景色，沿途設有色彩繽紛的打卡點。<br>
-                • <strong>手信與回程</strong>：在碼頭手信街購買平安包或蝦醬作伴手禮，隨後乘渡輪返回中環，再轉乘港鐵及巴士返回荃灣絲麗酒店。<br><br>
-
-                💡 <strong>實用小貼士</strong><br>
-                • <strong>交通工具</strong>：長洲是個無車島，島上主要靠步行或租單車代步。<br>
-                • <strong>現金準備</strong>：島上多數商戶支援電子支付，但乘搭街渡小艇或部分老字號小店仍以現金為主，建議準備適量港幣現金。
+    <div id="facilitySection" class="section-content">
+        <button class="back-btn" id="ui-back9" onclick="goBack()">⬅ 返回主選單</button>
+        <h3 id="ui-facility-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店設施</h3>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="showSection('fac1Section')">
+                <div class="icon">🍽️</div>
+                <h3 id="ui-fac-1-title">金林閣餐廳</h3>
+                <p id="ui-fac-1-desc">(2樓)</p>
+            </div>
+            <div class="menu-card" onclick="showSection('fac2Section')">
+                <div class="icon">🌿</div>
+                <h3 id="ui-fac-2-title">空中花園</h3>
+                <p id="ui-fac-2-desc">(5樓)</p>
+            </div>
+            <div class="menu-card" onclick="showSection('fac3Section')">
+                <div class="icon">🏋️</div>
+                <h3 id="ui-fac-3-title">健身室</h3>
+                <p id="ui-fac-3-desc">(5樓)</p>
+            </div>
+            <div class="menu-card" onclick="showSection('fac4Section')">
+                <div class="icon">🅿️</div>
+                <h3 id="ui-fac-4-title">停車場</h3>
+                <p id="ui-fac-4-desc">(地面)</p>
             </div>
         </div>
+    </div>
 
-        <!-- 香港旅遊攻略 -> 遊玩 -> 迪士尼分頁 -->
-        <div id="guideDisneySection" class="section-content">
-            <button class="back-btn" id="ui-back-guidedisney" onclick="showSection('guidePlaySection')">⬅
-                返回香港旅遊攻略 -
-                遊玩</button>
-            <h3 id="ui-guidedisney-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩 -
-                香港迪士尼樂園
-            </h3>
-            <div id="ui-guidedisney-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
+    <!-- 酒店設施 -> 1. 金林閣餐廳 子頁面 -->
+    <div id="fac1Section" class="section-content">
+        <button class="back-btn" id="ui-back-fac1" onclick="showSection('facilitySection')">⬅
+            返回酒店設施</button>
+        <h3 id="ui-fac1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">金林閣餐廳 (2樓)</h3>
+        <div id="ui-fac1-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🍽️ <strong>金林閣餐廳 (2/F)</strong><br><br>
+            <strong>【晨光美點 · 自助早餐】</strong><br>
+            • <strong>時間</strong>：每日 07:30 - 10:00<br>
+            • <strong>價目</strong>：HK$77 / 位<br>
+            • <strong>內容</strong>：提供豐富的中西式自助早餐，為您開啟充滿活力的一天。<br><br>
+            <strong>【周末限定 · 懷舊音樂自助餐】</strong><br>
+            • <strong>時間</strong>：每逢星期六下午及晚上<br>
+            • <strong>詳情</strong>：伴隨經典金曲，享受悠閒時光，詳情歡迎親臨或致電餐廳查詢。<br><br>
+            <strong>【團體預訂服務】</strong><br>
+            • 餐廳誠摯接受各類團體預訂自助午餐及晚餐，為您的聚會、慶典或商務活動提供專屬餐飲安排。
         </div>
+    </div>
 
-        <!-- 香港旅遊攻略 -> 遊玩 -> 海洋公園分頁 -->
-        <div id="guideOceanParkSection" class="section-content">
-            <button class="back-btn" id="ui-back-guideoceanpark" onclick="showSection('guidePlaySection')">⬅
-                返回香港旅遊攻略 -
-                遊玩</button>
-            <h3 id="ui-guideoceanpark-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
-                遊玩 -
-                香港海洋公園</h3>
-            <div id="ui-guideoceanpark-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
+    <!-- 酒店設施 -> 2. 空中花園 子頁面 -->
+    <div id="fac2Section" class="section-content">
+        <button class="back-btn" id="ui-back-fac2" onclick="showSection('facilitySection')">⬅
+            返回酒店設施</button>
+        <h3 id="ui-fac2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">空中花園 (5樓)</h3>
+        <div id="ui-fac2-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🌿 <strong>空中花園 (5/F)</strong><br><br>
+            <strong>【開放時間】</strong><br>
+            • <strong>時間</strong>：每日 08:00 - 22:00，歡迎蒞臨放鬆身心，享受片刻悠閒。<br><br>
+            <strong>【吸煙區提示】</strong><br>
+            • 為保障所有住客的健康與舒適，花園內僅限露天區域提供吸煙區，敬請配合及留意。
         </div>
+    </div>
 
-        <!-- 香港旅遊攻略 -> 遊玩 -> 香港摩天輪分頁 -->
-        <div id="guideFerrisWheelSection" class="section-content">
-            <button class="back-btn" id="ui-back-guideferriswheel" onclick="showSection('guidePlaySection')">⬅
-                返回香港旅遊攻略
-                - 遊玩</button>
-            <h3 id="ui-guideferriswheel-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
-                遊玩 -
-                香港摩天輪</h3>
-            <div id="ui-guideferriswheel-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
+    <!-- 酒店設施 -> 3. 健身室 子頁面 -->
+    <div id="fac3Section" class="section-content">
+        <button class="back-btn" id="ui-back-fac3" onclick="showSection('facilitySection')">⬅
+            返回酒店設施</button>
+        <h3 id="ui-fac3-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">健身室 (5樓)</h3>
+        <div id="ui-fac3-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            💪 <strong>健身室 (5/F)</strong><br><br>
+            <strong>【全天候開放】</strong><br>
+            • <strong>時間</strong>：24 小時無休，供住客免費使用，隨時照顧您的運動節奏。<br><br>
+            <strong>【齊備健身器材】</strong><br>
+            • 備有多款專業健身及帶氧器材，滿足您的日常鍛鍊需求。<br><br>
+            <strong>【夜間寧馨提示】</strong><br>
+            • 為確保所有住客享有舒適寧靜的休息環境，請於晚上 11 時至翌日早上 8 時期間降低音量，感謝您的合作與體諒。
         </div>
+    </div>
 
-        <!-- 香港旅遊攻略 -> 遊玩 -> 香港挪亞方舟分頁 -->
-        <div id="guideNoahSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidenoah" onclick="showSection('guidePlaySection')">⬅ 返回香港旅遊攻略
-                -
-                遊玩</button>
-            <h3 id="ui-guidenoah-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 遊玩 -
-                香港挪亞方舟
-            </h3>
-            <div id="ui-guidenoah-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
+    <!-- 酒店設施 -> 4. 停車場 子頁面 -->
+    <div id="fac4Section" class="section-content">
+        <button class="back-btn" id="ui-back-fac4" onclick="showSection('facilitySection')">⬅
+            返回酒店設施</button>
+        <h3 id="ui-fac4-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">停車場 (地面)</h3>
+        <div id="ui-fac4-desc"
+            style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            🚗 <strong>酒店停車場 (G/F)</strong><br><br>
+            <strong>【時租泊車服務】</strong><br>
+            • <strong>收費</strong>：每小時 HK$40<br>
+            • <strong>車位</strong>：設有 2 個時租車位，方便快捷。<br><br>
+            <strong>【官網限定優惠】</strong><br>
+            • 即刻透過酒店官方網站預訂指定住宿計劃，即可尊享「免費夜泊套餐優惠」，讓您的駕駛之旅更輕鬆、更超值！
         </div>
-
-        <!-- 香港旅遊攻略 -> 購物 -> 海港城分頁 -->
-        <div id="guideHarbourCitySection" class="section-content">
-            <button class="back-btn" onclick="showSection('guideShoppingSection')">⬅ 返回購物攻略</button>
-            - 購物</button>
-            <h3 id="ui-guideharbourcity-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
-                購物 -
-                海港城</h3>
-            <div id="ui-guideharbourcity-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 購物 -> 銅鑼灣購物商圈分頁 -->
-        <div id="guideCausewayBaySection" class="section-content">
-            <button class="back-btn" id="ui-back-guidecausewaybay" onclick="showSection('guideShoppingSection')">⬅
-                返回香港旅遊攻略 - 購物</button>
-            <h3 id="ui-guidecausewaybay-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
-                購物 -
-                銅鑼灣購物商圈</h3>
-            <div id="ui-guidecausewaybay-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 購物 -> 中環蘇豪區與PMQ元創坊分頁 -->
-        <div id="guideSohoSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidesoho" onclick="showSection('guideShoppingSection')">⬅
-                返回香港旅遊攻略 -
-                購物</button>
-            <h3 id="ui-guidesoho-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物 -
-                中環蘇豪區與
-                PMQ元創方</h3>
-            <div id="ui-guidesoho-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 購物 -> 女人街與波鞋街分頁 -->
-        <div id="guideLadiesMarketSection" class="section-content">
-            <button class="back-btn" id="ui-back-guideladies" onclick="showSection('guideShoppingSection')">⬅
-                返回香港旅遊攻略 -
-                購物</button>
-            <h3 id="ui-guideladies-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 購物 -
-                女人街與波鞋街
-            </h3>
-            <div id="ui-guideladies-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 觀光 -> 維多利亞港與星光大道分頁 -->
-        <div id="guideVictoriaHarbourSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidevictoria" onclick="showSection('guideSightseeingSection')">⬅
-                返回香港旅遊攻略 - 觀光</button>
-            <h3 id="ui-guidevictoria-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光
-                -
-                維多利亞港與星光大道</h3>
-            <div id="ui-guidevictoria-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 觀光 -> 太平山頂與凌霄閣摩天台分頁 -->
-        <div id="guidePeakSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidepeak" onclick="showSection('guideSightseeingSection')">⬅
-                返回香港旅遊攻略
-                - 觀光</button>
-            <h3 id="ui-guidepeak-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光 -
-                太平山頂與凌霄閣摩天台</h3>
-            <div id="ui-guidepeak-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 觀光 -> 西九文化區（M+ 與香港故宮）分頁 -->
-        <div id="guideWestKowloonSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidewestkowloon" onclick="showSection('guideSightseeingSection')">⬅
-                返回香港旅遊攻略 - 觀光</button>
-            <h3 id="ui-guidewestkowloon-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
-                觀光 -
-                西九文化區（M+ 與香港故宮）</h3>
-            <div id="ui-guidewestkowloon-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 觀光 -> 大館與中環古蹟群分頁 -->
-        <div id="guideTaiKwunSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidetaikwun" onclick="showSection('guideSightseeingSection')">⬅
-                返回香港旅遊攻略 - 觀光</button>
-            <h3 id="ui-guidetaikwun-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 觀光
-                -
-                大館與中環古蹟群</h3>
-            <div id="ui-guidetaikwun-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            </div>
-        </div>
-
-        <div id="guideChaChaanTengSection" class="section-content">
-            <button class="back-btn" id="ui-back-chachaan" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-chachaan-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 港式茶餐廳與冰室
-            </h3>
-            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
-                id="ui-chachaan-detail">
-            </div>
-        </div>
-
-        <!-- 香港旅遊攻略 -> 美食 -> 傳統酒樓與點心分頁 -->
-        <div id="guideDimSumSection" class="section-content">
-            <button class="back-btn" id="ui-back-dimsum" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-dimsum-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統酒樓與點心</h3>
-            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
-                id="ui-dimsum-detail">
-            </div>
-        </div>
-
-        <div id="guideStreetFoodSection" class="section-content">
-            <button class="back-btn" id="ui-back-streetfood" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-streetfood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 街頭小食與大排檔
-            </h3>
-            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
-                id="ui-streetfood-detail">
-            </div>
-        </div>
-
-        <div id="guideNoodleSection" class="section-content">
-            <button class="back-btn" id="ui-back-noodle" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-noodle-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統粉麵與燒味</h3>
-            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
-                id="ui-noodle-detail">
-            </div>
-        </div>
-
-        <div id="luggageSection" class="section-content">
-            <button class="back-btn" id="ui-back3" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-lug-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">行李寄存服務</h3>
-            <div id="ui-lug-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🧳 **行李寄存服務須知**<br><br>
-                <strong>【收費與政策】</strong><br>
-                • **入住及退房當日**：尊享全日免費行李寄存。<br>
-                • **長期寄存**：按每件每日 <strong>$10</strong> 計算。<br><br>
-                <strong>【領取與安全須知】</strong><br>
-                • 領取時請出示<strong>行李領取牌</strong>並核對簽名；如未能出示或簽名不符，本酒店有權拒絕交還。<br>
-                • 寄存物品存放於<strong>非空調環境</strong>。<br><br>
-                <strong>【免責與處理條款】</strong><br>
-                • 凡寄存於本酒店之行李或物品，如有任何<strong>遺失、損毀或被盜</strong>，香港荃灣絲麗酒店恕不負責。<br>
-                • 逾期超過 <strong>兩個月</strong> 未領回之物品，本酒店將有權自行處置，恕不另行通知。
-            </div>
-        </div>
-
-        <div id="departureSection" class="section-content">
-            <button class="back-btn" id="ui-back7" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-departure-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">出境攻略</h3>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('dep1Section')">
-                    <div class="icon">🚆</div>
-                    <h3 id="ui-dep-1-title">羅湖口岸</h3>
-                    <p id="ui-dep-1-desc">早上 06:30 至午夜 00:00</p>
-                </div>
-                <div class="menu-card" onclick="showSection('dep2Section')">
-                    <div class="icon">🚇</div>
-                    <h3 id="ui-dep-2-title">落馬洲/福田口岸</h3>
-                    <p id="ui-dep-2-desc">上午 06:30 至晚上 10:30</p>
-                </div>
-                <div class="menu-card" onclick="showSection('dep3Section')">
-                    <div class="icon">✈️</div>
-                    <h3 id="ui-dep-3-title">香港國際機場</h3>
-                    <p id="ui-dep-3-desc">24小時</p>
-                </div>
-                <div class="menu-card" onclick="showSection('dep4Section')">
-                    <div class="icon">🚄</div>
-                    <h3 id="ui-dep-4-title">香港西九龍站</h3>
-                    <p id="ui-dep-4-desc">上午 06:30 至晚上 11:30</p>
-                </div>
-                <div class="menu-card" onclick="showSection('dep5Section')">
-                    <div class="icon">🚌</div>
-                    <h3 id="ui-dep-5-title">深圳灣口岸</h3>
-                    <p id="ui-dep-5-desc">上午 06:30 至午夜 12:00</p>
-                </div>
-                <div class="menu-card" onclick="showSection('dep6Section')">
-                    <div class="icon">🌉</div>
-                    <h3 id="ui-dep-6-title">香園圍/蓮塘口岸</h3>
-                    <p id="ui-dep-6-desc">上午 07:00 至晚上 10:00</p>
-                </div>
-                <div class="menu-card" onclick="showSection('dep7Section')">
-                    <div class="icon">🛣️</div>
-                    <h3 id="ui-dep-7-title">港珠澳大橋</h3>
-                    <p id="ui-dep-7-desc">24小時</p>
-                </div>
-                <div class="menu-card" onclick="showSection('dep8Section')">
-                    <div class="icon">⛴️</div>
-                    <h3 id="ui-dep-8-title">港澳客輪碼頭</h3>
-                    <p id="ui-dep-8-desc">上午 06:30 至午夜 12:00</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 1. 羅湖口岸 子頁面 -->
-        <div id="dep1Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep1" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">羅湖口岸</h3>
-            <div id="ui-dep1-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                <strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>
-                前往羅湖口岸主要有以下兩種便捷方式：<br><br>
-                <strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>
-                • <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達羅湖站。<br>
-                • <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br>
-                <strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>
-                • <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫 直達羅湖站。<br>
-                • <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站是「羅湖」還是「落馬洲」，切勿上錯車！<br><br>
-                <strong>二、 深圳目的地與過關優選</strong><br>
-                如果你計劃前往以下深圳地點，選擇經羅湖口岸過關絕對是首選（優選）：<br><br>
-                <strong>深圳火車站（羅湖火車站）：</strong><br>
-                • <strong>交通優勢</strong>：完美對接！過關後一出大樓即達深圳火車站，步行只需約 1 分鐘。<br><br>
-                <strong>東門老街：</strong><br>
-                • <strong>交通優勢</strong>：位置極近。過關後轉乘深圳地鐵 1 號線（羅寶線），由「羅湖站」出發只需坐 1 個站（到老街站），車程僅約 2-3 分鐘；亦可選擇步行約
-                10-15 分鐘直達。
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 2. 落馬洲/福田口岸 子頁面 -->
-        <div id="dep2Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep2" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">落馬洲/福田口岸</h3>
-            <div id="ui-dep2-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                <strong>一、 交通路線指南（由荃灣絲麗酒店出發）</strong><br>
-                前往口岸主要有以下兩種便捷方式：<br><br>
-                <strong>路線 A：乘搭專線小巴 ➔ 沙田/大圍 ➔ 東鐵綫直達</strong><br>
-                • <strong>具體步驟</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍，轉乘 東鐵綫 直達。<br>
-                • <strong>支付方式</strong>：小巴僅支援八達通、支付寶及現金，請提前準備。<br><br>
-                <strong>路線 B：乘搭酒店穿梭巴士/巴士 ➔ 葵芳 ➔ 太子換乘 ➔ 九龍塘換乘 ➔ 東鐵綫</strong><br>
-                • <strong>具體步驟</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳站，乘地鐵至太子站換乘，再到九龍塘站轉乘 東鐵綫。<br>
-                • <strong>重要提醒</strong>：乘搭東鐵綫北上時，務必留意列車的終點站（前往羅湖或落馬洲），切勿上錯車！<br><br>
-                <strong>二、 深圳目的地：福田口岸與深圳北站</strong><br>
-                如果你計劃前往以下地點，最推薦的過關口岸與交通方式如下：<br><br>
-                <strong>1. 福田口岸</strong><br>•
-                <strong>過關路線</strong>：東鐵綫北上時，必須乘搭以「落馬洲」為終點站的列車。到達落馬洲站後直接過關，即到達福田口岸。<br>
-                • <strong>交通優勢</strong>：過關後直接連接深圳地鐵 4號線（龍華線） 及 10號線（坂田線），前往福田CBD或市中心非常快捷。<br><br>
-                <strong>2. 深圳北站（高鐵站）</strong><br>
-                • <strong>交通優勢與路線</strong>：<br>
-                • <strong>由福田口岸出發（最推薦）</strong>：在福田口岸過關後，直接在口岸地下一層的「福田口岸地鐵站」乘搭 深圳地鐵 4 號線（往牛湖方向），無需轉車，坐 4 個站（約
-                10-12
-                分鐘）即可直達「深圳北站」。<br>
-                • <strong>由羅湖口岸出發（備選）</strong>：如果經羅湖過關，則需乘搭地鐵 1 號線到老街站轉 3 號線，再轉 4
-                號線，轉車次數較多。因此，去深圳北站首選經福田口岸（落馬洲）過關最為順暢！
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 3. 香港國際機場 子頁面 -->
-        <div id="dep3Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep3" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep3-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港國際機場</h3>
-            <div id="ui-dep3-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                ✈️ <strong>荃灣絲麗酒店 ➔ 香港國際機場交通指南</strong><br>
-                為配合您的行程需求與行李攜帶情況，我們為您提供以下四種便捷的出行方案：<br><br>
-                <strong>1. 漫步輕裝出發：步行乘搭 A30 機場巴士</strong><br>
-                • <strong>路線詳情</strong>：從酒店出發，步行約 500 米（沿途為輕鬆的下坡路）至屏麗徑巴士站，登上 A30 巴士 直達機場。<br>
-                • <strong>適合對象</strong>：輕裝簡行、喜歡沿途欣賞街景的旅客。<br><br>
-                <strong>2. 轉乘接駁至葵芳：港鐵接駁 + A30 機場巴士</strong><br>
-                • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士前往葵芳地鐵站，穿過新都會廣場後，轉乘 A30 巴士 直達機場。<br>
-                • <strong>適合對象</strong>：配合酒店穿梭巴士，省時舒適。<br><br>
-                <strong>3. 鐵路極速連線：地鐵轉乘機場快線</strong><br>
-                • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士抵達葵芳地鐵站 ➔ 乘地鐵至荔景站轉乘東湧綫到青衣站 ➔ 再轉乘機場快線直達機場。<br>
-                • <strong>適合對象</strong>：追求準時、希望避開路面交通堵塞的旅客。<br><br>
-                <strong>4. 點對點尊享：網約車或的士直達</strong><br>
-                • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴打車，或在酒店門口截乘市區出租車 (的士) 直達機場。<br>
-                • <strong>參考費用</strong>：約 HK$220 - $250（具體視乎實時路面情況及行李費而定）。<br>
-                • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 4. 香港西九龍站 子頁面 -->
-        <div id="dep4Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep4" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep4-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港西九龍站</h3>
-            <div id="ui-dep4-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🚄 <strong>荃灣絲麗酒店 ➔ 香港西九龍高鐵站交通指南</strong><br>
-                為配合您的行程需求與行李攜帶情況，我們為您提供以下三種便捷的出行方案：<br><br>
-                <strong>1. 步行輕鬆直達：藍田街巴士站乘搭 36B</strong><br>
-                • <strong>路線詳情</strong>：從酒店對面馬路步行約 100 米至藍田街巴士站，登上 36B 巴士 直達高鐵站附近。<br>
-                • <strong>適合對象</strong>：輕裝簡行、想免去轉車麻煩的旅客。<br><br>
-                <strong>2. 鐵路極速連線：穿梭巴士/31號巴士 + 港鐵直達</strong><br>
-                • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31號巴士 前往荃灣西地鐵站 ➔ 轉乘屯馬綫坐 3 個站直達柯士甸站 ➔ 由 C出口
-                離開，即可直接抵達高鐵檢票大堂。<br>
-                • <strong>適合對象</strong>：追求準時、希望避開路面交通堵塞的旅客。<br><br>
-                <strong>3. 點對點尊享：網約車或的士直達</strong><br>
-                • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士直達高鐵站。<br>
-                • <strong>參考費用</strong>：約 HK$110 - $150（具體視乎實時路面交通情況而定）。<br>
-                • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 5. 深圳灣口岸 子頁面 -->
-        <div id="dep5Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep5" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep5-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">深圳灣口岸</h3>
-            <div id="ui-dep5-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🚗 <strong>荃灣絲麗酒店 ➔ 深圳灣口岸交通指南</strong><br>
-                為配合您的行程需求與行李攜帶情況，我們為您提供以下三種便捷的出行方案：<br><br>
-                <strong>直通巴士直達（舒適便捷）</strong><br>
-                • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31M
-                號巴士前往葵芳站（新都會廣場），於新都會廣場地面乘搭永東直通巴士直達深圳灣口岸（具體班次與購票詳情請在永東巴士小程序查詢）。<br>
-                • <strong>適合對象</strong>：希望免去中途頻繁轉車、輕鬆直達的旅客。<br><br>
-                <strong>鐵路轉乘巴士（經濟實惠）</strong><br>
-                • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31 號巴士前往荃灣西地鐵站 ➔ 乘搭屯馬線至屯門站 ➔ 從 C 出口步行至屯門市中心轉乘 B3X
-                巴士直達深圳灣口岸。<br>
-                • <strong>適合對象</strong>：行程時間容易掌握、喜愛高靈活性行程的旅客。<br><br>
-                <strong>點對點尊享（快捷舒適）</strong><br>
-                • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士直接前往深圳灣口岸。<br>
-                • <strong>參考費用</strong>：約 HK$200 - $300（具體視乎實時路面交通情況而定）。<br>
-                • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
-                <strong>二、 深圳目的地與過關優選</strong><br>
-                <strong>前往南山區</strong><br>
-                •
-                <strong>地理優勢</strong>：深圳灣口岸本身就位於南山區的核心地帶，過關後前往南山各大熱門商圈（如海岸城、后海）、科技園區或景點極為便利，搭乘地鐵或短途打車皆可輕鬆抵達。<br><br>
-                <strong>前往深圳寶安國際機場</strong><br>
-                • <strong>交通優勢</strong>：經深圳灣口岸過關後，乘搭地鐵約 20 多分鐘即可直達機場，路程短、省時高效，非常適合搭乘航班的旅客。
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 6. 香園圍/蓮塘口岸 子頁面 -->
-        <div id="dep6Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep6" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep6-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香園圍/蓮塘口岸</h3>
-            <div id="ui-dep6-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🚗 <strong>荃灣絲麗酒店 ➔ 蓮塘口岸（香園圍邊境管制站）交通指南</strong><br><br>
-                為配合您的行程需求與行李攜帶情況，我們為您提供以下三種便捷的出行方案：<br><br>
-                <strong>直通巴士直達（舒適便捷）</strong><br>
-                • <strong>路線詳情</strong>：乘搭酒店穿梭巴士或 31M 號巴士前往葵芳站（新都會廣場），乘搭永東蓮塘快線直達蓮塘口岸（具體班次與購票詳情請在永東巴士小程序查詢）。<br>
-                • <strong>適合對象</strong>：希望免去中途頻繁轉車、輕鬆直達的旅客。<br><br>
-                <strong>專線小巴轉乘鐵路與巴士（靈活便捷）</strong><br>
-                • <strong>路線詳情</strong>：於酒店附近乘搭 403、403P 或 403X 專線小巴前往沙田或大圍 ➔ 轉乘東鐵綫至粉嶺站 / 上水站 ➔ 再轉乘 B7
-                巴士直達香園圍口岸（蓮塘口岸）。<br>
-                • <strong>適合對象</strong>：喜愛公共交通網絡、行程時間容易掌握的旅客。<br><br>
-                <strong>點對點尊享（快捷舒適）</strong><br>
-                • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士直接前往蓮塘口岸。<br>
-                • <strong>參考費用</strong>：約 HK$250 - $350（跨區長途行程，具體視乎實時路面交通情況而定）。<br>
-                • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
-                <strong>二、 深圳目的地與過關優選</strong><br>
-                <strong>前往深圳東部及鹽田、羅湖方向</strong><br>
-                • <strong>地理優勢</strong>：蓮塘口岸過關後即連接深圳地鐵 2/8 號線（蓮塘口岸站），前往羅湖區、鹽田區（如大梅沙、小梅沙度假區）或深圳東部極為快捷。
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 7. 港珠澳大橋 子頁面 -->
-        <div id="dep7Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep7" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep7-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">港珠澳大橋</h3>
-            <div id="ui-dep7-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🚗 <strong>荃灣絲麗酒店 ➔ 港珠澳大橋香港口岸交通指南</strong><br>
-                為配合您的行程需求與行李攜帶情況，我們為您精心整理了以下三種便捷的出行方案：<br><br>
-                <strong>1. 直達巴士（輕裝簡行 🧳）</strong><br>
-                • <strong>路線詳情</strong>：從酒店出發，步行約 500 米（沿途為輕鬆的下坡路）至屏麗徑巴士站，登上 A30 巴士 直達目的地。<br>
-                • <strong>適合對象</strong>：輕裝簡行、喜歡沿途欣賞街景的旅客。<br><br>
-                <strong>2. 鐵路與巴士轉乘：港鐵轉欣澳站 ➔ B5 巴士（順暢快捷 🚇）</strong><br>
-                • <strong>路線詳情</strong>：乘搭酒店免費穿梭巴士或 31M 巴士 抵達葵芳地鐵站 ➔ 乘地鐵至荔景站轉乘東涌綫到欣澳站 ➔ 於欣澳站轉乘 B5 巴士 直達口岸。<br>
-                • <strong>適合對象</strong>：喜愛善用鐵路轉乘、希望避開市區塞車的旅客。<br><br>
-                <strong>3. 點對點尊享（快捷舒適 ✨）</strong><br>
-                • <strong>路線詳情</strong>：使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士，經 8 號幹線 直接前往港珠澳大橋香港口岸人工島。<br>
-                • <strong>參考費用</strong>：約 HK$200 - $300（跨區長途行程，具體視乎實時路面交通情況而定）。<br>
-                • <strong>適合對象</strong>：家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
-                <strong>二、 口岸目的地與過關優選</strong><br>
-                <strong>前往珠海、澳門及大灣區西岸 🌉</strong><br>
-                • <strong>地理優勢</strong>：港珠澳大橋香港口岸設有完善的出入境及通關設施，旅客可在此直接乘搭穿梭巴士（金巴）前往珠海或澳門，或轉乘跨境客車深入廣東省其他城市。
-            </div>
-        </div>
-
-        <!-- 出境攻略 -> 8. 港澳客輪碼頭 子頁面 -->
-        <div id="dep8Section" class="section-content">
-            <button class="back-btn" id="ui-back-dep8" onclick="showSection('departureSection')">⬅
-                返回出境攻略</button>
-            <h3 id="ui-dep8-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">港澳客輪碼頭</h3>
-            <div id="ui-dep8-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🚗 <strong>荃灣絲麗酒店 ➔ 港澳客輪碼頭交通指南</strong><br>
-                為配合您的行程需求與行李攜帶情況，我們為您精心整理了以下前往上環港澳客輪碼頭的便捷出行方案：<br><br>
-                <strong>1. 港鐵直達（經濟實惠 🚇）</strong><br>
-                • <strong>路線詳情</strong>： 乘搭酒店免費穿梭巴士或 31M 巴士 抵達葵芳地鐵站 ➔
-                乘搭港鐵荃灣綫往中環方向，直接到達中環站，再經行人通道步行前往上環港澳客輪碼頭（約需時 47
-                分鐘）。<br>
-                • <strong>適合對象</strong>： 熟悉香港鐵路網絡、希望避開路面交通擁堵的旅客。<br><br>
-                <strong>2. 點對點尊享（快捷舒適 ✨）</strong><br>
-                • <strong>路線詳情</strong>： 使用 Uber、高德打車、滴滴出行，或在酒店附近截乘市區的士，經西區海底隧道直接前往上環港澳客輪碼頭（車程約 17 分鐘）。<br>
-                • <strong>參考費用</strong>： 約 HK$120 - $180（具體視乎實時路面交通及隧道收費情況而定）。<br>
-                • <strong>適合對象</strong>： 家庭出行、攜帶大量行李或同行人數較多的旅客。<br><br>
-                <strong>二、 碼頭目的地與客運優選</strong><br>
-                <strong>前往澳門及跨境航線 🚢</strong><br>
-                • <strong>地理優勢</strong>： 位於上環信德中心的港澳客輪碼頭，提供往返香港與澳門（外港客運碼頭及氹仔客運碼頭）的高速客輪服務（如噴射飛航、金光飛航），通關效率高且班次頻密。
-            </div>
-        </div>
-
-        <div id="carSection" class="section-content">
-            <button class="back-btn" id="ui-back8" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-car-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車服務</h3>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('carPriceSection')">
-                    <div class="icon">💰</div>
-                    <h3 id="ui-car-card1-title">服務收費表</h3>
-                    <p id="ui-car-card1-desc">各路線點對點接送與包車收費</p>
-                </div>
-                <div class="menu-card" onclick="showSection('carTermsSection')">
-                    <div class="icon">📜</div>
-                    <h3 id="ui-car-card2-title">使用條款及細則</h3>
-                    <p id="ui-car-card2-desc">預約、取消與乘車須知</p>
-                </div>
-            </div>
-            <div id="ui-car-notice-box"
-                style="margin-top: 20px; font-size: 13px; color: #555; background: #e8f4fd; padding: 12px; border-radius: 8px; border-left: 4px solid #007bff; line-height: 1.5;">
-                若您需要任何協助、查詢或使用此服務，懇請蒞臨禮賓部櫃台，或致電 3700 3824，我們將竭誠為您服務。
-            </div>
-        </div>
-
-        <div id="carPriceSection" class="section-content">
-            <button class="back-btn" id="ui-back-carprice" onclick="showSection('carSection')">⬅ 返回專車服務</button>
-            <h3 id="ui-carprice-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 服務收費表
-            </h3>
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th id="ui-th-dest">目的地 / 服務項目</th>
-                        <th id="ui-th-price">收費 (HKD)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="ui-p-mongkok">由酒店出發到旺角</td>
-                        <td>$300</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-chinachem">由酒店出發到中港城 / 高鐵站</td>
-                        <td>$400</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-airport">由酒店出發到機場、迪士尼、港珠澳大橋</td>
-                        <td>$500</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-oceanpark">由酒店出發到海洋公園</td>
-                        <td>$750</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-surcharge">早上 8 點前 / 晚上 8 點後 附加費</td>
-                        <td>$200</td>
-                    </tr>
-                    <tr>
-                        <td id="ui-p-hourly">租用服務 (每小時，3小時起租)</td>
-                        <td>$500 / 小時</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div id="ui-carprice-note"
-                style="font-size: 12px; color: #666; line-height: 1.5; background: #f8f9fa; padding: 10px; border-radius: 6px;">
-                💡 <strong>備註：</strong>以上收費適用於點對點接送服務。如需超時或更改行程，請向禮賓部查詢。</div>
-        </div>
-
-        <div id="carTermsSection" class="section-content">
-            <button class="back-btn" id="ui-back-carterms" onclick="showSection('carSection')">⬅ 返回專車服務</button>
-            <h3 id="ui-carterms-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店專車 - 使用條款及細則
-            </h3>
-            <div id="ui-carterms-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🚘 <strong>酒店專車 - 使用條款及細則</strong><br><br>
-                <strong>【預訂及供應情況】</strong><br>
-                • 接送服務必須提前 <strong>2 天</strong> 預訂。<br>
-                • 接送服務視乎禮賓部司機和豪華轎車的供應情況而定。<br><br>
-                <strong>【乘載限制與行李】</strong><br>
-                • 豪華車最多可接載 <strong>6 名乘客</strong>（不包括行李）。<br>
-                • 接載乘客人數會根據隨行行李的尺寸和數量而有所調整。<br><br>
-                <strong>【取消及變更政策】</strong><br>
-                • 取消預約需至少提前 <strong>24 小時</strong> 通知，否則將收取 <strong>50%</strong> 的服務費。<br>
-                • 當日取消或缺席使用服務將不予退款。<br><br>
-                <strong>【免責聲明與特別安排】</strong><br>
-                • 如懸掛八號或以上熱帶氣旋警告信號或黑色暴雨警告，香港荃灣絲麗酒店保留終止接送服務的權利，恕不另行通知。<br>
-                • 若因交通狀況、路況安全及/或惡劣天氣而導致抵達時間延誤或順延，香港荃灣絲麗酒店概不負責。<br>
-                • 如有任何爭議，香港荃灣絲麗酒店保留最終決定權。<br>
-                • 如果目的地不在清單中，請隨時聯絡禮賓部作進一步商討。
-            </div>
-        </div>
-
-        <div id="facilitySection" class="section-content">
-            <button class="back-btn" id="ui-back9" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-facility-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店設施</h3>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="showSection('fac1Section')">
-                    <div class="icon">🍽️</div>
-                    <h3 id="ui-fac-1-title">金林閣餐廳</h3>
-                    <p id="ui-fac-1-desc">(2樓)</p>
-                </div>
-                <div class="menu-card" onclick="showSection('fac2Section')">
-                    <div class="icon">🌿</div>
-                    <h3 id="ui-fac-2-title">空中花園</h3>
-                    <p id="ui-fac-2-desc">(5樓)</p>
-                </div>
-                <div class="menu-card" onclick="showSection('fac3Section')">
-                    <div class="icon">🏋️</div>
-                    <h3 id="ui-fac-3-title">健身室</h3>
-                    <p id="ui-fac-3-desc">(5樓)</p>
-                </div>
-                <div class="menu-card" onclick="showSection('fac4Section')">
-                    <div class="icon">🅿️</div>
-                    <h3 id="ui-fac-4-title">停車場</h3>
-                    <p id="ui-fac-4-desc">(地面)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 酒店設施 -> 1. 金林閣餐廳 子頁面 -->
-        <div id="fac1Section" class="section-content">
-            <button class="back-btn" id="ui-back-fac1" onclick="showSection('facilitySection')">⬅
-                返回酒店設施</button>
-            <h3 id="ui-fac1-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">金林閣餐廳 (2樓)</h3>
-            <div id="ui-fac1-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🍽️ <strong>金林閣餐廳 (2/F)</strong><br><br>
-                <strong>【晨光美點 · 自助早餐】</strong><br>
-                • <strong>時間</strong>：每日 07:30 - 10:00<br>
-                • <strong>價目</strong>：HK$77 / 位<br>
-                • <strong>內容</strong>：提供豐富的中西式自助早餐，為您開啟充滿活力的一天。<br><br>
-                <strong>【周末限定 · 懷舊音樂自助餐】</strong><br>
-                • <strong>時間</strong>：每逢星期六下午及晚上<br>
-                • <strong>詳情</strong>：伴隨經典金曲，享受悠閒時光，詳情歡迎親臨或致電餐廳查詢。<br><br>
-                <strong>【團體預訂服務】</strong><br>
-                • 餐廳誠摯接受各類團體預訂自助午餐及晚餐，為您的聚會、慶典或商務活動提供專屬餐飲安排。
-            </div>
-        </div>
-
-        <!-- 酒店設施 -> 2. 空中花園 子頁面 -->
-        <div id="fac2Section" class="section-content">
-            <button class="back-btn" id="ui-back-fac2" onclick="showSection('facilitySection')">⬅
-                返回酒店設施</button>
-            <h3 id="ui-fac2-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">空中花園 (5樓)</h3>
-            <div id="ui-fac2-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🌿 <strong>空中花園 (5/F)</strong><br><br>
-                <strong>【開放時間】</strong><br>
-                • <strong>時間</strong>：每日 08:00 - 22:00，歡迎蒞臨放鬆身心，享受片刻悠閒。<br><br>
-                <strong>【吸煙區提示】</strong><br>
-                • 為保障所有住客的健康與舒適，花園內僅限露天區域提供吸煙區，敬請配合及留意。
-            </div>
-        </div>
-
-        <!-- 酒店設施 -> 3. 健身室 子頁面 -->
-        <div id="fac3Section" class="section-content">
-            <button class="back-btn" id="ui-back-fac3" onclick="showSection('facilitySection')">⬅
-                返回酒店設施</button>
-            <h3 id="ui-fac3-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">健身室 (5樓)</h3>
-            <div id="ui-fac3-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                💪 <strong>健身室 (5/F)</strong><br><br>
-                <strong>【全天候開放】</strong><br>
-                • <strong>時間</strong>：24 小時無休，供住客免費使用，隨時照顧您的運動節奏。<br><br>
-                <strong>【齊備健身器材】</strong><br>
-                • 備有多款專業健身及帶氧器材，滿足您的日常鍛鍊需求。<br><br>
-                <strong>【夜間寧馨提示】</strong><br>
-                • 為確保所有住客享有舒適寧靜的休息環境，請於晚上 11 時至翌日早上 8 時期間降低音量，感謝您的合作與體諒。
-            </div>
-        </div>
-
-        <!-- 酒店設施 -> 4. 停車場 子頁面 -->
-        <div id="fac4Section" class="section-content">
-            <button class="back-btn" id="ui-back-fac4" onclick="showSection('facilitySection')">⬅
-                返回酒店設施</button>
-            <h3 id="ui-fac4-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">停車場 (地面)</h3>
-            <div id="ui-fac4-desc"
-                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                🚗 <strong>酒店停車場 (G/F)</strong><br><br>
-                <strong>【時租泊車服務】</strong><br>
-                • <strong>收費</strong>：每小時 HK$40<br>
-                • <strong>車位</strong>：設有 2 個時租車位，方便快捷。<br><br>
-                <strong>【官網限定優惠】</strong><br>
-                • 即刻透過酒店官方網站預訂指定住宿計劃，即可尊享「免費夜泊套餐優惠」，讓您的駕駛之旅更輕鬆、更超值！
-            </div>
-        </div>
+    </div>
 
     </div>
 
@@ -1460,6 +1469,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>街頭串燒炸物</th><td>咖喱魚蛋、煎釀三寶、臭豆腐<br><span style="font-size:11px;color:#666;">特色：魚蛋彈牙吸汁；煎釀三寶（茄子、青椒、豆腐釀魚肉）香口惹味。</span></td></tr><tr><th>地道蒸腸粉麵</th><td>混醬豬腸粉、狗仔粉、碗仔翅<br><span style="font-size:11px;color:#666;">特色：腸粉講求滑口與醬汁比例；碗仔翅仿高檔翅湯，胡椒味濃郁。</span></td></tr><tr><th>大排檔小炒</th><td>椒鹽瀨尿蝦/魷魚、黑椒豬手<br><span style="font-size:11px;color:#666;">特色：強力猛火炒出「鑊氣」，鹹香下酒，風味獨特。</span></td></tr><tr><th>生滾與啫啫煲</th><td>啫啫雞煲、生滾豬潤粥、生炒骨<br><span style="font-size:11px;color:#666;">特色：砂鍋鎖住食材鮮味，醬汁濃稠冒煙，香氣四溢。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">街頭小食名店</h4><p><strong>十八座狗仔粉（佐敦）：</strong> 米芝蓮街頭小食推薦，傳統麵條濃稠順口，搭配香辣菜脯與招牌火鴨腿湯底極為入味。<br><strong>地址：</strong> 九龍佐敦寧波街 27 號A地舖</p><p><strong>合益泰小食（深水埗）：</strong> 馳名全港的豬腸粉，每日新鮮現做，滑嫩無比，搭配麻醬、甜醬與白芝麻是經典吃法。<br><strong>地址：</strong> 九龍深水埗桂林街 121 號地舖</p><p><strong>佳佳甜品（佐敦）：</strong> 連續多年獲米芝蓮推薦，主打古法手磨糖水，芝麻糊、香滑芝麻糊與寧波湯丸濃郁滑順。<br><strong>地址：</strong> 九龍佐敦白加士街 121-123 號地舖</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">經典大排檔</h4><p><strong>愛文生（深水埗）：</strong> 1956 年營業至今，保留傳統開放式大火炒鍋，黑椒豬手與椒鹽魷魚鑊氣十足，是體驗大排檔風情的首選。<br><strong>地址：</strong> 九龍深水埗石硖尾街 1 號C地舖</p><p><strong>盛記（中環）：</strong> 隱身於中環半山斜坡上的數十年老檔，主打各式家常小炒與啫啫煲，氣氛懷舊。<br><strong>地址：</strong> 香港島中環士丹利街 82 號斜坡</p><p><strong>東寶小館（灣仔）：</strong> 以前衛活潑風格聞名的室內大排檔，用「戰鬥碗」喝酒，風沙雞與墨墨黑炒飯是每桌必點。<br><strong>地址：</strong> 香港島灣仔謝斐道 303 號 KONNECT 2 樓</p>`,
                 guideNoodleH: "香港旅遊攻略 - 美食 - 傳統粉麵與燒味",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>鮮蝦雲吞麵</th><td>鮮蝦雲吞麵、水餃麵<br><span style="font-size:11px;color:#666;">特色：雲吞講求「散尾」，蝦肉鮮彈；湯頭清鮮，麵條要爽口「有咬口」。</span></td></tr><tr><th>牛腩牛雜</th><td>清湯牛腩、柱候牛雜<br><span style="font-size:11px;color:#666;">特色：牛腩分坑腩、爽腩與腩角；牛雜滷得入味，搭配河粉或米粉絕配。</span></td></tr><tr><th>傳統竹升麵</th><td>蝦籽撈麵、薑蔥撈麵<br><span style="font-size:11px;color:#666;">特色：利用竹竿壓製麵條，口感極度爽彈，搭配特製醬汁與蝦籽香氣十足。</span></td></tr><tr><th>港式燒臘</th><td>蜜汁叉燒、脆皮燒鵝/燒肉<br><span style="font-size:11px;color:#666;">特色：叉燒講求焦香蜜甜（「火燒邊」）；燒肉五層分明、皮脆肉嫩。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">餐廳詳細地址</h4><p><strong>沾仔記（中環）：</strong> 米芝蓮必比登推薦，招牌雲吞大如乒乓球，包著滿滿蝦肉，湯底以大地魚與蝦籽熬製，鮮美濃郁。<br><strong>地址：</strong> 香港島中環威靈頓街 98 號地舖</p><p><strong>九記牛腩（中環）：</strong> 首創清湯牛腩，牛肉燉至軟爛入味，清湯清甜、咖喱牛腩濃郁，長期吸引排隊人潮。<br><strong>地址：</strong> 香港島中環歌賦街 21 號地舖</p><p><strong>劉森記麵家（深水埗）：</strong> 堅持傳統竹升打麵，麵條極具彈力且無碱水味，招牌蝦籽撈麵撒滿香濃蝦籽。<br><strong>地址：</strong> 九龍深水埗桂林街 48 號地舖</p><p><strong>甘牌燒鵝（灣仔）：</strong> 米芝蓮一星榮譽，皮脆肉嫩，鵝脂香氣濃郁，搭配特製梅子醬堪稱一絕。<br><strong>地址：</strong> 香港島灣仔軒尼詩道 226 號寶華商業中心地舖</p><p><strong>一樂燒鵝（中環）：</strong> 連續多年獲米芝蓮一星，燒鵝皮薄如紙、香脆多汁，燒鵝瀨粉是必點經典。<br><strong>地址：</strong> 香港島中環士丹利街 34-38 號地舖</p><p><strong>再興燒臘飯店（灣仔）：</strong> 被譽為「叉燒霸王」，叉燒肥瘦適中、蜜汁香甜，價格平實，極具在地特色。<br><strong>地址：</strong> 香港島灣仔軒尼詩道 265-267 號 C 座地舖</p>`,
+                guideGlobalFoodH: "香港旅遊攻略 - 美食 - 環球與異國美食",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>東南亞風味</th><td>泰式船麵、南洋喇沙、印度咖哩薄餅<br><span style="font-size:11px;color:#666;">特色：香料層次豐富，酸辣濃郁，極具異國街頭風味。</span></td></tr><tr><th>港式西洋味</th><td>豉油西餐（焗豬扒飯、羅宋湯）、特製熱狗<br><span style="font-size:11px;color:#666;">特色：將西方飲食港式化，用豉油、茄汁與濃湯調和出適合東方人的口味。</span></td></tr><tr><th>日韓平民味</th><td>雞白湯拉麵、韓式炸雞、日式咖哩蛋包飯<br><span style="font-size:11px;color:#666;">特色：精緻度高，極受香港年輕族群與上班族喜愛。</span></td></tr><tr><th>歐美輕食</th><td>手工義大利麵、美式手工漢堡<br><span style="font-size:11px;color:#666;">特色：講求食材新鮮與現做口感，是平價休閒餐飲（Casual Dining）的主力。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">地道名店推薦</h4><p><strong>泰潮 / 泰國菜館（九龍城）：</strong> 九龍城被譽為香港的「小泰國」，地道泰國人開辦的餐廳林立，船麵、冬蔭功與泰式海南雞飯風味純正。<br><strong>地址：</strong> 九龍九龍城南角道 36 號地舖</p><p><strong>永樂園餐廳（中環）：</strong> 港式與西洋風格結合的經典，其特製雙腸熱狗搭配獨門黃芥末醬，是中環上班族的平民美食傳奇。<br><strong>地址：</strong> 香港島中環昭隆街 19 號地舖</p><p><strong>重慶大廈異國美食（尖沙咀）：</strong> 香港最具傳奇色彩的多元文化地標，匯聚極為地道的印度咖哩、巴基斯坦燒烤與尼泊爾小食。<br><strong>地址：</strong> 九龍尖沙咀彌敦道 36-44 號</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">日韓與歐美平民異國味</h4><p><strong>座銀 ZAGIN SOBA（中環）：</strong> 主打極致濃郁的雞白湯拉麵，湯底如卡布奇諾般綿密，搭配酥脆炸牛蒡，是日式拉麵的頂級代表。<br><strong>地址：</strong> 香港島中環歌賦街 7 號地舖</p><p><strong>Pici（灣仔）：</strong> 主打手工現做義大利麵，價格親民且氣氛輕鬆，寬條麵（Pappardelle）與松露意粉極受歡迎。<br><strong>地址：</strong> 香港島灣仔進教圍 16 號地舖</p>`,
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -1611,6 +1622,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃经典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>街头串烧炸物</th><td>咖喱鱼蛋、煎酿三宝、臭豆腐<br><span style="font-size:11px;color:#666;">特色：鱼蛋弹牙吸汁；煎酿三宝（茄子、青椒、豆腐酿鱼肉）香口惹味。</span></td></tr><tr><th>地道蒸肠粉面</th><td>混酱猪肠粉、狗仔粉、碗仔翅<br><span style="font-size:11px;color:#666;">特色：肠粉讲求滑口与酱汁比例；碗仔翅仿高档翅汤，胡椒味浓郁。</span></td></tr><tr><th>大排档小炒</th><td>椒盐濑尿虾/鱿鱼、黑椒猪手<br><span style="font-size:11px;color:#666;">特色：強力猛火炒出“鑊气”，咸香下酒，風味独特。</span></td></tr><tr><th>生滚与啫啫煲</th><td>啫啫鸡煲、生滚猪润粥、生炒骨<br><span style="font-size:11px;color:#666;">特色：砂锅锁住食材鲜味，酱汁浓稠冒烟，香气四溢。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">街头小食名店</h4><p><strong>十八座狗仔粉（佐敦）：</strong> 米芝莲街头小食推荐，传统面条浓稠顺口，搭配香辣菜脯与招牌火鸭腿汤底极为入味。<br><strong>地址：</strong> 九龙佐敦宁波街 27 号A地铺</p><p><strong>合益泰小食（深水埗）：</strong> 驰名全港的猪肠粉，每日新鲜现做，滑嫩无比，搭配麻酱、甜酱与白芝麻是经典吃法。<br><strong>地址：</strong> 九龙深水埗桂林街 121 号地铺</p><p><strong>佳佳甜品（佐敦）：</strong> 连续多年获米芝莲推荐，主打古法手磨糖水，芝麻糊、香滑芝麻糊与宁波汤丸浓郁滑顺。<br><strong>地址：</strong> 九龙佐敦白加士街 121-123 号地铺</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">经典大排档</h4><p><strong>爱文生（深水埗）：</strong> 1956 年营业至今，保留传统开放式大火炒锅，黑椒猪手与椒盐鱿鱼鑊气十足，是体验大排档风情的首选。<br><strong>地址：</strong> 九龙深水埗石硖尾街 1 号C地铺</p><p><strong>盛记（中环）：</strong> 隐身于中环半山斜坡上的数十年老档，主打各式家常小炒与啫啫煲，气氛怀旧。<br><strong>地址：</strong> 香港岛中环士丹利街 82 号斜坡</p><p><strong>东宝小馆（湾仔）：</strong> 以前卫活泼风格闻名的室内大排档，用“战斗碗”喝酒，风沙鸡与墨墨黑炒饭是每桌必点。<br><strong>地址：</strong> 香港岛湾仔谢斐道 303 号 KONNECT 2 楼</p>`,
                 guideNoodleH: "香港旅遊攻略 - 美食 - 傳統粉麵與燒味",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>鮮蝦雲吞麵</th><td>鮮蝦雲吞麵、水餃麵<br><span style="font-size:11px;color:#666;">特色：雲吞講求「散尾」，蝦肉鮮彈；湯頭清鮮，麵條要爽口「有咬口」。</span></td></tr><tr><th>牛腩牛雜</th><td>清湯牛腩、柱候牛雜<br><span style="font-size:11px;color:#666;">特色：牛腩分坑腩、爽腩與腩角；牛雜滷得入味，搭配河粉或米粉絕配。</span></td></tr><tr><th>傳統竹升麵</th><td>蝦籽撈麵、薑蔥撈麵<br><span style="font-size:11px;color:#666;">特色：利用竹竿壓製麵條，口感極度爽彈，搭配特製醬汁與蝦籽香氣十足。</span></td></tr><tr><th>港式燒臘</th><td>蜜汁叉燒、脆皮燒鵝/燒肉<br><span style="font-size:11px;color:#666;">特色：叉燒講求焦香蜜甜（「火燒邊」）；燒肉五層分明、皮脆肉嫩。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">餐廳詳細地址</h4><p><strong>沾仔記（中環）：</strong> 米芝蓮必比登推薦，招牌雲吞大如乒乓球，包著滿滿蝦肉，湯底以大地魚與蝦籽熬製，鮮美濃郁。<br><strong>地址：</strong> 香港島中環威靈頓街 98 號地舖</p><p><strong>九記牛腩（中環）：</strong> 首創清湯牛腩，牛肉燉至軟爛入味，清湯清甜、咖喱牛腩濃郁，長期吸引排隊人潮。<br><strong>地址：</strong> 香港島中環歌賦街 21 號地舖</p><p><strong>劉森記麵家（深水埗）：</strong> 堅持傳統竹升打麵，麵條極具彈力且無碱水味，招牌蝦籽撈麵撒滿香濃蝦籽。<br><strong>地址：</strong> 九龍深水埗桂林街 48 號地舖</p><p><strong>甘牌燒鵝（灣仔）：</strong> 米芝蓮一星榮譽，皮脆肉嫩，鵝脂香氣濃郁，搭配特製梅子醬堪稱一絕。<br><strong>地址：</strong> 香港島灣仔軒尼詩道 226 號寶華商業中心地舖</p><p><strong>一樂燒鵝（中環）：</strong> 連續多年獲米芝蓮一星，燒鵝皮薄如紙、香脆多汁，燒鵝瀨粉是必點經典。<br><strong>地址：</strong> 香港島中環士丹利街 34-38 號地舖</p><p><strong>再興燒臘飯店（灣仔）：</strong> 被譽為「叉燒霸王」，叉燒肥瘦適中、蜜汁香甜，價格平實，極具在地特色。<br><strong>地址：</strong> 香港島灣仔軒尼詩道 265-267 號 C 座地舖</p>`,
+                guideGlobalFoodH: "香港旅游攻略 - 美食 - 环球与异国美食",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃经典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>东南亚風味</th><td>泰式船面、南洋喇沙、印度咖喱薄饼<br><span style="font-size:11px;color:#666;">特色：香料层次丰富，酸辣浓郁，极具异国街头風味。</span></td></tr><tr><th>港式西洋味</th><td>豉油西餐（焗猪扒饭、罗宋汤）、特制热狗<br><span style="font-size:11px;color:#666;">特色：将西方饮食港式化，用豉油、茄汁与浓汤调和出适合东方人的口味。</span></td></tr><tr><th>日韩平民味</th><td>鸡白汤拉面、韩式炸鸡、日式咖喱蛋包饭<br><span style="font-size:11px;color:#666;">特色：精致度高，极受香港年轻族群与上班族喜爱。</span></td></tr><tr><th>欧美轻食</th><td>手工意大利面、美式手工汉堡<br><span style="font-size:11px;color:#666;">特色：讲求食材新鲜与现做口感，是平价休闲餐饮（Casual Dining）的主力。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">地道名店推荐</h4><p><strong>泰潮 / 泰国菜馆（九龙城）：</strong> 九龙城被誉为香港的“小泰国”，地道泰国人开办的餐厅林立，船面、冬荫功与泰式海南鸡饭風味纯正。<br><strong>地址：</strong> 九龙九龙城南角道 36 号地铺</p><p><strong>永乐园餐厅（中环）：</strong> 港式与西洋风格结合的经典，其特制双肠热狗搭配独门黄芥末酱，是中环上班族的平民美食传奇。<br><strong>地址：</strong> 香港岛中环昭隆街 19 号地铺</p><p><strong>重庆大厦异国美食（尖沙咀）：</strong> 香港最具传奇色彩的多元文化地标，汇聚极为地道的印度咖喱、巴基斯坦烧烤与尼泊尔小食。<br><strong>地址：</strong> 九龙尖沙咀弥敦道 36-44 号</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">日韩与欧美平民异国味</h4><p><strong>座银 ZAGIN SOBA（中环）：</strong> 主打极致浓郁的鸡白汤拉面，汤底如卡布奇诺般绵密，搭配酥脆炸牛蒡，是日式拉面的高级代表。<br><strong>地址：</strong> 香港岛中环歌赋街 7 号地铺</p><p><strong>Pici（湾仔）：</strong> 主打手工现做意大利面，价格亲民且气氛轻松，宽条面（Pappardelle）与松露意粉极受欢迎。<br><strong>地址：</strong> 香港岛湾仔进教围 16 号地铺</p>`,
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -1762,6 +1775,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Must-Try Street Food & Delicacies</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Skewers & Fried Foods</th><td>Curry Fish Balls, Three Stuffed Treasures, Stinky Tofu<br><span style="font-size:11px;color:#666;">Features: Chewy fish balls absorbing rich curry sauce; fish-paste stuffed vegetables.</span></td></tr><tr><th>Rice Rolls & Noodles</th><td>Mixed Sauce Rice Noodle Rolls, Dogcart Noodles, Imitation Shark's Fin Soup<br><span style="font-size:11px;color:#666;">Features: Silky smooth rice rolls with peanut and sweet sauce; peppery hearty soup.</span></td></tr><tr><th>Dai Pai Dong Stir-fries</th><td>Salt & Pepper Mantis Shrimp / Squid, Black Pepper Pork Knuckle<br><span style="font-size:11px;color:#666;">Features: High-heat "Wok Hei" stir-frying, savory and perfect with beer.</span></td></tr><tr><th>Sizzling Claypot Dishes</th><td>Sizzling Chicken Claypot, Fresh Liver Congee, Sweet & Sour Pork<br><span style="font-size:11px;color:#666;">Features: Claypot seals in rich flavors, served smoking hot and aromatic.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Famous Street Food Spots</h4><p><strong>Block 18 Doggie's Noodle (Jordan):</strong> Michelin Street Food recommendation with thick savory broth and spicy radish.<br><strong>Address:</strong> G/F, 27A Ning Po Street, Jordan, Kowloon</p><p><strong>Hop Yik Tai (Sham Shui Po):</strong> Famous for fresh silky rice rolls served with peanut sauce, sweet sauce, and sesame seeds.<br><strong>Address:</strong> G/F, 121 Kweilin Street, Sham Shui Po, Kowloon</p><p><strong>Kai Kai Dessert (Jordan):</strong> Michelin-recommended traditional Cantonese desserts, famous for smooth black sesame soup.<br><strong>Address:</strong> G/F, 121-123 Parkes Street, Jordan, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Classic Dai Pai Dongs</h4><p><strong>Oi Man Sang (Sham Shui Po):</strong> Operating since 1956, featuring open-fire wok cooking and legendary stir-fry dishes.<br><strong>Address:</strong> G/F, 1C Shek Kip Mei Street, Sham Shui Po, Kowloon</p><p><strong>Sing Kee (Central):</strong> Nostalgic outdoor stall tucked away on a Central slope, serving authentic home-style stir-fries.<br><strong>Address:</strong> Slope of 82 Stanley Street, Central, Hong Kong Island</p><p><strong>Tung Po Kitchen (Wan Chai):</strong> Famous indoor open-air dining experience, drinking beer from battle bowls.<br><strong>Address:</strong> 2/F, KONNECT, 303 Jaffe Road, Wan Chai, Hong Kong Island</p>`,
                 guideNoodleH: "HK Travel Guide - Dining - Traditional Noodles & Roast Meats",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Must-Try Classic Dishes</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Shrimp Wonton Noodles</th><td>Shrimp Wonton Noodles, Dumpling Noodles<br><span style="font-size:11px;color:#666;">Features: Chewy shrimp wontons; rich broth; springy "al dente" egg noodles.</span></td></tr><tr><th>Beef Brisket & Offal</th><td>Clear Broth Beef Brisket, Chu Hou Beef Offal<br><span style="font-size:11px;color:#666;">Features: Tender beef cuts; savory marinated offal served with flat rice noodles.</span></td></tr><tr><th>Bamboo-Pressed Noodles</th><td>Shrimp Roe Lo Mein, Ginger & Scallion Lo Mein<br><span style="font-size:11px;color:#666;">Features: Handmade noodles pressed with bamboo poles, extra bouncy texture.</span></td></tr><tr><th>Hong Kong Roast Meats</th><td>Honey BBQ Pork (Char Siu), Roast Goose, Crispy Roast Pork<br><span style="font-size:11px;color:#666;">Features: Sweet glazed char siu; crispy skin roast goose and five-layer pork.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Restaurant Addresses</h4><p><strong>Tsim Chai Kee (Central):</strong> Michelin Bib Gourmand; ping-pong ball sized shrimp wontons in flavorful flounder broth.<br><strong>Address:</strong> G/F, 98 Wellington Street, Central, Hong Kong Island</p><p><strong>Kau Kee Restaurant (Central):</strong> Famous for clear broth beef brisket and rich curry brisket.<br><strong>Address:</strong> G/F, 21 Gough Street, Central, Hong Kong Island</p><p><strong>Lau Sum Kee Noodle (Sham Shui Po):</strong> Traditional bamboo-pressed noodles topped with aromatic shrimp roe.<br><strong>Address:</strong> G/F, 48 Kweilin Street, Sham Shui Po, Kowloon</p><p><strong>Kam's Roast Goose (Wan Chai):</strong> Michelin 1-Star; crispy skin, juicy goose paired with plum sauce.<br><strong>Address:</strong> G/F, Po Wah Commercial Centre, 226 Hennessy Road, Wan Chai</p><p><strong>Yat Lok Roast Goose (Central):</strong> Michelin 1-Star; paper-thin crispy goose skin with lai fun noodles.<br><strong>Address:</strong> G/F, 34-38 Stanley Street, Central, Hong Kong Island</p><p><strong>Joy Hing Roasted Meat (Wan Chai):</strong> Famous for legendary sweet honey BBQ pork at affordable prices.<br><strong>Address:</strong> G/F, Block C, 265-267 Hennessy Road, Wan Chai</p>`,
+                guideGlobalFoodH: "HK Travel Guide - Dining - Global & Exotic Cuisine",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Must-Try Classic Cuisines</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Southeast Asian</th><td>Thai Boat Noodles, Laksa, Indian Curry Roti<br><span style="font-size:11px;color:#666;">Features: Rich spices, tangy & spicy flavors, authentic street food vibe.</span></td></tr><tr><th>Hong Kong Western</th><td>Soy Sauce Western (Baked Pork Chop Rice, Borscht), Hot Dogs<br><span style="font-size:11px;color:#666;">Features: Western dishes localized with soy sauce, ketchup, and rich broth.</span></td></tr><tr><th>Japanese & Korean</th><td>Chicken Ramen, Korean Fried Chicken, Japanese Curry Omurice<br><span style="font-size:11px;color:#666;">Features: High quality and hugely popular among youth and office workers.</span></td></tr><tr><th>Western Casual</th><td>Handmade Pasta, Artisan Burgers<br><span style="font-size:11px;color:#666;">Features: Fresh ingredients and made-to-order casual dining experience.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Authentic Recommendations</h4><p><strong>Thai Chiu / Thai Restaurants (Kowloon City):</strong> Known as "Little Thailand", offering authentic Thai boat noodles, Tom Yum Goong, and Hainanese chicken.<br><strong>Address:</strong> G/F, 36 Nam Kok Road, Kowloon City, Kowloon</p><p><strong>Wing Lok Yuen (Central):</strong> Legendary HK-style Western diner famous for double hot dogs with signature mustard sauce.<br><strong>Address:</strong> G/F, 19 Chiu Lung Street, Central, Hong Kong Island</p><p><strong>Chungking Mansions (Tsim Sha Tsui):</strong> Multicultural landmark serving authentic Indian curry, Pakistani BBQ, and Nepalese snacks.<br><strong>Address:</strong> 36-44 Nathan Road, Tsim Sha Tsui, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Casual International Eats</h4><p><strong>ZAGIN SOBA (Central):</strong> Famous for rich, creamy Cappuccino-like chicken soup ramen topped with crispy burdock.<br><strong>Address:</strong> G/F, 7 Gough Street, Central, Hong Kong Island</p><p><strong>Pici (Wan Chai):</strong> Popular fresh handmade pasta bar offering affordable Pappardelle and truffle pasta in a relaxed vibe.<br><strong>Address:</strong> G/F, 16 St. Francis Yard, Wan Chai, Hong Kong Island</p>`,
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -1913,6 +1928,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必食ストリートフード</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>串焼き・揚げ物</th><td>カレーフィッシュボール、煎釀三寶（魚のすり身詰め揚げ）、臭豆腐<br><span style="font-size:11px;color:#666;">特徴：スープが染み込んだフィッシュボールと香ばしいすり身揚げ。</span></td></tr><tr><th>蒸し腸粉・麺類</th><td>ミックスソース腸粉、狗仔粉（ドッグ麺）、碗仔翅（フカヒレスープ風）<br><span style="font-size:11px;color:#666;">特徴：ツルツルの腸粉に濃厚なゴマダレ。胡椒の効いたとろみスープ。</span></td></tr><tr><th>大排檔（屋台炒め）</th><td>シャコ・イカの塩コショウ炒め、黒胡椒豚足<br><span style="font-size:11px;color:#666;">特徴：強火で一気に炒める「鑊氣（ウォックヘイ）」が効いたお酒に合う逸品。</span></td></tr><tr><th>クレイポット土鍋料理</th><td>ジュージューチキン鍋、生滾豚レバー粥、酢豚<br><span style="font-size:11px;color:#666;">特徴：土鍋で旨味を閉じ込めた熱々で香ばしい料理。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">有名ストリートフード店</h4><p><strong>十八座狗仔粉（佐敦）：</strong> ミシュラン推薦の伝統麺。濃厚な鴨だしスープと辛味菜脯が絶品。<br><strong>住所：</strong> 九龍佐敦寧波街 27 號A地舖</p><p><strong>合益泰小食（深水埗）：</strong> 香港一有名な蒸し腸粉。毎日手作りでゴマダレとの相性抜群。<br><strong>住所：</strong> 九龍深水埗桂林街 121 號地舖</p><p><strong>佳佳甜品（佐敦）：</strong> ミシュラン推薦の伝統中華スイーツ店。濃厚な黒ゴマスープが人気。<br><strong>住所：</strong> 九龍佐敦白加士街 121-123 號地舖</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">名物大排檔（オープンエア屋台）</h4><p><strong>愛文生（深水埗）：</strong> 1956年創業の老舗大排檔。迫力ある大火力の炒め料理が名物。<br><strong>住所：</strong> 九龍深水埗石硖尾街 1 號C地舖</p><p><strong>盛記（中環）：</strong> 中環の坂道に位置するノスタルジックな屋外屋台。<br><strong>住所：</strong> 香港島中環士丹利街 82 號斜坡</p><p><strong>東寶小館（灣仔）：</strong> お椀でお酒を飲むユニークな室内スタイル大排檔。<br><strong>住所：</strong> 香港島灣仔謝斐道 303 號 KONNECT 2 樓</p>`,
                 guideNoodleH: "香港観光ガイド - グルメ - 傳統粉麵與燒味（麺類＆ロースト肉）",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必食クラシック料理</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>海老ワンタン麺</th><td>海老ワンタン麺、水餃子麺<br><span style="font-size:11px;color:#666;">特徴：プリプリの海老ワンタン、出汁の効いたスープ、歯ごたえ抜群の細麺。</span></td></tr><tr><th>牛スジ・牛モツ</th><td>清湯牛スジ麺、チューハウソース牛モツ<br><span style="font-size:11px;color:#666;">特徴：柔らかく煮込まれた牛スジと味が染み込んだモツの絶品麺。</span></td></tr><tr><th>竹昇打麺（手打ち麺）</th><td>海老卵和え麺、ネギ生姜和え麺<br><span style="font-size:11px;color:#666;">特徴：竹竿を使って打った極上のコシを持つ伝統細麺。</span></td></tr><tr><th>港式ロースト肉（燒臘）</th><td>蜜汁チャーシュー、ローストグース（ガチョウ）、カリカリ焼き豚<br><span style="font-size:11px;color:#666;">特徴：甘辛いタレのチャーシューと皮がパリパリなロースト肉。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">店舗詳細情報</h4><p><strong>沾仔記（中環）：</strong> ミシュランビブグルマン獲得。ピンポン球サイズの巨大海老ワンタンが有名。<br><strong>住所：</strong> 香港島中環威靈頓街 98 號地舖</p><p><strong>九記牛腩（中環）：</strong> 清湯牛スジ麺の発祥店。澄んだ出汁と濃縮カレー味が人気。<br><strong>住所：</strong> 香港島中環歌賦街 21 號地舖</p><p><strong>劉森記麵家（深水埗）：</strong> 竹竿で打つ手打ち麺にたっぷりの海老卵をかけた和え麺が名物。<br><strong>住所：</strong> 九龍深水埗桂林街 48 號地舖</p><p><strong>甘牌燒鵝（灣仔）：</strong> ミシュラン1つ星。パリッとした皮とジューシーなガチョウ肉。<br><strong>住所：</strong> 香港島灣仔軒尼詩道 226 號寶華商業中心地舖</p><p><strong>一樂燒鵝（中環）：</strong> ミシュラン1つ星。紙のように薄いパリパリ皮のローストグース。<br><strong>住所：</strong> 香港島中環士丹利街 34-38 號地舖</p><p><strong>再興燒臘飯店（灣仔）：</strong> 「チャーシューの王様」と称されるコスパ抜群の老舗名店。<br><strong>住所：</strong> 香港島灣仔軒尼詩道 265-267 號 C 座地舖</p>`,
+                guideGlobalFoodH: "香港観光ガイド - グルメ - 環球與異國美食（世界・エスニック料理）",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必食クラシック料理</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>東南アジア料理</th><td>タイ式ボートヌードル、ラクサ、インドカレーナン<br><span style="font-size:11px;color:#666;">特徴：スパイスが効いた甘酸っぱく濃厚な本格ストリートフード。</span></td></tr><tr><th>香港風洋食</th><td>豉油洋食（ポークチョップドリア、ボルシチ）、特製ホットドッグ<br><span style="font-size:11px;color:#666;">特徴：西洋料理に醤油やケチャップを合わせた香港独自のアレンジ。</span></td></tr><tr><th>日韓グルメ</th><td>鶏白湯ラーメン、ヤンニョムチキン、日式オムライス<br><span style="font-size:11px;color:#666;">特徴：クオリティが高く、若者や会社員に大人気。</span></td></tr><tr><th>欧米カジュアル</th><td>自家製パスタ、手作りハンバーガー<br><span style="font-size:11px;color:#666;">特徴：新鮮な食材と出来立てにこだわったカジュアルダイニング。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">名物本格店舗</h4><p><strong>泰潮 / タイ料理店（九龍城）：</strong> 「リトルタイ」と呼ばれる九龍城で、本格的なトムヤムクンやタイ式海南鶏飯が楽しめます。<br><strong>住所：</strong> 九龍九龍城南角道 36 號地舖</p><p><strong>永樂園餐廳（中環）：</strong> 特製マスタードソースのダブルソーセージホットドッグが有名な人気老舗店。<br><strong>住所：</strong> 香港島中環昭隆街 19 號地舖</p><p><strong>重慶大廈（チョンキンマンション / 尖沙咀）：</strong> 異国情緒溢れる多文化ビル。本格インドカレーやバーベキューが名物。<br><strong>住所：</strong> 九龍尖沙咀彌敦道 36-44 號</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">日韓・欧米カジュアルグルメ</h4><p><strong>座銀 ZAGIN SOBA（中環）：</strong> クリーミーな泡系鶏白湯ラーメンとサクサクの揚げごぼうが絶品。<br><strong>住所：</strong> 香港島中環歌賦街 7 號地舖</p><p><strong>Pici（灣仔）：</strong> 手打ちの生パスタがリーズナブルに味わえる人気イタリアン。<br><strong>住所：</strong> 香港島灣仔進教圍 16 號地舖</p>`,
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -2064,6 +2081,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">필수 길거리 음식</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>꼬치 & 튀김</th><td>카레 피시볼, 전양삼보(어묵 속 채움 튀김), 취두부<br><span style="font-size:11px;color:#666;">특징: 양념이 잘 배어든 피시볼과 바삭하고 고소한 튀김.</span></td></tr><tr><th>창펀 & 면류</th><td>소스 믹스 창펀, 고자이펀, 완자이취(삭스핀 풍 미역스프)<br><span style="font-size:11px;color:#666;">특징: 부드러운 창펀과 땅콩소스, 후추 향이 진한 따뜻한 스프.</span></td></tr><tr><th>다이파이동 볶음</th><td>소금후추 갯가재/오징어 볶음, 블랙페퍼 족발<br><span style="font-size:11px;color:#666;">특징: 강한 불로 볶아낸 '웍헤이(불맛)', 맥주 안주로 최고.</span></td></tr><tr><th>뚝배기 요리</th><td>저저 치킨 뚝배기, 돼지간 죽, 탕수육<br><span style="font-size:11px;color:#666;">특징: 뚝배기에 풍미를 가두어 제공되는 열기 가득한 요리.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">길거리 음식 맛집</h4><p><strong>십팔좌고자이펀 (조던):</strong> 미슐랭 스트리트 푸드 추천. 진한 오리고기 국물과 매콤한 무장아찌의 조합.<br><strong>주소:</strong> G/F, 27A Ning Po Street, Jordan</p><p><strong>합익태 소식 (삼수이포):</strong> 홍콩에서 가장 유명한 창펀 맛집. 매일 아침 만드는 부드러운 창펀.<br><strong>주소:</strong> G/F, 121 Kweilin Street, Sham Shui Po</p><p><strong>가 가 디저트 (조던):</strong> 미슐랭 추천 전통 디저트 전문점. 진한 흑임자죽이 대표 메뉴.<br><strong>주소:</strong> G/F, 121-123 Parkes Street, Jordan</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">대표 다이파이동 (포장마차)</h4><p><strong>아이문생 (삼수이포):</strong> 1956년부터 영업한 대표 다이파이동. 강력한 불맛의 볶음 요리.<br><strong>주소:</strong> G/F, 1C Shek Kip Mei Street, Sham Shui Po</p><p><strong>성기 (센트럴):</strong> 센트럴 언덕길에 위치한 정겨운 야외 포장마차.<br><strong>주소:</strong> Slope of 82 Stanley Street, Central</p><p><strong>동보소관 (완차이):</strong> '전투 사발'에 맥주를 마시는 이색적인 실내 다이파이동.<br><strong>주소:</strong> 2/F, KONNECT, 303 Jaffe Road, Wan Chai</p>`,
                 guideNoodleH: "홍콩 여행 가이드 - 맛집 - 전통 완탕면 & 바비큐(시우メイ)",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">필수 클래식 메뉴</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>새우 완탕면</th><td>새우 완탕면, 수교면<br><span style="font-size:11px;color:#666;">특징: 톡톡 터지는 새우 완탕, 맑고 깊은 육수, 꼬들꼬들한 에그면.</span></td></tr><tr><th>소고기 양지 & 내장</th><td>맑은 국물 소양지면, 체후소스 소내장<br><span style="font-size:11px;color:#666;">특징: 부드럽게 푹 삶은 양지와 짭조름하게 조린 소내장.</span></td></tr><tr><th>전통 대나무 면</th><td>새우알 비빔면, 생강파 비빔면<br><span style="font-size:11px;color:#666;">특징: 대나무로 눌러 만든 면으로 극상의 쫄깃한 식감.</span></td></tr><tr><th>홍콩식 바비큐</th><td>차슈(돼지 바비큐), 로스트 거스(거위), 겉바속촉 족발/삼겹살<br><span style="font-size:11px;color:#666;">특징: 달콤한 꿀을 바른 차슈와 바삭한 껍질의 거위 구이.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">레스토랑 상세 주소</h4><p><strong>침차이키 (센트럴):</strong> 미슐랭 빕구르망. 탁구공만 한 거대한 새우 완탕이 특징.<br><strong>주소:</strong> G/F, 98 Wellington Street, Central</p><p><strong>구기우남 / 카우키 (센트럴):</strong> 맑은 국물 소양지 국수의 원조 맛집.<br><strong>주소:</strong> G/F, 21 Gough Street, Central</p><p><strong>라우삼키 (삼수이포):</strong> 대나무로 직접 반죽한 면에 고소한 새우알을 얹은 비빔면.<br><strong>주소:</strong> G/F, 48 Kweilin Street, Sham Shui Po</p><p><strong>감파이 로스트 거스 (완차이):</strong> 미슐랭 1스타. 바삭한 껍질과 육즙 가득한 거위 구이.<br><strong>주소:</strong> G/F, 226 Hennessy Road, Wan Chai</p><p><strong>일락 로스트 거스 (센트럴):</strong> 미슐랭 1스타. 종이처럼 얇고 바삭한 거위 구이 껍질.<br><strong>주소:</strong> G/F, 34-38 Stanley Street, Central</p><p><strong>재흥시우メイ (완차이):</strong> 차슈의 왕이라 불리는 가성비 뛰어난 로컬 바비큐 맛집.<br><strong>주소:</strong> G/F, Block C, 265-267 Hennessy Road, Wan Chai</p>`,
+                guideGlobalFoodH: "홍콩 여행 가이드 - 맛집 - 세계 각국 요리",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">필수 클래식 메뉴</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>동남아 요리</th><td>태국식 보트 국수, 락사, 인도 카레 난<br><span style="font-size:11px;color:#666;">특징: 향신료 풍미가 가득한 새콤매콤한 스트리트 푸드.</span></td></tr><tr><th>홍콩식 양식</th><td>간장 양식(돈가스 리조또, 보르시), 특제 핫도그<br><span style="font-size:11px;color:#666;">특징: 서양 요리를 홍콩 간장과 토마토소스로 재해석한 맛.</span></td></tr><tr><th>일식 & 한식</th><td>닭백탕 라멘, 양념치킨, 일본식 카레 오무라이스<br><span style="font-size:11px;color:#666;">특징: 깔끔하고 정갈하여 홍콩 젊은층에게 인기가 높음.</span></td></tr><tr><th>서양 캐주얼</th><td>수제 파스타, 수제 버거<br><span style="font-size:11px;color:#666;">특징: 신선한 재료로 주문 즉시 만드는 캐주얼 다이닝.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">추천 맛집</h4><p><strong>타이치우 / 태국 요리점 (구룡성):</strong> '작은 태국' 구룡성의 대표 맛집. 보트 국수와 똠얌꿍이 명물.<br><strong>주소:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>영락원 레스토랑 (센트럴):</strong> 특제 머스터드소스를 넣은 소시지 핫도그로 유명한 명물 식당.<br><strong>주소:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>청킹맨션 (침사추이):</strong> 다문화 상징적 건물로 정통 인도 카레와 바비큐를 맛볼 수 있는 곳.<br><strong>주소:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">인기 세계 요리</h4><p><strong>자긴 소바 ZAGIN SOBA (센트럴):</strong> 크리미한 닭백탕 국물과 우엉 튀김이 어우러진 수제 라멘.<br><strong>주소:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (완차이):</strong> 매일 아침 반죽하는 생파스타를 합리적인 가격에 즐기는 인기 파스타 바.<br><strong>주소:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -2215,6 +2234,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Ẩm thực đường phố phải thử</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Xiên nướng & Đồ rán</th><td>Cá viên cà ri, Ba món nhồi chả cá, Đậu phụ thối<br><span style="font-size:11px;color:#666;">Đặc điểm: Cá viên dai ngấm sốt cà ri; rau củ nhồi chả cá thơm ngon.</span></td></tr><tr><th>Bánh cuốn & Mì</th><td>Bánh cuốn hỗn hợp sốt, Mì Dogcart, Súp vây cá giả<br><span style="font-size:11px;color:#666;">Đặc điểm: Bánh cuốn mềm mượt kèm sốt lạc; súp đậm vị tiêu.</span></td></tr><tr><th>Món xào Dai Pai Dong</th><td>Tôm tít/Mực rang muối tiêu, Giò heo sốt tiêu đen<br><span style="font-size:11px;color:#666;">Đặc điểm: Xào lửa lớn đậm đà 'Wok Hei', hoàn hảo để nhắm bia.</span></td></tr><tr><th>Món tộ đất</th><td>Gà tộ xèo xèo, Cháo gan heo, Sườn xào chua ngọt<br><span style="font-size:11px;color:#666;">Đặc điểm: Nồi đất giữ trọn vị tươi ngon, bốc khói nghi ngút.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Quán ăn đường phố nổi tiếng</h4><p><strong>Block 18 Doggie's Noodle (Jordan):</strong> Gợi ý Michelin, mì truyền thống nước dùng đậm đà.<br><strong>Địa chỉ:</strong> G/F, 27A Ning Po Street, Jordan</p><p><strong>Hop Yik Tai (Thâm Thủy Bộ):</strong> Bánh cuốn tươi làm trong ngày, ăn kèm sốt bơ đậu phộng và vừng.<br><strong>Địa chỉ:</strong> G/F, 121 Kweilin Street, Sham Shui Po</p><p><strong>Kai Kai Dessert (Jordan):</strong> Quán chè truyền thống đạt giải Michelin, nổi tiếng với chè mè đen.<br><strong>Địa chỉ:</strong> G/F, 121-123 Parkes Street, Jordan</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Dai Pai Dong cổ điển</h4><p><strong>Oi Man Sang (Thâm Thủy Bộ):</strong> Mở cửa từ 1956, nổi tiếng với kỹ thuật xào lửa lớn.<br><strong>Địa chỉ:</strong> G/F, 1C Shek Kip Mei Street, Sham Shui Po</p><p><strong>Sing Kee (Trung Hoàn):</strong> Quán ăn ngoài trời hoài cổ nằm trên con dốc Trung Hoàn.<br><strong>Địa chỉ:</strong> Slope of 82 Stanley Street, Central</p><p><strong>Tung Po Kitchen (灣仔):</strong> Quán ăn trong nhà sôi động, nổi tiếng với cách uống bia bằng bát.<br><strong>Địa chỉ:</strong> 2/F, KONNECT, 303 Jaffe Road, Wan Chai</p>`,
                 guideNoodleH: "Cẩm nang du lịch HK - Ẩm thực - Mì truyền thống & Đồ quay",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Món ngon kinh điển phải thử</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Mì hoành thánh tôm</th><td>Mì hoành thánh tôm, Mì sủi cảo<br><span style="font-size:11px;color:#666;">Đặc điểm: Hoành thánh tôm tươi dai; nước dùng đậm đà; sợi mì dai giòn.</span></td></tr><tr><th>Nạm bò & Lòng bò</th><td>Nạm bò nước trong, Lòng bò hầm sốt Chu Hou<br><span style="font-size:11px;color:#666;">Đặc điểm: Nạm bò hầm mềm; lòng bò ngấm gia vị ăn kèm hủ tiếu/bún.</span></td></tr><tr><th>Mì cán bằng tre</th><td>Mì trộn trứng tôm, Mì trộn gừng hành<br><span style="font-size:11px;color:#666;">Đặc điểm: Dùng cây tre ép bột mì, tạo độ giòn dai đặc biệt.</span></td></tr><tr><th>Đồ quay kiểu Hồng Kông</th><td>Xá xíu mật ong, Ngỗng quay giòn da, Heo quay<br><span style="font-size:11px;color:#666;">Đặc điểm: Xá xíu ngọt thơm; ngỗng quay da giòn đượm vị.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Địa chỉ chi tiết nhà hàng</h4><p><strong>Tsim Chai Kee (Trung Hoàn):</strong> Gợi ý Michelin Bib Gourmand; hoành thánh tôm to như bóng bàn.<br><strong>Địa chỉ:</strong> G/F, 98 Wellington Street, Central</p><p><strong>Kau Kee (Trung Hoàn):</strong> Nổi tiếng với món nạm bò nước trong và nạm bò cà ri.<br><strong>Địa chỉ:</strong> G/F, 21 Gough Street, Central</p><p><strong>Lau Sum Kee (Thâm Thủy Bộ):</strong> Mì cán bằng tre truyền thống phủ đầy trứng tôm thơm nức.<br><strong>Địa chỉ:</strong> G/F, 48 Kweilin Street, Sham Shui Po</p><p><strong>Kam's Roast Goose (灣仔):</strong> 1 sao Michelin; ngỗng quay da giòn mềm mọng kèm sốt mận.<br><strong>Địa chỉ:</strong> G/F, 226 Hennessy Road, Wan Chai</p><p><strong>Yat Lok (Trung Hoàn):</strong> 1 sao Michelin; da ngỗng quay mỏng giòn ăn kèm mì bánh canh (Lai Fun).<br><strong>Địa chỉ:</strong> G/F, 34-38 Stanley Street, Central</p><p><strong>Joy Hing (灣仔):</strong> Vua xá xíu với giá cả bình dân và xá xíu mật ong thơm ngon.<br><strong>Địa chỉ:</strong> G/F, Block C, 265-267 Hennessy Road, Wan Chai</p>`,
+                guideGlobalFoodH: "Cẩm nang du lịch HK - Ẩm thực - Ẩm thực Quốc tế & Độc đáo",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Ẩm thực kinh điển phải thử</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Đông Nam Á</th><td>Mì thuyền Thái, Laksa, Cà ri & Bánh Roti Ấn Độ<br><span style="font-size:11px;color:#666;">Đặc điểm: Đậm đà hương vị gia vị, chuaเผ็ด đặc trưng đường phố.</span></td></tr><tr><th>Tây kiểu Hồng Kông</th><td>Món Tây sốt xì dầu (Cơm sườn nướng, Súp Bò), Hot dog đặc biệt<br><span style="font-size:11px;color:#666;">Đặc điểm: Biến tấu món Tây theo khẩu vị phương Đông với xì dầu và tương cà.</span></td></tr><tr><th>Nhật & Hàn</th><td>Ramen nước dùng gà, Gà rán Hàn Quốc, Cơm trứng Omurice cà ri<br><span style="font-size:11px;color:#666;">Đặc điểm: Tinh tế, vô cùng được giới trẻ và dân văn phòng HK yêu thích.</span></td></tr><tr><th>Món Tây Casual</th><td>Mỳ Ý thủ công, Burger thủ công kiểu Mỹ<br><span style="font-size:11px;color:#666;">Đặc điểm: Đảm bảo nguyên liệu tươi ngon, chế biến tại chỗ.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Địa chỉ nổi tiếng authentic</h4><p><strong>Thai Chiu / Quán Thái (Cửu Long Thành):</strong> Khu "Tiểu Thái Lan", nổi tiếng với mì thuyền, Tom Yum và cơm gà Hải Nam.<br><strong>Địa chỉ:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>Wing Lok Yuen (Trung Hoàn):</strong> Quán ăn huyền thoại nổi tiếng với hot dog xúc xích kép sốt mù tạt đặc chế.<br><strong>Địa chỉ:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>Tòa nhà Chungking Mansions (T尖沙咀):</strong> Biểu tượng đa văn hóa với cà ri Ấn Độ và món nướng Pakistan chính gốc.<br><strong>Địa chỉ:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Món Quốc Tế Bình Dân</h4><p><strong>ZAGIN SOBA (Trung Hoàn):</strong> Nổi tiếng với Ramen nước dùng gà béo ngậy như Cappuccino kèm ngưu bàng chiên giòn.<br><strong>Địa chỉ:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (灣仔):</strong> Mỳ Ý tươi làm thủ công giá hợp lý, không gian thoải mái dễ chịu.<br><strong>Địa chỉ:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -2366,6 +2387,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">अवश्य आजमाने योग्य स्ट्रीट फूड</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>स्किवर्स और फ्राइड फूड</th><td>करी फिश बॉल्स, फ्राइड स्टफ्ड वेजिटेबल्स, स्टिंंकी टोफू<br><span style="font-size:11px;color:#666;">विशेषताएं: करी सॉस से भरपूर फिश बॉल्स; स्वादिष्ट भरवां सब्जियां।</span></td></tr><tr><th>राइस रोल और नूडल्स</th><td>मिक्स सॉस राइस रोल, डॉगकार्ट नूडल्स, सूप<br><span style="font-size:11px;color:#666;">विशेषताएं: मखमली राइस रोल और काली मिर्च का गर्म सूप।</span></td></tr><tr><th>दाई पाई डोंग स्टिर-फ्राई</th><td>सॉल्ट एंड पेपर स्क्विड, ब्लैक पेपर पोर्क<br><span style="font-size:11px;color:#666;">विशेषताएं: तेज आंच पर पकाया गया स्वादिष्ट भोजन।</span></td></tr><tr><th>क्लेपॉट व्यंजन</th><td>सिजलिंग चिकन क्लेपॉट, फ्रेश पोरिज<br><span style="font-size:11px;color:#666;">विशेषताएं: मिट्टी के बर्तन में पकाया गया गरम और सुगंधित भोजन।</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">प्रसिद्ध स्ट्रीट फूड दुकानें</h4><p><strong>Block 18 Doggie's Noodle (जॉर्डन):</strong> मिशेलिन स्ट्रीट फूड अनुशंसा।<br><strong>पता:</strong> G/F, 27A Ning Po Street, Jordan</p><p><strong>Hop Yik Tai (शाम शुई पो):</strong> प्रसिद्ध ताजा राइस रोल।<br><strong>पता:</strong> G/F, 121 Kweilin Street, Sham Shui Po</p><p><strong>Kai Kai Dessert (जॉर्डन):</strong> मिशेलिन अनुशंसित पारंपरिक चीनी डेसर्ट।<br><strong>पता:</strong> G/F, 121-123 Parkes Street, Jordan</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">क्लासिक दाई पाई डोंग</h4><p><strong>Oi Man Sang (शाम शुई पो):</strong> 1956 से संचालित प्रसिद्ध आउटडोर रेस्तरां।<br><strong>पता:</strong> G/F, 1C Shek Kip Mei Street, Sham Shui Po</p><p><strong>Sing Kee (सेंट्रल):</strong> सेंट्रल ढलान पर स्थित विंटेज फूड स्टॉल।<br><strong>पता:</strong> Slope of 82 Stanley Street, Central</p><p><strong>Tung Po Kitchen (वान चाई):</strong> प्रसिद्ध इनडोर दाई पाई डोंग।<br><strong>पता:</strong> 2/F, KONNECT, 303 Jaffe Road, Wan Chai</p>`,
                 guideNoodleH: "हांगकांग यात्रा गाइड - भोजन - पारंपरिक नूडल्स और रोस्ट मीट",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">अवश्य आजमाने योग्य क्लासिक व्यंजन</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>श्रिंप वांटन नूडल्स</th><td>श्रिंप वांटन नूडल्स, डंपलिंग नूडल्स<br><span style="font-size:11px;color:#666;">विशेषताएं: स्वादिष्ट झींगा वांटन और कुरकुरे नूडल्स।</span></td></tr><tr><th>बीफ ब्रिस्केट</th><td>क्लियर ब्रॉथ बीफ ब्रिस्केट, बीफ ऑफल<br><span style="font-size:11px;color:#666;">विशेषताएं: नरम बीफ और स्वादिष्ट शोरबा।</span></td></tr><tr><th>बांस से दबाए गए नूडल्स</th><td>श्रिंप रो लो मेइन, जिंजर स्प्रिंग अनियन नूडल्स<br><span style="font-size:11px;color:#666;">विशेषताएं: बांस की छड़ों से बनाए गए बेहद लचीले नूडल्स।</span></td></tr><tr><th>हांगकांग रोस्ट मीट</th><td>हनी बीबीक्यू पोर्क (चर सिउ), रोस्ट गूस<br><span style="font-size:11px;color:#666;">विशेषताएं: मीठा चर सिउ और कुरकुरी त्वचा वाला रोस्ट गूस।</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">रेस्तरां के पते</h4><p><strong>Tsim Chai Kee (सेंट्रल):</strong> मिशेलिन बिब गौरमंड; बड़े श्रिंप वांटन।<br><strong>पता:</strong> G/F, 98 Wellington Street, Central</p><p><strong>Kau Kee (सेंट्रल):</strong> प्रसिद्ध क्लियर ब्रॉथ बीफ ब्रिस्केट।<br><strong>पता:</strong> G/F, 21 Gough Street, Central</p><p><strong>Lau Sum Kee (शाम शुई पो):</strong> पारंपरिक बांस से बने नूडल्स।<br><strong>पता:</strong> G/F, 48 Kweilin Street, Sham Shui Po</p><p><strong>Kam's Roast Goose (वान चाई):</strong> 1-स्टार मिशेलिन रोस्ट गूस।<br><strong>पता:</strong> G/F, 226 Hennessy Road, Wan Chai</p><p><strong>Yat Lok (सेंट्रल):</strong> मिशेलिन 1-स्टार रोस्ट गूस।<br><strong>पता:</strong> G/F, 34-38 Stanley Street, Central</p><p><strong>Joy Hing (वान चाई):</strong> किफायती और स्वादिष्ट बीबीक्यू पोर्क।<br><strong>पता:</strong> G/F, Block C, 265-267 Hennessy Road, Wan Chai</p>`,
+                guideGlobalFoodH: "हांगकांग यात्रा गाइड - भोजन - वैश्विक और विदेशी व्यंजन",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">अवश्य आजमाने योग्य व्यंजन</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>दक्षिण पूर्व एशियाई</th><td>थाई बोट नूडल्स, लकसा, इंडियन करी रोटी<br><span style="font-size:11px;color:#666;">विशेषताएं: समृद्ध मसाले और तीखा खट्टा स्वाद।</span></td></tr><tr><th>हांगकांग वेस्टर्न</th><td>सोया सॉस वेस्टर्न, हॉट डॉग्स<br><span style="font-size:11px;color:#666;">विशेषताएं: स्थानीय स्वाद के साथ पश्चिमी भोजन।</span></td></tr><tr><th>जापानी और कोरियाई</th><td>चिकन रामेन, कोरियन फ्राइड चिकन, करी ओमराइस<br><span style="font-size:11px;color:#666;">विशेषताएं: युवाओं में अत्यधिक लोकप्रिय।</span></td></tr><tr><th>वेस्टर्न कैजुअल</th><td>हैंडमेड पास्ता, बर्गर<br><span style="font-size:11px;color:#666;">विशेषताएं: ताजा सामग्री से बना स्वादिष्ट भोजन।</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">प्रसिद्ध स्थान</h4><p><strong>Thai Chiu (काउलून सिटी):</strong> 'लिटिल थाईलैंड' में प्रामाणिक थाई भोजन।<br><strong>पता:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>Wing Lok Yuen (सेंट्रल):</strong> प्रसिद्ध हॉट डॉग्स।<br><strong>पता:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>Chungking Mansions (त्सिम शा त्सुई):</strong> प्रामाणिक भारतीय करी और बारबेक्यू।<br><strong>पता:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">अंतर्राष्ट्रीय व्यंजन</h4><p><strong>ZAGIN SOBA (सेंट्रल):</strong> प्रसिद्ध चिकन रामेन।<br><strong>पता:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (वान चाई):</strong> हाथ से बना ताजा पास्ता।<br><strong>पता:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2516,6 +2539,8 @@
                 guideStreetFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Mga Pagkaing Kalye na Dapat Subukan</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Inihaw at Prito</th><td>Curry Fish Balls, Three Stuffed Treasures, Stinky Tofu<br><span style="font-size:11px;color:#666;">Tampok: Fish balls na absorbed ang curry; gulay na may palaman na isda.</span></td></tr><tr><th>Rice Rolls at Pancit</th><td>Mixed Sauce Rice Noodle Rolls, Dogcart Noodles, Fake Shark's Fin Soup<br><span style="font-size:11px;color:#666;">Tampok: Makinis na rice rolls na may peanut sauce; mainit na sabaw.</span></td></tr><tr><th>Dai Pai Dong Stir-fry</th><td>Salt & Pepper Squid, Black Pepper Pork Knuckle<br><span style="font-size:11px;color:#666;">Tampok: Lutong mabilis sa malakas na apoy, masarap na kapares ng inumin.</span></td></tr><tr><th>Kaserola (Claypot)</th><td>Sizzling Chicken Claypot, Pork Liver Congee, Sweet & Sour Pork<br><span style="font-size:11px;color:#666;">Tampok: Na-se-seal ang lasa sa palayok, mainit at mabango.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Sikat na Kainan sa Kalye</h4><p><strong>Block 18 Doggie's Noodle (Jordan):</strong> Rekomendado ng Michelin Street Food.<br><strong>Address:</strong> G/F, 27A Ning Po Street, Jordan</p><p><strong>Hop Yik Tai (Sham Shui Po):</strong> Sikat sa sariwang rice rolls na may peanut at sweet sauce.<br><strong>Address:</strong> G/F, 121 Kweilin Street, Sham Shui Po</p><p><strong>Kai Kai Dessert (Jordan):</strong> Michelin-recommended na tradisyunal na matamis na sabaw.<br><strong>Address:</strong> G/F, 121-123 Parkes Street, Jordan</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Klasikong Dai Pai Dong</h4><p><strong>Oi Man Sang (Sham Shui Po):</strong> Buka pa mula 1956, sikat sa lutong apoy.<br><strong>Address:</strong> G/F, 1C Shek Kip Mei Street, Sham Shui Po</p><p><strong>Sing Kee (Central):</strong> Lumang kainan sa gilid ng kalsada sa Central.<br><strong>Address:</strong> Slope of 82 Stanley Street, Central</p><p><strong>Tung Po Kitchen (Wan Chai):</strong> Masayang kainan sa loob ng gusali kung saan umiinom ng serbesa sa mangkok.<br><strong>Address:</strong> 2/F, KONNECT, 303 Jaffe Road, Wan Chai</p>`,
                 guideNoodleH: "HK Travel Guide - Pagkain - Tradisyunal na Pancit at Inihaw na Karne",
                 guideNoodleDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Mga Klasikong Pagkain na Dapat Subukan</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Shrimp Wonton Noodles</th><td>Shrimp Wonton Noodles, Dumpling Noodles<br><span style="font-size:11px;color:#666;">Tampok: Masarap na wonton na may hipon; masarap na sabaw; makunat na noodles.</span></td></tr><tr><th>Beef Brisket</th><td>Clear Broth Beef Brisket, Chu Hou Beef Offal<br><span style="font-size:11px;color:#666;">Tampok: Malambot na baka na may masarap na sabaw o noodles.</span></td></tr><tr><th>Kawayan Noodles</th><td>Shrimp Roe Lo Mein, Ginger Scallion Lo Mein<br><span style="font-size:11px;color:#666;">Tampok: Noodles na ginawa gamit ang kawayan, napakamakunat.</span></td></tr><tr><th>Hong Kong Roast Meats</th><td>Honey BBQ Pork (Char Siu), Roast Goose, Crispy Roast Pork<br><span style="font-size:11px;color:#666;">Tampok: Matamis na char siu at renyong balat ng inihaw na gansa.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Mga Anluwat ng Restawran</h4><p><strong>Tsim Chai Kee (Central):</strong> Michelin Bib Gourmand; malaking wonton na hipon.<br><strong>Address:</strong> G/F, 98 Wellington Street, Central</p><p><strong>Kau Kee (Central):</strong> Sikat sa malinis na sabaw ng beef brisket.<br><strong>Address:</strong> G/F, 21 Gough Street, Central</p><p><strong>Lau Sum Kee (Sham Shui Po):</strong> Tradisyunal na noodles na ginawa sa kawayan.<br><strong>Address:</strong> G/F, 48 Kweilin Street, Sham Shui Po</p><p><strong>Kam's Roast Goose (Wan Chai):</strong> Michelin 1-Star; masarap at renyong roast goose.<br><strong>Address:</strong> G/F, 226 Hennessy Road, Wan Chai</p><p><strong>Yat Lok (Central):</strong> Michelin 1-Star; manipis at renyong balat ng goose.<br><strong>Address:</strong> G/F, 34-38 Stanley Street, Central</p><p><strong>Joy Hing (Wan Chai):</strong> Sikat sa murang masarap na honey BBQ pork.<br><strong>Address:</strong> G/F, Block C, 265-267 Hennessy Road, Wan Chai</p>`,
+                guideGlobalFoodH: "HK Travel Guide - Pagkain - Pagkaing Pandaigdig at Dayuhan",
+                guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Mga Pagkaing Dapat Subukan</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Southeast Asian</th><td>Thai Boat Noodles, Laksa, Indian Curry Roti<br><span style="font-size:11px;color:#666;">Tampok: Masaganang pampalasa, maasim at maanghang.</span></td></tr><tr><th>Hong Kong Western</th><td>Soy Sauce Western, Special Hotdogs<br><span style="font-size:11px;color:#666;">Tampok: Pagkaing Kanluranin na inangkop sa lasang Asyano.</span></td></tr><tr><th>Hapon at Koreano</th><td>Chicken Ramen, Korean Fried Chicken, Curry Omurice<br><span style="font-size:11px;color:#666;">Tampok: Sikat na sikat sa mga kabataan at nagtatrabaho.</span></td></tr><tr><th>Western Casual</th><td>Handmade Pasta, Artisan Burgers<br><span style="font-size:11px;color:#666;">Tampok: Sariwang sangkap at gawa sa order.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Rekomendadong Kainan</h4><p><strong>Thai Chiu (Kowloon City):</strong> Kilala bilang "Little Thailand", sikat sa thai boat noodles.<br><strong>Address:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>Wing Lok Yuen (Central):</strong> Sikat sa masarap na hotdog na may espesyal na mustard sauce.<br><strong>Address:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>Chungking Mansions (Tsim Sha Tsui):</strong> Sikat sa totoong Indian curry at Pakistani BBQ.<br><strong>Address:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Pandaigdigang Kainan</h4><p><strong>ZAGIN SOBA (Central):</strong> Sikat sa masarap na chicken broth ramen.<br><strong>Address:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (Wan Chai):</strong> Sikat sa sariwang handmade pasta sa abot-kayang halaga.<br><strong>Address:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
             }
         };
 
@@ -2683,7 +2708,11 @@
                 'ui-streetfood-detail': (langData.guideStreetFoodDetail || ''),
                 'ui-back-noodle': (langData.backFood || '⬅ 返回美食選單'),
                 'ui-noodle-header': (langData.guideNoodleH || '香港旅遊攻略 - 美食 - 傳統粉麵與燒味'),
-                'ui-noodle-detail': (langData.guideNoodleDetail || '')
+                'ui-noodle-detail': (langData.guideNoodleDetail || ''),
+                'ui-back-globalfood': (langData.backFood || '⬅ 返回美食選單'),
+                'ui-globalfood-header': (langData.guideGlobalFoodH || '香港旅遊攻略 - 美食 - 環球與異國美食'),
+                'ui-globalfood-detail': (langData.guideGlobalFoodDetail || '')
+
             };
 
             for (const [id, text] of Object.entries(elements)) {
