@@ -423,7 +423,7 @@
             <h3 id="ui-guidefood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食</h3>
             <div class="menu-grid">
 
-                <div class="menu-card" style="cursor: default; opacity: 0.8;">
+                <div class="menu-card" onclick="showSection('guideChaChaanTengSection')">
                     <div class="icon">☕</div>
                     <h3 id="ui-gfood-1-title">港式茶餐廳與冰室</h3>
                     <p id="ui-gfood-1-desc">最地道的平民飲食</p>
@@ -796,6 +796,15 @@
                 大館與中環古蹟群</h3>
             <div id="ui-guidetaikwun-desc"
                 style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+            </div>
+        </div>
+
+        <div id="guideChaChaanTengSection" class="section-content">
+            <button class="back-btn" id="ui-back-chachaan" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
+            <h3 id="ui-chachaan-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 港式茶餐廳與冰室
+            </h3>
+            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
+                id="ui-chachaan-detail">
             </div>
         </div>
 
@@ -1416,6 +1425,9 @@
                 gfood6Name: "港式甜品與傳統糖水", gfood6Desc: "餐後與宵夜必備",
                 guideFoodH: "香港旅遊攻略 - 美食",
                 backGuide: "⬅ 返回香港旅遊攻略",
+                backFood: "⬅ 返回美食選單",
+                guideChaChaanH: "香港旅遊攻略 - 美食 - 港式茶餐廳與冰室",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典菜單</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>招牌飲品</th><td>港式絲襪奶茶、凍鴛鴦<br><span style="font-size:11px;color:#666;">特色：奶茶茶味濃郁香滑；鴛鴦則混合了咖啡與奶茶，香醇微苦。</span></td></tr><tr><th>烘焙麵包</th><td>鮮油菠蘿包、港式西多士<br><span style="font-size:11px;color:#666;">特色：菠蘿包講求冰火交融；西多士炸至金黃後沾上花生醬與糖漿。</span></td></tr><tr><th>常餐小吃</th><td>沙爹牛肉公仔麵、炒蛋厚 toast<br><span style="font-size:11px;color:#666;">特色：地道茶餐廳的魂魄，牛肉濃郁、蛋香滑順。</span></td></tr><tr><th>主食熱炒</th><td>干炒牛河、焗豬扒飯<br><span style="font-size:11px;color:#666;">特色：講求「鑊氣」與濃郁醬汁，是衡量茶餐廳水準的指標。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">老字號懷舊冰室</h4><p><strong>金華冰廳（旺角）：</strong> 號稱「全港第一菠蘿油」，剛出爐的菠蘿包外皮極度酥脆，夾入厚切冰鎮奶油，搭配一杯香濃絲襪奶茶是絕配。<br><strong>地址：</strong> 九龍旺角弼街 45-47 號</p><p><strong>美都餐室（油麻地）：</strong> 擁有超過 70 年歷史，保留了極具年代感的綠色窗框與馬賽克地磚，經典招牌包括焗豬扒飯和紅豆冰。<br><strong>地址：</strong> 九龍油麻地廟街 63 號</p><p><strong>澳洲牛奶公司（佐敦）：</strong> 以「快、靚、正」的極致效率聞名，炒蛋厚 sandwiches（炒蛋文治）軟嫩多汁，蛋白燉鮮奶也是必點名物。<br><strong>地址：</strong> 九龍佐敦白加士街 47 號</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">特色與經典茶餐廳</h4><p><strong>蘭芳園（中環）：</strong> 絲襪奶茶的發源地，茶香濃郁且口感滑順，西多士（法式吐司）淋上糖漿與奶油同樣令人稱道。<br><strong>地址：</strong> 香港島中環結志街 2 號</p><p><strong>華嫂冰室（灣仔/尖沙咀等）：</strong> 招牌蛋包豬扒菠蘿包與蕃茄濃湯通粉極具特色，深受在地人與遊客喜愛。<br><strong>地址：</strong> 香港島灣仔謝斐道 272 號</p><p><strong>勝香園（中環）：</strong> 雖然是露天大排檔形式，但其蕃茄牛肉通粉與檸蜜脆脆（檸檬蜂蜜脆豬仔包）遠近馳名，充滿街頭地道風味。<br><strong>地址：</strong> 香港島中環美輪街 2 號</p>`,
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -1558,6 +1570,9 @@
                 gfood6Name: "港式甜品与传统糖水", gfood6Desc: "餐后与宵夜必备",
                 guideFoodH: "香港旅游攻略 - 美食",
                 backGuide: "⬅ 返回香港旅游攻略",
+                backFood: "⬅ 返回美食菜单",
+                guideChaChaanH: "香港旅游攻略 - 美食 - 港式茶餐厅与冰室",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃经典菜单</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>招牌饮品</th><td>港式丝袜奶茶、冻鸳鴦<br><span style="font-size:11px;color:#666;">特色：奶茶茶味浓郁香滑；鸳鸯则混合了咖啡与奶茶，香醇微苦。</span></td></tr><tr><th>烘焙面包</th><td>鲜油菠萝包、港式西多士<br><span style="font-size:11px;color:#666;">特色：菠萝包讲求冰火交融；西多士炸至金黄后沾上花生酱与糖浆。</span></td></tr><tr><th>常餐小吃</th><td>沙爹牛肉公仔面、炒蛋厚 toast<br><span style="font-size:11px;color:#666;">特色：地道茶餐厅的魂魄，牛肉浓郁、蛋香滑顺。</span></td></tr><tr><th>主食热炒</th><td>干炒牛河、焗猪扒饭<br><span style="font-size:11px;color:#666;">特色：讲求“鑊气”与浓郁酱汁，是衡量茶餐厅水准的指标。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">老字号怀旧冰室</h4><p><strong>金华冰厅（旺角）：</strong> 號称“全港第一菠萝油”，刚出炉的菠萝包外皮极度酥脆，夹入厚切冰镇奶油，搭配一杯香浓丝袜奶茶是绝配。<br><strong>地址：</strong> 九龙旺角弼街 45-47 号</p><p><strong>美都餐室（油麻地）：</strong> 拥有超过 70 年历史，保留了极具年代感的绿色窗框与马赛克地砖，经典招牌包括焗猪扒饭和红豆冰。<br><strong>地址：</strong> 九龙油麻地庙街 63 号</p><p><strong>澳洲牛奶公司（佐敦）：</strong> 以“快、靓、正”的极致效率闻名，炒蛋厚 sandwiches（炒蛋文治）软嫩多汁，蛋白炖鲜奶也是必点名物。<br><strong>地址：</strong> 九龙佐敦白加士街 47 号</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">特色与经典茶餐厅</h4><p><strong>兰芳园（中环）：</strong> 丝袜奶茶的发源地，茶香浓郁且口感滑顺，西多士（法式吐司）淋上糖浆与奶油同样令人称道。<br><strong>地址：</strong> 香港岛中环结志街 2 号</p><p><strong>华嫂冰室（湾仔/尖沙咀等）：</strong> 招牌蛋包猪扒菠萝包与蕃茄浓汤通粉极具特色，深受在地人与游客喜爱。<br><strong>地址：</strong> 香港岛湾仔谢斐道 272 号</p><p><strong>胜香园（中环）：</strong> 虽然是露天大排档形式，但其蕃茄牛肉通粉与柠檬蜜糖脆脆（柠檬蜂蜜脆猪仔包）远近弛名，充满街头地道风味。<br><strong>地址：</strong> 香港岛中环美轮街 2 号</p>`,
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -1700,6 +1715,9 @@
                 gfood6Name: "HK Desserts & Traditional Sweet Soup", gfood6Desc: "Post-Meal & Late Night Treats",
                 guideFoodH: "Hong Kong Travel Guide - Dining",
                 backGuide: "⬅ Back to HK Travel Guide",
+                backFood: "⬅ Back to Dining Menu",
+                guideChaChaanH: "HK Travel Guide - Dining - HK Style Tea Cafes & Bing Sutt",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Must-Try Classic Menu</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Signature Drinks</th><td>Silk Stocking Milk Tea, Iced Yuenyeung<br><span style="font-size:11px;color:#666;">Features: Rich, smooth milk tea; Yuenyeung blends coffee and milk tea with a rich, aromatic bitterness.</span></td></tr><tr><th>Bakery</th><td>Pineapple Bun with Butter, HK French Toast<br><span style="font-size:11px;color:#666;">Features: Hot bun with cold butter contrast; golden toast served with peanut butter and syrup.</span></td></tr><tr><th>Set Meals</th><td>Satay Beef Instant Noodles, Scrambled Egg Thick Toast<br><span style="font-size:11px;color:#666;">Features: The soul of local diners, featuring rich beef and fluffy scrambled eggs.</span></td></tr><tr><th>Mains & Wok-Fried</th><td>Stir-fried Beef Noodles, Baked Pork Chop Rice<br><span style="font-size:11px;color:#666;">Features: Focuses on 'Wok Hei' and rich sauces, the benchmark for any classic tea cafe.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Nostalgic Historic Bing Sutts</h4><p><strong>Kam Wah Cafe (Mong Kok):</strong> Known as "HK's #1 Pineapple Bun", freshly baked with a crispy crust and thick cold butter, best paired with silk stocking milk tea.<br><strong>Address:</strong> 45-47 Bute Street, Mong Kok, Kowloon</p><p><strong>Mido Cafe (Yau Ma Tei):</strong> Over 70 years of history, retaining vintage green window frames and mosaic floor tiles. Famous for baked pork chop rice and red bean ice.<br><strong>Address:</strong> 63 Temple Street, Yau Ma Tei, Kowloon</p><p><strong>Australia Dairy Company (Jordan):</strong> Renowned for its extreme efficiency and fluffy scrambled egg toast, as well as steamed egg white pudding.<br><strong>Address:</strong> 47 Parkes Street, Jordan, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Iconic Tea Cafes</h4><p><strong>Lan Fong Yuen (Central):</strong> The birthplace of silk stocking milk tea, boasting smooth tea flavor and delicious French toast.<br><strong>Address:</strong> 2 Gage Street, Central, Hong Kong Island</p><p><strong>Wasou Cafe (Wan Chai / TST):</strong> Famous for pork chop pineapple bun with egg and tomato soup macaroni.<br><strong>Address:</strong> 272 Jaffe Road, Wan Chai, Hong Kong Island</p><p><strong>Sing Heung Yuen (Central):</strong> Open-air food stall renowned for tomato beef macaroni and crispy lemon honey bun.<br><strong>Address:</strong> 2 Mee Lun Street, Central, Hong Kong Island</p>`,
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -1842,6 +1860,9 @@
                 gfood6Name: "港式甜品與傳統糖水", gfood6Desc: "食後＆夜食の定番スイーツ",
                 guideFoodH: "香港観光ガイド - グルメ",
                 backGuide: "⬅ 香港観光ガイドに戻る",
+                backFood: "⬅ グルメメニューに戻る",
+                guideChaChaanH: "香港観光ガイド - グルメ - 港式茶餐廳（香港風カフェ）與冰室",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必食クラシックメニュー</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>看板ドリンク</th><td>港式絲襪奶茶（絹漉しミルクティー）、凍鴛鴦（アイスコーヒー＆ミルクティー）<br><span style="font-size:11px;color:#666;">特徴：濃厚で滑らかなミルクティー。鴛鴦はコーヒーとミルクティーが絶妙に調和した深い味わい。</span></td></tr><tr><th>ベーカリー</th><td>鮮油菠蘿包（バター入りパイナップルパン）、港式西多士（香港風フレンチトースト）<br><span style="font-size:11px;color:#666;">特徴：熱々のパンと冷たい厚切りバターの組み合わせ。西多士はサクサクに揚がりピーナッツバターとシロップが絶品。</span></td></tr><tr><th>定番軽食</th><td>沙爹牛肉公仔麵（サテ牛肉インスタント面）、炒蛋厚トースト（スクランブルエッグ厚切りトースト）<br><span style="font-size:11px;color:#666;">特徴：茶餐廳の魂とも言える定番メニュー。コクのある牛肉とトロトロの卵が特徴。</span></td></tr><tr><th>炒め物・ご飯</th><td>干炒牛河（牛肉炒めきしめん）、焗豬扒飯（焼きポークチョップライス）<br><span style="font-size:11px;color:#666;">特徴：強い火力（鑊氣）と濃厚なソースが決め手で、店の味を測るバロメーター。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">老舗レトロ冰室</h4><p><strong>金華冰廳（Mong Kok / 旺角）：</strong> 「全港1位の菠蘿油」と称される名店。焼きたてのサクサクパンに厚切りバターを挟み、濃厚なミルクティーと一緒にいただくのが最高。<br><strong>住所：</strong> 九龍旺角弼街 45-47 號</p><p><strong>美都餐室（Yau Ma Tei / 油麻地）：</strong> 70年以上の歴史を誇るレトロな空間。年代物の緑色の窓枠やモザイクタイルが残り、焗豬扒飯や紅豆冰が名物。<br><strong>住所：</strong> 九龍油麻地廟街 63 號</p><p><strong>澳洲牛奶公司（Jordan / 佐敦）：</strong> 圧倒的なスピーディーさで有名。ふわとろのスクランブルエッグトーストと蛋白燉鮮奶（牛乳プリン）は必食の逸品。<br><strong>住所：</strong> 九龍佐敦白加士街 47 號</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">名物＆人気茶餐廳</h4><p><strong>蘭芳園（Central / 中環）：</strong> 絲襪奶茶（パンティホース・ミルクティー）の発祥地。濃厚な茶の香りと滑らかな口当たり、フレンチトーストも大好評。<br><strong>住所：</strong> 香港島中環結志街 2 號</p><p><strong>華嫂冰室（Wan Chai / 灣仔 など）：</strong> 卵とポークチョップを挟んだ菠蘿包や濃厚トマトスープのマカロニが人気。<br><strong>住所：</strong> 香港島灣仔謝斐道 272 號</p><p><strong>勝香園（Central / 中環）：</strong> オープンエアの大排檔（屋台）スタイル。トマト牛肉マカロニや檸蜜脆脆（レモンハニーサクサクパン）がストリート感満点。<br><strong>住所：</strong> 香港島中環美輪街 2 號</p>`,
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -1984,6 +2005,9 @@
                 gfood6Name: "홍콩식 디저트 & 전통 탕수", gfood6Desc: "식후 & 야식 필수 디저트",
                 guideFoodH: "홍콩 여행 가이드 - 맛집",
                 backGuide: "⬅ 홍콩 여행 가이드로 돌아가기",
+                backFood: "⬅ 맛집 메뉴로 돌아가기",
+                guideChaChaanH: "홍콩 여행 가이드 - 맛집 - 차찬탱 및 빙실 (Tea Cafe & Bing Sutt)",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">필수 시식 클래식 메뉴</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>시그니처 음료</th><td>홍콩식 밀크티(絲襪奶茶), 동원양(凍鴛鴦)<br><span style="font-size:11px;color:#666;">특징: 진하고 부드러운 밀크티, 커피와 밀크티가 조화된 동원양은 쌉싸름하고 고소함.</span></td></tr><tr><th>베이커리</th><td>파인애플번 버터(鮮油菠蘿包), 홍콩식 프렌치토스트(港式西多士)<br><span style="font-size:11px;color:#666;">특징: 따뜻한 파인애플번과 차가운 버터의 조화. 바삭하게 튀겨 땅콩버터와 시럽을 곁들인 토스트.</span></td></tr><tr><th>일반 세트/간식</th><td>사테 소고기 라면(沙爹牛肉公仔麵), 스크램블 에그 토스트<br><span style="font-size:11px;color:#666;">특징: 로컬 차찬탱의 영혼과 같은 메뉴로 진한 소고기와 부드러운 계란이 일품.</span></td></tr><tr><th>메인 볶음/밥</th><td>소고기 볶음 쌀국수(干炒牛河), 돼지갈비 리조또/덮밥(焗豬扒飯)<br><span style="font-size:11px;color:#666;">특징: 불향(鑊氣)과 진한 소스가 핵심으로 차찬탱 맛의 기준이 되는 대표 요리.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">전통 레트로 빙실 (Bing Sutt)</h4><p><strong>금화빙청 (Kam Wah Cafe - 몽콕):</strong> "홍콩 1위 뽀로유"로 불리는 곳. 갓 구운 바삭한 파인애플번에 두꺼운 버터를 넣은 뽀로유와 밀크티 조합이 환상적.<br><strong>주소:</strong> 九龍旺角弼街 45-47 號</p><p><strong>미도카페 (Mido Cafe - 야우마테이):</strong> 70년 이상의 역사를 가진 곳으로 레트로한 초록색 창틀과 모자이크 타일이 인상적. 돼지갈비 덮밥과 팥 빙수가 대표 메뉴.<br><strong>주소:</strong> 九龍油麻地廟街 63 號</p><p><strong>호주우유공사 (Australia Dairy Company - 조던):</strong> 극강의 빠른 서비스로 유명. 부드럽고 촉촉한 스크램블 에그 토스트와 우유 푸딩이 필수 주문 메뉴.<br><strong>주소:</strong> 九龍佐敦白加士街 47 號</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">특색 및 대표 차찬탱 (Cha Chaan Teng)</h4><p><strong>란퐁유엔 (Lan Fong Yuen - 센트럴):</strong> 실크 스타킹 밀크티의 원조집. 진한 차 향과 부드러운 식감, 시럽을 곁들인 프렌치토스트가 유명.<br><strong>주소:</strong> 香港島中環結志街 2 號</p><p><strong>화소빙실 (Wasou Cafe - 완차이/침사추이 등):</strong> 계란과 돼지갈비를 넣은 뽀로유와 토마토 수프 마카로니가 인기로 현지인과 관광객 모두에게 사랑받는 곳.<br><strong>주소:</strong> 香港島灣仔謝斐道 272 號</p><p><strong>승향원 (Sing Heung Yuen - 센트럴):</strong> 야외 다이파이동 형태의 노천식당. 토마토 소고기 마카로니와 레몬 허니 크리스피 번이 스트리트 감성 가득.<br><strong>주소:</strong> 香港島中環美輪街 2 號</p>`,
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -2126,6 +2150,9 @@
                 gfood6Name: "Món tráng miệng & Chè truyền thống HK", gfood6Desc: "Món không thể thiếu sau bữa ăn & đêm muộn",
                 guideFoodH: "Cẩm nang du lịch HK - Ẩm thực",
                 backGuide: "⬅ Quay lại Cẩm nang du lịch HK",
+                backFood: "⬅ Quay lại Thực đơn Ẩm thực",
+                guideChaChaanH: "Cẩm nang Du lịch HK - Ẩm thực - Quán trà Cha Chaan Teng & Bing Sutt",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Thực đơn Cổ điển Phải thử</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Đồ uống Nổi bật</th><td>Trà sữa Bơ Hồng Kông, Yuenyeung đá<br><span style="font-size:11px;color:#666;">Đặc trưng: Trà sữa đậm đà, mịn màng; Yuenyeung hòa quyện cà phê và trà sữa thơm lừng, hơi đắng nhẹ.</span></td></tr><tr><th>Bánh nướng</th><td>Bánh Dứa kẹp Bơ, Bánh mì nướng Kiểu Hồng Kông (French Toast)<br><span style="font-size:11px;color:#666;">Đặc trưng: Bánh dứa nóng hổi kẹp bơ lạnh; Bánh mì nướng vàng giòn ăn kèm bơ đậu phộng và siro.</span></td></tr><tr><th>Món ăn nhẹ</th><td>Mì ăn liền Bò Satay, Bánh mì nướng Trứng xới<br><span style="font-size:11px;color:#666;">Đặc trưng: Linh hồn của quán trà bình dân, thịt bò đậm đà và trứng xới mềm mịn.</span></td></tr><tr><th>Món chính & Xào</th><td>Phở xào Bò, Cơm Sườn nướng sốt<br><span style="font-size:11px;color:#666;">Đặc trưng: Chú trọng "hơi chảo" (Wok Hei) và sốt đậm đà, thước đo chất lượng quán trà.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Quán Bing Sutt Hoài cổ Lâu đời</h4><p><strong>Kam Wah Cafe (Mong Kok):</strong> Được danh hiệu "Bánh dứa kẹp bơ số 1 HK", bánh vừa xốp giòn kẹp bơ lạnh, dùng kèm trà sữa đậm đà là tuyệt nhất.<br><strong>Địa chỉ:</strong> 45-47 Bute Street, Mong Kok, Kowloon</p><p><strong>Mido Cafe (Yau Ma Tei):</strong> Hơn 70 năm lịch sử, giữ nguyên khung cửa xanh và gạch mosaic cổ kính. Nổi tiếng với cơm sườn nướng và đá dầm đậu đỏ.<br><strong>Địa chỉ:</strong> 63 Temple Street, Yau Ma Tei, Kowloon</p><p><strong>Australia Dairy Company (Jordan):</strong> Nổi tiếng với tốc độ phục vụ cực nhanh, bánh mì trứng xới mềm mọng và sữa hấp lòng trắng trứng.<br><strong>Địa chỉ:</strong> 47 Parkes Street, Jordan, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Quán Trà Cổ điển & Đặc sắc</h4><p><strong>Lan Fong Yuen (Central):</strong> Nơi khởi nguồn của trà sữa vớ đầm, vị trà đậm đà mịn màng, bánh mì nướng kiểu Pháp rưới siro cũng rất tuyệt.<br><strong>Địa chỉ:</strong> 2 Gage Street, Central, Hong Kong Island</p><p><strong>Wasou Cafe (Wan Chai / TST):</strong> Nổi tiếng với bánh dứa kẹp sườn heo trứng ốp và nui súp cà chua đậm đà.<br><strong>Địa chỉ:</strong> 272 Jaffe Road, Wan Chai, Hong Kong Island</p><p><strong>Sing Heung Yuen (Central):</strong> Quán ăn vỉa hè Dai Pai Dong nổi tiếng với nui bò cà chua và bánh mì giòn sốt chanh mật ong.<br><strong>Địa chỉ:</strong> 2 Mee Lun Street, Central, Hong Kong Island</p>`,
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -2268,6 +2295,9 @@
                 gfood6Name: "हॉंगकॉंग मिठाई और पारंपरिक मीठा सूप", gfood6Desc: "खाने के बाद और देर रात की मिठाई",
                 guideFoodH: "हॉंगकॉंग यात्रा गाइड - भोजन",
                 backGuide: "⬅ हॉंगकॉंग यात्रा गाइड पर वापस जाएं",
+                backFood: "⬅ भोजन मेनू पर वापस जाएं",
+                guideChaChaanH: "हांगकांग यात्रा गाइड - भोजन - चा चान तेंग और बिंग सुत्त",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">अवश्य आजमाने योग्य क्लासिक मेनू</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>प्रसिद्ध पेय पदार्थ</th><td>हांगकांग सिल्क स्टॉकिंग मिल्क टी, आइस्ड युएनयुएनग<br><span style="font-size:11px;color:#666;">विशेषताएं: गाढ़ी और चिकनी चाय; युएनयुएनग में कॉफी और मिल्क टी का हल्का कड़वा और सुगंधित मिश्रण होता है।</span></td></tr><tr><th>बेकरी</th><td>बटर के साथ पाइनएप्पल बन, हांगकांग फ्रेंच टोस्ट<br><span style="font-size:11px;color:#666;">विशेषताएं: गर्म बन में ठंडे बटर का मेल; पीनट बटर और सिरप के साथ कुरकुरा टोस्ट।</span></td></tr><tr><th>स्नैक्स</th><td>सताए बीफ इंस्टेंट नूडल्स, स्क्रैम्बल एग थिक टोस्ट<br><span style="font-size:11px;color:#666;">विशेषताएं: स्थानीय डाइनर की आत्मा, जिसमें समृद्ध बीफ और नरम अंडे होते हैं।</span></td></tr><tr><th>मुख्य भोजन</th><td>स्टिर-फ्राई बीफ नूडल्स, बेक्ड पोर्क चोप राइस<br><span style="font-size:11px;color:#666;">विशेषताएं: 'वोक हेई' और गाढ़े सॉस पर ध्यान केंद्रित करता है।</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">ऐतिहासिक बिंग सुत्त (कैफे)</h4><p><strong>Kam Wah Cafe (Mong Kok):</strong> "हांगकांग का #1 पाइनएप्पल बन", ठंडे बटर के साथ ताजा बेक किया हुआ बन, मिल्क टी के साथ सबसे बेहतरीन।<br><strong>पता:</strong> 45-47 Bute Street, Mong Kok, Kowloon</p><p><strong>Mido Cafe (Yau Ma Tei):</strong> 70 से अधिक वर्षों का इतिहास, पुरानी हरी खिड़कियां और मोज़ेक टाइलें।<br><strong>पता:</strong> 63 Temple Street, Yau Ma Tei, Kowloon</p><p><strong>Australia Dairy Company (Jordan):</strong> अपनी असाधारण गति और नरम स्क्रैम्बल एग टोस्ट के लिए प्रसिद्ध।<br><strong>पता:</strong> 47 Parkes Street, Jordan, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">प्रसिद्ध चा चान तेंग (चाय कैफे)</h4><p><strong>Lan Fong Yuen (Central):</strong> सिल्क स्टॉकिंग मिल्क टी का जन्मस्थान, चिकने स्वाद और स्वादिष्ट फ्रेंच टोस्ट के लिए प्रसिद्ध।<br><strong>पता:</strong> 2 Gage Street, Central, Hong Kong Island</p><p><strong>Wasou Cafe (Wan Chai / TST):</strong> पोर्क चोप पाइनएप्पल बन और टोमैटो सूप मैकरोनी के लिए प्रसिद्ध।<br><strong>पता:</strong> 272 Jaffe Road, Wan Chai, Hong Kong Island</p><p><strong>Sing Heung Yuen (Central):</strong> ओपन-एयर फूड स्टॉल जो टोमैटो बीफ मैकरोनी और लेमन हनी बन के लिए जाना जाता है।<br><strong>पता:</strong> 2 Mee Lun Street, Central, Hong Kong Island</p>`,
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2409,6 +2439,9 @@
                 gfood6Name: "HK Dessert at Tradisyonal na Matamis na Sabaw", gfood6Desc: "Pang-himagas at panggabing meryenda",
                 guideFoodH: "Gabay sa Paglalakbay sa HK - Pagkain",
                 backGuide: "⬅ Bumalik sa Gabay sa Paglalakbay sa HK",
+                backFood: "⬅ Bumalik sa Menu ng Pagkain",
+                guideChaChaanH: "Gabay sa Paglalakbay sa HK - Pagkain - Cha Chaan Teng at Bing Sutt",
+                guideChaChaanDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Dapat Subukang Klasikong Menu</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Sikat na Inumin</th><td>Hong Kong Milk Tea, Iced Yuenyeung<br><span style="font-size:11px;color:#666;">Tampok: Malinamnam at pino na milk tea; Ang Yuenyeung ay halo ng kape at milk tea na may masarap na pait.</span></td></tr><tr><th>Tinapay at Pastry</th><td>Pineapple Bun na may Butter, HK French Toast<br><span style="font-size:11px;color:#666;">Tampok: Mainit na bun na may malamig na mantikilya; Prinitong toast na may peanut butter at syrup.</span></td></tr><tr><th>Meryenda</th><td>Satay Beef Instant Noodles, Scrambled Egg Thick Toast<br><span style="font-size:11px;color:#666;">Tampok: Ang kaluluwa ng lokal na kainan, may masarap na baka at malambot na itlog.</span></td></tr><tr><th>Pangunahing Pagkain</th><td>Stir-fried Beef Noodles, Baked Pork Chop Rice<br><span style="font-size:11px;color:#666;">Tampok: Nakatuon sa 'Wok Hei' at malapot na sarsa, ang pamantayan ng masarap na kainan.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Makasaysayang Bing Sutt (Kainan)</h4><p><strong>Kam Wah Cafe (Mong Kok):</strong> Kilala bilang "HK's #1 Pineapple Bun", bagong hurno na may makapal na malamig na mantikilya, pinakamasarap kapag may kasamang milk tea.<br><strong>Tirahan:</strong> 45-47 Bute Street, Mong Kok, Kowloon</p><p><strong>Mido Cafe (Yau Ma Tei):</strong> Higit 70 taon na kasaysayan, pinapanatili ang lumang berdeng bintana at mosaic tiles. Sikat sa baked pork chop rice.<br><strong>Tirahan:</strong> 63 Temple Street, Yau Ma Tei, Kowloon</p><p><strong>Australia Dairy Company (Jordan):</strong> Kilala sa mabilis na serbisyo at napakalambot na scrambled egg toast.<br><strong>Tirahan:</strong> 47 Parkes Street, Jordan, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Sikat na Cha Chaan Teng</h4><p><strong>Lan Fong Yuen (Central):</strong> Pinagmulan ng silk stocking milk tea, may masarap na lasa ng tsa at masarap na French toast.<br><strong>Tirahan:</strong> 2 Gage Street, Central, Hong Kong Island</p><p><strong>Wasou Cafe (Wan Chai / TST):</strong> Sikat sa pork chop pineapple bun na may itlog at tomato soup macaroni.<br><strong>Tirahan:</strong> 272 Jaffe Road, Wan Chai, Hong Kong Island</p><p><strong>Sing Heung Yuen (Central):</strong> Karinderya sa labas na sikat sa tomato beef macaroni at rebozadong lemon honey bun.<br><strong>Tirahan:</strong> 2 Mee Lun Street, Central, Hong Kong Island</p>`,
             }
         };
 
@@ -2564,7 +2597,10 @@
                 'ui-gfood-5-title': (langData.gfood5Name || '環球與異國美食'),
                 'ui-gfood-5-desc': (langData.gfood5Desc || '國際美食之都'),
                 'ui-gfood-6-title': (langData.gfood6Name || '港式甜品與傳統糖水'),
-                'ui-gfood-6-desc': (langData.gfood6Desc || '餐後與宵夜必備')
+                'ui-gfood-6-desc': (langData.gfood6Desc || '餐後與宵夜必備'),
+                'ui-back-chachaan': (langData.backFood || '⬅ 返回美食選單'),
+                'ui-chachaan-header': (langData.guideChaChaanH || '香港旅遊攻略 - 美食 - 港式茶餐廳與冰室'),
+                'ui-chachaan-detail': (langData.guideChaChaanDetail || '')
             };
 
             for (const [id, text] of Object.entries(elements)) {
