@@ -360,7 +360,7 @@
             <!-- 主頁底部資訊與致謝 -->
             <div
                 style="grid-column: 1 / -1; text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; font-size: 13px; color: #666; line-height: 1.6;">
-                <p id="ui-footer-address" style="margin: 0 0 5px 0;">酒店地址:香港香港葵湧和宜合道119號</p>
+                <p id="ui-footer-address" style="margin: 0 0 5px 0;">酒店地址:香港香港葵涌和宜合道119號</p>
                 <p id="ui-footer-thanks" style="margin: 0; color: #007bff; font-weight: bold;">感謝您選擇荃灣絲麗酒店,祝您旅途愉快
                 </p>
             </div>
@@ -369,16 +369,17 @@
         <!-- 每日天氣頁面 -->
         <div id="weatherSection" class="section-content">
             <button class="back-btn" id="ui-back10" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 style="margin-top: 0; font-size: 16px; color: #2c3e50;">每日天氣與 9 天天氣預報</h3>
+            <h3 id="ui-weather-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">每日天氣與 9 天天氣預報</h3>
 
             <div class="live-status-card" style="text-align: left;">
-                <div class="live-status-title">📍 本港即時天氣 (葵湧/荃灣)</div>
+                <div class="live-status-title" id="ui-weather-current-title">📍 本港即時天氣 (葵涌/荃灣)</div>
                 <div id="weatherCurrentText" style="font-size: 14px; color: #2c3e50; margin-top: 5px;">
                     載入中...
                 </div>
             </div>
 
-            <h4 style="color: #2c3e50; font-size: 14px; margin: 15px 0 8px 0;">九天天氣預報</h4>
+            <h4 id="ui-weather-forecast-title" style="color: #2c3e50; font-size: 14px; margin: 15px 0 8px 0;">九天天氣預報
+            </h4>
             <div id="forecastContainer">載入預報中...</div>
         </div>
 
@@ -1539,6 +1540,7 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典甜品</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>港式創意水果</th><td>楊枝甘露、芒果班戟、龍眼冰<br><span style="font-size:11px;color:#666;">特色：結合芒果、柚子肉與西米，酸甜爽口；班戟包裹著鮮奶油與大塊果肉。</span></td></tr><tr><th>古法生磨糖水</th><td>芝麻糊、杏仁糊、核桃糊<br><span style="font-size:11px;color:#666;">特色：堅持手工生磨，質地濃稠滑順，香氣濃郁，具滋養功效。</span></td></tr><tr><th>生津養生系列</th><td>桑寄生蓮子蛋茶、腐竹白果糖水<br><span style="font-size:11px;color:#666;">特色：港式獨有的養生概念，苦中帶甘，清熱潤燥。</span></td></tr><tr><th>地道經典小品</th><td>豆腐花、生磨紅豆沙/綠豆沙<br><span style="font-size:11px;color:#666;">特色：豆腐花講求豆香與滑嫩，搭配紅糖或薑汁；豆沙加入陳皮慢燉，香氣層次豐富。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">傳統生磨與養生糖水</h4><p><strong>源記甜品專家（西營盤）：</strong> 超過百年的老字號，以桑寄生蓮子蛋茶聞名，茶湯甘甜滋補，傳統雞蛋仔與蛋糕配搭風味獨特。<br><strong>地址：</strong> 香港島西營盤正街 32 號地舖</p><p><strong>綠林甜品（深水埗）：</strong> 九龍區極具代表性的老牌糖水舖，豆腐花綿密滑嫩，生磨芝麻糊與紅豆沙平實滋味，深受街坊喜愛。<br><strong>地址：</strong> 九龍深水埗元州街 77-79 號地舖</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">新派與創意港式甜品</h4><p><strong>聰嫂甜品：</strong> 以龍眼冰與芒果椰果冰馳名，將新鮮水果磨成冰沙，口感綿密且果香濃郁。<br><strong>地址：</strong> 香港島天后清風街 13 號地舖</p><p><strong>發記甜品（旺角/銅鑼灣）：</strong> 經典港式甜品名店，榴槤飄香與楊枝甘露真材實料，濃郁的果香令人回味無窮。<br><strong>地址：</strong> 九龍旺角豉油街 60 號鴻都大廈地下</p>`,
                 c10t: "每日天氣預報", c10d: "即時天氣與 9 天預報",
                 weatherHeader: "每日天氣與 9 天天氣預報", weatherCurrentTitle: "📍 本港即時天氣 (葵涌/荃灣)", weatherForecastTitle: "九天天氣預報",
+                back10: "⬅ 返回主選單"
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -1696,6 +1698,7 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃经典甜品</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>港式创意水果</th><td>杨枝甘露、芒果班戟、龙眼冰<br><span style="font-size:11px;color:#666;">特色：结合芒果、柚子肉与西米，酸甜爽口；班戟包裹着鲜奶油与大块果肉。</span></td></tr><tr><th>古法生磨糖水</th><td>芝麻糊、杏仁糊、核桃糊<br><span style="font-size:11px;color:#666;">特色：坚持手工生磨，质地浓稠滑顺，香气浓郁，具滋养功效。</span></td></tr><tr><th>生津养生系列</th><td>桑寄生莲子蛋茶、腐竹白果糖水<br><span style="font-size:11px;color:#666;">特色：港式独有的养生概念，苦中带甘，清热润燥。</span></td></tr><tr><th>地道经典小品</th><td>豆腐花、生磨红豆沙/绿豆沙<br><span style="font-size:11px;color:#666;">特色：豆腐花讲求豆香与滑嫩，搭配红糖或姜汁；豆沙加入陈皮慢炖，香气层次丰富。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">传统生磨与养生糖水</h4><p><strong>源记甜品专家（西营盘）：</strong> 超过百年的老字号，以桑寄生莲子蛋茶闻名，茶汤甘甜滋补，传统鸡蛋仔与蛋糕配搭風味独特。<br><strong>地址：</strong> 香港岛西营盘正街 32 号地铺</p><p><strong>绿林甜品（深水埗）：</strong> 九龙区极具代表性的老牌糖水铺，豆腐花绵密滑嫩，生磨芝麻糊与红豆沙平实滋味，深受街坊喜爱。<br><strong>地址：</strong> 九龙深水埗元州街 77-79 号地铺</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">新派与创意港式甜品</h4><p><strong>聪嫂甜品：</strong> 以龙眼冰与芒果椰果冰驰名，将新鲜水果磨成冰沙，口感绵密且果香浓郁。<br><strong>地址：</strong> 香港岛天后清风街 13 号地铺</p><p><strong>发记甜品（旺角/铜锣湾）：</strong> 经典港式甜品名店，榴莲飘香与杨枝甘露真材实料，浓郁的果香令人回味无穷。<br><strong>地址：</strong> 九龙旺角豉油街 60 号鸿都大厦地下</p>`,
                 c10t: "每日天气预报", c10d: "实时天气与 9 天预报",
                 weatherHeader: "每日天气与 9 天天气预报", weatherCurrentTitle: "📍 本港实时天气 (葵涌/荃湾)", weatherForecastTitle: "九天天气预报",
+                back10: "⬅ 返回主菜单"
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -1853,8 +1856,7 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Must-Try Classic Desserts</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Creative Fruit Desserts</th><td>Mango Pomelo Sago, Mango Pancakes, Longan Ice<br><span style="font-size:11px;color:#666;">Features: Mango, pomelo & sago mix; pancakes stuffed with fresh cream and fruit.</span></td></tr><tr><th>Ground Dessert Soups</th><td>Black Sesame Soup, Almond Soup, Walnut Soup<br><span style="font-size:11px;color:#666;">Features: Traditional stone-ground, smooth & thick texture with rich nutty aroma.</span></td></tr><tr><th>Herbal & Wellness</th><td>Mulberry Parasitic Tea with Lotus Seed & Egg, Tofu Skin Ginkgo Soup<br><span style="font-size:11px;color:#666;">Features: Unique Cantonese wellness concept, bittersweet and nourishing.</span></td></tr><tr><th>Local Classics</th><td>Tofu Pudding (Douhua), Red/Mung Bean Soup with Dried Tangerine Peel<br><span style="font-size:11px;color:#666;">Features: Silky tofu pudding with brown sugar; bean soups slow-cooked with aged peel.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Traditional & Herbal Dessert Shops</h4><p><strong>Yuen Kee Dessert (Sai Ying Pun):</strong> Century-old shop famous for Mulberry Parasitic Tea with egg and traditional sponge cake.<br><strong>Address:</strong> G/F, 32 Centre Street, Sai Ying Pun, Hong Kong Island</p><p><strong>Luk Lam Dessert (Sham Shui Po):</strong> Iconic neighborhood shop in Kowloon, popular for silky tofu pudding and sesame soup.<br><strong>Address:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Modern & Creative HK Desserts</h4><p><strong>Chung So Dessert:</strong> Famous for Longan Sorbet and Mango Ice, serving refreshing shaved fruit ice.<br><strong>Address:</strong> G/F, 13 Tsing Fung Street, Tin Hau, Hong Kong Island</p><p><strong>Lucky Dessert (Mong Kok / Causeway Bay):</strong> Famous for Durian Sago and Mango Pomelo Sago packed with real fruit.<br><strong>Address:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok, Kowloon</p>`,
                 c10t: "Daily Weather Forecast", c10d: "Live weather & 9-day forecast",
                 weatherHeader: "Daily Weather & 9-Day Forecast", weatherCurrentTitle: "📍 Live Weather (Kwai Chung / Tsuen Wan)", weatherForecastTitle: "9-Day Weather Forecast",
-
-                // ja (日本語)
+                back10: "⬅ Back to Main Menu",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -2012,6 +2014,7 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必食クラシックスイーツ</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>香港風フルーツスイーツ</th><td>楊枝甘露（マンゴーポ米サゴ）、マンゴーパンケーキ、リュウガン氷<br><span style="font-size:11px;color:#666;">特徴：甘酸っぱいマンゴーとサゴの絶妙な組み合わせ。生クリームと大粒果肉のパンケーキ。</span></td></tr><tr><th>傳統手挽き濃厚糖水</th><td>黒ゴマお汁粉、アーモンドお汁粉、クルミお汁粉<br><span style="font-size:11px;color:#666;">特徴：手挽きにこだわった濃厚で香ばしく、美容健康にも効果的な伝統スイーツ。</span></td></tr><tr><th>薬膳・ヘルシースイーツ</th><td>桑寄生蓮子卵茶、湯葉イチョウ糖水<br><span style="font-size:11px;color:#666;">特徴：香港独自の薬膳概念。ほろ苦さの中に甘みがあり体に優しい。</span></td></tr><tr><th>ローカル定番小品</th><td>豆腐花（トウファ）、陳皮入り小豆・緑豆お汁粉<br><span style="font-size:11px;color:#666;">特徴：大豆の香りと滑らかな豆腐花。陳皮の香りが漂う濃厚小豆汁粉。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">傳統手挽き・薬膳デザート</h4><p><strong>源記甜品專家（西營盤）：</strong> 100年以上の歴史を誇る老舗。桑寄生蓮子卵茶が一番人気。<br><strong>住所：</strong> 香港島西營盤正街 32 號地舖</p><p><strong>綠林甜品（深水埗）：</strong> 九龍エリアを代表する人気老舗スイーツ店。滑らかな豆腐花と黒ゴマ汁粉が名物。<br><strong>住所：</strong> 九龍深水埗元州街 77-79 號地舖</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">創作・トレンド香港スイーツ</h4><p><strong>聰嫂甜品：</strong> リュウガン氷とマンゴーアイスが有名な創作フルーツスイーツ店。<br><strong>住所：</strong> 香港島天后清風街 13 號地舖</p><p><strong>發記甜品（旺角/銅鑼灣）：</strong> ドリアンスイーツや楊枝甘露で有名な香港定番スイーツ店。<br><strong>住所：</strong> 九龍旺角豉油街 60 號鴻都大廈地下</p>`,
                 c10t: "每日天気予報", c10d: "リアルタイム天気＆9日間予報",
                 weatherHeader: "每日天気と9日間天氣予報", weatherCurrentTitle: "📍 現地のリアルタイム天気 (葵涌/荃灣)", weatherForecastTitle: "9日間天氣予報",
+                back10: "⬅ メニューに戻る",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -2169,6 +2172,7 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">필수 클래식 디저트</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>홍콩식 과일 디저트</th><td>양지감로(망고 사고), 망고 팬케이크, 용안 빙수<br><span style="font-size:11px;color:#666;">특징: 망고와 자몽, 사고의 상큼한 조화; 생크림과 과육이 가득한 팬케이크.</span></td></tr><tr><th>전통 맷돌 죽 디저트</th><td>흑임자 죽, 아몬드 죽, 호두 죽<br><span style="font-size:11px;color:#666;">특징: 수제로 맷돌에 갈아 만들어 진하고 고소하며 영양이 풍부함.</span></td></tr><tr><th>몸보신 웰빙 디저트</th><td>상기생 연자육 계란차, 두부피 은행 탕수<br><span style="font-size:11px;color:#666;">특징: 홍콩 특유의 약선 디저트로 은은한 단맛과 건강함이 특징.</span></td></tr><tr><th>로컬 대표 디저트</th><td>두부화(두유 푸딩), 팥죽/녹두죽<br><span style="font-size:11px;color:#666;">특징: 부드러운 순두부에 흑당을 얹어 먹는 두부화와 진한 팥죽.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">전통 수제 & 웰빙 디저트</h4><p><strong>원키 디저트 (사이잉푼):</strong> 100년 전통의 노포. 상기생 계란차가 대표 메뉴.<br><strong>주소:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>록람 디저트 (삼수이포):</strong> 구룡 지역의 대표 디저트 가게. 부드러운 두부화와 흑임자죽 맛집.<br><strong>주소:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">퓨전 & 과일 디저트</h4><p><strong>총소 디저트 (틴하우):</strong> 용안 빙수와 망고 빙수로 유명한 과일 디저트 맛집.<br><strong>주소:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>발키 디저트 (몽콕/코즈웨이베이):</strong> 두리안 디저트와 양지감로가 유명한 전통 디저트 전문점.<br><strong>주소:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
                 c10t: "일일 일기예보", c10d: "실시간 날씨 및 9일 예보",
                 weatherHeader: "일일 날씨 및 9일 일기예보", weatherCurrentTitle: "📍 현지 실시간 날씨 (콰이충 / 튄문)", weatherForecastTitle: "9일 일기예보",
+                back10: "⬅ 메인 메뉴로 돌아가기",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -2326,6 +2330,7 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Món tráng miệng kinh điển phải thử</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Hoa quả sáng tạo</th><td>Dương Chi Cam Lộ (Mango Pomelo Sago), Bánh crepe xoài, Đá bào nhãn<br><span style="font-size:11px;color:#666;">Đặc điểm: Xoài bưởi chua ngọt mát lạnh; crepe bọc kem tươi và xoài miếng.</span></td></tr><tr><th>Chè xay truyền thống</th><td>Chè mè đen, Chè hạnh nhân, Chè óc chó<br><span style="font-size:11px;color:#666;">Đặc điểm: Xay thủ công, đặc sánh mịn màng, thơm phức và bổ dưỡng.</span></td></tr><tr><th>Dưỡng sinh thanh nhiệt</th><td>Trà trứng hạt sen tang ký sinh, Chè hủ ky bạch quả<br><span style="font-size:11px;color:#666;">Đặc điểm: Phong cách dưỡng sinh Hồng Kông, đắng nhẹ ngọt hậu.</span></td></tr><tr><th>Món tráng miệng dân dã</th><td>Tào phớ (Tàu hủ), Chè đậu đỏ/đầu xanh trần bì<br><span style="font-size:11px;color:#666;">Đặc điểm: Tào phớ mướt mịn ăn kèm đường đỏ; chè đậu nấu trần bì thơm nức.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Quán chè truyền thống & Dưỡng sinh</h4><p><strong>Yuen Kee Dessert (Tây Doanh Bàn):</strong> Quán chè hơn trăm năm tuổi, nổi tiếng với trà trứng hạt sen.<br><strong>Địa chỉ:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>Luk Lam Dessert (Thâm Thủy Bộ):</strong> Quán chè lâu đời đại diện khu Cửu Long, tào phớ và chè mè đen rất được yêu thích.<br><strong>Địa chỉ:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Món tráng miệng hiện đại & Sáng tạo</h4><p><strong>Chung So Dessert (Thiên Hậu):</strong> Nổi tiếng với đá bào nhãn và đá bào xoài mát lạnh thơm ngon.<br><strong>Địa chỉ:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>Lucky Dessert (Vượng Giác):</strong> Quán tráng miệng kinh điển với chè sầu riêng và Dương Chi Cam Lộ ngập tràn hoa quả.<br><strong>Địa chỉ:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
                 c10t: "Dự báo thời tiết hàng ngày", c10d: "Thời tiết trực tiếp & dự báo 9 ngày",
                 weatherHeader: "Thời tiết hàng ngày & Dự báo 9 ngày", weatherCurrentTitle: "📍 Thời tiết trực tiếp (Kwai Chung / Tsuen Wan)", weatherForecastTitle: "Dự báo thời tiết 9 ngày",
+                back10: "⬅ Quay lại Menu chính",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -2483,6 +2488,7 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">अवश्य आजमाने योग्य मिठाइयां</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>फ्रूट डेसर्ट</th><td>मैंगो पोमेलो सागो, मैंगो पैनकेक, लोंगन आइस<br><span style="font-size:11px;color:#666;">विशेषताएं: आम और साबूदाने का ताजा मिश्रण; क्रीम और फ्रूट से भरपूर पैनकेक।</span></td></tr><tr><th>पारंपरिक सूप डेसर्ट</th><td>ब्लैक सेसमी सूप, आलमंड सूप, अखरोट सूप<br><span style="font-size:11px;color:#666;">विशेषताएं: पारंपरिक रूप से पीसा हुआ, गाढ़ा और पौष्टिक।</span></td></tr><tr><th>हर्बल वेलनेस</th><td>मलबेरी टी विथ लोटस सीड एंड एग<br><span style="font-size:11px;color:#666;">विशेषताएं: सेहतमंद पारंपरिक हांगकांग पेय।</span></td></tr><tr><th>लोकल क्लासिक्स</th><td>टोफू पुडिंग (दौहुआ), रेड बीन सूप<br><span style="font-size:11px;color:#666;">विशेषताएं: मुलायम टोफू पुडिंग और स्वादिष्ट रेड बीन सूप।</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">पारंपरिक दुकानें</h4><p><strong>Yuen Kee Dessert (साई यिंग पुन):</strong> 100 साल पुरानी प्रसिद्ध दुकान।<br><strong>पता:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>Luk Lam Dessert (शाम शुई पो):</strong> लोकप्रिय स्थानीय मिठाई की दुकान।<br><strong>पता:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">आधुनिक मिठाइयां</h4><p><strong>Chung So Dessert (टिन हाऊ):</strong> फ्रेश फ्रूट आइस के लिए प्रसिद्ध।<br><strong>पता:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>Lucky Dessert (मोंग कोक):</strong> प्रसिद्ध मैंगो और डुरियन डेसर्ट।<br><strong>पता:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
                 c10t: "दैनिक मौसम का पूर्वानुमान", c10d: "लाइव मौसम और 9-दिन का पूर्वानुमान",
                 weatherHeader: "दैनिक मौसम और 9-दिन का पूर्वानुमान", weatherCurrentTitle: "📍 लाइव मौसम (क्वाई चुंग / त्सुएन वान)", weatherForecastTitle: "9-दिन मौसम का पूर्वानुमान",
+                back10: "⬅ मुख्य मेनू पर वापस जाएं",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2639,37 +2645,43 @@
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Mga Matamis na Dapat Subukan</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Fruit Desserts</th><td>Mango Pomelo Sago, Mango Pancakes, Longan Ice<br><span style="font-size:11px;color:#666;">Tampok: Masarap na manga at sago; pancake na may sariwang cream at prutas.</span></td></tr><tr><th>Tradisyunal na Sabaw</th><td>Black Sesame Soup, Almond Soup, Walnut Soup<br><span style="font-size:11px;color:#666;">Tampok: Giniling sa lumang paraan, malapot at masustansya.</span></td></tr><tr><th>Pang-kalusugan</th><td>Mulberry Parasitic Tea with Lotus Seed & Egg<br><span style="font-size:11px;color:#666;">Tampok: Tradisyunal na pampalakas ng katawan.</span></td></tr><tr><th>Lokal na Klasiko</th><td>Tofu Pudding (Douhua), Red Bean Soup<br><span style="font-size:11px;color:#666;">Tampok: Malambot na tofu pudding na may asukal na pula.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Tradisyunal na Kainan</h4><p><strong>Yuen Kee Dessert (Sai Ying Pun):</strong> Daan-daang taong gulang na kainan ng matamis.<br><strong>Address:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>Luk Lam Dessert (Sham Shui Po):</strong> Sikat na kainan ng tofu pudding at sesame soup.<br><strong>Address:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Makabagong Matamis</h4><p><strong>Chung So Dessert (Tin Hau):</strong> Sikat sa masarap na shaved fruit ice.<br><strong>Address:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>Lucky Dessert (Mong Kok):</strong> Sikat sa mango pomelo sago at durian desserts.<br><strong>Address:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
                 c10t: "Araw-araw na Ulat ng Panahon", c10d: "Live na panahon at 9-araw na ulat",
                 weatherHeader: "Araw-araw na Panahon at 9-Araw na Ulat", weatherCurrentTitle: "📍 Live na Panahon (Kwai Chung / Tsuen Wan)", weatherForecastTitle: "9-Araw na Ulat ng Panahon",
+                back10: "⬅ Bumalik sa Main Menu",
             }
         };
 
         async function fetchHKOWeather(lang) {
-            const currentLang = lang || (typeof currentLang !== 'undefined' ? currentLang : 'zh-HK');
+            // 1. 取得目標語言
+            const targetLang = lang || (typeof currentLang !== 'undefined' ? currentLang : 'zh-HK');
 
-            // 1. 判斷 API 語言 (tc, sc, en)
+            // 2. 先更新頁面上的靜態按鈕與標題文字 (解決按鈕彈回中文的問題)
+            if (typeof updateUIText === 'function') {
+                updateUIText();
+            }
+
+            // 3. 判斷 API 語言 (香港天文台 API 僅支援 tc, sc, en)
             let hkoLang = 'tc';
-            if (currentLang === 'zh-CN') hkoLang = 'sc';
-            else if (currentLang !== 'zh-HK') hkoLang = 'en';
+            if (targetLang === 'zh-CN') hkoLang = 'sc';
+            else if (targetLang !== 'zh-HK') hkoLang = 'en';
 
-            // 2. 表格標頭字典
+            // 4. 表格與動態文字標題字典
             const tableLabels = {
-                'zh-HK': { date: '日期', weather: '天氣概況', tempRh: '氣溫 / 濕度', temp: '當前溫度', humidity: '相對濕度' },
-                'zh-CN': { date: '日期', weather: '天气概况', tempRh: '气温 / 湿度', temp: '当前温度', humidity: '相对湿度' },
-                'en': { date: 'Date', weather: 'Forecast', tempRh: 'Temp / RH', temp: 'Temperature', humidity: 'Humidity' },
-                'ja': { date: '日付', weather: '天気予報', tempRh: '気温 / 湿度', temp: '現在の気温', humidity: '湿度' },
-                'ko': { date: '날짜', weather: '날씨 상태', tempRh: '기온 / 습도', temp: '현재 기온', humidity: '습도' },
-                'vi': { date: 'Ngày', weather: 'Thời tiết', tempRh: 'Nhiệt độ / Độ ẩm', temp: 'Nhiệt độ', humidity: 'Độ ẩm' },
-                'hi': { date: 'तिथि', weather: 'मौसम', tempRh: 'तापमान / आर्द्रता', temp: 'तापमान', humidity: 'आर्द्रता' },
-                'fil': { date: 'Petsa', weather: 'Panahon', tempRh: 'Temperatura / Halumigmig', temp: 'Temperatura', humidity: 'Halumigmig' }
+                'zh-HK': { date: '日期', weather: '天氣概況', tempRh: '氣溫 / 濕度', temp: '當前溫度', humidity: '相對濕度', errCurrent: '即時天氣載入失敗，請稍後再試。', errForecast: '預報資料載入失敗，請稍後再試。' },
+                'zh-CN': { date: '日期', weather: '天气概况', tempRh: '气温 / 湿度', temp: '当前温度', humidity: '相对湿度', errCurrent: '实时天气加载失败，请稍后再试。', errForecast: '预报数据加载失败，请稍后再试。' },
+                'en': { date: 'Date', weather: 'Forecast', tempRh: 'Temp / RH', temp: 'Temperature', humidity: 'Humidity', errCurrent: 'Failed to load weather data.', errForecast: 'Failed to load forecast data.' },
+                'ja': { date: '日付', weather: '天気予報', tempRh: '気温 / 湿度', temp: '現在の気温', humidity: '湿度', errCurrent: '天気の読み込みに失敗しました。', errForecast: '予報の読み込みに失敗しました。' },
+                'ko': { date: '날짜', weather: '날씨 상태', tempRh: '기온 / 습도', temp: '현재 기온', humidity: '습도', errCurrent: '날씨 정보를 불러올 수 없습니다.', errForecast: '예보 정보를 불러올 수 없습니다.' },
+                'vi': { date: 'Ngày', weather: 'Thời tiết', tempRh: 'Nhiệt độ / Độ ẩm', temp: 'Nhiệt độ', humidity: 'Độ ẩm', errCurrent: 'Lỗi tải thời tiết.', errForecast: 'Lỗi tải dự báo.' },
+                'hi': { date: 'तिथि', weather: 'मौसम', tempRh: 'तापमान / आर्द्रता', temp: 'तापमान', humidity: 'आर्द्रता', errCurrent: 'मौसम लोड करने में विफल।', errForecast: 'पूर्वानुमान लोड करने में विफल।' },
+                'fil': { date: 'Petsa', weather: 'Panahon', tempRh: 'Temperatura / Halumigmig', temp: 'Temperatura', humidity: 'Halumigmig', errCurrent: 'Bigo sa pag-load ng panahon.', errForecast: 'Bigo sa pag-load ng ulat.' }
             };
 
-            const label = tableLabels[currentLang] || tableLabels['zh-HK'];
+            const label = tableLabels[targetLang] || tableLabels['zh-HK'];
 
             // --- 抓取即時天氣 ---
             try {
                 const currentRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=${hkoLang}`);
                 const currentData = await currentRes.json();
 
-                // 防呆搜尋：尋找葵涌/荃灣，找不到就取第一個
                 let tempVal = "--";
                 let placeName = "荃灣";
                 if (currentData.temperature && currentData.temperature.data) {
@@ -2699,7 +2711,7 @@
             } catch (e) {
                 console.error("即時天氣載入失敗:", e);
                 const currentElem = document.getElementById('weatherCurrentText');
-                if (currentElem) currentElem.innerText = "即時天氣載入失敗，請稍後再試。";
+                if (currentElem) currentElem.innerText = label.errCurrent;
             }
 
             // --- 抓取九天天氣預報 ---
@@ -2709,14 +2721,14 @@
 
                 if (forecastData.weatherForecast && Array.isArray(forecastData.weatherForecast)) {
                     let forecastHTML = `<table class="price-table">
-                <thead>
-                    <tr>
-                        <th>${label.date}</th>
-                        <th>${label.weather}</th>
-                        <th>${label.tempRh}</th>
-                    </tr>
-                </thead>
-                <tbody>`;
+            <thead>
+                <tr>
+                    <th>${label.date}</th>
+                    <th>${label.weather}</th>
+                    <th>${label.tempRh}</th>
+                </tr>
+            </thead>
+            <tbody>`;
 
                     forecastData.weatherForecast.forEach(day => {
                         const dateStr = day.forecastDate ? `${day.forecastDate.substring(4, 6)}/${day.forecastDate.substring(6, 8)}<br>(${day.week || ''})` : '';
@@ -2727,15 +2739,15 @@
                         const weatherDesc = day.forecastForecast || '';
 
                         forecastHTML += `
-                    <tr>
-                        <td><strong>${dateStr}</strong></td>
-                        <td style="font-size:12px;">${weatherDesc}</td>
-                        <td>
-                            <span style="color:#d9534f; font-weight:bold;">${minTemp}°C - ${maxTemp}°C</span><br>
-                            <small style="color:#666;">${minRh}% - ${maxRh}% RH</small>
-                        </td>
-                    </tr>
-                `;
+            <tr>
+                <td><strong>${dateStr}</strong></td>
+                <td style="font-size:12px;">${weatherDesc}</td>
+                <td>
+                    <span style="color:#d9534f; font-weight:bold;">${minTemp}°C - ${maxTemp}°C</span><br>
+                    <small style="color:#666;">${minRh}% - ${maxRh}% RH</small>
+                </td>
+            </tr>
+        `;
                     });
 
                     forecastHTML += '</tbody></table>';
@@ -2745,7 +2757,7 @@
             } catch (e) {
                 console.error("預報載入失敗:", e);
                 const forecastElem = document.getElementById('forecastContainer');
-                if (forecastElem) forecastElem.innerText = "預報資料載入失敗，請稍後再試。";
+                if (forecastElem) forecastElem.innerText = label.errForecast;
             }
         }
         function selectLang(lang) {
@@ -2924,7 +2936,7 @@
                 'ui-back10': (langData.back10 || '⬅ 返回主選單'),
                 'ui-weather-header': (langData.weatherHeader || '每日天氣與 9 天天氣預報'),
                 'ui-weather-current-title': (langData.weatherCurrentTitle || '📍 本港即時天氣 (葵涌/荃灣)'),
-                'ui-weather-forecast-title': (langData.weatherForecastTitle || '九天天氣預報'),
+                'ui-weather-forecast-title': (langData.weatherForecastTitle || '九天天氣預報')
 
             };
 
