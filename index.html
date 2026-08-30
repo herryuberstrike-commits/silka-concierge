@@ -280,8 +280,10 @@
 </head>
 
 <body>
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding-bottom: 10px;">
-        <img src="https://i.imgur.com/OJXKDEP.jpeg" alt="香港荃灣絲麗酒店 Logo" style="max-width: 140px; height: auto; margin-bottom: 8px; mix-blend-mode: multiply;">
+    <div
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding-bottom: 10px;">
+        <img src="https://i.imgur.com/OJXKDEP.jpeg" alt="香港荃灣絲麗酒店 Logo"
+            style="max-width: 140px; height: auto; margin-bottom: 8px; mix-blend-mode: multiply;">
         <h2 id="ui-title" style="color: #2c3e50; margin: 0; font-size: 14px; text-align: center;">
             SilkaTsuenWan-Concierge
         </h2>
@@ -303,11 +305,22 @@
     <div class="container" id="mainContainer" style="display: none;">
 
         <div class="menu-grid" id="mainMenu">
+            <!-- 橫跨整列的每日天氣按鈕 -->
+            <div class="menu-card" style="grid-column: 1 / -1; margin-bottom: 5px;"
+                onclick="showSection('weatherSection')">
+                <div class="icon">🌤️</div>
+                <h3 id="ui-card10-title">每日天氣預報</h3>
+                <p id="ui-card10-desc">香港天文台即時天氣與 9 天預報</p>
+            </div>
+
+            <!-- 2. 左側按鈕：免費穿梭巴士 -->
             <div class="menu-card" onclick="showSection('busSection')">
                 <div class="icon">🚌</div>
                 <h3 id="ui-card1-title">免費穿梭巴士</h3>
                 <p id="ui-card1-desc">時間表與即時狀態</p>
             </div>
+
+            <!-- 3. 右側按鈕：免費穿梭巴士上車地點 -->
             <div class="menu-card" onclick="showSection('stationSection')">
                 <div class="icon">🚏</div>
                 <h3 id="ui-card5-title">免費穿梭巴士上車地點</h3>
@@ -348,15 +361,33 @@
             <div
                 style="grid-column: 1 / -1; text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; font-size: 13px; color: #666; line-height: 1.6;">
                 <p id="ui-footer-address" style="margin: 0 0 5px 0;">酒店地址:香港香港葵湧和宜合道119號</p>
-                <p id="ui-footer-thanks" style="margin: 0; color: #007bff; font-weight: bold;">感謝您選擇荃灣絲麗酒店,祝您旅途愉快</p>
+                <p id="ui-footer-thanks" style="margin: 0; color: #007bff; font-weight: bold;">感謝您選擇荃灣絲麗酒店,祝您旅途愉快
+                </p>
             </div>
+        </div>
+
+        <!-- 每日天氣頁面 -->
+        <div id="weatherSection" class="section-content">
+            <button class="back-btn" id="ui-back10" onclick="goBack()">⬅ 返回主選單</button>
+            <h3 style="margin-top: 0; font-size: 16px; color: #2c3e50;">每日天氣與 9 天天氣預報</h3>
+
+            <div class="live-status-card" style="text-align: left;">
+                <div class="live-status-title">📍 本港即時天氣 (葵湧/荃灣)</div>
+                <div id="weatherCurrentText" style="font-size: 14px; color: #2c3e50; margin-top: 5px;">
+                    載入中...
+                </div>
+            </div>
+
+            <h4 style="color: #2c3e50; font-size: 14px; margin: 15px 0 8px 0;">九天天氣預報</h4>
+            <div id="forecastContainer">載入預報中...</div>
         </div>
 
         <!-- 1. 穿梭巴士頁面 -->
         <div id="busSection" class="section-content">
             <button class="back-btn" id="ui-back1" onclick="goBack()">⬅ 返回主選單</button>
             <h3 id="ui-bus-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">穿梭巴士時間表與即時狀態</h3>
-            <p id="ui-bus-sub" style="font-size: 12px; color: #666; margin-bottom: 15px;">酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔ 港鐵荃灣西站
+            <p id="ui-bus-sub" style="font-size: 12px; color: #666; margin-bottom: 15px;">酒店 🕒 ➔ 新都會廣場(港鐵葵芳站) ➔
+                港鐵荃灣西站
             </p>
 
             <div class="live-status-card">
@@ -432,7 +463,8 @@
         </div>
 
         <div id="guideFoodSection" class="section-content">
-            <button class="back-btn" id="ui-back-guidefood" onclick="showSection('guideSection')">⬅ 返回香港旅遊攻略</button>
+            <button class="back-btn" id="ui-back-guidefood" onclick="showSection('guideSection')">⬅
+                返回香港旅遊攻略</button>
             <h3 id="ui-guidefood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食</h3>
             <div class="menu-grid">
 
@@ -813,8 +845,10 @@
         </div>
 
         <div id="guideChaChaanTengSection" class="section-content">
-            <button class="back-btn" id="ui-back-chachaan" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-chachaan-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 港式茶餐廳與冰室
+            <button class="back-btn" id="ui-back-chachaan" onclick="showSection('guideFoodSection')">⬅
+                返回美食選單</button>
+            <h3 id="ui-chachaan-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 -
+                港式茶餐廳與冰室
             </h3>
             <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
                 id="ui-chachaan-detail">
@@ -824,15 +858,18 @@
         <!-- 香港旅遊攻略 -> 美食 -> 傳統酒樓與點心分頁 -->
         <div id="guideDimSumSection" class="section-content">
             <button class="back-btn" id="ui-back-dimsum" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-dimsum-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統酒樓與點心</h3>
+            <h3 id="ui-dimsum-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統酒樓與點心
+            </h3>
             <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
                 id="ui-dimsum-detail">
             </div>
         </div>
 
         <div id="guideStreetFoodSection" class="section-content">
-            <button class="back-btn" id="ui-back-streetfood" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-streetfood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 街頭小食與大排檔
+            <button class="back-btn" id="ui-back-streetfood" onclick="showSection('guideFoodSection')">⬅
+                返回美食選單</button>
+            <h3 id="ui-streetfood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 -
+                街頭小食與大排檔
             </h3>
             <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
                 id="ui-streetfood-detail">
@@ -841,15 +878,18 @@
 
         <div id="guideNoodleSection" class="section-content">
             <button class="back-btn" id="ui-back-noodle" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-noodle-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統粉麵與燒味</h3>
+            <h3 id="ui-noodle-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 傳統粉麵與燒味
+            </h3>
             <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
                 id="ui-noodle-detail">
             </div>
         </div>
 
         <div id="guideGlobalFoodSection" class="section-content">
-            <button class="back-btn" id="ui-back-globalfood" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-globalfood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 環球與異國美食
+            <button class="back-btn" id="ui-back-globalfood" onclick="showSection('guideFoodSection')">⬅
+                返回美食選單</button>
+            <h3 id="ui-globalfood-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 -
+                環球與異國美食
             </h3>
             <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
                 id="ui-globalfood-detail">
@@ -857,8 +897,10 @@
         </div>
 
         <div id="guideDessertSection" class="section-content">
-            <button class="back-btn" id="ui-back-dessert" onclick="showSection('guideFoodSection')">⬅ 返回美食選單</button>
-            <h3 id="ui-dessert-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 - 港式甜品與傳統糖水
+            <button class="back-btn" id="ui-back-dessert" onclick="showSection('guideFoodSection')">⬅
+                返回美食選單</button>
+            <h3 id="ui-dessert-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 - 美食 -
+                港式甜品與傳統糖水
             </h3>
             <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e9ecef; font-size: 13px; line-height: 1.6; color: #333;"
                 id="ui-dessert-detail">
@@ -1495,6 +1537,8 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>東南亞風味</th><td>泰式船麵、南洋喇沙、印度咖哩薄餅<br><span style="font-size:11px;color:#666;">特色：香料層次豐富，酸辣濃郁，極具異國街頭風味。</span></td></tr><tr><th>港式西洋味</th><td>豉油西餐（焗豬扒飯、羅宋湯）、特製熱狗<br><span style="font-size:11px;color:#666;">特色：將西方飲食港式化，用豉油、茄汁與濃湯調和出適合東方人的口味。</span></td></tr><tr><th>日韓平民味</th><td>雞白湯拉麵、韓式炸雞、日式咖哩蛋包飯<br><span style="font-size:11px;color:#666;">特色：精緻度高，極受香港年輕族群與上班族喜愛。</span></td></tr><tr><th>歐美輕食</th><td>手工義大利麵、美式手工漢堡<br><span style="font-size:11px;color:#666;">特色：講求食材新鮮與現做口感，是平價休閒餐飲（Casual Dining）的主力。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">地道名店推薦</h4><p><strong>泰潮 / 泰國菜館（九龍城）：</strong> 九龍城被譽為香港的「小泰國」，地道泰國人開辦的餐廳林立，船麵、冬蔭功與泰式海南雞飯風味純正。<br><strong>地址：</strong> 九龍九龍城南角道 36 號地舖</p><p><strong>永樂園餐廳（中環）：</strong> 港式與西洋風格結合的經典，其特製雙腸熱狗搭配獨門黃芥末醬，是中環上班族的平民美食傳奇。<br><strong>地址：</strong> 香港島中環昭隆街 19 號地舖</p><p><strong>重慶大廈異國美食（尖沙咀）：</strong> 香港最具傳奇色彩的多元文化地標，匯聚極為地道的印度咖哩、巴基斯坦燒烤與尼泊爾小食。<br><strong>地址：</strong> 九龍尖沙咀彌敦道 36-44 號</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">日韓與歐美平民異國味</h4><p><strong>座銀 ZAGIN SOBA（中環）：</strong> 主打極致濃郁的雞白湯拉麵，湯底如卡布奇諾般綿密，搭配酥脆炸牛蒡，是日式拉麵的頂級代表。<br><strong>地址：</strong> 香港島中環歌賦街 7 號地舖</p><p><strong>Pici（灣仔）：</strong> 主打手工現做義大利麵，價格親民且氣氛輕鬆，寬條麵（Pappardelle）與松露意粉極受歡迎。<br><strong>地址：</strong> 香港島灣仔進教圍 16 號地舖</p>`,
                 guideDessertH: "香港旅遊攻略 - 美食 - 港式甜品與傳統糖水",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃經典甜品</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>港式創意水果</th><td>楊枝甘露、芒果班戟、龍眼冰<br><span style="font-size:11px;color:#666;">特色：結合芒果、柚子肉與西米，酸甜爽口；班戟包裹著鮮奶油與大塊果肉。</span></td></tr><tr><th>古法生磨糖水</th><td>芝麻糊、杏仁糊、核桃糊<br><span style="font-size:11px;color:#666;">特色：堅持手工生磨，質地濃稠滑順，香氣濃郁，具滋養功效。</span></td></tr><tr><th>生津養生系列</th><td>桑寄生蓮子蛋茶、腐竹白果糖水<br><span style="font-size:11px;color:#666;">特色：港式獨有的養生概念，苦中帶甘，清熱潤燥。</span></td></tr><tr><th>地道經典小品</th><td>豆腐花、生磨紅豆沙/綠豆沙<br><span style="font-size:11px;color:#666;">特色：豆腐花講求豆香與滑嫩，搭配紅糖或薑汁；豆沙加入陳皮慢燉，香氣層次豐富。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">傳統生磨與養生糖水</h4><p><strong>源記甜品專家（西營盤）：</strong> 超過百年的老字號，以桑寄生蓮子蛋茶聞名，茶湯甘甜滋補，傳統雞蛋仔與蛋糕配搭風味獨特。<br><strong>地址：</strong> 香港島西營盤正街 32 號地舖</p><p><strong>綠林甜品（深水埗）：</strong> 九龍區極具代表性的老牌糖水舖，豆腐花綿密滑嫩，生磨芝麻糊與紅豆沙平實滋味，深受街坊喜愛。<br><strong>地址：</strong> 九龍深水埗元州街 77-79 號地舖</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">新派與創意港式甜品</h4><p><strong>聰嫂甜品：</strong> 以龍眼冰與芒果椰果冰馳名，將新鮮水果磨成冰沙，口感綿密且果香濃郁。<br><strong>地址：</strong> 香港島天后清風街 13 號地舖</p><p><strong>發記甜品（旺角/銅鑼灣）：</strong> 經典港式甜品名店，榴槤飄香與楊枝甘露真材實料，濃郁的果香令人回味無窮。<br><strong>地址：</strong> 九龍旺角豉油街 60 號鴻都大廈地下</p>`,
+                c10t: "每日天氣預報", c10d: "即時天氣與 9 天預報",
+                weatherHeader: "每日天氣與 9 天天氣預報", weatherCurrentTitle: "📍 本港即時天氣 (葵涌/荃灣)", weatherForecastTitle: "九天天氣預報",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -1650,6 +1694,8 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃经典美食</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>东南亚風味</th><td>泰式船面、南洋喇沙、印度咖喱薄饼<br><span style="font-size:11px;color:#666;">特色：香料层次丰富，酸辣浓郁，极具异国街头風味。</span></td></tr><tr><th>港式西洋味</th><td>豉油西餐（焗猪扒饭、罗宋汤）、特制热狗<br><span style="font-size:11px;color:#666;">特色：将西方饮食港式化，用豉油、茄汁与浓汤调和出适合东方人的口味。</span></td></tr><tr><th>日韩平民味</th><td>鸡白汤拉面、韩式炸鸡、日式咖喱蛋包饭<br><span style="font-size:11px;color:#666;">特色：精致度高，极受香港年轻族群与上班族喜爱。</span></td></tr><tr><th>欧美轻食</th><td>手工意大利面、美式手工汉堡<br><span style="font-size:11px;color:#666;">特色：讲求食材新鲜与现做口感，是平价休闲餐饮（Casual Dining）的主力。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">地道名店推荐</h4><p><strong>泰潮 / 泰国菜馆（九龙城）：</strong> 九龙城被誉为香港的“小泰国”，地道泰国人开办的餐厅林立，船面、冬荫功与泰式海南鸡饭風味纯正。<br><strong>地址：</strong> 九龙九龙城南角道 36 号地铺</p><p><strong>永乐园餐厅（中环）：</strong> 港式与西洋风格结合的经典，其特制双肠热狗搭配独门黄芥末酱，是中环上班族的平民美食传奇。<br><strong>地址：</strong> 香港岛中环昭隆街 19 号地铺</p><p><strong>重庆大厦异国美食（尖沙咀）：</strong> 香港最具传奇色彩的多元文化地标，汇聚极为地道的印度咖喱、巴基斯坦烧烤与尼泊尔小食。<br><strong>地址：</strong> 九龙尖沙咀弥敦道 36-44 号</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">日韩与欧美平民异国味</h4><p><strong>座银 ZAGIN SOBA（中环）：</strong> 主打极致浓郁的鸡白汤拉面，汤底如卡布奇诺般绵密，搭配酥脆炸牛蒡，是日式拉面的高级代表。<br><strong>地址：</strong> 香港岛中环歌赋街 7 号地铺</p><p><strong>Pici（湾仔）：</strong> 主打手工现做意大利面，价格亲民且气氛轻松，宽条面（Pappardelle）与松露意粉极受欢迎。<br><strong>地址：</strong> 香港岛湾仔进教围 16 号地铺</p>`,
                 guideDessertH: "香港旅游攻略 - 美食 - 港式甜品与传统糖水",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必吃经典甜品</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>港式创意水果</th><td>杨枝甘露、芒果班戟、龙眼冰<br><span style="font-size:11px;color:#666;">特色：结合芒果、柚子肉与西米，酸甜爽口；班戟包裹着鲜奶油与大块果肉。</span></td></tr><tr><th>古法生磨糖水</th><td>芝麻糊、杏仁糊、核桃糊<br><span style="font-size:11px;color:#666;">特色：坚持手工生磨，质地浓稠滑顺，香气浓郁，具滋养功效。</span></td></tr><tr><th>生津养生系列</th><td>桑寄生莲子蛋茶、腐竹白果糖水<br><span style="font-size:11px;color:#666;">特色：港式独有的养生概念，苦中带甘，清热润燥。</span></td></tr><tr><th>地道经典小品</th><td>豆腐花、生磨红豆沙/绿豆沙<br><span style="font-size:11px;color:#666;">特色：豆腐花讲求豆香与滑嫩，搭配红糖或姜汁；豆沙加入陈皮慢炖，香气层次丰富。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">传统生磨与养生糖水</h4><p><strong>源记甜品专家（西营盘）：</strong> 超过百年的老字号，以桑寄生莲子蛋茶闻名，茶汤甘甜滋补，传统鸡蛋仔与蛋糕配搭風味独特。<br><strong>地址：</strong> 香港岛西营盘正街 32 号地铺</p><p><strong>绿林甜品（深水埗）：</strong> 九龙区极具代表性的老牌糖水铺，豆腐花绵密滑嫩，生磨芝麻糊与红豆沙平实滋味，深受街坊喜爱。<br><strong>地址：</strong> 九龙深水埗元州街 77-79 号地铺</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">新派与创意港式甜品</h4><p><strong>聪嫂甜品：</strong> 以龙眼冰与芒果椰果冰驰名，将新鲜水果磨成冰沙，口感绵密且果香浓郁。<br><strong>地址：</strong> 香港岛天后清风街 13 号地铺</p><p><strong>发记甜品（旺角/铜锣湾）：</strong> 经典港式甜品名店，榴莲飘香与杨枝甘露真材实料，浓郁的果香令人回味无穷。<br><strong>地址：</strong> 九龙旺角豉油街 60 号鸿都大厦地下</p>`,
+                c10t: "每日天气预报", c10d: "实时天气与 9 天预报",
+                weatherHeader: "每日天气与 9 天天气预报", weatherCurrentTitle: "📍 本港实时天气 (葵涌/荃湾)", weatherForecastTitle: "九天天气预报",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -1805,6 +1851,10 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Must-Try Classic Cuisines</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Southeast Asian</th><td>Thai Boat Noodles, Laksa, Indian Curry Roti<br><span style="font-size:11px;color:#666;">Features: Rich spices, tangy & spicy flavors, authentic street food vibe.</span></td></tr><tr><th>Hong Kong Western</th><td>Soy Sauce Western (Baked Pork Chop Rice, Borscht), Hot Dogs<br><span style="font-size:11px;color:#666;">Features: Western dishes localized with soy sauce, ketchup, and rich broth.</span></td></tr><tr><th>Japanese & Korean</th><td>Chicken Ramen, Korean Fried Chicken, Japanese Curry Omurice<br><span style="font-size:11px;color:#666;">Features: High quality and hugely popular among youth and office workers.</span></td></tr><tr><th>Western Casual</th><td>Handmade Pasta, Artisan Burgers<br><span style="font-size:11px;color:#666;">Features: Fresh ingredients and made-to-order casual dining experience.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Authentic Recommendations</h4><p><strong>Thai Chiu / Thai Restaurants (Kowloon City):</strong> Known as "Little Thailand", offering authentic Thai boat noodles, Tom Yum Goong, and Hainanese chicken.<br><strong>Address:</strong> G/F, 36 Nam Kok Road, Kowloon City, Kowloon</p><p><strong>Wing Lok Yuen (Central):</strong> Legendary HK-style Western diner famous for double hot dogs with signature mustard sauce.<br><strong>Address:</strong> G/F, 19 Chiu Lung Street, Central, Hong Kong Island</p><p><strong>Chungking Mansions (Tsim Sha Tsui):</strong> Multicultural landmark serving authentic Indian curry, Pakistani BBQ, and Nepalese snacks.<br><strong>Address:</strong> 36-44 Nathan Road, Tsim Sha Tsui, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Casual International Eats</h4><p><strong>ZAGIN SOBA (Central):</strong> Famous for rich, creamy Cappuccino-like chicken soup ramen topped with crispy burdock.<br><strong>Address:</strong> G/F, 7 Gough Street, Central, Hong Kong Island</p><p><strong>Pici (Wan Chai):</strong> Popular fresh handmade pasta bar offering affordable Pappardelle and truffle pasta in a relaxed vibe.<br><strong>Address:</strong> G/F, 16 St. Francis Yard, Wan Chai, Hong Kong Island</p>`,
                 guideDessertH: "HK Travel Guide - Dining - HK Sweets & Traditional Soup Desserts",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Must-Try Classic Desserts</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Creative Fruit Desserts</th><td>Mango Pomelo Sago, Mango Pancakes, Longan Ice<br><span style="font-size:11px;color:#666;">Features: Mango, pomelo & sago mix; pancakes stuffed with fresh cream and fruit.</span></td></tr><tr><th>Ground Dessert Soups</th><td>Black Sesame Soup, Almond Soup, Walnut Soup<br><span style="font-size:11px;color:#666;">Features: Traditional stone-ground, smooth & thick texture with rich nutty aroma.</span></td></tr><tr><th>Herbal & Wellness</th><td>Mulberry Parasitic Tea with Lotus Seed & Egg, Tofu Skin Ginkgo Soup<br><span style="font-size:11px;color:#666;">Features: Unique Cantonese wellness concept, bittersweet and nourishing.</span></td></tr><tr><th>Local Classics</th><td>Tofu Pudding (Douhua), Red/Mung Bean Soup with Dried Tangerine Peel<br><span style="font-size:11px;color:#666;">Features: Silky tofu pudding with brown sugar; bean soups slow-cooked with aged peel.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Traditional & Herbal Dessert Shops</h4><p><strong>Yuen Kee Dessert (Sai Ying Pun):</strong> Century-old shop famous for Mulberry Parasitic Tea with egg and traditional sponge cake.<br><strong>Address:</strong> G/F, 32 Centre Street, Sai Ying Pun, Hong Kong Island</p><p><strong>Luk Lam Dessert (Sham Shui Po):</strong> Iconic neighborhood shop in Kowloon, popular for silky tofu pudding and sesame soup.<br><strong>Address:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po, Kowloon</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Modern & Creative HK Desserts</h4><p><strong>Chung So Dessert:</strong> Famous for Longan Sorbet and Mango Ice, serving refreshing shaved fruit ice.<br><strong>Address:</strong> G/F, 13 Tsing Fung Street, Tin Hau, Hong Kong Island</p><p><strong>Lucky Dessert (Mong Kok / Causeway Bay):</strong> Famous for Durian Sago and Mango Pomelo Sago packed with real fruit.<br><strong>Address:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok, Kowloon</p>`,
+                c10t: "Daily Weather Forecast", c10d: "Live weather & 9-day forecast",
+                weatherHeader: "Daily Weather & 9-Day Forecast", weatherCurrentTitle: "📍 Live Weather (Kwai Chung / Tsuen Wan)", weatherForecastTitle: "9-Day Weather Forecast",
+
+                // ja (日本語)
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -1960,6 +2010,8 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必食クラシック料理</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>東南アジア料理</th><td>タイ式ボートヌードル、ラクサ、インドカレーナン<br><span style="font-size:11px;color:#666;">特徴：スパイスが効いた甘酸っぱく濃厚な本格ストリートフード。</span></td></tr><tr><th>香港風洋食</th><td>豉油洋食（ポークチョップドリア、ボルシチ）、特製ホットドッグ<br><span style="font-size:11px;color:#666;">特徴：西洋料理に醤油やケチャップを合わせた香港独自のアレンジ。</span></td></tr><tr><th>日韓グルメ</th><td>鶏白湯ラーメン、ヤンニョムチキン、日式オムライス<br><span style="font-size:11px;color:#666;">特徴：クオリティが高く、若者や会社員に大人気。</span></td></tr><tr><th>欧米カジュアル</th><td>自家製パスタ、手作りハンバーガー<br><span style="font-size:11px;color:#666;">特徴：新鮮な食材と出来立てにこだわったカジュアルダイニング。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">名物本格店舗</h4><p><strong>泰潮 / タイ料理店（九龍城）：</strong> 「リトルタイ」と呼ばれる九龍城で、本格的なトムヤムクンやタイ式海南鶏飯が楽しめます。<br><strong>住所：</strong> 九龍九龍城南角道 36 號地舖</p><p><strong>永樂園餐廳（中環）：</strong> 特製マスタードソースのダブルソーセージホットドッグが有名な人気老舗店。<br><strong>住所：</strong> 香港島中環昭隆街 19 號地舖</p><p><strong>重慶大廈（チョンキンマンション / 尖沙咀）：</strong> 異国情緒溢れる多文化ビル。本格インドカレーやバーベキューが名物。<br><strong>住所：</strong> 九龍尖沙咀彌敦道 36-44 號</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">日韓・欧米カジュアルグルメ</h4><p><strong>座銀 ZAGIN SOBA（中環）：</strong> クリーミーな泡系鶏白湯ラーメンとサクサクの揚げごぼうが絶品。<br><strong>住所：</strong> 香港島中環歌賦街 7 號地舖</p><p><strong>Pici（灣仔）：</strong> 手打ちの生パスタがリーズナブルに味わえる人気イタリアン。<br><strong>住所：</strong> 香港島灣仔進教圍 16 號地舖</p>`,
                 guideDessertH: "香港観光ガイド - グルメ - 港式甜品與傳統糖水（中華スイーツ＆伝統デザート）",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">必食クラシックスイーツ</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>香港風フルーツスイーツ</th><td>楊枝甘露（マンゴーポ米サゴ）、マンゴーパンケーキ、リュウガン氷<br><span style="font-size:11px;color:#666;">特徴：甘酸っぱいマンゴーとサゴの絶妙な組み合わせ。生クリームと大粒果肉のパンケーキ。</span></td></tr><tr><th>傳統手挽き濃厚糖水</th><td>黒ゴマお汁粉、アーモンドお汁粉、クルミお汁粉<br><span style="font-size:11px;color:#666;">特徴：手挽きにこだわった濃厚で香ばしく、美容健康にも効果的な伝統スイーツ。</span></td></tr><tr><th>薬膳・ヘルシースイーツ</th><td>桑寄生蓮子卵茶、湯葉イチョウ糖水<br><span style="font-size:11px;color:#666;">特徴：香港独自の薬膳概念。ほろ苦さの中に甘みがあり体に優しい。</span></td></tr><tr><th>ローカル定番小品</th><td>豆腐花（トウファ）、陳皮入り小豆・緑豆お汁粉<br><span style="font-size:11px;color:#666;">特徴：大豆の香りと滑らかな豆腐花。陳皮の香りが漂う濃厚小豆汁粉。</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">傳統手挽き・薬膳デザート</h4><p><strong>源記甜品專家（西營盤）：</strong> 100年以上の歴史を誇る老舗。桑寄生蓮子卵茶が一番人気。<br><strong>住所：</strong> 香港島西營盤正街 32 號地舖</p><p><strong>綠林甜品（深水埗）：</strong> 九龍エリアを代表する人気老舗スイーツ店。滑らかな豆腐花と黒ゴマ汁粉が名物。<br><strong>住所：</strong> 九龍深水埗元州街 77-79 號地舖</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">創作・トレンド香港スイーツ</h4><p><strong>聰嫂甜品：</strong> リュウガン氷とマンゴーアイスが有名な創作フルーツスイーツ店。<br><strong>住所：</strong> 香港島天后清風街 13 號地舖</p><p><strong>發記甜品（旺角/銅鑼灣）：</strong> ドリアンスイーツや楊枝甘露で有名な香港定番スイーツ店。<br><strong>住所：</strong> 九龍旺角豉油街 60 號鴻都大廈地下</p>`,
+                c10t: "每日天気予報", c10d: "リアルタイム天気＆9日間予報",
+                weatherHeader: "每日天気と9日間天氣予報", weatherCurrentTitle: "📍 現地のリアルタイム天気 (葵涌/荃灣)", weatherForecastTitle: "9日間天氣予報",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -2115,6 +2167,8 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">필수 클래식 메뉴</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>동남아 요리</th><td>태국식 보트 국수, 락사, 인도 카레 난<br><span style="font-size:11px;color:#666;">특징: 향신료 풍미가 가득한 새콤매콤한 스트리트 푸드.</span></td></tr><tr><th>홍콩식 양식</th><td>간장 양식(돈가스 리조또, 보르시), 특제 핫도그<br><span style="font-size:11px;color:#666;">특징: 서양 요리를 홍콩 간장과 토마토소스로 재해석한 맛.</span></td></tr><tr><th>일식 & 한식</th><td>닭백탕 라멘, 양념치킨, 일본식 카레 오무라이스<br><span style="font-size:11px;color:#666;">특징: 깔끔하고 정갈하여 홍콩 젊은층에게 인기가 높음.</span></td></tr><tr><th>서양 캐주얼</th><td>수제 파스타, 수제 버거<br><span style="font-size:11px;color:#666;">특징: 신선한 재료로 주문 즉시 만드는 캐주얼 다이닝.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">추천 맛집</h4><p><strong>타이치우 / 태국 요리점 (구룡성):</strong> '작은 태국' 구룡성의 대표 맛집. 보트 국수와 똠얌꿍이 명물.<br><strong>주소:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>영락원 레스토랑 (센트럴):</strong> 특제 머스터드소스를 넣은 소시지 핫도그로 유명한 명물 식당.<br><strong>주소:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>청킹맨션 (침사추이):</strong> 다문화 상징적 건물로 정통 인도 카레와 바비큐를 맛볼 수 있는 곳.<br><strong>주소:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">인기 세계 요리</h4><p><strong>자긴 소바 ZAGIN SOBA (센트럴):</strong> 크리미한 닭백탕 국물과 우엉 튀김이 어우러진 수제 라멘.<br><strong>주소:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (완차이):</strong> 매일 아침 반죽하는 생파스타를 합리적인 가격에 즐기는 인기 파스타 바.<br><strong>주소:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
                 guideDessertH: "홍콩 여행 가이드 - 맛집 - 홍콩식 디저트 & 전통 탕수",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">필수 클래식 디저트</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>홍콩식 과일 디저트</th><td>양지감로(망고 사고), 망고 팬케이크, 용안 빙수<br><span style="font-size:11px;color:#666;">특징: 망고와 자몽, 사고의 상큼한 조화; 생크림과 과육이 가득한 팬케이크.</span></td></tr><tr><th>전통 맷돌 죽 디저트</th><td>흑임자 죽, 아몬드 죽, 호두 죽<br><span style="font-size:11px;color:#666;">특징: 수제로 맷돌에 갈아 만들어 진하고 고소하며 영양이 풍부함.</span></td></tr><tr><th>몸보신 웰빙 디저트</th><td>상기생 연자육 계란차, 두부피 은행 탕수<br><span style="font-size:11px;color:#666;">특징: 홍콩 특유의 약선 디저트로 은은한 단맛과 건강함이 특징.</span></td></tr><tr><th>로컬 대표 디저트</th><td>두부화(두유 푸딩), 팥죽/녹두죽<br><span style="font-size:11px;color:#666;">특징: 부드러운 순두부에 흑당을 얹어 먹는 두부화와 진한 팥죽.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">전통 수제 & 웰빙 디저트</h4><p><strong>원키 디저트 (사이잉푼):</strong> 100년 전통의 노포. 상기생 계란차가 대표 메뉴.<br><strong>주소:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>록람 디저트 (삼수이포):</strong> 구룡 지역의 대표 디저트 가게. 부드러운 두부화와 흑임자죽 맛집.<br><strong>주소:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">퓨전 & 과일 디저트</h4><p><strong>총소 디저트 (틴하우):</strong> 용안 빙수와 망고 빙수로 유명한 과일 디저트 맛집.<br><strong>주소:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>발키 디저트 (몽콕/코즈웨이베이):</strong> 두리안 디저트와 양지감로가 유명한 전통 디저트 전문점.<br><strong>주소:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
+                c10t: "일일 일기예보", c10d: "실시간 날씨 및 9일 예보",
+                weatherHeader: "일일 날씨 및 9일 일기예보", weatherCurrentTitle: "📍 현지 실시간 날씨 (콰이충 / 튄문)", weatherForecastTitle: "9일 일기예보",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -2270,6 +2324,8 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Ẩm thực kinh điển phải thử</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Đông Nam Á</th><td>Mì thuyền Thái, Laksa, Cà ri & Bánh Roti Ấn Độ<br><span style="font-size:11px;color:#666;">Đặc điểm: Đậm đà hương vị gia vị, chuaเผ็ด đặc trưng đường phố.</span></td></tr><tr><th>Tây kiểu Hồng Kông</th><td>Món Tây sốt xì dầu (Cơm sườn nướng, Súp Bò), Hot dog đặc biệt<br><span style="font-size:11px;color:#666;">Đặc điểm: Biến tấu món Tây theo khẩu vị phương Đông với xì dầu và tương cà.</span></td></tr><tr><th>Nhật & Hàn</th><td>Ramen nước dùng gà, Gà rán Hàn Quốc, Cơm trứng Omurice cà ri<br><span style="font-size:11px;color:#666;">Đặc điểm: Tinh tế, vô cùng được giới trẻ và dân văn phòng HK yêu thích.</span></td></tr><tr><th>Món Tây Casual</th><td>Mỳ Ý thủ công, Burger thủ công kiểu Mỹ<br><span style="font-size:11px;color:#666;">Đặc điểm: Đảm bảo nguyên liệu tươi ngon, chế biến tại chỗ.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Địa chỉ nổi tiếng authentic</h4><p><strong>Thai Chiu / Quán Thái (Cửu Long Thành):</strong> Khu "Tiểu Thái Lan", nổi tiếng với mì thuyền, Tom Yum và cơm gà Hải Nam.<br><strong>Địa chỉ:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>Wing Lok Yuen (Trung Hoàn):</strong> Quán ăn huyền thoại nổi tiếng với hot dog xúc xích kép sốt mù tạt đặc chế.<br><strong>Địa chỉ:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>Tòa nhà Chungking Mansions (T尖沙咀):</strong> Biểu tượng đa văn hóa với cà ri Ấn Độ và món nướng Pakistan chính gốc.<br><strong>Địa chỉ:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Món Quốc Tế Bình Dân</h4><p><strong>ZAGIN SOBA (Trung Hoàn):</strong> Nổi tiếng với Ramen nước dùng gà béo ngậy như Cappuccino kèm ngưu bàng chiên giòn.<br><strong>Địa chỉ:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (灣仔):</strong> Mỳ Ý tươi làm thủ công giá hợp lý, không gian thoải mái dễ chịu.<br><strong>Địa chỉ:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
                 guideDessertH: "Cẩm nang du lịch HK - Ẩm thực - Món tráng miệng Hồng Kông & Chè truyền thống",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Món tráng miệng kinh điển phải thử</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Hoa quả sáng tạo</th><td>Dương Chi Cam Lộ (Mango Pomelo Sago), Bánh crepe xoài, Đá bào nhãn<br><span style="font-size:11px;color:#666;">Đặc điểm: Xoài bưởi chua ngọt mát lạnh; crepe bọc kem tươi và xoài miếng.</span></td></tr><tr><th>Chè xay truyền thống</th><td>Chè mè đen, Chè hạnh nhân, Chè óc chó<br><span style="font-size:11px;color:#666;">Đặc điểm: Xay thủ công, đặc sánh mịn màng, thơm phức và bổ dưỡng.</span></td></tr><tr><th>Dưỡng sinh thanh nhiệt</th><td>Trà trứng hạt sen tang ký sinh, Chè hủ ky bạch quả<br><span style="font-size:11px;color:#666;">Đặc điểm: Phong cách dưỡng sinh Hồng Kông, đắng nhẹ ngọt hậu.</span></td></tr><tr><th>Món tráng miệng dân dã</th><td>Tào phớ (Tàu hủ), Chè đậu đỏ/đầu xanh trần bì<br><span style="font-size:11px;color:#666;">Đặc điểm: Tào phớ mướt mịn ăn kèm đường đỏ; chè đậu nấu trần bì thơm nức.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Quán chè truyền thống & Dưỡng sinh</h4><p><strong>Yuen Kee Dessert (Tây Doanh Bàn):</strong> Quán chè hơn trăm năm tuổi, nổi tiếng với trà trứng hạt sen.<br><strong>Địa chỉ:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>Luk Lam Dessert (Thâm Thủy Bộ):</strong> Quán chè lâu đời đại diện khu Cửu Long, tào phớ và chè mè đen rất được yêu thích.<br><strong>Địa chỉ:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Món tráng miệng hiện đại & Sáng tạo</h4><p><strong>Chung So Dessert (Thiên Hậu):</strong> Nổi tiếng với đá bào nhãn và đá bào xoài mát lạnh thơm ngon.<br><strong>Địa chỉ:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>Lucky Dessert (Vượng Giác):</strong> Quán tráng miệng kinh điển với chè sầu riêng và Dương Chi Cam Lộ ngập tràn hoa quả.<br><strong>Địa chỉ:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
+                c10t: "Dự báo thời tiết hàng ngày", c10d: "Thời tiết trực tiếp & dự báo 9 ngày",
+                weatherHeader: "Thời tiết hàng ngày & Dự báo 9 ngày", weatherCurrentTitle: "📍 Thời tiết trực tiếp (Kwai Chung / Tsuen Wan)", weatherForecastTitle: "Dự báo thời tiết 9 ngày",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -2425,6 +2481,8 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">अवश्य आजमाने योग्य व्यंजन</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>दक्षिण पूर्व एशियाई</th><td>थाई बोट नूडल्स, लकसा, इंडियन करी रोटी<br><span style="font-size:11px;color:#666;">विशेषताएं: समृद्ध मसाले और तीखा खट्टा स्वाद।</span></td></tr><tr><th>हांगकांग वेस्टर्न</th><td>सोया सॉस वेस्टर्न, हॉट डॉग्स<br><span style="font-size:11px;color:#666;">विशेषताएं: स्थानीय स्वाद के साथ पश्चिमी भोजन।</span></td></tr><tr><th>जापानी और कोरियाई</th><td>चिकन रामेन, कोरियन फ्राइड चिकन, करी ओमराइस<br><span style="font-size:11px;color:#666;">विशेषताएं: युवाओं में अत्यधिक लोकप्रिय।</span></td></tr><tr><th>वेस्टर्न कैजुअल</th><td>हैंडमेड पास्ता, बर्गर<br><span style="font-size:11px;color:#666;">विशेषताएं: ताजा सामग्री से बना स्वादिष्ट भोजन।</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">प्रसिद्ध स्थान</h4><p><strong>Thai Chiu (काउलून सिटी):</strong> 'लिटिल थाईलैंड' में प्रामाणिक थाई भोजन।<br><strong>पता:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>Wing Lok Yuen (सेंट्रल):</strong> प्रसिद्ध हॉट डॉग्स।<br><strong>पता:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>Chungking Mansions (त्सिम शा त्सुई):</strong> प्रामाणिक भारतीय करी और बारबेक्यू।<br><strong>पता:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">अंतर्राष्ट्रीय व्यंजन</h4><p><strong>ZAGIN SOBA (सेंट्रल):</strong> प्रसिद्ध चिकन रामेन।<br><strong>पता:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (वान चाई):</strong> हाथ से बना ताजा पास्ता।<br><strong>पता:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
                 guideDessertH: "हांगकांग यात्रा गाइड - भोजन - हांगकांग मिठाइयां और पारंपरिक सूप",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">अवश्य आजमाने योग्य मिठाइयां</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>फ्रूट डेसर्ट</th><td>मैंगो पोमेलो सागो, मैंगो पैनकेक, लोंगन आइस<br><span style="font-size:11px;color:#666;">विशेषताएं: आम और साबूदाने का ताजा मिश्रण; क्रीम और फ्रूट से भरपूर पैनकेक।</span></td></tr><tr><th>पारंपरिक सूप डेसर्ट</th><td>ब्लैक सेसमी सूप, आलमंड सूप, अखरोट सूप<br><span style="font-size:11px;color:#666;">विशेषताएं: पारंपरिक रूप से पीसा हुआ, गाढ़ा और पौष्टिक।</span></td></tr><tr><th>हर्बल वेलनेस</th><td>मलबेरी टी विथ लोटस सीड एंड एग<br><span style="font-size:11px;color:#666;">विशेषताएं: सेहतमंद पारंपरिक हांगकांग पेय।</span></td></tr><tr><th>लोकल क्लासिक्स</th><td>टोफू पुडिंग (दौहुआ), रेड बीन सूप<br><span style="font-size:11px;color:#666;">विशेषताएं: मुलायम टोफू पुडिंग और स्वादिष्ट रेड बीन सूप।</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">पारंपरिक दुकानें</h4><p><strong>Yuen Kee Dessert (साई यिंग पुन):</strong> 100 साल पुरानी प्रसिद्ध दुकान।<br><strong>पता:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>Luk Lam Dessert (शाम शुई पो):</strong> लोकप्रिय स्थानीय मिठाई की दुकान।<br><strong>पता:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">आधुनिक मिठाइयां</h4><p><strong>Chung So Dessert (टिन हाऊ):</strong> फ्रेश फ्रूट आइस के लिए प्रसिद्ध।<br><strong>पता:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>Lucky Dessert (मोंग कोक):</strong> प्रसिद्ध मैंगो और डुरियन डेसर्ट।<br><strong>पता:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
+                c10t: "दैनिक मौसम का पूर्वानुमान", c10d: "लाइव मौसम और 9-दिन का पूर्वानुमान",
+                weatherHeader: "दैनिक मौसम और 9-दिन का पूर्वानुमान", weatherCurrentTitle: "📍 लाइव मौसम (क्वाई चुंग / त्सुएन वान)", weatherForecastTitle: "9-दिन मौसम का पूर्वानुमान",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2579,9 +2637,117 @@
                 guideGlobalFoodDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Mga Pagkaing Dapat Subukan</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Southeast Asian</th><td>Thai Boat Noodles, Laksa, Indian Curry Roti<br><span style="font-size:11px;color:#666;">Tampok: Masaganang pampalasa, maasim at maanghang.</span></td></tr><tr><th>Hong Kong Western</th><td>Soy Sauce Western, Special Hotdogs<br><span style="font-size:11px;color:#666;">Tampok: Pagkaing Kanluranin na inangkop sa lasang Asyano.</span></td></tr><tr><th>Hapon at Koreano</th><td>Chicken Ramen, Korean Fried Chicken, Curry Omurice<br><span style="font-size:11px;color:#666;">Tampok: Sikat na sikat sa mga kabataan at nagtatrabaho.</span></td></tr><tr><th>Western Casual</th><td>Handmade Pasta, Artisan Burgers<br><span style="font-size:11px;color:#666;">Tampok: Sariwang sangkap at gawa sa order.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Rekomendadong Kainan</h4><p><strong>Thai Chiu (Kowloon City):</strong> Kilala bilang "Little Thailand", sikat sa thai boat noodles.<br><strong>Address:</strong> G/F, 36 Nam Kok Road, Kowloon City</p><p><strong>Wing Lok Yuen (Central):</strong> Sikat sa masarap na hotdog na may espesyal na mustard sauce.<br><strong>Address:</strong> G/F, 19 Chiu Lung Street, Central</p><p><strong>Chungking Mansions (Tsim Sha Tsui):</strong> Sikat sa totoong Indian curry at Pakistani BBQ.<br><strong>Address:</strong> 36-44 Nathan Road, Tsim Sha Tsui</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Pandaigdigang Kainan</h4><p><strong>ZAGIN SOBA (Central):</strong> Sikat sa masarap na chicken broth ramen.<br><strong>Address:</strong> G/F, 7 Gough Street, Central</p><p><strong>Pici (Wan Chai):</strong> Sikat sa sariwang handmade pasta sa abot-kayang halaga.<br><strong>Address:</strong> G/F, 16 St. Francis Yard, Wan Chai</p>`,
                 guideDessertH: "HK Travel Guide - Pagkain - Matamis ng Hong Kong at Tradisyunal na Sabaw",
                 guideDessertDetail: `<h4 style="color:#007bff;margin-top:0;margin-bottom:8px;">Mga Matamis na Dapat Subukan</h4><table class="price-table" style="margin-bottom:15px;"><tr><th>Fruit Desserts</th><td>Mango Pomelo Sago, Mango Pancakes, Longan Ice<br><span style="font-size:11px;color:#666;">Tampok: Masarap na manga at sago; pancake na may sariwang cream at prutas.</span></td></tr><tr><th>Tradisyunal na Sabaw</th><td>Black Sesame Soup, Almond Soup, Walnut Soup<br><span style="font-size:11px;color:#666;">Tampok: Giniling sa lumang paraan, malapot at masustansya.</span></td></tr><tr><th>Pang-kalusugan</th><td>Mulberry Parasitic Tea with Lotus Seed & Egg<br><span style="font-size:11px;color:#666;">Tampok: Tradisyunal na pampalakas ng katawan.</span></td></tr><tr><th>Lokal na Klasiko</th><td>Tofu Pudding (Douhua), Red Bean Soup<br><span style="font-size:11px;color:#666;">Tampok: Malambot na tofu pudding na may asukal na pula.</span></td></tr></table><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Tradisyunal na Kainan</h4><p><strong>Yuen Kee Dessert (Sai Ying Pun):</strong> Daan-daang taong gulang na kainan ng matamis.<br><strong>Address:</strong> G/F, 32 Centre Street, Sai Ying Pun</p><p><strong>Luk Lam Dessert (Sham Shui Po):</strong> Sikat na kainan ng tofu pudding at sesame soup.<br><strong>Address:</strong> G/F, 77-79 Un Chau Street, Sham Shui Po</p><h4 style="color:#007bff;margin-top:15px;margin-bottom:8px;">Makabagong Matamis</h4><p><strong>Chung So Dessert (Tin Hau):</strong> Sikat sa masarap na shaved fruit ice.<br><strong>Address:</strong> G/F, 13 Tsing Fung Street, Tin Hau</p><p><strong>Lucky Dessert (Mong Kok):</strong> Sikat sa mango pomelo sago at durian desserts.<br><strong>Address:</strong> G/F, Grand Caprice, 60 Soy Street, Mong Kok</p>`,
+                c10t: "Araw-araw na Ulat ng Panahon", c10d: "Live na panahon at 9-araw na ulat",
+                weatherHeader: "Araw-araw na Panahon at 9-Araw na Ulat", weatherCurrentTitle: "📍 Live na Panahon (Kwai Chung / Tsuen Wan)", weatherForecastTitle: "9-Araw na Ulat ng Panahon",
             }
         };
 
+        async function fetchHKOWeather(lang) {
+            const currentLang = lang || (typeof currentLang !== 'undefined' ? currentLang : 'zh-HK');
+
+            // 1. 判斷 API 語言 (tc, sc, en)
+            let hkoLang = 'tc';
+            if (currentLang === 'zh-CN') hkoLang = 'sc';
+            else if (currentLang !== 'zh-HK') hkoLang = 'en';
+
+            // 2. 表格標頭字典
+            const tableLabels = {
+                'zh-HK': { date: '日期', weather: '天氣概況', tempRh: '氣溫 / 濕度', temp: '當前溫度', humidity: '相對濕度' },
+                'zh-CN': { date: '日期', weather: '天气概况', tempRh: '气温 / 湿度', temp: '当前温度', humidity: '相对湿度' },
+                'en': { date: 'Date', weather: 'Forecast', tempRh: 'Temp / RH', temp: 'Temperature', humidity: 'Humidity' },
+                'ja': { date: '日付', weather: '天気予報', tempRh: '気温 / 湿度', temp: '現在の気温', humidity: '湿度' },
+                'ko': { date: '날짜', weather: '날씨 상태', tempRh: '기온 / 습도', temp: '현재 기온', humidity: '습도' },
+                'vi': { date: 'Ngày', weather: 'Thời tiết', tempRh: 'Nhiệt độ / Độ ẩm', temp: 'Nhiệt độ', humidity: 'Độ ẩm' },
+                'hi': { date: 'तिथि', weather: 'मौसम', tempRh: 'तापमान / आर्द्रता', temp: 'तापमान', humidity: 'आर्द्रता' },
+                'fil': { date: 'Petsa', weather: 'Panahon', tempRh: 'Temperatura / Halumigmig', temp: 'Temperatura', humidity: 'Halumigmig' }
+            };
+
+            const label = tableLabels[currentLang] || tableLabels['zh-HK'];
+
+            // --- 抓取即時天氣 ---
+            try {
+                const currentRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=${hkoLang}`);
+                const currentData = await currentRes.json();
+
+                // 防呆搜尋：尋找葵涌/荃灣，找不到就取第一個
+                let tempVal = "--";
+                let placeName = "荃灣";
+                if (currentData.temperature && currentData.temperature.data) {
+                    const found = currentData.temperature.data.find(t =>
+                        t.place.includes("葵涌") || t.place.includes("荃灣") ||
+                        t.place.includes("Kwai Chung") || t.place.includes("Tsuen Wan")
+                    ) || currentData.temperature.data[0];
+
+                    if (found) {
+                        tempVal = found.value;
+                        placeName = found.place;
+                    }
+                }
+
+                let humidityVal = "--";
+                if (currentData.humidity && currentData.humidity.data && currentData.humidity.data[0]) {
+                    humidityVal = currentData.humidity.data[0].value;
+                }
+
+                const currentElem = document.getElementById('weatherCurrentText');
+                if (currentElem) {
+                    currentElem.innerHTML = `
+                🌡️ ${label.temp}：<strong>${tempVal}°C</strong> (${placeName})<br>
+                💧 ${label.humidity}：<strong>${humidityVal}%</strong>
+            `;
+                }
+            } catch (e) {
+                console.error("即時天氣載入失敗:", e);
+                const currentElem = document.getElementById('weatherCurrentText');
+                if (currentElem) currentElem.innerText = "即時天氣載入失敗，請稍後再試。";
+            }
+
+            // --- 抓取九天天氣預報 ---
+            try {
+                const forecastRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=${hkoLang}`);
+                const forecastData = await forecastRes.json();
+
+                if (forecastData.weatherForecast && Array.isArray(forecastData.weatherForecast)) {
+                    let forecastHTML = `<table class="price-table">
+                <thead>
+                    <tr>
+                        <th>${label.date}</th>
+                        <th>${label.weather}</th>
+                        <th>${label.tempRh}</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+                    forecastData.weatherForecast.forEach(day => {
+                        const dateStr = day.forecastDate ? `${day.forecastDate.substring(4, 6)}/${day.forecastDate.substring(6, 8)}<br>(${day.week || ''})` : '';
+                        const minTemp = day.forecastMintemp ? day.forecastMintemp.value : '--';
+                        const maxTemp = day.forecastMaxtemp ? day.forecastMaxtemp.value : '--';
+                        const minRh = day.forecastMinrh ? day.forecastMinrh.value : '--';
+                        const maxRh = day.forecastMaxrh ? day.forecastMaxrh.value : '--';
+                        const weatherDesc = day.forecastForecast || '';
+
+                        forecastHTML += `
+                    <tr>
+                        <td><strong>${dateStr}</strong></td>
+                        <td style="font-size:12px;">${weatherDesc}</td>
+                        <td>
+                            <span style="color:#d9534f; font-weight:bold;">${minTemp}°C - ${maxTemp}°C</span><br>
+                            <small style="color:#666;">${minRh}% - ${maxRh}% RH</small>
+                        </td>
+                    </tr>
+                `;
+                    });
+
+                    forecastHTML += '</tbody></table>';
+                    const forecastElem = document.getElementById('forecastContainer');
+                    if (forecastElem) forecastElem.innerHTML = forecastHTML;
+                }
+            } catch (e) {
+                console.error("預報載入失敗:", e);
+                const forecastElem = document.getElementById('forecastContainer');
+                if (forecastElem) forecastElem.innerText = "預報資料載入失敗，請稍後再試。";
+            }
+        }
         function selectLang(lang) {
             currentLang = lang;
             document.getElementById('lang-modal').style.display = 'none';
@@ -2752,7 +2918,13 @@
                 'ui-globalfood-detail': (langData.guideGlobalFoodDetail || ''),
                 'ui-back-dessert': (langData.backFood || '⬅ 返回美食選單'),
                 'ui-dessert-header': (langData.guideDessertH || '香港旅遊攻略 - 美食 - 港式甜品與傳統糖水'),
-                'ui-dessert-detail': (langData.guideDessertDetail || '')
+                'ui-dessert-detail': (langData.guideDessertDetail || ''),
+                'ui-card10-title': (langData.c10t || '每日天氣預報'),
+                'ui-card10-desc': (langData.c10d || '即時天氣與 9 天預報'),
+                'ui-back10': (langData.back10 || '⬅ 返回主選單'),
+                'ui-weather-header': (langData.weatherHeader || '每日天氣與 9 天天氣預報'),
+                'ui-weather-current-title': (langData.weatherCurrentTitle || '📍 本港即時天氣 (葵涌/荃灣)'),
+                'ui-weather-forecast-title': (langData.weatherForecastTitle || '九天天氣預報'),
 
             };
 
@@ -2766,8 +2938,17 @@
             const sections = document.querySelectorAll('.section-content');
             sections.forEach(sec => sec.classList.remove('active-section'));
             document.getElementById('mainMenu').style.display = 'none';
-            document.getElementById(sectionId).classList.add('active-section');
+
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active-section');
+            }
             window.scrollTo(0, 0);
+
+            // 👈 新增這段：當使用者點擊天氣頁面時，即時觸發天文台 API 讀取資料
+            if (sectionId === 'weatherSection') {
+                fetchHKOWeather(currentLang);
+            }
         }
 
         function goBack() {
