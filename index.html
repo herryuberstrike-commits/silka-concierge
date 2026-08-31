@@ -2691,32 +2691,37 @@
                 const currentRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=${hkoLang}`);
                 const currentData = await currentRes.json();
 
-                // 處理熱帶氣旋與暴雨警告標籤
+                // 處理熱帶氣旋與暴雨警告標籤（內頁與主頁同步更新）
                 const warningBox = document.getElementById('weatherWarningBox');
-                if (warningBox) {
-                    let warningHTML = '';
-                    if (currentData.warningMessage && Array.isArray(currentData.warningMessage) && currentData.warningMessage.length > 0) {
-                        currentData.warningMessage.forEach(msg => {
-                            let bgColor = '#fff3cd';
-                            let textColor = '#856404';
+                const mainPageWarningBox = document.getElementById('mainPageWarningBox'); // 🟢 主頁卡片位置
 
-                            if (msg.includes('八號') || msg.includes('九號') || msg.includes('十號') ||
-                                msg.includes('黑色') || msg.includes('紅色') ||
-                                msg.includes('Signal No. 8') || msg.includes('Signal No. 9') || msg.includes('Signal No. 10') ||
-                                msg.includes('Black') || msg.includes('Red')) {
-                                bgColor = '#f8d7da';
-                                textColor = '#721c24';
-                            }
+                let warningHTML = '';
+                if (currentData.warningMessage && Array.isArray(currentData.warningMessage) && currentData.warningMessage.length > 0) {
+                    currentData.warningMessage.forEach(msg => {
+                        let bgColor = '#fff3cd'; // 預設黃色警告底色
+                        let textColor = '#856404';
 
-                            warningHTML += `
-                        <div style="background: ${bgColor}; color: ${textColor}; padding: 6px 10px; border-radius: 6px; font-weight: bold; font-size: 13px; margin-bottom: 6px; border: 1px solid rgba(0,0,0,0.1);">
-                            ⚠️ ${msg}
-                        </div>
-                    `;
-                        });
-                    }
-                    warningBox.innerHTML = warningHTML;
+                        // 判斷高級別警告 (8號風球以上、紅雨、黑雨) 套用紅色樣式
+                        if (msg.includes('八號') || msg.includes('九號') || msg.includes('十號') ||
+                            msg.includes('黑色') || msg.includes('紅色') ||
+                            msg.includes('Signal No. 8') || msg.includes('Signal No. 9') || msg.includes('Signal No. 10') ||
+                            msg.includes('Black') || msg.includes('Red')) {
+                            bgColor = '#f8d7da';
+                            textColor = '#721c24';
+                        }
+
+                        warningHTML += `
+                    <div style="background: ${bgColor}; color: ${textColor}; padding: 6px 10px; border-radius: 6px; font-weight: bold; font-size: 13px; margin-bottom: 6px; border: 1px solid rgba(0,0,0,0.1);">
+                        ⚠️ ${msg}
+                    </div>
+                `;
+                    });
                 }
+
+                // 寫入內頁的警告框
+                if (warningBox) warningBox.innerHTML = warningHTML;
+                // 🟢 寫入主頁卡片的警告框 🟢
+                if (mainPageWarningBox) mainPageWarningBox.innerHTML = warningHTML;
 
                 // 溫度與地點
                 let tempVal = "--";
@@ -2752,7 +2757,7 @@
                 if (currentElem) currentElem.innerText = label.errCurrent;
             }
 
-            // --- 2. 抓取九天天氣預報（純文字修正版） ---
+            // --- 2. 抓取九天天氣預報（純文字） ---
             try {
                 const forecastRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=${hkoLang}`);
                 const forecastData = await forecastRes.json();
@@ -2775,7 +2780,6 @@
                         const minRh = day.forecastMinrh ? day.forecastMinrh.value : '--';
                         const maxRh = day.forecastMaxrh ? day.forecastMaxrh.value : '--';
 
-                        // 🟢 天文台 API 的天氣概況純文字欄位為 forecastWeather 🟢
                         const weatherDesc = day.forecastWeather || day.forecastForecast || '--';
 
                         forecastHTML += `
