@@ -2672,7 +2672,7 @@
             if (targetLang === 'zh-CN') hkoLang = 'sc';
             else if (targetLang !== 'zh-HK') hkoLang = 'en';
 
-            // 4. 多語言字典 (補全 8 種語言)
+            // 4. 多語言字典
             const tableLabels = {
                 'zh-HK': { date: '日期', weather: '天氣概況', tempRh: '氣溫 / 濕度', temp: '當前溫度', humidity: '相對濕度', errCurrent: '即時天氣載入失敗，請稍後再試。', errForecast: '預報資料載入失敗，請稍後再試。' },
                 'zh-CN': { date: '日期', weather: '天气概况', tempRh: '气温 / 湿度', temp: '当前温度', humidity: '相对湿度', errCurrent: '实时天气加载失败，请稍后再试。', errForecast: '预报数据加载失败，请稍后再试。' },
@@ -2753,7 +2753,7 @@
                 if (currentElem) currentElem.innerText = label.errCurrent;
             }
 
-            // --- 2. 抓取九天天氣預報 ---
+            // --- 2. 抓取九天天氣預報（含天氣概況圖示） ---
             try {
                 const forecastRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=${hkoLang}`);
                 const forecastData = await forecastRes.json();
@@ -2777,10 +2777,21 @@
                         const maxRh = day.forecastMaxrh ? day.forecastMaxrh.value : '--';
                         const weatherDesc = day.forecastForecast || '';
 
+                        // 天文台官方圖示：ForecastIcon 是一個陣列 (例如 [50])，需取第一個數值
+                        const iconNum = (Array.isArray(day.ForecastIcon) && day.ForecastIcon.length > 0) ? day.ForecastIcon[0] : (day.ForecastIcon || day.psr);
+                        const iconHTML = iconNum
+                            ? `<img src="https://www.hko.gov.hk/images/HKOWxIcons/pic${iconNum}.png" style="width:28px; height:28px; vertical-align:middle; margin-right:4px;">`
+                            : '';
+
                         forecastHTML += `
                 <tr>
                     <td><strong>${dateStr}</strong></td>
-                    <td style="font-size:12px;">${weatherDesc}</td>
+                    <td style="font-size:12px;">
+                        <div style="display:flex; align-items:center;">
+                            ${iconHTML}
+                            <span>${weatherDesc}</span>
+                        </div>
+                    </td>
                     <td>
                         <span style="color:#d9534f; font-weight:bold;">${minTemp}°C - ${maxTemp}°C</span><br>
                         <small style="color:#666;">${minRh}% - ${maxRh}% RH</small>
