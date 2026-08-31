@@ -470,12 +470,12 @@
                     <span style="font-size: 11px; color: #666; margin-top: 4px;">茶餐廳、小食、麥當勞</span>
                 </div>
 
-                <!-- 分類 3：交通與出行 (籌備中) -->
-                <div
-                    style="background: #f8f9fa; border-radius: 12px; border: 1.5px dashed #ccc; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6; cursor: not-allowed; text-align: center; box-sizing: border-box;">
+                <!-- 分類 3：交通與出行 (已解鎖) -->
+                <div onclick="showSubCategory('transportSubSection')"
+                    style="background: #ffffff; border-radius: 12px; border: 1px solid #e0e0e0; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.05); text-align: center; box-sizing: border-box;">
                     <span style="font-size: 32px; margin-bottom: 8px;">🚌</span>
-                    <span style="font-size: 14px; font-weight: bold; color: #555;">交通與出行</span>
-                    <span style="font-size: 11px; color: #888; margin-top: 4px;">(籌備中)</span>
+                    <span style="font-size: 14px; font-weight: bold; color: #333;">交通與出行</span>
+                    <span style="font-size: 11px; color: #666; margin-top: 4px;">巴士及小巴路線指南</span>
                 </div>
 
                 <!-- 分類 4：藥房與生活設施 (籌備中) -->
@@ -612,6 +612,93 @@
                     </div>
                     <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
                 </a>
+            </div>
+        </div>
+
+        <!-- 【4. 子頁面：交通與出行列表】 -->
+        <div id="transportSubSection" class="section-content" style="display: none; width: 100%;">
+            <button class="back-btn" onclick="showSubCategory('mapSection')">⬅ 返回周邊指南</button>
+            <h3 style="margin-top: 0; font-size: 16px; color: #2c3e50; text-align: center;">🚌 交通與出行</h3>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+
+                <!-- 31M -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Lam+Tin+Street+Bus+Stop&query_place_id=ChIJj-a_VYP4AzQRsHLLf5-fmGE"
+                    target="_blank"
+                    style="text-decoration: none; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #333;">31M (往葵芳站)</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">站點：藍田街站 (向荃灣/葵芳方向)</div>
+                    </div>
+                    <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
+                </a>
+
+                <!-- 35A -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Shek+Yam+Road+Bus+Stop&query_place_id=ChIJa_o-SoP4AzQRaE9FPw3g8Jo"
+                    target="_blank"
+                    style="text-decoration: none; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #333;">35A (往旺角、油麻地及尖沙咀)</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">站點：石蔭路站</div>
+                    </div>
+                    <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
+                </a>
+
+                <!-- A30 -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Ping+Lai+Path+Bus+Stop&query_place_id=ChIJdSfTqpv4AzQRfacN3wrCKcs"
+                    target="_blank"
+                    style="text-decoration: none; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #333;">A30 (往機場、港珠澳大橋)</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">站點：屏麗徑站</div>
+                    </div>
+                    <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
+                </a>
+
+                <!-- 36B -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Lam+Tin+Street+Bus+Stop&query_place_id=ChIJ27qbVoP4AzQRgEbPf9HSw4A"
+                    target="_blank"
+                    style="text-decoration: none; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #333;">36B (往西九龍高鐵站)</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">站點：藍田街站 (向石籬方向)</div>
+                    </div>
+                    <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
+                </a>
+
+                <!-- 235 / 31 -->
+                <a href="https://www.google.com/maps/search/?api=1&query=North+Kwai+Chung+Market+Bus+Stop&query_place_id=ChIJWcIlRYP4AzQRt_0SEsik-L8"
+                    target="_blank"
+                    style="text-decoration: none; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #333;">235 / 31 (往荃灣 / 荃灣西站)</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">站點：北葵涌街市站</div>
+                    </div>
+                    <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
+                </a>
+
+                <!-- 936 -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Shek+Yam+Road+Bus+Stop&query_place_id=ChIJa_o-SoP4AzQRaE9FPw3g8Jo"
+                    target="_blank"
+                    style="text-decoration: none; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #333;">936 (往銅鑼灣，14:00前)</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">站點：石蔭路站</div>
+                    </div>
+                    <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
+                </a>
+
+                <!-- 403, 403P / 403X -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Wo+Yi+Hop+Road+Bus+Stop&query_place_id=ChIJXRoTt5z4AzQRfnLPGnMHxQw"
+                    target="_blank"
+                    style="text-decoration: none; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold; color: #333;">403, 403P / 403X (往沙田 / 大圍站)</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 2px;">站點：和宜合道109-115號站</div>
+                    </div>
+                    <span style="color: #007bff; font-weight: bold;">導航 ➔</span>
+                </a>
+
             </div>
         </div>
 
@@ -1582,10 +1669,12 @@
             const mapSec = document.getElementById('mapSection');
             const superSec = document.getElementById('supermarketSubSection');
             const foodSec = document.getElementById('foodSubSection');
+            const transportSec = document.getElementById('transportSubSection');
 
             if (mapSec) mapSec.style.display = 'none';
             if (superSec) superSec.style.display = 'none';
             if (foodSec) foodSec.style.display = 'none';
+            if (transportSec) transportSec.style.display = 'none';
 
             const target = document.getElementById(sectionId);
             if (target) {
