@@ -1802,6 +1802,75 @@
         let manualOverrides = {};
         let isLiveStatusPaused = false;
 
+        // 班次時間表 (8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20 + 13點午休)
+        const busScheduleData = [
+            { id: 1, hotel: "08:00", kwaiFong: "08:15", tsuenWanWest: "08:30" },
+            { id: 2, hotel: "09:00", kwaiFong: "09:15", tsuenWanWest: "09:30" },
+            { id: 3, hotel: "10:00", kwaiFong: "10:15", tsuenWanWest: "10:30" },
+            { id: 4, hotel: "11:00", kwaiFong: "11:15", tsuenWanWest: "11:30" },
+            { id: 5, hotel: "12:00", kwaiFong: "12:15", tsuenWanWest: "12:30" },
+            { id: 6, hotel: "13:00", isLunch: true },
+            { id: 7, hotel: "14:00", kwaiFong: "14:15", tsuenWanWest: "14:30" },
+            { id: 8, hotel: "15:00", kwaiFong: "15:15", tsuenWanWest: "15:30" },
+            { id: 9, hotel: "16:00", kwaiFong: "16:15", tsuenWanWest: "16:30" },
+            { id: 10, hotel: "17:00", kwaiFong: "17:15", tsuenWanWest: "17:30" },
+            { id: 11, hotel: "18:00", kwaiFong: "18:15", tsuenWanWest: "18:30" },
+            { id: 12, hotel: "19:00", kwaiFong: "19:15", tsuenWanWest: "19:30" },
+            { id: 13, hotel: "20:00", kwaiFong: "20:15", tsuenWanWest: "20:30" }
+        ];
+
+        function timeToMinutes(timeStr) {
+            if (!timeStr) return 0;
+            const [h, m] = timeStr.split(':').map(Number);
+            return h * 60 + m;
+        }
+
+        // 計算即時行車狀況 (頂部 Banner)
+        function getRealtimeStatusText(currentMinutes, langData) {
+            // 🟢 新增這段在最頂部
+            if (isLiveStatusPaused) {
+                return langData.stOut || "暫停服務";
+            }
+            if (currentMinutes >= 0 && currentMinutes <= 464) {
+                return langData.stNotStarted;
+            }
+
+            if (currentMinutes >= 765 && currentMinutes <= 824) {
+                return langData.stLunchBreak;
+            }
+
+            if (currentMinutes >= 1245 && currentMinutes <= 1439) {
+                return langData.stServiceEnded;
+            }
+
+            const activeHours = [8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20];
+
+            for (let h of activeHours) {
+                const depMins = h * 60;
+
+                if (currentMinutes >= depMins - 15 && currentMinutes <= depMins) {
+                    return langData.stWaitingDepart;
+                }
+                if (currentMinutes >= depMins + 1 && currentMinutes <= depMins + 14) {
+                    return langData.stDrivingToKwai;
+                }
+                if (currentMinutes === depMins + 15) {
+                    return langData.stArrivedKwai;
+                }
+                if (currentMinutes >= depMins + 16 && currentMinutes <= depMins + 29) {
+                    return langData.stDrivingToTsuen;
+                }
+                if (currentMinutes === depMins + 30) {
+                    return langData.stArrivedTsuen;
+                }
+                if (currentMinutes >= depMins + 31 && currentMinutes <= depMins + 44) {
+                    return langData.stReturningHotel;
+                }
+            }
+
+            return langData.stWaitingDepart;
+        }
+
         // 讀取 Firebase 數據（含暫停狀態）
         db.ref('busManualOverrides').on('value', (snapshot) => {
             const data = snapshot.val() || {};
@@ -2065,6 +2134,7 @@
                 wifi_support: "技術支援：如在連線時遇到任何訊號微弱或登入困難，請致電客房服務部，我們將有專人為您即時跟進。",
                 comp_sub_desc: "(1樓)",
                 wifi_sub_desc: "(全酒店覆蓋)",
+                backToFac: '⬅️ 返回酒店設施',
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2297,6 +2367,7 @@
                 wifi_support: "技术支持：如在连线时遇到任何信号微弱或登录困难，请致电客房服务部，我们将有专人为您即时跟进。",
                 comp_sub_desc: "(1楼)",
                 wifi_sub_desc: "(全酒店覆盖)",
+                backToFac: '⬅️ 返回酒店设施',
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2529,6 +2600,7 @@
                 wifi_support: "Technical Support: If you experience weak signals or login issues, please contact Housekeeping/Front Desk for immediate assistance.",
                 comp_sub_desc: "(1/F)",
                 wifi_sub_desc: "(Hotel-wide)",
+                backToFac: '⬅️ Back to Hotel Facilities',
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -2761,6 +2833,7 @@
                 wifi_support: "テクニカルサポート：電波状況が悪い場合やログインに問題がある場合は、フロントまでお問い合わせください。",
                 comp_sub_desc: "(1階)",
                 wifi_sub_desc: "(館内全域)",
+                backToFac: '⬅️ ホテル施設に戻る',
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -2993,6 +3066,7 @@
                 wifi_support: "기술 지원: 신호가 약하거나 로그인에 문제가 있는 경우 프런트 및 객실 서비스로 문의해 주시기 바랍니다.",
                 comp_sub_desc: "(1층)",
                 wifi_sub_desc: "(전 호텔)",
+                backToFac: '⬅️ 호텔 시설로 돌아가기',
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3225,6 +3299,7 @@
                 wifi_support: "Hỗ trợ kỹ thuật: Nếu gặp sự cố tín hiệu yếu hoặc khó đăng nhập, vui lòng liên hệ bộ phận dịch vụ phòng để được hỗ trợ.",
                 comp_sub_desc: "(Tầng 1)",
                 wifi_sub_desc: "(Toàn Khách Sạn)",
+                backToFac: '⬅️ Quay lại cơ sở vật chất khách sạn',
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -3457,6 +3532,7 @@
                 wifi_support: "Dukungan Teknis: Jika mengalami sinyal lemah atau kendala masuk, silakan hubungi layanan kamar.",
                 comp_sub_desc: "(1st Floor)",
                 wifi_sub_desc: "(पूरे होटल में)",
+                backToFac: '⬅️ होटल की सुविधाओं पर वापस जाएं',
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -3687,12 +3763,15 @@
                 wifi_support: "Suportang Teknikal: Kung may mahinang signal o hirap mag-log in, mangyaring tawagan ang Front Desk o Housekeeping.",
                 comp_sub_desc: "(1/F)",
                 wifi_sub_desc: "(Buong Hotel)",
+                backToFac: '⬅️ Bumalik sa Mga Pasilidad ng Hotel',
             }
         };
 
         async function fetchHKOWeather(lang) {
             // 1. 取得目標語言
             const targetLang = lang || (typeof currentLang !== 'undefined' ? currentLang : 'zh-HK');
+
+            const langData = t[targetLang] || t['zh-HK'] || {};
 
             // 2. 更新頁面上的靜態 UI
             if (typeof updateUIText === 'function') {
@@ -4103,7 +4182,13 @@
                     '• ' + (langData.wifi_connect || '') + '<br><br>' +
                     '<strong>' + (langData.wifi_tip_title || '【貼心提示】') + '</strong><br>' +
                     '• ' + (langData.wifi_unlimited || '') + '<br>' +
-                    '• ' + (langData.wifi_support || '')
+                    '• ' + (langData.wifi_support || ''),
+                'ui-back-fac1': (langData.backToFac || '⬅️ 返回酒店設施'),
+                'ui-back-fac2': (langData.backToFac || '⬅️ 返回酒店設施'),
+                'ui-back-fac3': (langData.backToFac || '⬅️ 返回酒店設施'),
+                'ui-back-fac4': (langData.backToFac || '⬅️ 返回酒店設施'),
+                'ui-back-fac5': (langData.backToFac || '⬅️ 返回酒店設施'),
+                'ui-back-fac6': (langData.backToFac || '⬅️ 返回酒店設施'),
             };
 
             // 執行 ID 替換
@@ -4114,8 +4199,7 @@
         }
 
         // ✅ 改用這段：一次過搜尋所有可能是導航按鈕的 class
-        const navText = langData.navBtn || '導航 ➔';
-        document.querySelectorAll('.nav-btn, .btn-nav, a.nav, a[href*="maps"]').forEach(btn => {
+        const navText = (t[currentLang] && t[currentLang].navBtn) || (t['zh-HK'] && t['zh-HK'].navBtn) || '導航 ➔'; document.querySelectorAll('.nav-btn, .btn-nav, a.nav, a[href*="maps"]').forEach(btn => {
             btn.innerText = navText;
         });
 
@@ -4160,74 +4244,7 @@
             window.scrollTo(0, 0);
         }
 
-        // 班次時間表 (8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20 + 13點午休)
-        const busScheduleData = [
-            { id: 1, hotel: "08:00", kwaiFong: "08:15", tsuenWanWest: "08:30" },
-            { id: 2, hotel: "09:00", kwaiFong: "09:15", tsuenWanWest: "09:30" },
-            { id: 3, hotel: "10:00", kwaiFong: "10:15", tsuenWanWest: "10:30" },
-            { id: 4, hotel: "11:00", kwaiFong: "11:15", tsuenWanWest: "11:30" },
-            { id: 5, hotel: "12:00", kwaiFong: "12:15", tsuenWanWest: "12:30" },
-            { id: 6, hotel: "13:00", isLunch: true },
-            { id: 7, hotel: "14:00", kwaiFong: "14:15", tsuenWanWest: "14:30" },
-            { id: 8, hotel: "15:00", kwaiFong: "15:15", tsuenWanWest: "15:30" },
-            { id: 9, hotel: "16:00", kwaiFong: "16:15", tsuenWanWest: "16:30" },
-            { id: 10, hotel: "17:00", kwaiFong: "17:15", tsuenWanWest: "17:30" },
-            { id: 11, hotel: "18:00", kwaiFong: "18:15", tsuenWanWest: "18:30" },
-            { id: 12, hotel: "19:00", kwaiFong: "19:15", tsuenWanWest: "19:30" },
-            { id: 13, hotel: "20:00", kwaiFong: "20:15", tsuenWanWest: "20:30" }
-        ];
 
-        function timeToMinutes(timeStr) {
-            if (!timeStr) return 0;
-            const [h, m] = timeStr.split(':').map(Number);
-            return h * 60 + m;
-        }
-
-        // 計算即時行車狀況 (頂部 Banner)
-        function getRealtimeStatusText(currentMinutes, langData) {
-            // 🟢 新增這段在最頂部
-            if (isLiveStatusPaused) {
-                return langData.stOut || "暫停服務";
-            }
-            if (currentMinutes >= 0 && currentMinutes <= 464) {
-                return langData.stNotStarted;
-            }
-
-            if (currentMinutes >= 765 && currentMinutes <= 824) {
-                return langData.stLunchBreak;
-            }
-
-            if (currentMinutes >= 1245 && currentMinutes <= 1439) {
-                return langData.stServiceEnded;
-            }
-
-            const activeHours = [8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20];
-
-            for (let h of activeHours) {
-                const depMins = h * 60;
-
-                if (currentMinutes >= depMins - 15 && currentMinutes <= depMins) {
-                    return langData.stWaitingDepart;
-                }
-                if (currentMinutes >= depMins + 1 && currentMinutes <= depMins + 14) {
-                    return langData.stDrivingToKwai;
-                }
-                if (currentMinutes === depMins + 15) {
-                    return langData.stArrivedKwai;
-                }
-                if (currentMinutes >= depMins + 16 && currentMinutes <= depMins + 29) {
-                    return langData.stDrivingToTsuen;
-                }
-                if (currentMinutes === depMins + 30) {
-                    return langData.stArrivedTsuen;
-                }
-                if (currentMinutes >= depMins + 31 && currentMinutes <= depMins + 44) {
-                    return langData.stReturningHotel;
-                }
-            }
-
-            return langData.stWaitingDepart;
-        }
 
         function renderBusSchedule() {
             const container = document.getElementById('busListContainer');
