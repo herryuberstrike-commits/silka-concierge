@@ -4198,8 +4198,10 @@
             }
         }
 
-        // ✅ 改用這段：一次過搜尋所有可能是導航按鈕的 class
-        const navText = (t[currentLang] && t[currentLang].navBtn) || (t['zh-HK'] && t['zh-HK'].navBtn) || '導航 ➔'; document.querySelectorAll('.nav-btn, .btn-nav, a.nav, a[href*="maps"]').forEach(btn => {
+        // ✅ 替換為完整且安全的寫法
+        const navText = (t[currentLang] && t[currentLang].navBtn) || (t['zh-HK'] && t['zh-HK'].navBtn) || '導航 ➔';
+
+        document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.innerText = navText;
         });
 
