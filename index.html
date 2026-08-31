@@ -426,73 +426,141 @@
             </div>
         </div>
 
-    <!-- 300米周邊指南頁面 -->
-<div id="mapSection" class="section-content" style="display: block; width: 100%;">
-    <button class="back-btn" id="ui-back2" onclick="goBack()">⬅ 返回主選單</button>
-    <h3 id="ui-map-header" style="margin-top: 0; font-size: 16px; color: #2c3e50; text-align: center;">酒店300米周邊實用指南</h3>
+        <!-- 300米周邊指南頁面 -->
+        <div id="mapSection" class="section-content" style="display: block; width: 100%;">
+            <button class="back-btn" id="ui-back2" onclick="goBack()">⬅ 返回主選單</button>
+            <h3 id="ui-map-header" style="margin-top: 0; font-size: 16px; color: #2c3e50; text-align: center;">
+                酒店300米周邊實用指南</h3>
 
-    <!-- 【1. 獨立頂部橫排】酒店附近地圖 (直達荃灣絲麗酒店) -->
-    <div style="width: 100%; margin-bottom: 15px; clear: both;">
-        <a href="https://www.google.com/maps/search/?api=1&query=Silka+Tsuen+Wan+119+Wo+Yi+Hop+Road" target="_blank" style="text-decoration: none; display: block; width: 100%;">
-            <div style="background: linear-gradient(135deg, #007bff, #0056b3); border-radius: 12px; padding: 15px; color: white; box-shadow: 0 4px 10px rgba(0,123,255,0.3); display: flex; align-items: center; justify-content: space-between; box-sizing: border-box;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 28px;">🗺️</span>
-                    <div style="text-align: left;">
-                        <div style="font-size: 15px; font-weight: bold;">酒店附近地圖</div>
-                        <div style="font-size: 11px; opacity: 0.9;">點擊開啟 Google Maps 檢視完整地圖</div>
+            <!-- 【1. 獨立頂部橫排】酒店附近地圖 (直達荃灣絲麗酒店) -->
+            <div style="width: 100%; margin-bottom: 15px; clear: both;">
+                <a href="https://www.google.com/maps/search/?api=1&query=Silka+Tsuen+Wan+119+Wo+Yi+Hop+Road"
+                    target="_blank" style="text-decoration: none; display: block; width: 100%;">
+                    <div
+                        style="background: linear-gradient(135deg, #007bff, #0056b3); border-radius: 12px; padding: 15px; color: white; box-shadow: 0 4px 10px rgba(0,123,255,0.3); display: flex; align-items: center; justify-content: space-between; box-sizing: border-box;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 28px;">🗺️</span>
+                            <div style="text-align: left;">
+                                <div style="font-size: 15px; font-weight: bold;">酒店附近地圖</div>
+                                <div style="font-size: 11px; opacity: 0.9;">點擊開啟 Google Maps 檢視完整地圖</div>
+                            </div>
+                        </div>
+                        <span style="font-size: 18px; font-weight: bold;">➔</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 【2. 下方 2x2 矩陣區塊】 -->
+            <div
+                style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; width: 100%; box-sizing: border-box;">
+
+                <!-- 第 1 個：便利店與超市 -->
+                <div
+                    style="background: #ffffff; border-radius: 12px; border: 1px solid #e0e0e0; aspect-ratio: 1 / 1; display: flex; flex-direction: column; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); overflow: hidden; box-sizing: border-box;">
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 6px;">
+                        <span style="font-size: 16px;">🏪</span>
+                        <span style="font-size: 13px; font-weight: bold; color: #333;">便利店與超市</span>
+                    </div>
+
+                    <!-- 迷你店家卡片 -->
+                    <div
+                        style="display: flex; flex-direction: column; gap: 6px; overflow-y: auto; flex-grow: 1; padding-right: 2px;">
+
+                        <!-- 7-Eleven (酒店地下) -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=Silka+Tsuen+Wan+119+Wo+Yi+Hop+Road"
+                            target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">7-Eleven (酒店地下)</div>
+                            <div style="font-size: 9px; color: #28a745; margin-top: 1px;">24 小時營業</div>
+                        </a>
+
+                        <!-- 惠康超市 (梨木道福蔭大廈) -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=Wellcome+118+Lei+Muk+Road+Fortuna+House"
+                            target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">惠康超級市場 (梨木道)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">08:00 - 21:00</div>
+                        </a>
+
+                        <!-- 家興超級市場 (石蔭店) -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=Ka+Hing+Supermarket+Shek+Yam"
+                            target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">家興超級市場 (石蔭店)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">08:00 - 20:00</div>
+                        </a>
+
+                        <!-- 萬寧 (石蔭路96號) -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mannings+96+Shek+Yam+Road"
+                            target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">萬寧 (石蔭路)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">08:30 - 21:00</div>
+                        </a>
+
                     </div>
                 </div>
-                <span style="font-size: 18px; font-weight: bold;">➔</span>
-            </div>
-        </a>
-    </div>
 
-    <!-- 【2. 下方 2x2 矩陣區塊】 -->
-    <div style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; width: 100%; box-sizing: border-box;">
-
-        <!-- 第 1 個：便利店與超市 -->
-        <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e0e0e0; aspect-ratio: 1 / 1; display: flex; flex-direction: column; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); overflow: hidden; box-sizing: border-box;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 6px;">
-                <span style="font-size: 16px;">🏪</span>
-                <span style="font-size: 13px; font-weight: bold; color: #333;">便利店與超市</span>
-            </div>
-
-            <!-- 迷你店家卡片 -->
-            <div style="display: flex; flex-direction: column; gap: 6px; overflow-y: auto; flex-grow: 1; padding-right: 2px;">
-
-                <!-- 7-Eleven (酒店地下) -->
-                <a href="https://www.google.com/maps/search/?api=1&query=Silka+Tsuen+Wan+119+Wo+Yi+Hop+Road" target="_blank" style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
-                    <div style="font-size: 11px; font-weight: bold;">7-Eleven (酒店地下)</div>
-                    <div style="font-size: 9px; color: #28a745; margin-top: 1px;">24 小時營業</div>
-                </a>
-
-                <!-- 惠康超市 (梨木道福蔭大廈) -->
-                <a href="https://www.google.com/maps/search/?api=1&query=Wellcome+118+Lei+Muk+Road+Fortuna+House" target="_blank" style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
-                    <div style="font-size: 11px; font-weight: bold;">惠康超級市場 (梨木道)</div>
-                    <div style="font-size: 9px; color: #666; margin-top: 1px;">08:00 - 21:00</div>
-                </a>
-
-                <!-- 家興超級市場 (石蔭店) -->
-                <a href="https://www.google.com/maps/search/?api=1&query=Ka+Hing+Supermarket+Shek+Yam" target="_blank" style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
-                    <div style="font-size: 11px; font-weight: bold;">家興超級市場 (石蔭店)</div>
-                    <div style="font-size: 9px; color: #666; margin-top: 1px;">08:00 - 20:00</div>
-                </a>
-
-                <!-- 萬寧 (石蔭路96號) -->
-                <a href="https://www.google.com/maps/search/?api=1&query=Mannings+96+Shek+Yam+Road" target="_blank" style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
-                    <div style="font-size: 11px; font-weight: bold;">萬寧 (石蔭路)</div>
-                    <div style="font-size: 9px; color: #666; margin-top: 1px;">08:30 - 21:00</div>
-                </a>
-
-            </div>
-        </div>
-
-                <!-- 第 2 個：本地地道美食 -->
+                <!-- 第 2 個：本地地道美食 (已開放：含 6 間特色餐廳) -->
                 <div
-                    style="background: #f8f9fa; border-radius: 12px; border: 1.5px dashed #ccc; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6; cursor: not-allowed; text-align: center; padding: 10px; box-sizing: border-box;">
-                    <span style="font-size: 32px; margin-bottom: 8px;">🍜</span>
-                    <span style="font-size: 13px; font-weight: bold; color: #555;">本地地道美食</span>
-                    <span style="font-size: 10px; color: #888; margin-top: 4px;">(籌備中)</span>
+                    style="background: #ffffff; border-radius: 12px; border: 1px solid #e0e0e0; aspect-ratio: 1 / 1; display: flex; flex-direction: column; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); overflow: hidden; box-sizing: border-box;">
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 6px;">
+                        <span style="font-size: 16px;">🍜</span>
+                        <span style="font-size: 13px; font-weight: bold; color: #333;">本地地道美食</span>
+                    </div>
+
+                    <!-- 迷你店家卡片區域 (可滾動) -->
+                    <div
+                        style="display: flex; flex-direction: column; gap: 6px; overflow-y: auto; flex-grow: 1; padding-right: 2px;">
+
+                        <!-- 新金豐餐廳 (更新為官方精確名稱) -->
+                        <a href="https://maps.google.com/?q=新金豐餐廳" target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">新金豐餐廳 (石蔭路)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">06:00 - 01:00</div>
+                        </a>
+
+                        <!-- 麥當勞 (和宜合道) -->
+                        <a href="https://maps.google.com/?q=麥當勞+-+和宜合道" target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">麥當勞 (和宜合道)</div>
+                            <div style="font-size: 9px; color: #28a745; margin-top: 1px;">24 小時營業</div>
+                        </a>
+
+                        <!-- 尚本小廚 (精確地址) -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=尚本小廚+葵涌石蔭路53號" target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">尚品小廚 (石蔭路)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">06:00 - 21:30</div>
+                        </a>
+
+                        <!-- 茶樂冰室 -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=%E8%8C%B6%E6%A8%82%E5%86%B0%E5%BB%B3+%E7%9F%B3%E8%94%AD%E8%B7%AF"
+                            target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">茶樂冰室 (石蔭路)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">06:00 - 21:30</div>
+                        </a>
+
+                        <!-- 石籬粉仔 -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=%E7%9F%B3%E7%B1%AC%E7%B2%89%E4%BB%94+%E5%A4%A7%E9%9A me%E8%A1%97"
+                            target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">石籬粉仔 (大隴街)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">11:00 - 20:00</div>
+                        </a>
+
+                        <!-- GuyJoke 佳作 -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=GuyJoke+%E5%A4%A7%E9%9A%8D%E8%A1%97"
+                            target="_blank"
+                            style="text-decoration: none; background: #f8f9fa; border: 1px solid #dcdcdc; border-radius: 6px; padding: 6px; text-align: center; color: #333; display: block;">
+                            <div style="font-size: 11px; font-weight: bold;">GuyJoke (大隴街)</div>
+                            <div style="font-size: 9px; color: #666; margin-top: 1px;">12:00 - 01:00</div>
+                        </a>
+
+                    </div>
                 </div>
 
                 <!-- 第 3 個：交通與出行 -->
