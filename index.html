@@ -1675,6 +1675,16 @@
                     <h3 id="ui-fac-4-title">停車場</h3>
                     <p id="ui-fac-4-desc">(地面)</p>
                 </div>
+                <div class="menu-card" onclick="showSection('fac5Section')">
+                    <div class="icon">💻</div>
+                    <h3 id="tab-computer">💻 電腦閣</h3>
+                    <p id="ui-fac-5-desc">(1樓)</p>
+                </div>
+                <div class="menu-card" onclick="showSection('fac6Section')">
+                    <div class="icon">📶</div>
+                    <h3 id="tab-wifi">📶 免費Wi-Fi</h3>
+                    <p id="ui-fac-6-desc">(全酒店覆蓋)</p>
+                </div>
             </div>
         </div>
 
@@ -1743,6 +1753,39 @@
                 • <strong>車位</strong>：設有 2 個時租車位，方便快捷。<br><br>
                 <strong>【官網限定優惠】</strong><br>
                 • 即刻透過酒店官方網站預訂指定住宿計劃，即可尊享「免費夜泊套餐優惠」，讓您的駕駛之旅更輕鬆、更超值！
+            </div>
+        </div>
+
+        <!-- 5. 電腦閣 子頁面 -->
+        <div id="fac5Section" class="section-content" style="display:none;">
+            <button class="back-btn" id="ui-back-fac5" onclick="showSection('facilitySection')">⬅
+                返回酒店設施</button>
+            <h3 id="ui-fac5-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">電腦閣 (1樓)</h3>
+            <div id="ui-fac5-desc"
+                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                💻 <strong>商務電腦閣 (1/F)</strong><br><br>
+                <strong>【設施服務】</strong><br>
+                • <strong>設備提供</strong>：備有高效能 Windows 桌上型電腦，滿足您的商務及突發文書需求。<br>
+                • <strong>開放時間</strong>：24小時全天候開放，住客可憑房卡隨時進入使用。<br><br>
+                <strong>【收費與協助】</strong><br>
+                • <strong>免費使用</strong>：所有酒店住客均可免費使用電腦上網及基本文書處理。
+            </div>
+        </div>
+
+        <!-- 6. 免費 Wi-Fi 子頁面 -->
+        <div id="fac6Section" class="section-content" style="display:none;">
+            <button class="back-btn" id="ui-back-fac6" onclick="showSection('facilitySection')">⬅
+                返回酒店設施</button>
+            <h3 id="ui-fac6-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">免費 Wi-Fi (全酒店覆蓋)</h3>
+            <div id="ui-fac6-desc"
+                style="font-size: 13px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                📶 <strong>高速無線網絡 (全酒店)</strong><br><br>
+                <strong>【網絡連接服務】</strong><br>
+                • <strong>覆蓋範圍</strong>：酒店客房、大堂及所有休閒設施均已全面覆蓋高速光纖 Wi-Fi。<br>
+                • <strong>連線方式</strong>：連接房卡套上面的Wi-Fi名稱，連接網絡後開啟瀏覽器，輸入房卡套上面的密碼即可。<br><br>
+                <strong>【貼心提示】</strong><br>
+                • <strong>無限流量</strong>：住宿期間不限流量、不限裝置數量，讓您隨時隨地與親友保持緊密聯繫或處理公務。<br>
+                • <strong>技術支援</strong>：如在連線時遇到任何訊號微弱或登入困難，請致電客房服務部，我們將有專人為您即時跟進。
             </div>
         </div>
 
@@ -2005,6 +2048,23 @@
                 catFoodDesc: "茶餐廳、小食、麥當勞",
                 catTransportDesc: "巴士及小巴路線指南",
                 catPharmacyDesc: "藥房、ATM、商場與洗衣店",
+                tab_computer: "💻 電腦閣",
+                tab_wifi: "📶 免費Wi-Fi",
+                comp_title: "💻 商務電腦閣 (1/F)",
+                comp_service: "【設施服務】",
+                comp_device: "設備提供：備有高效能 Windows 桌上型電腦，滿足您的商務及突發文書需求。",
+                comp_hours: "開放時間：24小時全天候開放，住客可憑房卡隨時進入使用。",
+                comp_fee_title: "【收費與協助】",
+                comp_fee: "免費使用：所有酒店住客均可免費使用電腦上網及基本文書處理。",
+                wifi_title: "📶 高速無線網絡 (全酒店)",
+                wifi_net_title: "【網絡連接服務】",
+                wifi_coverage: "覆蓋範圍：酒店客房、大堂及所有休閒設施均已全面覆蓋高速光纖 Wi-Fi。",
+                wifi_connect: "連線方式：連接房卡套上面的Wi-Fi名稱，連接網絡後開啟瀏覽器，輸入房卡套上面的密碼即可。",
+                wifi_tip_title: "【貼心提示】",
+                wifi_unlimited: "無限流量：住宿期間不限流量、不限裝置數量，讓您隨時隨地與親友保持緊密聯繫或處理公務。",
+                wifi_support: "技術支援：如在連線時遇到任何訊號微弱或登入困難，請致電客房服務部，我們將有專人為您即時跟進。",
+                comp_sub_desc: "(1樓)",
+                wifi_sub_desc: "(全酒店覆蓋)",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2220,6 +2280,23 @@
                 catFoodDesc: "茶餐厅、小吃、麦当劳",
                 catTransportDesc: "公交车及小巴路线指南",
                 catPharmacyDesc: "药房、ATM、商场与洗衣店",
+                tab_computer: "💻 电脑阁",
+                tab_wifi: "📶 免费Wi-Fi",
+                comp_title: "💻 商务电脑阁 (1/F)",
+                comp_service: "【设施服务】",
+                comp_device: "设备提供：备有高性能 Windows 桌上型电脑，满足您的商务及突发文档需求。",
+                comp_hours: "开放时间：24小时全天候开放，住客可凭房卡随时进入使用。",
+                comp_fee_title: "【收费与协助】",
+                comp_fee: "免费使用：所有酒店住客均可免费使用电脑上网及基本文档处理。",
+                wifi_title: "📶 高速无线网络 (全酒店)",
+                wifi_net_title: "【网络连接服务】",
+                wifi_coverage: "覆盖范围：酒店客房、大堂及所有休闲设施均已全面覆盖高速光纤 Wi-Fi。",
+                wifi_connect: "连接方式：连接房卡套上面的Wi-Fi名称，连接网络后开启浏览器，输入房卡套上面的密码即可。",
+                wifi_tip_title: "【贴心提示】",
+                wifi_unlimited: "无限流量：住宿期间不限流量、不限装置数量，让您随时随地与亲友保持紧密联系或处理公务。",
+                wifi_support: "技术支持：如在连线时遇到任何信号微弱或登录困难，请致电客房服务部，我们将有专人为您即时跟进。",
+                comp_sub_desc: "(1楼)",
+                wifi_sub_desc: "(全酒店覆盖)",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2435,6 +2512,23 @@
                 catFoodDesc: "Cha Chaan Teng, Snacks, McDonald's",
                 catTransportDesc: "Bus & Minibus Route Guide",
                 catPharmacyDesc: "Pharmacies, ATMs, Malls & Laundromat",
+                tab_computer: "💻 Computer Corner",
+                tab_wifi: "📶 Free Wi-Fi",
+                comp_title: "💻 Business Computer Corner (1/F)",
+                comp_service: "[Facilities & Services]",
+                comp_device: "Equipment: High-performance Windows desktop computers available for your business and urgent documentation needs.",
+                comp_hours: "Opening Hours: Open 24/7. Guests can access using their room key card at any time.",
+                comp_fee_title: "[Fees & Assistance]",
+                comp_fee: "Complimentary: All hotel guests can use the computers for internet browsing and basic word processing free of charge.",
+                wifi_title: "📶 High-Speed Wi-Fi (Hotel-wide)",
+                wifi_net_title: "[Network Connection]",
+                wifi_coverage: "Coverage: High-speed fiber Wi-Fi is fully available in guest rooms, the lobby, and all leisure facilities.",
+                wifi_connect: "Connection: Connect to the Wi-Fi name shown on your room key card holder, open a browser, and enter the provided password.",
+                wifi_tip_title: "[Kindly Reminder]",
+                wifi_unlimited: "Unlimited Data: Enjoy unlimited data and unlimited devices during your stay, keeping you connected with family and friends anytime.",
+                wifi_support: "Technical Support: If you experience weak signals or login issues, please contact Housekeeping/Front Desk for immediate assistance.",
+                comp_sub_desc: "(1/F)",
+                wifi_sub_desc: "(Hotel-wide)",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -2650,6 +2744,23 @@
                 catFoodDesc: "茶餐廳、軽食、マクドナルド",
                 catTransportDesc: "バス・ミニバス路線ガイド",
                 catPharmacyDesc: "薬局、ATM、ショッピングモール、コインランドリー",
+                tab_computer: "💻 ビジネスコーナー",
+                tab_wifi: "📶 無料Wi-Fi",
+                comp_title: "💻 ビジネスコーナー (1F)",
+                comp_service: "【施設・サービス】",
+                comp_device: "設備：高性能WindowsデスクトップPCを完備し、ビジネスや急な文書作成のニーズに対応します。",
+                comp_hours: "営業時間：24時間ご利用可能。ルームキーカードでいつでも入室できます。",
+                comp_fee_title: "【料金・サポート】",
+                comp_fee: "無料利用：ご宿泊のお客様は、インターネットや基本的な文書作成を無料でご利用いただけます。",
+                wifi_title: "📶 高速Wi-Fi (館内全域)",
+                wifi_net_title: "【ネットワーク接続】",
+                wifi_coverage: "接続範囲：客室、ロビー、レジャー施設を含む館内全体で高速光ファイバーWi-Fiをご利用いただけます。",
+                wifi_connect: "接続方法：ルームキーカードホルダーに記載されているWi-Fi名に接続し、ブラウザを開いてパスワードを入力してください。",
+                wifi_tip_title: "【ご案内】",
+                wifi_unlimited: "無制限データ：ご滞在中はデータ容量・デバイス数の制限なく、いつでも快適にご利用いただけます。",
+                wifi_support: "テクニカルサポート：電波状況が悪い場合やログインに問題がある場合は、フロントまでお問い合わせください。",
+                comp_sub_desc: "(1階)",
+                wifi_sub_desc: "(館内全域)",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -2865,6 +2976,23 @@
                 catFoodDesc: "차찬탱, 길거리 음식, 맥도날드",
                 catTransportDesc: "버스 및 미니버스 노선 안내",
                 catPharmacyDesc: "약국, ATM, 쇼핑몰 및 빨래방",
+                tab_computer: "💻 비즈니스 센터",
+                tab_wifi: "📶 무료 Wi-Fi",
+                comp_title: "💻 비즈니스 컴퓨터 코너 (1층)",
+                comp_service: "[시설 및 서비스]",
+                comp_device: "제공 장비: 비즈니스 및 급한 문서 작성을 위한 고성능 Windows 데스크탑 PC가 마련되어 있습니다.",
+                comp_hours: "이용 시간: 24시간 연중무휴. 객실 키 카드로 언제든지 출입할 수 있습니다.",
+                comp_fee_title: "[요금 및 지원]",
+                comp_fee: "무료 이용: 모든 호텔 투숙객은 인터넷 검색 및 기본 문서 작업을 무료로 이용하실 수 있습니다.",
+                wifi_title: "📶 고속 무선 네트워크 (전 호텔)",
+                wifi_net_title: "[네트워크 연결 서비스]",
+                wifi_coverage: "적용 범위: 객실, 로비 및 모든 부대시설에 고속 광랜 Wi-Fi가 완벽하게 구축되어 있습니다.",
+                wifi_connect: "연결 방법: 객실 키 카드 케이스에 적힌 Wi-Fi 이름을 연결한 후 브라우저를 열어 비밀번호를 입력하세요.",
+                wifi_tip_title: "[이용 팁]",
+                wifi_unlimited: "무제한 데이터: 투숙 기간 동안 데이터 및 기기 제한 없이 언제든지 편리하게 인터넷을 즐기실 수 있습니다.",
+                wifi_support: "기술 지원: 신호가 약하거나 로그인에 문제가 있는 경우 프런트 및 객실 서비스로 문의해 주시기 바랍니다.",
+                comp_sub_desc: "(1층)",
+                wifi_sub_desc: "(전 호텔)",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3080,6 +3208,23 @@
                 catFoodDesc: "Quán trà Hong Kong, Đồ ăn vặt, McDonald's",
                 catTransportDesc: "Hướng dẫn tuyến xe buýt & xe buýt nhỏ",
                 catPharmacyDesc: "Hiệu thuốc, ATM, Trung tâm thương mại & Tiệm giặt ủi",
+                tab_computer: "💻 Góc Máy Tính",
+                tab_wifi: "📶 Wi-Fi Miễn Phí",
+                comp_title: "💻 Góc Máy Tính Doanh Nhân (Tầng 1)",
+                comp_service: "[Dịch vụ tiện ích]",
+                comp_device: "Thiết bị: Máy tính để bàn Windows hiệu suất cao, đáp ứng nhu cầu công việc và soạn thảo văn bản khẩn cấp của bạn.",
+                comp_hours: "Giờ mở cửa: Mở cửa 24/7, khách lưu trú có thể dùng thẻ phòng để vào sử dụng bất cứ lúc nào.",
+                comp_fee_title: "[Phí & Hỗ trợ]",
+                comp_fee: "Miễn phí: Tất cả khách lưu trú được sử dụng máy tính lướt web và soạn thảo văn bản cơ bản hoàn toàn miễn phí.",
+                wifi_title: "📶 Wi-Fi Tốc Độ Cao (Toàn Khách Sạn)",
+                wifi_net_title: "[Dịch vụ kết nối mạng]",
+                wifi_coverage: "Phạm vi phủ sóng: Phòng nghỉ, sảnh và các khu vực giải trí đều được phủ sóng Wi-Fi cáp quang tốc độ cao.",
+                wifi_connect: "Cách kết nối: Kết nối với tên Wi-Fi trên bìa thẻ phòng, mở trình duyệt và nhập mật khẩu được cung cấp.",
+                wifi_tip_title: "[Lưu ý hữu ích]",
+                wifi_unlimited: "Không giới hạn dung lượng: Tận hưởng internet không giới hạn dung lượng và thiết bị trong suốt thời gian lưu trú.",
+                wifi_support: "Hỗ trợ kỹ thuật: Nếu gặp sự cố tín hiệu yếu hoặc khó đăng nhập, vui lòng liên hệ bộ phận dịch vụ phòng để được hỗ trợ.",
+                comp_sub_desc: "(Tầng 1)",
+                wifi_sub_desc: "(Toàn Khách Sạn)",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -3295,6 +3440,23 @@
                 catFoodDesc: "चा छान तेंग, स्नैक्स, मैकडॉनल्ड्स",
                 catTransportDesc: "बस और मिनीबस रूट गाइड",
                 catPharmacyDesc: "मेडिकल स्टोर, एटीएम, मॉल और लॉन्ड्री",
+                tab_computer: "💻 Sudut Komputer",
+                tab_wifi: "📶 Wi-Fi Gratis",
+                comp_title: "💻 Sudut Komputer Bisnis (Lantai 1)",
+                comp_service: "[Layanan Fasilitas]",
+                comp_device: "Peralatan: Komputer desktop Windows berkinerja tinggi untuk kebutuhan bisnis dan dokumen mendesak Anda.",
+                comp_hours: "Jam Buka: Buka 24 jam. Tamu dapat masuk menggunakan kartu kunci kamar kapan saja.",
+                comp_fee_title: "[Biaya & Bantuan]",
+                comp_fee: "Gratis: Semua tamu hotel dapat menggunakan komputer untuk internet dan pengolahan kata dasar secara cuma-cuma.",
+                wifi_title: "📶 Wi-Fi Kecepatan Tinggi (Seluruh Hotel)",
+                wifi_net_title: "[Layanan Koneksi Jaringan]",
+                wifi_coverage: "Cakupan: Wi-Fi fiber kecepatan tinggi tersedia penuh di kamar tamu, lobi, dan semua fasilitas rekreasi.",
+                wifi_connect: "Cara Koneksi: Hubungkan ke nama Wi-Fi pada sampul kartu kunci, buka browser, dan masukkan kata sandi.",
+                wifi_tip_title: "[Catatan Penting]",
+                wifi_unlimited: "Data Tanpa Batas: Nikmati data dan perangkat tanpa batas selama menginap untuk tetap terhubung.",
+                wifi_support: "Dukungan Teknis: Jika mengalami sinyal lemah atau kendala masuk, silakan hubungi layanan kamar.",
+                comp_sub_desc: "(1st Floor)",
+                wifi_sub_desc: "(पूरे होटल में)",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -3508,7 +3670,23 @@
                 catStoreDesc: "7-Eleven, Wellcome, Mannings, atbp.",
                 catFoodDesc: "Cha Chaan Teng, Meryenda, McDonald's",
                 catTransportDesc: "Gabay sa Ruta ng Bus at Minibus",
-                catPharmacyDesc: "Botika, ATM, Mall at Laundromat",
+                catPharmacyDesc: "Botika, ATM, Mall at Laundromat", tab_computer: "💻 Computer Corner",
+                tab_wifi: "📶 Libreng Wi-Fi",
+                comp_title: "💻 Business Computer Corner (1/F)",
+                comp_service: "[Mga Pasilidad at Serbisyo]",
+                comp_device: "Kagamitan: Mayroon itong high-performance Windows desktop computers para sa inyong negosyo at agarang dokumento.",
+                comp_hours: "Oras ng Bukas: Bukas 24/7. Maaaring pumasok ang mga bisita gamit ang kanilang room key card anumang oras.",
+                comp_fee_title: "[Bayarin at Tulong]",
+                comp_fee: "Libreng Gamitin: Lahat ng bisita ng hotel ay malayang gumamit ng computer para sa internet at basic typing nang walang bayad.",
+                wifi_title: "📶 High-Speed Wi-Fi (Buong Hotel)",
+                wifi_net_title: "[Serbisyo sa Koneksyon ng Network]",
+                wifi_coverage: "Saklaw: Puno ng high-speed fiber Wi-Fi ang mga kuwarto, lobby, at lahat ng pasilidad sa hotel.",
+                wifi_connect: "Paraan ng Pag-konek: Kumonekta sa Wi-Fi pangalan na nasa room key card holder, buksan ang browser, at ilagay ang password.",
+                wifi_tip_title: "[Mahalagang Paalala]",
+                wifi_unlimited: "Unli Data: Walang limitasyong data at aparato sa buong pananatili upang manatiling konektado sa mga mahal sa buhay.",
+                wifi_support: "Suportang Teknikal: Kung may mahinang signal o hirap mag-log in, mangyaring tawagan ang Front Desk o Housekeeping.",
+                comp_sub_desc: "(1/F)",
+                wifi_sub_desc: "(Buong Hotel)",
             }
         };
 
@@ -3907,6 +4085,25 @@
                 'back-to-map-2': (langData.backToMap || langData.back10 || '⬅ 返回周邊指南'),
                 'back-to-map-3': (langData.backToMap || langData.back10 || '⬅ 返回周邊指南'),
                 'back-to-map-4': (langData.backToMap || langData.back10 || '⬅ 返回周邊指南'),
+                'tab-computer': (langData.tab_computer || '💻 電腦閣'),
+                'tab-wifi': (langData.tab_wifi || '📶 免費Wi-Fi'),
+                'ui-fac-5-desc': (langData.comp_sub_desc || '(1樓)'),
+                'ui-fac-6-desc': (langData.wifi_sub_desc || '(全酒店覆蓋)'),
+                'ui-fac5-header': (langData.tab_computer || '電腦閣 (1樓)'),
+                'ui-fac5-desc': (langData.comp_title || '💻 商務電腦閣 (1/F)') + '<br><br>' +
+                    '<strong>' + (langData.comp_service || '【設施服務】') + '</strong><br>' +
+                    '• ' + (langData.comp_device || '') + '<br>' +
+                    '• ' + (langData.comp_hours || '') + '<br><br>' +
+                    '<strong>' + (langData.comp_fee_title || '【收費與協助】') + '</strong><br>' +
+                    '• ' + (langData.comp_fee || ''),
+                'ui-fac6-header': (langData.tab_wifi || '免費 Wi-Fi (全酒店覆蓋)'),
+                'ui-fac6-desc': (langData.wifi_title || '📶 高速無線網絡 (全酒店)') + '<br><br>' +
+                    '<strong>' + (langData.wifi_net_title || '【網絡連接服務】') + '</strong><br>' +
+                    '• ' + (langData.wifi_coverage || '') + '<br>' +
+                    '• ' + (langData.wifi_connect || '') + '<br><br>' +
+                    '<strong>' + (langData.wifi_tip_title || '【貼心提示】') + '</strong><br>' +
+                    '• ' + (langData.wifi_unlimited || '') + '<br>' +
+                    '• ' + (langData.wifi_support || '')
             };
 
             // 執行 ID 替換
