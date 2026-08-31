@@ -2700,7 +2700,6 @@
                             let bgColor = '#fff3cd'; // 預設黃色警告底色
                             let textColor = '#856404';
 
-                            // 判斷高級別警告 (8號風球以上、紅雨、黑雨) 套用紅色樣式
                             if (msg.includes('八號') || msg.includes('九號') || msg.includes('十號') ||
                                 msg.includes('黑色') || msg.includes('紅色') ||
                                 msg.includes('Signal No. 8') || msg.includes('Signal No. 9') || msg.includes('Signal No. 10') ||
@@ -2753,7 +2752,7 @@
                 if (currentElem) currentElem.innerText = label.errCurrent;
             }
 
-            // --- 2. 抓取九天天氣預報（含天氣概況圖示） ---
+            // --- 2. 抓取九天天氣預報（含天氣概況圖示與文字） ---
             try {
                 const forecastRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=${hkoLang}`);
                 const forecastData = await forecastRes.json();
@@ -2777,17 +2776,21 @@
                         const maxRh = day.forecastMaxrh ? day.forecastMaxrh.value : '--';
                         const weatherDesc = day.forecastForecast || '';
 
-                        // 天文台官方圖示：ForecastIcon 是一個陣列 (例如 [50])，需取第一個數值
-                        const iconNum = (Array.isArray(day.ForecastIcon) && day.ForecastIcon.length > 0) ? day.ForecastIcon[0] : (day.ForecastIcon || day.psr);
-                        const iconHTML = iconNum
-                            ? `<img src="https://www.hko.gov.hk/images/HKOWxIcons/pic${iconNum}.png" style="width:28px; height:28px; vertical-align:middle; margin-right:4px;">`
-                            : '';
+                        // 🟢 修正：圖示處理 (支援整數與補零 URL) 🟢
+                        let rawIcon = day.ForecastIcon || day.forecastIcon;
+                        if (Array.isArray(rawIcon)) rawIcon = rawIcon[0];
+
+                        let iconHTML = '';
+                        if (rawIcon) {
+                            const iconUrl = `https://www.hko.gov.hk/images/HKOWxIcons/pic${rawIcon}.png`;
+                            iconHTML = `<img src="${iconUrl}" style="width:36px; height:36px; vertical-align:middle; margin-right:6px; flex-shrink:0;">`;
+                        }
 
                         forecastHTML += `
                 <tr>
                     <td><strong>${dateStr}</strong></td>
                     <td style="font-size:12px;">
-                        <div style="display:flex; align-items:center;">
+                        <div style="display:flex; align-items:center; gap:4px;">
                             ${iconHTML}
                             <span>${weatherDesc}</span>
                         </div>
