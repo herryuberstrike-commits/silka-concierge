@@ -2752,7 +2752,7 @@
                 if (currentElem) currentElem.innerText = label.errCurrent;
             }
 
-            // --- 2. 抓取九天天氣預報（含防破圖機制） ---
+            // --- 2. 抓取九天天氣預報（純文字版） ---
             try {
                 const forecastRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=${hkoLang}`);
                 const forecastData = await forecastRes.json();
@@ -2774,33 +2774,12 @@
                         const maxTemp = day.forecastMaxtemp ? day.forecastMaxtemp.value : '--';
                         const minRh = day.forecastMinrh ? day.forecastMinrh.value : '--';
                         const maxRh = day.forecastMaxrh ? day.forecastMaxrh.value : '--';
-                        const weatherDesc = day.forecastForecast || '';
-
-                        // 取出圖示編號
-                        let rawIcon = day.ForecastIcon || day.forecastIcon;
-                        if (Array.isArray(rawIcon)) rawIcon = rawIcon[0];
-
-                        let iconHTML = '';
-                        if (rawIcon !== undefined && rawIcon !== null) {
-                            const primaryUrl = `https://www.hko.gov.hk/images/HKOWxIcons/pic${rawIcon}.png`;
-                            const fallbackUrl = `https://www.hko.gov.hk/textonly/v2/images/pic${rawIcon}.png`;
-
-                            // 加入 onerror 自動切換備用伺服器與隱藏破圖
-                            iconHTML = `<img src="${primaryUrl}" 
-                                     alt="weather"
-                                     style="width:32px; height:32px; vertical-align:middle; margin-right:6px; flex-shrink:0;" 
-                                     onerror="if(this.src!='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">`;
-                        }
+                        const weatherDesc = day.forecastForecast || '--';
 
                         forecastHTML += `
                 <tr>
                     <td><strong>${dateStr}</strong></td>
-                    <td style="font-size:12px;">
-                        <div style="display:flex; align-items:center;">
-                            ${iconHTML}
-                            <span>${weatherDesc}</span>
-                        </div>
-                    </td>
+                    <td style="font-size:12px; line-height: 1.4;">${weatherDesc}</td>
                     <td>
                         <span style="color:#d9534f; font-weight:bold;">${minTemp}°C - ${maxTemp}°C</span><br>
                         <small style="color:#666;">${minRh}% - ${maxRh}% RH</small>
