@@ -74,6 +74,16 @@
 
         <div class="section">
             <h2>🚌 穿梭巴士即時狀態管理</h2>
+            
+            <!-- 全局暫停/恢復控制區塊 -->
+            <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; padding: 12px; margin-bottom: 16px; text-align: center;">
+                <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px;">📍 即時行車狀況（頂部 Banner 控制）</div>
+                <button id="pauseToggleBtn" onclick="toggleStatusPause()" 
+                        style="width: 100%; padding: 10px; font-size: 14px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: white; background-color: #dc3545;">
+                    ⏸️ 一鍵暫停全日服務（覆蓋即時狀況）
+                </button>
+            </div>
+
             <div id="staffBusList"></div>
         </div>
     </div>
@@ -88,12 +98,39 @@
 
     const CORRECT_PASSWORD = "stw3824";
     let manualOverrides = {};
+    let isLiveStatusPaused = false;
 
-    // 監聽後台雲端狀態
+    // 監聽後台雲端狀態（含班次與全局暫停）
     db.ref('busManualOverrides').on('value', (snapshot) => {
-        manualOverrides = snapshot.val() || {};
+        const data = snapshot.val() || {};
+        manualOverrides = data;
+        
+        // 讀取暫停狀態
+        isLiveStatusPaused = !!data.isLiveStatusPaused;
+        
+        updatePauseButtonUI();
         renderStaffBusList();
     });
+
+    // 切換暫停狀態並同步寫入 Firebase
+    function toggleStatusPause() {
+        const newPauseState = !isLiveStatusPaused;
+        db.ref('busManualOverrides/isLiveStatusPaused').set(newPauseState);
+    }
+
+    // 更新後台暫停按鈕樣式
+    function updatePauseButtonUI() {
+        const btn = document.getElementById('pauseToggleBtn');
+        if (!btn) return;
+        
+        if (isLiveStatusPaused) {
+            btn.innerText = "▶️ 恢復自動即時行車狀況";
+            btn.style.backgroundColor = "#28a745";
+        } else {
+            btn.innerText = "⏸️ 一鍵暫停全日服務（覆蓋即時狀況）";
+            btn.style.backgroundColor = "#dc3545";
+        }
+    }
 
     function checkPassword() {
         if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
@@ -106,22 +143,22 @@
     }
     function handleKeyPress(e) { if (e.key === 'Enter') checkPassword(); }
 
- // 完全對齊前台的班次資料與 ID
-const rawBusData = [
-    { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
-    { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
-    { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
-    { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
-    { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
-    { id: 6, hotel: "13:00", isBreak: true },
-    { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
-    { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
-    { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
-    { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
-    { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
-    { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
-    { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
-];
+    // 完全對齊前台的班次資料與 ID
+    const rawBusData = [
+        { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
+        { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
+        { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
+        { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
+        { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
+        { id: 6, hotel: "13:00", isBreak: true },
+        { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
+        { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
+        { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
+        { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
+        { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
+        { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
+        { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
+    ];
 
     function renderStaffBusList() {
         const container = document.getElementById('staffBusList');
@@ -151,7 +188,7 @@ const rawBusData = [
         if (status === 'normal') {
             delete updates[id];
         } else {
-            updates[id] = status; // 寫入 'full' 或 'out'，精準觸發前台判斷
+            updates[id] = status; // 寫入 'full' 或 'out'
         }
         
         // 直接寫入 Firebase 雲端資料庫

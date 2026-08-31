@@ -1383,13 +1383,18 @@
         const db = firebase.database();
 
         let manualOverrides = {};
+        let isLiveStatusPaused = false;
 
-        db.ref('busManualOverrides').on('value', (snapshot) => {
-            manualOverrides = snapshot.val() || {};
+        // 讀取 Firebase 數據（含暫停狀態）
+     db.ref('busManualOverrides').on('value', (snapshot) => {
+            const data = snapshot.val() || {};
+            manualOverrides = data;
+
+            // 同步 Firebase 的暫停狀態
+            isLiveStatusPaused = !!data.isLiveStatusPaused;
+
             renderBusSchedule();
-
         });
-
         let currentLang = 'zh-HK';
 
         const t = {
@@ -3039,6 +3044,10 @@
 
         // 計算即時行車狀況 (頂部 Banner)
         function getRealtimeStatusText(currentMinutes, langData) {
+            // 🟢 新增這段在最頂部
+            if (isLiveStatusPaused) {
+                return langData.stOut || "暫停服務";
+            }
             if (currentMinutes >= 0 && currentMinutes <= 464) {
                 return langData.stNotStarted;
             }
