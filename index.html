@@ -3916,6 +3916,12 @@
             }
         }
 
+        // ✅ 改用這段：一次過搜尋所有可能是導航按鈕的 class
+        const navText = langData.navBtn || '導航 ➔';
+        document.querySelectorAll('.nav-btn, .btn-nav, a.nav, a[href*="maps"]').forEach(btn => {
+            btn.innerText = navText;
+        });
+
         // 全域頁面切換 logic
         function showSection(sectionId) {
             // 1. 隱藏主選單網格
