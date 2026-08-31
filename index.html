@@ -426,11 +426,62 @@
             </div>
         </div>
 
+        <!-- 300米周邊指南頁面 -->
         <div id="mapSection" class="section-content">
             <button class="back-btn" id="ui-back2" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-map-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">酒店300米周邊實用指南</h3>
-            <div class="placeholder-content">
-                <p>🚧 內容準備中，稍后將在此處新增周邊實用指南。</p>
+            <h3 id="ui-map-header" style="margin-top: 0; font-size: 16px; color: #2c3e50; text-align: center;">
+                酒店300米周邊實用指南</h3>
+
+            <!-- 1. 第一行橫列：酒店附近地圖 (可點擊開啟地圖) -->
+            <a href="https://www.google.com/maps/search/?api=1&query=Silka+Tsuen+Wan+119+Wo+Yi+Hop+Road" target="_blank"style="text-decoration: none; display: block; margin-bottom: 15px;"> <style="text-decoration: none;display: block; margin-bottom: 15px;">
+                <div
+                    style="background: linear-gradient(135deg, #007bff, #0056b3); border-radius: 12px; padding: 15px; color: white; box-shadow: 0 4px 10px rgba(0,123,255,0.3); display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 28px;">🗺️</span>
+                        <div>
+                            <div style="font-size: 15px; font-weight: bold;">酒店附近地圖</div>
+                            <div style="font-size: 11px; opacity: 0.9;">點擊開啟 Google Maps 檢視完整地圖</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 18px; font-weight: bold;">➔</span>
+                </div>
+            </a>
+
+            <!-- 2. 下方 2x2 正方形方塊矩陣 (暫時停用點擊) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+
+                <!-- 第 1 個：便利店與超市 -->
+                <div
+                    style="background: #f8f9fa; border-radius: 12px; border: 1.5px dashed #ccc; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6; cursor: not-allowed; text-align: center; padding: 10px;">
+                    <span style="font-size: 32px; margin-bottom: 8px;">🏪</span>
+                    <span style="font-size: 13px; font-weight: bold; color: #555;">便利店與超市</span>
+                    <span style="font-size: 10px; color: #888; margin-top: 4px;">(籌備中)</span>
+                </div>
+
+                <!-- 第 2 個：本地地道美食 -->
+                <div
+                    style="background: #f8f9fa; border-radius: 12px; border: 1.5px dashed #ccc; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6; cursor: not-allowed; text-align: center; padding: 10px;">
+                    <span style="font-size: 32px; margin-bottom: 8px;">🍜</span>
+                    <span style="font-size: 13px; font-weight: bold; color: #555;">本地地道美食</span>
+                    <span style="font-size: 10px; color: #888; margin-top: 4px;">(籌備中)</span>
+                </div>
+
+                <!-- 第 3 個：交通與出行 -->
+                <div
+                    style="background: #f8f9fa; border-radius: 12px; border: 1.5px dashed #ccc; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6; cursor: not-allowed; text-align: center; padding: 10px;">
+                    <span style="font-size: 32px; margin-bottom: 8px;">🚌</span>
+                    <span style="font-size: 13px; font-weight: bold; color: #555;">交通與出行</span>
+                    <span style="font-size: 10px; color: #888; margin-top: 4px;">(籌備中)</span>
+                </div>
+
+                <!-- 第 4 個：藥房與生活設施 -->
+                <div
+                    style="background: #f8f9fa; border-radius: 12px; border: 1.5px dashed #ccc; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6; cursor: not-allowed; text-align: center; padding: 10px;">
+                    <span style="font-size: 32px; margin-bottom: 8px;">💊</span>
+                    <span style="font-size: 13px; font-weight: bold; color: #555;">藥房與生活設施</span>
+                    <span style="font-size: 10px; color: #888; margin-top: 4px;">(籌備中)</span>
+                </div>
+
             </div>
         </div>
 
@@ -1386,7 +1437,7 @@
         let isLiveStatusPaused = false;
 
         // 讀取 Firebase 數據（含暫停狀態）
-     db.ref('busManualOverrides').on('value', (snapshot) => {
+        db.ref('busManualOverrides').on('value', (snapshot) => {
             const data = snapshot.val() || {};
             manualOverrides = data;
 
