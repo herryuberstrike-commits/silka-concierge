@@ -2752,7 +2752,7 @@
                 if (currentElem) currentElem.innerText = label.errCurrent;
             }
 
-            // --- 2. 抓取九天天氣預報（純文字版修復） ---
+            // --- 2. 抓取九天天氣預報（純文字修正版） ---
             try {
                 const forecastRes = await fetch(`https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=${hkoLang}`);
                 const forecastData = await forecastRes.json();
@@ -2775,8 +2775,8 @@
                         const minRh = day.forecastMinrh ? day.forecastMinrh.value : '--';
                         const maxRh = day.forecastMaxrh ? day.forecastMaxrh.value : '--';
 
-                        // 🟢 兼容 API 的大小寫欄位名稱 🟢
-                        const weatherDesc = day.forecastForecast || day.ForecastForecast || day.forecastIcon || '--';;
+                        // 🟢 天文台 API 的天氣概況純文字欄位為 forecastWeather 🟢
+                        const weatherDesc = day.forecastWeather || day.forecastForecast || '--';
 
                         forecastHTML += `
                 <tr>
