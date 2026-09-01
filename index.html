@@ -572,95 +572,94 @@
         </div>
 
         <!-- 3. 免費穿梭巴士上車地點頁面 -->
-        <div id="stationSection" class="section-content">
-            <button class="back-btn" id="ui-back5" onclick="goBack()">⬅ 返回主選單</button>
-            <h3 id="ui-station-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">免費穿梭巴士上車地點</h3>
+<div id="stationSection" class="section-content">
+    <button class="back-btn" id="ui-back5" onclick="goBack()">⬅ 返回主選單</button>
+    <h3 id="ui-station-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">免費穿梭巴士上車地點</h3>
 
-            <!-- 頂部 3 個橫向分頁按鈕 -->
-            <div class="tab-container">
-                <button class="tab-btn active" id="tab-st-appearance"
-                    onclick="switchStationTab('tab-appearance')">外觀與特徵</button>
-                <button class="tab-btn" id="tab-st-kwaifong" onclick="switchStationTab('tab-kwaifong')">新都會廣場
-                    (葵芳)</button>
-                <button class="tab-btn" id="tab-st-tsuenwan" onclick="switchStationTab('tab-tsuenwan')">荃灣西站上車點</button>
+    <!-- 頂部 3 個橫向分頁按鈕 -->
+    <div class="tab-container">
+        <button class="tab-btn active" id="tab-st-appearance" onclick="switchStationTab('tab-appearance')">外觀與特徵</button>
+        <button class="tab-btn" id="tab-st-kwaifong" onclick="switchStationTab('tab-kwaifong')">新都會廣場 (葵芳)</button>
+        <button class="tab-btn" id="tab-st-tsuenwan" onclick="switchStationTab('tab-tsuenwan')">荃灣西站上車點</button>
+    </div>
+
+    <!-- 分頁 1：外觀與特徵 -->
+    <div id="tab-appearance" class="tab-content active">
+        <div class="notice-box" id="ui-station-appearance-desc">
+            🚌 <strong>免費穿梭巴士車輛外觀指引</strong><br>
+            認準以下車身外觀與特徵，方便您於各站點快速辨識並乘搭。
+        </div>
+        <div class="img-container">
+            <div class="img-card">
+                <img src="bus1.jpeg" alt="巴士正面/車身">
+                <p id="ui-st-img1-title">巴士正面/車身</p>
+            </div>
+            <div class="img-card">
+                <img src="bus2.jpeg" alt="專屬車頭標誌">
+                <p id="ui-st-img2-title">專屬車頭標誌</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分頁 2：新都會廣場 (葵芳) -->
+    <div id="tab-kwaifong" class="tab-content">
+        <div class="info-card-box">
+            <div class="info-card-title" id="ui-kf-guide-title">【免費酒店穿梭巴士接駁指引】</div>
+            <div id="ui-kf-guide-body">
+                📍 <strong>上車地點：</strong> 新都會廣場地下正門（酒店專用巴士站）<br><br>
+                📱 <strong>步行路線（葵芳港鐵站 D 出口出發）：</strong><br>
+                • 出站後直行，過第一個斑馬線<br>
+                • 左轉步行約 10 米，再過第二個斑馬線<br>
+                • 隨後左轉步行約 15 米，即可到達穿梭巴士站<br><br>
+                ⏰ <strong>班次時間表：</strong><br>
+                <strong>上午：</strong> 08:15 / 09:15 / 10:15 / 11:15<br>
+                <strong>下午：</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br>
+                <small style="color: #666;">註：巴士到站後僅作短暫停留，請建議提早 3–5 分鐘候車。</small>
             </div>
 
-            <!-- 分頁 1：外觀與特徵 -->
-            <div id="tab-appearance" class="tab-content active">
-                <div class="notice-box" id="ui-station-appearance-desc">
-                    🚌 <strong>免費穿梭巴士車輛外觀指引</strong><br>
-                    認準以下車身外觀與特徵，方便您於各站點快速辨識並乘搭。
-                </div>
-                <div class="img-container">
-                    <div class="img-card">
-                        <img src="bus1.jpeg" alt="巴士正面/車身">
-                        <p id="ui-st-img1-title">巴士正面/車身</p>
-                    </div>
-                    <div class="img-card">
-                        <img src="bus2.jpeg" alt="專屬車頭標誌">
-                        <p id="ui-st-img2-title">專屬車頭標誌</p>
-                    </div>
-                </div>
+            <!-- 地圖定位按鈕 -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=22.357110,114.127410" target="_blank"
+                class="map-location-btn" id="ui-kf-map-btn">
+                📍 <span id="ui-kf-map-btn-text">新都會正門的士站 (地圖定位)</span>
+            </a>
+
+            <!-- 站點圖片 -->
+            <div class="single-img-card">
+                <img src="kf.jpeg" alt="葵芳上車點指引圖">
+            </div>
+        </div>
+    </div>
+
+    <!-- 分頁 3：荃灣西站分頁 -->
+    <div id="tab-tsuenwan" class="tab-content">
+        <div class="info-card-box">
+            <div class="info-card-title" id="ui-tw-guide-title">【免費酒店穿梭巴士接駁指引】</div>
+            <div id="ui-tw-guide-body">
+                📍 <strong>上車地點：</strong> 荃灣公園側門（第二個高架橋正下方酒店專用巴士站）<br><br>
+                📱 <strong>步行路線（荃灣西港鐵站 D 出口出發）：</strong><br>
+                • 出站後左轉，過第一個斑馬線<br>
+                • 直行過第二個斑馬線<br>
+                • 隨後左轉步行約 25 米，即可到達穿梭巴士站<br><br>
+                ⏰ <strong>班次時間表：</strong><br>
+                <strong>上午：</strong> 08:30 / 09:30 / 10:30 / 11:30<br>
+                <strong>下午：</strong> 12:30 / 14:30 / 15:30 / 16:30 / 17:30 / 18:30 / 19:30 / 20:30<br><br>
+                <small style="color: #666;">註：巴士到站後僅作短暫停留，建議提早 3–5 分鐘前往候車。</small>
             </div>
 
-            <!-- 分頁 2：新都會廣場 (葵芳) -->
-            <div id="tab-kwaifong" class="tab-content">
-                <div class="info-card-box">
-                    <div class="info-card-title" id="ui-kf-guide-title">【免費酒店穿梭巴士接駁指引】</div>
-                    <div id="ui-kf-guide-body">
-                        📍 <strong>上車地點：</strong> 新都會廣場地下正門（酒店專用巴士站）<br><br>
-                        📱 <strong>步行路線（葵芳港鐵站 D 出口出發）：</strong><br>
-                        • 出站後直行，過第一個斑馬線<br>
-                        • 左轉步行約 10 米，再過第二個斑馬線<br>
-                        • 隨後左轉步行約 15 米，即可到達穿梭巴士站<br><br>
-                        ⏰ <strong>班次時間表：</strong><br>
-                        <strong>上午：</strong> 08:15 / 09:15 / 10:15 / 11:15<br>
-                        <strong>下午：</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br>
-                        <small style="color: #666;">註：巴士到站後僅作短暫停留，請建議提早 3–5 分鐘候車。</small>
-                    </div>
+            <!-- 地圖定位按鈕 -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=22.367787,114.111616" target="_blank"
+                class="map-location-btn" id="ui-tw-map-btn">
+                📍 <span id="ui-tw-map-btn-text">荃灣西站 (地圖定位)</span>
+            </a>
 
-                    <!-- 地位按鈕（連結至 Google Maps 新都會正門的士站/巴士站） -->
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=22.357110,114.127410" target="_blank"
-                        class="map-location-btn" id="ui-kf-map-btn">
-                        📍 <span id="ui-kf-map-btn-text">新都會正門的士站 (地圖定位)</span>
-                    </a>
-
-                    <!-- 站點圖片 -->
-                    <div class="single-img-card">
-                        <img src="kf.jpeg" alt="葵芳上車點指引圖">
-                    </div>
-                </div>
+            <!-- 站點圖片 -->
+            <div class="single-img-card">
+                <img src="tww.jpeg" alt="荃灣西站上車點指引圖">
             </div>
+        </div>
+    </div>
 
-            <!-- 分頁 3：荃灣西站分頁 -->
-            <div id="tab-tsuenwan" class="tab-content">
-                <div class="info-card-box">
-                    <div class="info-card-title" id="ui-tw-guide-title">【免費酒店穿梭巴士接駁指引】</div>
-                    <div id="ui-tw-guide-body">
-                        📍 <strong>上車地點：</strong> 荃灣公園側門（第二個高架橋正下方酒店專用巴士站）<br><br>
-                        📱 <strong>步行路線（荃灣西港鐵站 D 出口出發）：</strong><br>
-                        • 出站後左轉，過第一個斑馬線<br>
-                        • 直行過第二個斑馬線<br>
-                        • 隨後左轉步行約 25 米，即可到達穿梭巴士站<br><br>
-                        ⏰ <strong>班次時間表：</strong><br>
-                        <strong>上午：</strong> 08:30 / 09:30 / 10:30 / 11:30<br>
-                        <strong>下午：</strong> 12:30 / 14:30 / 15:30 / 16:30 / 17:30 / 18:30 / 19:30 / 20:30<br><br>
-                        <small style="color: #666;">註：巴士到站後僅作短暫停留，建議提早 3–5 分鐘前往候車。</small>
-                    </div>
-
-                    <!-- 地圖定位按鈕 -->
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=22.367787,114.111616" target="_blank"
-                        class="map-location-btn" id="ui-tw-map-btn">
-                        📍 <span id="ui-tw-map-btn-text">荃灣西站 (地圖定位)</span>
-                    </a>
-
-                    <!-- 站點圖片 -->
-                    <div class="single-img-card">
-                        <img src="tww.jpeg" alt="荃灣西站上車點指引圖">
-                    </div>
-                </div>
-            </div>
-
+</div> <!-- 🟢【最關鍵修正】補上這行關閉 stationSection，網頁就會恢復正常！ -->
             <!-- 【1. 300米周邊指南 - 主分類選單】 -->
             <div id="mapSection" class="section-content" style="display: none; width: 100%;">
                 <button class="back-btn" id="ui-back2" onclick="goBack()" data-i18n="back10">⬅ 返回主選單</button>
