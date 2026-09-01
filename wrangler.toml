@@ -1,0 +1,6 @@
+name = "silka-concierge"
+main = "index.js"
+compatibility_date = "2024-03-20"
+
+[ai]
+binding = "AI"
