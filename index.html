@@ -366,6 +366,68 @@
             background: rgba(255, 255, 255, 0.65) !important;
             border-color: rgba(255, 255, 255, 0.8) !important;
         }
+
+        /* 🟢 新增：葵芳巴士站詳細指引與按鈕樣式 🟢 */
+        .info-card-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .info-card-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 6px;
+        }
+
+        .map-location-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 10px 0 15px 0;
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+            transition: background 0.2s;
+        }
+
+        .map-location-btn:hover {
+            background: #218838;
+        }
+
+        .single-img-card {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            margin-top: 10px;
+        }
+
+        .single-img-card img {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            display: block;
+        }
     </style>
 </head>
 
@@ -540,14 +602,31 @@
                 </div>
             </div>
 
-            <!-- 分頁 2：葵芳選單 (只保留葵芳站) -->
+            <!-- 分頁 2：新都會廣場 (葵芳) -->
             <div id="tab-kwaifong" class="tab-content">
-                <div class="menu-grid" style="margin-top: 0;">
-                    <!-- 新都會廣場(葵芳站上車點) -->
-                    <div class="menu-card card-disabled">
-                        <div class="icon">🚏</div>
-                        <h3 id="ui-st-kfpick-title">新都會廣場(葵芳站上車點)</h3>
-                        <p id="ui-st-kfpick-desc">🚧 暫未開放</p>
+                <div class="info-card-box">
+                    <div class="info-card-title" id="ui-kf-guide-title">【免費酒店穿梭巴士接駁指引】</div>
+                    <div id="ui-kf-guide-body">
+                        📍 <strong>上車地點：</strong> 新都會廣場地下正門（酒店專用巴士站）<br><br>
+                        📱 <strong>步行路線（葵芳港鐵站 D 出口出發）：</strong><br>
+                        • 出站後直行，過第一個斑馬線<br>
+                        • 左轉步行約 10 米，再過第二個斑馬線<br>
+                        • 隨後左轉步行約 15 米，即可到達穿梭巴士站<br><br>
+                        ⏰ <strong>班次時間表：</strong><br>
+                        <strong>上午：</strong> 08:15 / 09:15 / 10:15 / 11:15<br>
+                        <strong>下午：</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br>
+                        <small style="color: #666;">註：巴士到站後僅作短暫停留，請建議提早 3–5 分鐘候車。</small>
+                    </div>
+
+                    <!-- 地位按鈕（連結至 Google Maps 新都會正門的士站/巴士站） -->
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=22.357110,114.127410" target="_blank"
+                        class="map-location-btn" id="ui-kf-map-btn">
+                        📍 <span id="ui-kf-map-btn-text">新都會正門的士站 (地圖定位)</span>
+                    </a>
+
+                    <!-- 站點圖片 -->
+                    <div class="single-img-card">
+                        <img src="kf.jpeg" alt="葵芳上車點指引圖">
                     </div>
                 </div>
             </div>
@@ -2315,9 +2394,10 @@
                 stImg1Title: "巴士正面/車身",
                 stImg2Title: "專屬車頭標誌",
                 stKfPickTitle: "新都會廣場(葵芳站)",
-                stKfPickDesc: "🚧 暫未開放",
                 stTwPickTitle: "荃灣西站",
-                stTwPickDesc: "🚧 暫未開放",
+                kfGuideTitle: "【免費酒店穿梭巴士接駁指引】",
+                kfGuideBody: "📍 <strong>上車地點：</strong> 新都會廣場地下正門（酒店專用巴士站）<br><br>📱 <strong>步行路線（葵芳港鐵站 D 出口出發）：</strong><br>• 出站後直行，過第一個斑馬線<br>• 左轉步行約 10 米，再過第二個斑馬線<br>• 隨後左轉步行約 15 米，即可到達穿梭巴士站<br><br>⏰ <strong>班次時間表：</strong><br><strong>上午：</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>下午：</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">註：巴士到站後僅作短暫停留，請建議提早 3–5 分鐘候車。</small>",
+                kfMapBtnText: "新都會正門的士站 (地圖定位)",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2560,9 +2640,10 @@
                 stImg1Title: "巴士正面/车身",
                 stImg2Title: "专属车头标志",
                 stKfPickTitle: "新都会广场(葵芳站)",
-                stKfPickDesc: "🚧 暂未开放",
                 stTwPickTitle: "荃湾西站",
-                stTwPickDesc: "🚧 暂未开放",
+                kfGuideTitle: "【免费酒店穿梭巴士接驳指引】",
+                kfGuideBody: "📍 <strong>上车地点：</strong> 新都会广场地下正门（酒店专用巴士站）<br><br>📱 <strong>步行路线（葵芳港铁站 D 出口出发）：</strong><br>• 出站后直行，过第一个斑马线<br>• 左转步行约 10 米，再过第二个斑马线<br>• 随后左转步行约 15 米，即可到达穿梭巴士站<br><br>⏰ <strong>班次时间表：</strong><br><strong>上午：</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>下午：</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">注：巴士到站后仅作短暂停留，建议提早 3–5 分钟候车。</small>",
+                kfMapBtnText: "新都会正门出租车站 (地图定位)",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2805,9 +2886,10 @@
                 stImg1Title: "Bus Front / Body",
                 stImg2Title: "Exclusive Front Logo",
                 stKfPickTitle: "Metroplaza (Kwai Fong)",
-                stKfPickDesc: "🚧 Currently Unavailable",
                 stTwPickTitle: "Tsuen Wan West Station",
-                stTwPickDesc: "🚧 Currently Unavailable",
+                kfGuideTitle: "【Free Hotel Shuttle Bus Directions】",
+                kfGuideBody: "📍 <strong>Pick-up Location:</strong> Metroplaza G/F Main Entrance (Hotel Shuttle Bus Stop)<br><br>📱 <strong>Walking Route (From Kwai Fong MTR Exit D):</strong><br>• Go straight after exiting, cross the 1st zebra crossing<br>• Turn left and walk ~10m, cross the 2nd zebra crossing<br>• Turn left and walk ~15m to reach the bus stop<br><br>⏰ <strong>Timetable:</strong><br><strong>AM:</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>PM:</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">Note: The bus stops briefly. Please arrive 3–5 minutes early.</small>",
+                kfMapBtnText: "Metroplaza Main Entrance Taxi Stand (Google Maps)",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -3049,9 +3131,10 @@
                 stImg1Title: "バス正面・車体",
                 stImg2Title: "専用フロントロゴ",
                 stKfPickTitle: "メトロプラザ(葵芳駅)",
-                stKfPickDesc: "🚧 現在利用不可",
                 stTwPickTitle: "荃灣西駅",
-                stTwPickDesc: "🚧 現在利用不可",
+                kfGuideTitle: "【無料ホテルシャトルバス乗り場案内】",
+                kfGuideBody: "📍 <strong>乗車場所：</strong> メトロプラザ G/F 正面玄関（ホテル専用バス停）<br><br>📱 <strong>徒歩ルート（葵芳駅 D出口より）：</strong><br>• 出口を出て直進し、1つ目の横断歩道を渡る<br>• 左折して約10m進み、2つ目の横断歩道を渡る<br>• その後左折して約15m進むとバス停に到着<br><br>⏰ <strong>時刻表：</strong><br><strong>午前：</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>午後：</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">注：バスは短時間のみ停車します。3〜5分前にお越しください。</small>",
+                kfMapBtnText: "メトロプラザ正面タクシー乗り場 (地図)",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -3294,9 +3377,10 @@
                 stImg1Title: "버스 전면 / 차체",
                 stImg2Title: "전용 전면 로고",
                 stKfPickTitle: "메트로플라자 (콰이퐁 역)",
-                stKfPickDesc: "🚧 현재 이용 불가",
                 stTwPickTitle: "츠엔완 웨스트 역",
-                stTwPickDesc: "🚧 현재 이용 불가",
+                kfGuideTitle: "【무료 호텔 셔틀버스 탑승 안내】",
+                kfGuideBody: "📍 <strong>탑승 장소:</strong> 메트로플라자 G/F 정문 (호텔 전용 버스 정류장)<br><br>📱 <strong>도보 경로 (콰이퐁역 D 출구 출발):</strong><br>• 출구에서 직진 후 첫 번째 횡단보도 건너기<br>• 좌회전하여 약 10m 이동 후 두 번째 횡단보도 건너기<br>• 이후 좌회전하여 약 15m 이동하면 버스 정류장 도착<br><br>⏰ <strong>운행 시간표:</strong><br><strong>오전:</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>오후:</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">참고: 버스는 정차 시간이 짧으니 3~5분 전 대기해 주세요.</small>",
+                kfMapBtnText: "메트로플라자 정문 택시 승강장 (지도)",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3539,9 +3623,10 @@
                 stImg1Title: "Mặt trước / Thân xe buýt",
                 stImg2Title: "Logo độc quyền phía trước",
                 stKfPickTitle: "Metroplaza (Ga Kwai Fong)",
-                stKfPickDesc: "🚧 Tạm thời chưa mở",
                 stTwPickTitle: "Ga Tsuen Wan West",
-                stTwPickDesc: "🚧 Tạm thời chưa mở",
+                kfGuideTitle: "【Hướng dẫn Xe buýt Đưa đón Khách sạn Miễn phí】",
+                kfGuideBody: "📍 <strong>Điểm đón:</strong> Cổng chính Tầng G Metroplaza (Trạm xe buýt khách sạn)<br><br>📱 <strong>Tuyến đường đi bộ (TỪ Cổng D Ga MTR Kwai Fong):</strong><br>• Đi thẳng sau khi ra khỏi cổng, băng qua vạch sang đường thứ 1<br>• Rẽ trái đi khoảng 10m, băng qua vạch sang đường thứ 2<br>• Sau đó rẽ trái đi khoảng 15m là đến trạm xe buýt<br><br>⏰ <strong>Lịch trình:</strong><br><strong>Sáng:</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>Chiều:</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">Lưu ý: Xe dừng ngắn, vui lòng đến trước 3–5 phút.</small>",
+                kfMapBtnText: "Trạm Taxi Cổng chính Metroplaza (Bản đồ)",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -3784,9 +3869,10 @@
                 stImg1Title: "बस का अगला भाग / बॉडी",
                 stImg2Title: "विशिष्ट फ्रंट लोगो",
                 stKfPickTitle: "मेट्रोप्लाजा (क्वाई फोंग स्टेशन)",
-                stKfPickDesc: "🚧 वर्तमान में उपलब्ध नहीं है",
                 stTwPickTitle: "सुएन वान वेस्ट स्टेशन",
-                stTwPickDesc: "🚧 वर्तमान में उपलब्ध नहीं है",
+                kfGuideTitle: "【मुफ्त होटल शटल बस निर्देश】",
+                kfGuideBody: "📍 <strong>बोर्डिंग स्थान:</strong> मेट्रोप्लाजा जी/एफ मुख्य प्रवेश द्वार (होटल बस स्टॉप)<br><br>📱 <strong>पैदल मार्ग (क्वाई फोंग एमटीआर एग्जिट डी से):</strong><br>• बाहर निकलने के बाद सीधे जाएं, पहली ज़ेबरा क्रॉसिंग पार करें<br>• बाएं मुड़ें और ~10 मीटर चलें, दूसरी ज़ेबरा क्रॉसिंग पार करें<br>• फिर बाएं मुड़ें और बस स्टॉप तक पहुंचने के लिए ~15 मीटर चलें<br><br>⏰ <strong>समय सारणी:</strong><br><strong>सुबह:</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>दोपहर:</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">नोट: बस थोड़ी देर रुकती है, कृपया 3-5 मिनट पहले आएं।</small>",
+                kfMapBtnText: "मेट्रोप्लाजा मुख्य द्वार टैक्सी स्टैंड (मानचित्र)",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -4027,9 +4113,10 @@
                 stImg1Title: "Harapan / Katawan ng Bus",
                 stImg2Title: "Eksklusibong Logo sa Harap",
                 stKfPickTitle: "Metroplaza (Kwai Fong Station)",
-                stKfPickDesc: "🚧 Kasalukuyang Hindi Magagamit",
                 stTwPickTitle: "Tsuen Wan West Station",
-                stTwPickDesc: "🚧 Kasalukuyang Hindi Magagamit",
+                kfGuideTitle: "【Mga Direksyon sa Libreng Shuttle Bus ng Hotel】",
+                kfGuideBody: "📍 <strong>Lugar ng Pagsakay:</strong> Metroplaza G/F Main Entrance (Bus Stop ng Hotel)<br><br>📱 <strong>Ruta sa Paglakad (Mula sa Kwai Fong MTR Exit D):</strong><br>• Maglakad nang diretso paglabas, tumawid sa ika-1 zebra crossing<br>• Lumiko sa kaliwa at maglakad ng ~10m, tumawid sa ika-2 zebra crossing<br>• Lumiko sa kaliwa at maglakad ng ~15m para makarating sa bus stop<br><br>⏰ <strong>Oras ng Biyahe:</strong><br><strong>Umaga:</strong> 08:15 / 09:15 / 10:15 / 11:15<br><strong>Hapon:</strong> 12:15 / 14:15 / 15:15 / 16:15 / 17:15 / 18:15 / 19:15 / 20:15<br><br><small style=\"color: #666;\">Tandaan: Sandali lang humihinto ang bus, pakidating ng 3–5 minuto bago ang oras.</small>",
+                kfMapBtnText: "Metroplaza Main Entrance Taxi Stand (Mapa)"
             }
         };
 
@@ -4464,9 +4551,10 @@
                 'ui-st-img1-title': (langData.stImg1Title || '巴士正面/車身'),
                 'ui-st-img2-title': (langData.stImg2Title || '專屬車頭標誌'),
                 'ui-st-kfpick-title': (langData.stKfPickTitle || '新都會廣場(葵芳站)'),
-                'ui-st-kfpick-desc': (langData.stKfPickDesc || '🚧 暫未開放'),
-                'ui-st-twpick-title': (langData.stTwPickTitle || '荃灣西站'),
-                'ui-st-twpick-desc': (langData.stTwPickDesc || '🚧 暫未開放'),
+                '   ui-st-twpick-title': (langData.stTwPickTitle || '荃灣西站'),
+                'ui-kf-guide-title': (langData.kfGuideTitle || '【免費酒店穿梭巴士接駁指引】'),
+                'ui-kf-guide-body': (langData.kfGuideBody || ''),
+                'ui-kf-map-btn-text': (langData.kfMapBtnText || '新都會正門的士站 (地圖定位)')
             };
 
             // 執行 ID 替換
@@ -4507,6 +4595,21 @@
         // 讓 showSubCategory 亦使用統一邏輯
         function showSubCategory(sectionId) {
             showSection(sectionId);
+        }
+        // 切換上車地點頁面的 Tab 函數
+        function switchStationTab(tabId) {
+            // 隱藏所有 Tab 內容與移除按鈕 active 狀態
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            // 顯示目標分頁
+            const targetContent = document.getElementById(tabId);
+            if (targetContent) targetContent.classList.add('active');
+
+            // 醒目顯示對應按鈕
+            if (tabId === 'tab-appearance') document.getElementById('tab-st-appearance').classList.add('active');
+            if (tabId === 'tab-kwaifong') document.getElementById('tab-st-kwaifong').classList.add('active');
+            if (tabId === 'tab-tsuenwan') document.getElementById('tab-st-tsuenwan').classList.add('active');
         }
 
         // 返回主選單 logic
