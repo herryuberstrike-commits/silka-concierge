@@ -297,8 +297,11 @@
                 </div>
                 <div class="chat-window">
                     <div id="activeUserHeader"
-                        style="padding: 10px; background: #eef2f7; font-size: 13px; font-weight: bold; border-bottom: 1px solid #ced4da;">
-                        請選擇左側訪客進行對話
+                        style="padding: 10px; background: #eef2f7; font-size: 13px; font-weight: bold; border-bottom: 1px solid #ced4da; display: flex; justify-content: space-between; align-items: center;">
+                        <span id="activeUserTitle">請選擇左側訪客進行對話</span>
+                        <button id="endChatBtn" onclick="endHumanChat()"
+                            style="display: none; background: #28a745; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">✅
+                            結束對話 (交回AI)</button>
                     </div>
                     <div class="chat-messages" id="staffChatMessages"></div>
                     <div class="chat-input-area">
@@ -395,7 +398,8 @@
         // 切換目前對話的訪客
         function selectUserSession(sessionId) {
             activeSessionId = sessionId;
-            document.getElementById('activeUserHeader').innerText = `正在與 訪客 (${sessionId.slice(-4)}) 對話`;
+            document.getElementById('activeUserTitle').innerText = `正在與 訪客 (${sessionId.slice(-4)}) 對話`;
+            document.getElementById('endChatBtn').style.display = 'inline-block'; // 顯示結束按鈕
 
             db.ref('chats/' + sessionId).once('value', (snapshot) => {
                 const msgs = snapshot.val() || {};
@@ -408,6 +412,23 @@
             });
 
             renderStaffBusList();
+        }
+
+        // 職員點擊「結束對話」：將狀態改回 'ai'
+        function endHumanChat() {
+            if (!activeSessionId) return;
+
+            // 1. 將狀態切換回 AI
+            db.ref('chatStatus/' + activeSessionId).set('ai');
+
+            // 2. 發送系統提示訊息
+            db.ref('chats/' + activeSessionId).push({
+                sender: 'staff',
+                message: '【系統提示】禮賓專員已結束服務，對話已切換回 AI 智能禮賓部。',
+                timestamp: Date.now()
+            });
+
+            alert("已成功結束對話，已將該訪客交回 AI 接管！");
         }
 
         // 渲染對話紀錄（含日期時間與專業名稱）

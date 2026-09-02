@@ -4909,42 +4909,39 @@
             const chatBox = document.getElementById('ai-chat-box');
             if (chatBox) chatBox.style.display = 'none';
         }
+        // 轉接真人
         function requestHumanStaff() {
-            window.isHumanConnected = true;
             let sessionId = localStorage.getItem("chat_session_id");
             if (!sessionId) {
                 sessionId = "user_" + Date.now();
                 localStorage.setItem("chat_session_id", sessionId);
             }
 
+            // 1. 標記雲端狀態為真人服務中 (human)
+            if (typeof firebase !== 'undefined' && firebase.database) {
+                firebase.database().ref('chatStatus/' + sessionId).set('human');
+                firebase.database().ref('chats/' + sessionId).push({
+                    sender: 'guest',
+                    message: '⚠️ 訪客請求真人協助',
+                    timestamp: Date.now()
+                });
+            }
+
             const msgContainer = document.getElementById('ai-chat-messages');
             if (msgContainer) {
-                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 正在為您轉接禮賓專員，請稍候...</div>';
+                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 已為您轉接禮賓專員，請稍候...</div>';
                 msgContainer.scrollTop = msgContainer.scrollHeight;
             }
 
-            if (typeof firebase !== 'undefined' && firebase.database) {
-                firebase.database().ref('chats/' + sessionId).push({
-                    sender: 'guest',
-                    message: '訪客請求真人協助',
-                    timestamp: Date.now()
-                });
-
-                // 即時啟動監聽禮賓專員回覆
-                listenForStaffReplies();
-            }
+            listenForStaffReplies();
         }
-        // 監聽 Firebase 禮賓專員回覆
+
+        // 監聽真人回覆及對話狀態切換
         function listenForStaffReplies() {
             let sessionId = localStorage.getItem("chat_session_id");
-            if (!sessionId) return;
+            if (!sessionId || typeof firebase === 'undefined' || !firebase.database) return;
 
-            if (typeof firebase === 'undefined' || !firebase.database) {
-                console.warn("Firebase 未初始化，無法監聽回覆");
-                return;
-            }
-
-            // 實時監聽該 Session ID 節點
+            // 監聽禮賓專員訊息
             firebase.database().ref('chats/' + sessionId).on('child_added', (snapshot) => {
                 const msg = snapshot.val();
                 if (msg && msg.sender === 'staff') {
@@ -4952,7 +4949,6 @@
                     if (msgContainer) {
                         const msgId = 'msg-' + (msg.timestamp || Date.now());
                         if (!document.getElementById(msgId)) {
-                            // 格式化時間
                             const dateObj = msg.timestamp ? new Date(msg.timestamp) : new Date();
                             const month = String(dateObj.getMonth() + 1).padStart(2, '0');
                             const day = String(dateObj.getDate()).padStart(2, '0');
@@ -4960,7 +4956,6 @@
                             const minutes = String(dateObj.getMinutes()).padStart(2, '0');
                             const timeStr = `${month}/${day} ${hours}:${minutes}`;
 
-                            // 渲染禮賓專員訊息
                             msgContainer.innerHTML += `
                         <div id="${msgId}" style="margin-bottom: 8px; text-align: left;">
                             <span style="font-weight: bold; color: #2c3e50; font-size: 12px;">禮賓專員</span>
@@ -4969,6 +4964,17 @@
                         </div>`;
                             msgContainer.scrollTop = msgContainer.scrollHeight;
                         }
+                    }
+                }
+            });
+
+            // 監聽後台「結束對話」切換回 AI 狀態
+            firebase.database().ref('chatStatus/' + sessionId).on('value', (snapshot) => {
+                if (snapshot.val() === 'ai') {
+                    const msgContainer = document.getElementById('ai-chat-messages');
+                    if (msgContainer && !document.getElementById('sys-back-to-ai')) {
+                        msgContainer.innerHTML += '<div id="sys-back-to-ai" style="margin-bottom: 8px; color: #28a745;"><b>系統：</b> 真人服務已結束，已為您切換回 AI 智能禮賓部。</div>';
+                        msgContainer.scrollTop = msgContainer.scrollHeight;
                     }
                 }
             });
