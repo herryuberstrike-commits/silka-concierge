@@ -5138,7 +5138,7 @@
                         }
                     }
                 });
-
+            }
                 // 監聽後台切換回 AI 狀態
                 firebase.database().ref('chatStatus/' + sessionId).on('value', (snapshot) => {
                     const status = snapshot.val();
