@@ -4926,7 +4926,7 @@
                 });
             }
         }
-        // 監聽 Firebase 真人職員回覆
+        // 監聽 Firebase 禮賓專員回覆（含日期時間顯示）
         function listenForStaffReplies() {
             let sessionId = localStorage.getItem("chat_session_id");
             if (!sessionId || typeof firebase === 'undefined' || !firebase.database) return;
@@ -4936,9 +4936,22 @@
                 if (msg && msg.sender === 'staff') {
                     const msgContainer = document.getElementById('ai-chat-messages');
                     if (msgContainer) {
-                        const msgId = 'msg-' + msg.timestamp;
+                        const msgId = 'msg-' + (msg.timestamp || Date.now());
                         if (!document.getElementById(msgId)) {
-                            msgContainer.innerHTML += `<div id="${msgId}" style="margin-bottom: 8px; color: #2c3e50;"><b>真人禮賓部：</b> ${msg.message}</div>`;
+                            // 格式化日期時間（例如：09/03 14:25）
+                            const dateObj = msg.timestamp ? new Date(msg.timestamp) : new Date();
+                            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                            const day = String(dateObj.getDate()).padStart(2, '0');
+                            const hours = String(dateObj.getHours()).padStart(2, '0');
+                            const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+                            const timeStr = `${month}/${day} ${hours}:${minutes}`;
+
+                            // 輸出訊息與時間戳記
+                            msgContainer.innerHTML += `
+                        <div id="${msgId}" style="margin-bottom: 8px; color: #2c3e50;">
+                            <b>禮賓專員</b> <span style="font-size: 11px; color: #888; margin-left: 4px;">${timeStr}</span><br>
+                            ${msg.message}
+                        </div>`;
                             msgContainer.scrollTop = msgContainer.scrollHeight;
                         }
                     }
