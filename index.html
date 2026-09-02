@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="ui-title">荃灣絲麗酒店 - 禮賓部</title>
 
+    <!-- 引入 Firebase SDK (Compat 版本) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
     <!-- 🟢 1. 網頁簡介 -->
     <meta name="description" content="荃灣絲麗酒店禮賓部一站式資訊平台：即時交通動態、酒店設施指引及周邊地圖導航。">
 
@@ -4906,6 +4910,7 @@
             if (chatBox) chatBox.style.display = 'none';
         }
         function requestHumanStaff() {
+            window.isHumanConnected = true;
             let sessionId = localStorage.getItem("chat_session_id");
             if (!sessionId) {
                 sessionId = "user_" + Date.now();
@@ -4914,7 +4919,7 @@
 
             const msgContainer = document.getElementById('ai-chat-messages');
             if (msgContainer) {
-                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 正在為您轉接真人職員，請稍候...</div>';
+                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 正在為您轉接禮賓專員，請稍候...</div>';
                 msgContainer.scrollTop = msgContainer.scrollHeight;
             }
 
@@ -4924,13 +4929,22 @@
                     message: '訪客請求真人協助',
                     timestamp: Date.now()
                 });
+
+                // 即時啟動監聽禮賓專員回覆
+                listenForStaffReplies();
             }
         }
-        // 監聽 Firebase 禮賓專員回覆（含日期時間顯示）
+        // 監聽 Firebase 禮賓專員回覆
         function listenForStaffReplies() {
             let sessionId = localStorage.getItem("chat_session_id");
-            if (!sessionId || typeof firebase === 'undefined' || !firebase.database) return;
+            if (!sessionId) return;
 
+            if (typeof firebase === 'undefined' || !firebase.database) {
+                console.warn("Firebase 未初始化，無法監聽回覆");
+                return;
+            }
+
+            // 實時監聽該 Session ID 節點
             firebase.database().ref('chats/' + sessionId).on('child_added', (snapshot) => {
                 const msg = snapshot.val();
                 if (msg && msg.sender === 'staff') {
@@ -4938,7 +4952,7 @@
                     if (msgContainer) {
                         const msgId = 'msg-' + (msg.timestamp || Date.now());
                         if (!document.getElementById(msgId)) {
-                            // 格式化日期時間（例如：09/03 14:25）
+                            // 格式化時間
                             const dateObj = msg.timestamp ? new Date(msg.timestamp) : new Date();
                             const month = String(dateObj.getMonth() + 1).padStart(2, '0');
                             const day = String(dateObj.getDate()).padStart(2, '0');
@@ -4946,11 +4960,12 @@
                             const minutes = String(dateObj.getMinutes()).padStart(2, '0');
                             const timeStr = `${month}/${day} ${hours}:${minutes}`;
 
-                            // 輸出訊息與時間戳記
+                            // 渲染禮賓專員訊息
                             msgContainer.innerHTML += `
-                        <div id="${msgId}" style="margin-bottom: 8px; color: #2c3e50;">
-                            <b>禮賓專員</b> <span style="font-size: 11px; color: #888; margin-left: 4px;">${timeStr}</span><br>
-                            ${msg.message}
+                        <div id="${msgId}" style="margin-bottom: 8px; text-align: left;">
+                            <span style="font-weight: bold; color: #2c3e50; font-size: 12px;">禮賓專員</span>
+                            <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+                            <div style="color: #2c3e50; margin-top: 2px;">${msg.message}</div>
                         </div>`;
                             msgContainer.scrollTop = msgContainer.scrollHeight;
                         }
