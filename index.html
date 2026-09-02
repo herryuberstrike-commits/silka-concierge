@@ -5050,21 +5050,22 @@
                 input.value = '';
                 msgContainer.scrollTop = msgContainer.scrollHeight;
 
-                // 3. 檢查目前是否為真人模式
-                const currentMode = localStorage.getItem("chat_mode_" + sessionId);
+                // 3. 雙重檢查模式：讀取 LocalStorage 與 window 全域變數
+                const localMode = localStorage.getItem("chat_mode_" + sessionId);
+                const isHumanMode = (localMode === 'human') || (window.isHumanConnected === true);
 
-                if (currentMode === 'human') {
-                    // 🔴 關鍵之處：必須把客人輸入的文字真正 Push 到 Firebase！
+                if (isHumanMode) {
+                    // 🔴 關鍵修正：將訪客訊息完整 Push 至 Firebase 雲端資料庫
                     if (typeof firebase !== 'undefined' && firebase.database) {
                         firebase.database().ref('chats/' + sessionId).push({
                             sender: 'guest',
                             message: text,
                             timestamp: now
                         });
-                        // 確保雲端狀態也是 human
+                        // 確保雲端狀態同步為 human
                         firebase.database().ref('chatStatus/' + sessionId).set('human');
                     }
-                    return; // 🛑 推送至 Firebase 後即可結束，不呼叫 AI
+                    return; // 🛑 徹底攔截，不呼叫 DeepSeek API
                 }
 
                 // 4. AI 模式（呼叫 DeepSeek API）
