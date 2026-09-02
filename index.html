@@ -430,7 +430,7 @@
             border-radius: 12px;
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -4617,7 +4617,7 @@
                 'ui-back-guidewestkowloon': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 觀光'),
                 'ui-back-guidedaikwun': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 觀光'),
                 'ui-back-guideroute1': (langData.backGuide || '⬅ 返回香港旅遊攻略'),
-'ui-back-guideroute2': (langData.backGuide || '⬅ 返回香港旅遊攻略'),
+                'ui-back-guideroute2': (langData.backGuide || '⬅ 返回香港旅遊攻略'),
             };
 
             // 執行 ID 替換
@@ -4797,125 +4797,170 @@
         setInterval(renderBusSchedule, 10000);
     </script>
     <script src="knowledge.js"></script>
-<!-- 💬 智能 AI 禮賓部 UI (強制最頂層) -->
-<div id="ai-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999999 !important; font-family: sans-serif;">
-    
-    <!-- 語言選擇彈窗 -->
-    <div id="ai-lang-selector" style="display: none; width: 280px; background: #ffffff; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.3); margin-bottom: 10px; overflow: hidden; border: 1px solid #ccc;">
-        <div style="background: #2c3e50; color: #ffffff; padding: 10px 15px; font-size: 14px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
-            <span>請選擇語言 / Select Language</span>
-            <button onclick="toggleLangSelector()" style="background: none; border: none; color: #ffffff; cursor: pointer; font-size: 16px;">✕</button>
+    <!-- 💬 智能 AI 禮賓部 UI (強制最頂層) -->
+    <div id="ai-chat-widget"
+        style="position: fixed; bottom: 20px; right: 20px; z-index: 9999999 !important; font-family: sans-serif;">
+
+        <!-- 語言選擇彈窗 -->
+        <div id="ai-lang-selector"
+            style="display: none; width: 280px; background: #ffffff; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.3); margin-bottom: 10px; overflow: hidden; border: 1px solid #ccc;">
+            <div
+                style="background: #2c3e50; color: #ffffff; padding: 10px 15px; font-size: 14px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                <span>請選擇語言 / Select Language</span>
+                <button onclick="toggleLangSelector()"
+                    style="background: none; border: none; color: #ffffff; cursor: pointer; font-size: 16px;">✕</button>
+            </div>
+            <div style="padding: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button onclick="selectLanguage('繁體中文', '您好！請問有什麼可以幫到您？')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">繁體中文</button>
+                <button onclick="selectLanguage('簡體中文', '您好！请问有什么可以帮到您？')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">简体中文</button>
+                <button onclick="selectLanguage('English', 'Hello! How can I assist you today?')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">English</button>
+                <button onclick="selectLanguage('日本語', 'こんにちは！何かお手伝いできますか？')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">日本語</button>
+                <button onclick="selectLanguage('한국어', '안녕하세요! 무엇을 도와드릴까요?')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">한국어</button>
+                <button onclick="selectLanguage('Tiếng Việt', 'Xin chào! Tôi có thể giúp gì cho bạn?')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">Tiếng
+                    Việt</button>
+                <button onclick="selectLanguage('हिन्दी', 'नमस्ते! मैं आपकी क्या सहायता कर सकता हूँ?')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">हिन्दी</button>
+                <button onclick="selectLanguage('Tagalog', 'Kumusta! Paano kita matutulungan ngayon?')"
+                    style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">Tagalog</button>
+            </div>
         </div>
-        <div style="padding: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <button onclick="selectLanguage('繁體中文', '您好！請問有什麼可以幫到您？')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">繁體中文</button>
-            <button onclick="selectLanguage('簡體中文', '您好！请问有什么可以帮到您？')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">简体中文</button>
-            <button onclick="selectLanguage('English', 'Hello! How can I assist you today?')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">English</button>
-            <button onclick="selectLanguage('日本語', 'こんにちは！何かお手伝いできますか？')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">日本語</button>
-            <button onclick="selectLanguage('한국어', '안녕하세요! 무엇을 도와드릴까요?')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">한국어</button>
-            <button onclick="selectLanguage('Tiếng Việt', 'Xin chào! Tôi có thể giúp gì cho bạn?')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">Tiếng Việt</button>
-            <button onclick="selectLanguage('हिन्दी', 'नमस्ते! मैं आपकी क्या सहायता कर सकता हूँ?')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">हिन्दी</button>
-            <button onclick="selectLanguage('Tagalog', 'Kumusta! Paano kita matutulungan ngayon?')" style="padding: 8px; background: #f1f2f6; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; font-size: 13px;">Tagalog</button>
+
+        <!-- 右下角黑色懸浮按鈕 -->
+        <div style="text-align: right;">
+            <button id="ai-toggle-btn" onclick="toggleLangSelector()"
+                style="background: #2c3e50; color: #ffffff; border: none; border-radius: 50px; padding: 14px 22px; cursor: pointer; font-size: 16px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                💬 智能AI禮賓部
+            </button>
+        </div>
+
+        <!-- 對話視窗 -->
+        <div id="ai-chat-box"
+            style="display: none; width: 320px; height: 480px; background: #ffffff; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.3); flex-direction: column; overflow: hidden; border: 1px solid #ccc; margin-top: 10px;">
+            <div
+                style="background: #2c3e50; color: #ffffff; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: bold;">
+                <span>荃灣絲麗酒店 - 智能禮賓部</span>
+                <button onclick="closeChat()"
+                    style="background: none; border: none; color: #ffffff; cursor: pointer; font-size: 16px;">✕</button>
+            </div>
+
+            <div
+                style="background: #f1f2f6; padding: 6px 10px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                <span style="color: #555;">需要真人協助？</span>
+                <button onclick="requestHumanStaff()"
+                    style="background: #e74c3c; color: #ffffff; padding: 3px 8px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">📞
+                    轉接真人職員</button>
+            </div>
+
+            <div id="ai-chat-messages"
+                style="flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; background: #f9f9f9;"></div>
+
+            <div style="padding: 10px; border-top: 1px solid #ddd; display: flex; background: #ffffff;">
+                <input type="text" id="ai-user-input" placeholder="請輸入您想查詢的問題..."
+                    style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; outline: none;"
+                    onkeypress="handleKeyPress(event)">
+                <button onclick="sendToDeepSeek()"
+                    style="background: #2c3e50; color: #ffffff; border: none; padding: 8px 12px; margin-left: 5px; border-radius: 4px; cursor: pointer; font-weight: bold;">發送</button>
+            </div>
         </div>
     </div>
 
-    <!-- 右下角黑色懸浮按鈕 -->
-    <div style="text-align: right;">
-        <button id="ai-toggle-btn" onclick="toggleLangSelector()" style="background: #2c3e50; color: #ffffff; border: none; border-radius: 50px; padding: 14px 22px; cursor: pointer; font-size: 16px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
-            💬 智能AI禮賓部
-        </button>
-    </div>
+    <script>
+        // 1. 全域變數寫死，避免 Duplicate Declaration 錯誤
+        window.currentLang = '繁體中文';
+        const DEEPSEEK_API_KEY = "sk-dabca7727e3845279201d1cd256af736";
 
-    <!-- 對話視窗 -->
-    <div id="ai-chat-box" style="display: none; width: 320px; height: 480px; background: #ffffff; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.3); flex-direction: column; overflow: hidden; border: 1px solid #ccc; margin-top: 10px;">
-        <div style="background: #2c3e50; color: #ffffff; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: bold;">
-            <span>荃灣絲麗酒店 - 智能禮賓部</span>
-            <button onclick="closeChat()" style="background: none; border: none; color: #ffffff; cursor: pointer; font-size: 16px;">✕</button>
-        </div>
-        
-        <div style="background: #f1f2f6; padding: 6px 10px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-            <span style="color: #555;">需要真人協助？</span>
-            <a href="staff.html" target="_blank" style="background: #e74c3c; color: #ffffff; padding: 3px 8px; border-radius: 4px; text-decoration: none; font-weight: bold;">📞 聯絡人工職員</a>
-        </div>
+        // 2. 控制介面開關
+        function toggleLangSelector() {
+            const langSelector = document.getElementById('ai-lang-selector');
+            const chatBox = document.getElementById('ai-chat-box');
 
-        <div id="ai-chat-messages" style="flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; background: #f9f9f9;"></div>
+            if (chatBox && chatBox.style.display === 'flex') {
+                chatBox.style.display = 'none';
+            } else if (langSelector) {
+                langSelector.style.display = (langSelector.style.display === 'block') ? 'none' : 'block';
+            }
+        }
 
-        <div style="padding: 10px; border-top: 1px solid #ddd; display: flex; background: #ffffff;">
-            <input type="text" id="ai-user-input" placeholder="請輸入您想查詢的問題..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; outline: none;" onkeypress="handleKeyPress(event)">
-            <button onclick="sendToDeepSeek()" style="background: #2c3e50; color: #ffffff; border: none; padding: 8px 12px; margin-left: 5px; border-radius: 4px; cursor: pointer; font-weight: bold;">發送</button>
-        </div>
-    </div>
-</div>
+        function selectLanguage(langName, welcomeMsg) {
+            window.currentLang = langName;
+            const langSelector = document.getElementById('ai-lang-selector');
+            if (langSelector) langSelector.style.display = 'none';
 
-<script>
-// 1. 全域變數寫死，避免 Duplicate Declaration 錯誤
-window.currentLang = '繁體中文';
-const DEEPSEEK_API_KEY = "sk-dabca7727e3845279201d1cd256af736";
+            const chatBox = document.getElementById('ai-chat-box');
+            if (chatBox) chatBox.style.display = 'flex';
 
-// 2. 控制介面開關
-function toggleLangSelector() {
-    const langSelector = document.getElementById('ai-lang-selector');
-    const chatBox = document.getElementById('ai-chat-box');
-    
-    if (chatBox && chatBox.style.display === 'flex') {
-        chatBox.style.display = 'none';
-    } else if (langSelector) {
-        langSelector.style.display = (langSelector.style.display === 'block') ? 'none' : 'block';
+            const msgContainer = document.getElementById('ai-chat-messages');
+            if (msgContainer) {
+                msgContainer.innerHTML = '<div style="margin-bottom: 8px; color: #333;"><b>AI 禮賓部：</b> ' + welcomeMsg + '</div>';
+            }
+        }
+
+        function closeChat() {
+            const chatBox = document.getElementById('ai-chat-box');
+            if (chatBox) chatBox.style.display = 'none';
+        }
+        function requestHumanStaff() {
+    let sessionId = localStorage.getItem("chat_session_id");
+    if (!sessionId) {
+        sessionId = "user_" + Date.now();
+        localStorage.setItem("chat_session_id", sessionId);
     }
-}
 
-function selectLanguage(langName, welcomeMsg) {
-    window.currentLang = langName;
-    const langSelector = document.getElementById('ai-lang-selector');
-    if (langSelector) langSelector.style.display = 'none';
-    
-    const chatBox = document.getElementById('ai-chat-box');
-    if (chatBox) chatBox.style.display = 'flex';
-    
     const msgContainer = document.getElementById('ai-chat-messages');
     if (msgContainer) {
-        msgContainer.innerHTML = '<div style="margin-bottom: 8px; color: #333;"><b>AI 禮賓部：</b> ' + welcomeMsg + '</div>';
+        msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 正在為您轉接真人職員，請稍候...</div>';
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+    }
+
+    if (typeof firebase !== 'undefined' && firebase.database) {
+        firebase.database().ref('chats/' + sessionId).push({
+            sender: 'guest',
+            message: '訪客請求真人協助',
+            timestamp: Date.now()
+        });
     }
 }
 
-function closeChat() {
-    const chatBox = document.getElementById('ai-chat-box');
-    if (chatBox) chatBox.style.display = 'none';
-}
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendToDeepSeek();
+        }
 
-function handleKeyPress(e) {
-    if (e.key === 'Enter') sendToDeepSeek();
-}
+        // 3. 發送 API 請求
+        async function sendToDeepSeek() {
+            const input = document.getElementById('ai-user-input');
+            const msgContainer = document.getElementById('ai-chat-messages');
+            if (!input || !msgContainer) return;
 
-// 3. 發送 API 請求
-async function sendToDeepSeek() {
-    const input = document.getElementById('ai-user-input');
-    const msgContainer = document.getElementById('ai-chat-messages');
-    if (!input || !msgContainer) return;
-    
-    const text = input.value.trim();
-    if (!text) return;
+            const text = input.value.trim();
+            if (!text) return;
 
-    msgContainer.innerHTML += '<div style="margin-bottom: 8px; text-align: right; color: #007bff;"><b>您：</b> ' + text + '</div>';
-    input.value = '';
-    msgContainer.scrollTop = msgContainer.scrollHeight;
+            msgContainer.innerHTML += '<div style="margin-bottom: 8px; text-align: right; color: #007bff;"><b>您：</b> ' + text + '</div>';
+            input.value = '';
+            msgContainer.scrollTop = msgContainer.scrollHeight;
 
-    const loadingId = 'loading-' + Date.now();
-    msgContainer.innerHTML += '<div id="' + loadingId + '" style="margin-bottom: 8px; color: #666;"><b>AI 禮賓部：</b> 正在思考中...</div>';
-    msgContainer.scrollTop = msgContainer.scrollHeight;
+            const loadingId = 'loading-' + Date.now();
+            msgContainer.innerHTML += '<div id="' + loadingId + '" style="margin-bottom: 8px; color: #666;"><b>AI 禮賓部：</b> 正在思考中...</div>';
+            msgContainer.scrollTop = msgContainer.scrollHeight;
 
-    try {
-        const response = await fetch('https://api.deepseek.com/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + DEEPSEEK_API_KEY
-            },
-            body: JSON.stringify({
-                model: "deepseek-chat",
-                messages: [
-                    {
-                        role: "system", 
-                        content: `你係荃灣絲麗酒店嘅智能禮賓部助手。
+            try {
+                const response = await fetch('https://api.deepseek.com/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + DEEPSEEK_API_KEY
+                    },
+                    body: JSON.stringify({
+                        model: "deepseek-chat",
+                        messages: [
+                            {
+                                role: "system",
+                                content: `你係荃灣絲麗酒店嘅智能禮賓部助手。
                         
                         以下是你可以參考的完整網頁資料：
                         ${HOTEL_KNOWLEDGE}
@@ -4924,29 +4969,29 @@ async function sendToDeepSeek() {
                         1. 必須 100% 根據以上資料回答旅客。
                         2. 訪客目前已選擇使用【${window.currentLang}】進行溝通，你必須全程堅決使用【${window.currentLang}】來回覆用戶。
                         3. 如果資料中沒有答案，請用【${window.currentLang}】禮貌告知，並提示可以點擊上方按鈕聯絡真人職員。`
-                    },
-                    { role: "user", content: text }
-                ],
-                stream: false
-            })
-        });
+                            },
+                            { role: "user", content: text }
+                        ],
+                        stream: false
+                    })
+                });
 
-        const data = await response.json();
-        const reply = data.choices[0].message.content;
-        
-        const loadingElement = document.getElementById(loadingId);
-        if (loadingElement) loadingElement.remove();
-        
-        msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #333;"><b>AI 禮賓部：</b> ' + reply + '</div>';
-    } catch (error) {
-        const loadingElement = document.getElementById(loadingId);
-        if (loadingElement) loadingElement.remove();
-        
-        msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: red;"><b>系統：</b> 連線發生錯誤，請稍後再試。</div>';
-    }
-    msgContainer.scrollTop = msgContainer.scrollHeight;
-}
-</script>
+                const data = await response.json();
+                const reply = data.choices[0].message.content;
+
+                const loadingElement = document.getElementById(loadingId);
+                if (loadingElement) loadingElement.remove();
+
+                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #333;"><b>AI 禮賓部：</b> ' + reply + '</div>';
+            } catch (error) {
+                const loadingElement = document.getElementById(loadingId);
+                if (loadingElement) loadingElement.remove();
+
+                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: red;"><b>系統：</b> 連線發生錯誤，請稍後再試。</div>';
+            }
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+    </script>
 </body>
 
 </html>

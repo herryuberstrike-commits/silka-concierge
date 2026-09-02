@@ -94,7 +94,7 @@
 
         .container {
             width: 100%;
-            max-width: 700px;
+            max-width: 900px;
             background: #fff;
             border-radius: 16px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -137,6 +137,75 @@
             gap: 6px;
         }
 
+        /* 💬 客服中控台樣式 */
+        .chat-console {
+            display: flex;
+            height: 380px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .user-list {
+            width: 220px;
+            border-right: 1px solid #ced4da;
+            background: #fff;
+            overflow-y: auto;
+        }
+
+        .user-item {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .user-item:hover { background: #eef2f7; }
+        .user-item.active { background: #e2e8f0; font-weight: bold; border-left: 4px solid #2c3e50; }
+
+        .chat-window {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            font-size: 13px;
+            background: #fafafa;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ced4da;
+            background: #fff;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .chat-input-area button {
+            margin-left: 6px;
+            padding: 8px 16px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* 巴士列表樣式 */
         .staff-bus-item {
             background: #f8f9fa;
             border: 1px solid #ced4da;
@@ -155,10 +224,7 @@
             align-items: center;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 6px;
-        }
+        .btn-group { display: flex; gap: 6px; }
 
         .staff-btn {
             padding: 6px 10px;
@@ -169,25 +235,10 @@
             font-weight: bold;
         }
 
-        .btn-normal {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-full {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-out {
-            background: #343a40;
-            color: white;
-        }
-
-        .staff-btn.active {
-            outline: 2px solid #000;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-        }
+        .btn-normal { background: #6c757d; color: white; }
+        .btn-full { background: #dc3545; color: white; }
+        .btn-out { background: #343a40; color: white; }
+        .staff-btn.active { outline: 2px solid #000; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
     </style>
 </head>
 
@@ -209,19 +260,36 @@
             <p>Staff Management Console (Cloud Synced)</p>
         </div>
 
+        <!-- 💬 一對多線上客服中控台 -->
+        <div class="section">
+            <h2>💬 即時線上客服（一對多）</h2>
+            <div class="chat-console">
+                <div class="user-list" id="userList">
+                    <div style="padding: 12px; color: #888; font-size: 12px; text-align: center;">等待訪客連線...</div>
+                </div>
+                <div class="chat-window">
+                    <div id="activeUserHeader" style="padding: 10px; background: #eef2f7; font-size: 13px; font-weight: bold; border-bottom: 1px solid #ced4da;">
+                        請選擇左側訪客進行對話
+                    </div>
+                    <div class="chat-messages" id="staffChatMessages"></div>
+                    <div class="chat-input-area">
+                        <input type="text" id="staffInput" placeholder="輸入回覆訊息..." onkeypress="if(event.key==='Enter') sendStaffMessage()">
+                        <button onclick="sendStaffMessage()">發送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🚌 穿梭巴士即時狀態管理 -->
         <div class="section">
             <h2>🚌 穿梭巴士即時狀態管理</h2>
-
-            <!-- 全局暫停/恢復控制區塊 -->
-            <div
-                style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; padding: 12px; margin-bottom: 16px; text-align: center;">
+            <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; padding: 12px; margin-bottom: 16px; text-align: center;">
                 <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px;">📍 即時行車狀況（頂部 Banner 控制）</div>
                 <button id="pauseToggleBtn" onclick="toggleStatusPause()"
                     style="width: 100%; padding: 10px; font-size: 14px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: white; background-color: #dc3545;">
                     ⏸️ 一鍵暫停全日服務（覆蓋即時狀況）
                 </button>
             </div>
-
             <div id="staffBusList"></div>
         </div>
     </div>
@@ -237,26 +305,95 @@
         const CORRECT_PASSWORD = "stw3824";
         let manualOverrides = {};
         let isLiveStatusPaused = false;
+        let activeSessionId = null;
+
+        // 監聽線上客服訪客列表 (一對多)
+        db.ref('chats').on('value', (snapshot) => {
+            const chats = snapshot.val() || {};
+            const userListEl = document.getElementById('userList');
+            if (!userListEl) return;
+
+            userListEl.innerHTML = '';
+            const sessionIds = Object.keys(chats);
+
+            if (sessionIds.length === 0) {
+                userListEl.innerHTML = '<div style="padding: 12px; color: #888; font-size: 12px; text-align: center;">暫無訪客請求</div>';
+                return;
+            }
+
+            sessionIds.forEach(sessionId => {
+                const item = document.createElement('div');
+                item.className = 'user-item' + (sessionId === activeSessionId ? ' active' : '');
+                item.innerHTML = `👤 訪客 (${sessionId.slice(-4)})`;
+                item.onclick = () => selectUserSession(sessionId);
+                userListEl.appendChild(item);
+            });
+
+            if (activeSessionId && chats[activeSessionId]) {
+                renderMessages(chats[activeSessionId]);
+            }
+        });
+
+        // 切換目前對話的訪客
+        function selectUserSession(sessionId) {
+            activeSessionId = sessionId;
+            document.getElementById('activeUserHeader').innerText = `正在與 訪客 (${sessionId.slice(-4)}) 對話`;
+            
+            db.ref('chats/' + sessionId).once('value', (snapshot) => {
+                renderMessages(snapshot.val() || {});
+            });
+
+            renderStaffBusList(); // 重繪 UI 狀態
+        }
+
+        // 渲染對話紀錄
+        function renderMessages(msgObj) {
+            const container = document.getElementById('staffChatMessages');
+            if (!container) return;
+            container.innerHTML = '';
+
+            Object.values(msgObj).forEach(msg => {
+                const align = msg.sender === 'staff' ? 'right' : 'left';
+                const color = msg.sender === 'staff' ? '#2c3e50' : '#007bff';
+                const senderName = msg.sender === 'staff' ? '職員' : '訪客';
+
+                container.innerHTML += `<div style="margin-bottom: 8px; text-align: ${align}; color: ${color};">
+                    <b>${senderName}：</b> ${msg.message}
+                </div>`;
+            });
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // 發送職員回覆
+        function sendStaffMessage() {
+            const input = document.getElementById('staffInput');
+            const text = input.value.trim();
+            if (!text || !activeSessionId) return;
+
+            db.ref('chats/' + activeSessionId).push({
+                sender: 'staff',
+                message: text,
+                timestamp: Date.now()
+            });
+
+            input.value = '';
+        }
 
         // 監聽後台雲端狀態（含班次與全局暫停）
         db.ref('busManualOverrides').on('value', (snapshot) => {
             const data = snapshot.val() || {};
             manualOverrides = data;
-
-            // 讀取暫停狀態
             isLiveStatusPaused = !!data.isLiveStatusPaused;
 
             updatePauseButtonUI();
             renderStaffBusList();
         });
 
-        // 切換暫停狀態並同步寫入 Firebase
         function toggleStatusPause() {
             const newPauseState = !isLiveStatusPaused;
             db.ref('busManualOverrides/isLiveStatusPaused').set(newPauseState);
         }
 
-        // 更新後台暫停按鈕樣式
         function updatePauseButtonUI() {
             const btn = document.getElementById('pauseToggleBtn');
             if (!btn) return;
@@ -281,7 +418,6 @@
         }
         function handleKeyPress(e) { if (e.key === 'Enter') checkPassword(); }
 
-        // 完全對齊前台的班次資料與 ID
         const rawBusData = [
             { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
             { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
@@ -326,10 +462,8 @@
             if (status === 'normal') {
                 delete updates[id];
             } else {
-                updates[id] = status; // 寫入 'full' 或 'out'
+                updates[id] = status;
             }
-
-            // 直接寫入 Firebase 雲端資料庫
             db.ref('busManualOverrides').set(updates);
         }
     </script>
