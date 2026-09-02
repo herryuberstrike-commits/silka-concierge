@@ -1,59 +1,196 @@
 <!DOCTYPE html>
 <html lang="zh-HK">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>荃灣絲麗酒店 - 禮賓部員工後台</title>
-    
+
     <!-- 引入 Firebase SDK (Compat 版本) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #eef2f7; color: #333; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
-        
-        #loginOverlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-        .login-card {
-            background: #fff; padding: 30px; border-radius: 16px; width: 100%; max-width: 360px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2); text-align: center;
-        }
-        .login-card h2 { font-size: 18px; margin-bottom: 8px; color: #343a40; }
-        .login-card p { font-size: 12px; color: #666; margin-bottom: 20px; }
-        .login-card input {
-            width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 8px; font-size: 14px; margin-bottom: 12px; text-align: center;
-        }
-        .login-card button {
-            width: 100%; padding: 10px; background: #343a40; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
-        }
-        .error-msg { color: #dc3545; font-size: 12px; margin-top: 8px; display: none; }
 
-        .container { width: 100%; max-width: 700px; background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden; display: none; }
-        .header { background: #343a40; color: #fff; padding: 20px; text-align: center; }
-        .header h1 { font-size: 18px; margin-bottom: 4px; }
-        .header p { font-size: 12px; color: #adb5bd; }
-        .section { padding: 20px; border-bottom: 1px solid #dee2e6; }
-        .section:last-child { border-bottom: none; }
-        h2 { font-size: 16px; color: #343a40; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-        
+        body {
+            background-color: #eef2f7;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .login-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .login-card h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #343a40;
+        }
+
+        .login-card p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .login-card button {
+            width: 100%;
+            padding: 10px;
+            background: #343a40;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .error-msg {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: none;
+        }
+
+        .header {
+            background: #343a40;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 12px;
+            color: #adb5bd;
+        }
+
+        .section {
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: #343a40;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         .staff-bus-item {
-            background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px;
-            padding: 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 13px;
+            background: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
         }
-        .staff-bus-row { display: flex; justify-content: space-between; align-items: center; }
-        .btn-group { display: flex; gap: 6px; }
+
+        .staff-bus-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 6px;
+        }
+
         .staff-btn {
-            padding: 6px 10px; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: bold;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: bold;
         }
-        .btn-normal { background: #6c757d; color: white; }
-        .btn-full { background: #dc3545; color: white; }
-        .btn-out { background: #343a40; color: white; }
-        .staff-btn.active { outline: 2px solid #000; box-shadow: 0 0 5px rgba(0,0,0,0.3); }
+
+        .btn-normal {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-full {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-out {
+            background: #343a40;
+            color: white;
+        }
+
+        .staff-btn.active {
+            outline: 2px solid #000;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
+
 <body>
 
     <div id="loginOverlay">
@@ -74,12 +211,13 @@
 
         <div class="section">
             <h2>🚌 穿梭巴士即時狀態管理</h2>
-            
+
             <!-- 全局暫停/恢復控制區塊 -->
-            <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; padding: 12px; margin-bottom: 16px; text-align: center;">
+            <div
+                style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; padding: 12px; margin-bottom: 16px; text-align: center;">
                 <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px;">📍 即時行車狀況（頂部 Banner 控制）</div>
-                <button id="pauseToggleBtn" onclick="toggleStatusPause()" 
-                        style="width: 100%; padding: 10px; font-size: 14px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: white; background-color: #dc3545;">
+                <button id="pauseToggleBtn" onclick="toggleStatusPause()"
+                    style="width: 100%; padding: 10px; font-size: 14px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: white; background-color: #dc3545;">
                     ⏸️ 一鍵暫停全日服務（覆蓋即時狀況）
                 </button>
             </div>
@@ -88,112 +226,122 @@
         </div>
     </div>
 
-<script>
-    // ==================== Firebase 配置 ====================
-    const firebaseConfig = {
-        databaseURL: "https://silkatw-a5cf1-default-rtdb.asia-southeast1.firebasedatabase.app/"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    <script>
+        // ==================== Firebase 配置 ====================
+        const firebaseConfig = {
+            databaseURL: "https://silkatw-a5cf1-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
-    const CORRECT_PASSWORD = "stw3824";
-    let manualOverrides = {};
-    let isLiveStatusPaused = false;
+        const CORRECT_PASSWORD = "stw3824";
+        let manualOverrides = {};
+        let isLiveStatusPaused = false;
 
-    // 監聽後台雲端狀態（含班次與全局暫停）
-    db.ref('busManualOverrides').on('value', (snapshot) => {
-        const data = snapshot.val() || {};
-        manualOverrides = data;
-        
-        // 讀取暫停狀態
-        isLiveStatusPaused = !!data.isLiveStatusPaused;
-        
-        updatePauseButtonUI();
-        renderStaffBusList();
-    });
+        // 監聽後台雲端狀態（含班次與全局暫停）
+        db.ref('busManualOverrides').on('value', (snapshot) => {
+            const data = snapshot.val() || {};
+            manualOverrides = data;
 
-    // 切換暫停狀態並同步寫入 Firebase
-    function toggleStatusPause() {
-        const newPauseState = !isLiveStatusPaused;
-        db.ref('busManualOverrides/isLiveStatusPaused').set(newPauseState);
-    }
+            // 讀取暫停狀態
+            isLiveStatusPaused = !!data.isLiveStatusPaused;
 
-    // 更新後台暫停按鈕樣式
-    function updatePauseButtonUI() {
-        const btn = document.getElementById('pauseToggleBtn');
-        if (!btn) return;
-        
-        if (isLiveStatusPaused) {
-            btn.innerText = "▶️ 恢復自動即時行車狀況";
-            btn.style.backgroundColor = "#28a745";
-        } else {
-            btn.innerText = "⏸️ 一鍵暫停全日服務（覆蓋即時狀況）";
-            btn.style.backgroundColor = "#dc3545";
-        }
-    }
-
-    function checkPassword() {
-        if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
-            document.getElementById('loginOverlay').style.display = 'none';
-            document.getElementById('mainContainer').style.display = 'block';
+            updatePauseButtonUI();
             renderStaffBusList();
-        } else {
-            document.getElementById('errorMsg').style.display = 'block';
+        });
+
+        // 切換暫停狀態並同步寫入 Firebase
+        function toggleStatusPause() {
+            const newPauseState = !isLiveStatusPaused;
+            db.ref('busManualOverrides/isLiveStatusPaused').set(newPauseState);
         }
-    }
-    function handleKeyPress(e) { if (e.key === 'Enter') checkPassword(); }
 
-    // 完全對齊前台的班次資料與 ID
-    const rawBusData = [
-        { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
-        { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
-        { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
-        { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
-        { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
-        { id: 6, hotel: "13:00", isBreak: true },
-        { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
-        { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
-        { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
-        { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
-        { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
-        { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
-        { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
-    ];
+        // 更新後台暫停按鈕樣式
+        function updatePauseButtonUI() {
+            const btn = document.getElementById('pauseToggleBtn');
+            if (!btn) return;
 
-    function renderStaffBusList() {
-        const container = document.getElementById('staffBusList');
-        if (!container) return;
-        container.innerHTML = '';
-        
-        rawBusData.forEach(item => {
-            if (item.isBreak) {
-                container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; text-align: center;">🍽️ ${item.hotel} : 午飯時間 (暫停服務)</div>`;
+            if (isLiveStatusPaused) {
+                btn.innerText = "▶️ 恢復自動即時行車狀況";
+                btn.style.backgroundColor = "#28a745";
             } else {
-                const st = manualOverrides[item.id] || 'normal';
-                container.innerHTML += `
+                btn.innerText = "⏸️ 一鍵暫停全日服務（覆蓋即時狀況）";
+                btn.style.backgroundColor = "#dc3545";
+            }
+        }
+
+        function checkPassword() {
+            if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('mainContainer').style.display = 'block';
+                renderStaffBusList();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+        function handleKeyPress(e) { if (e.key === 'Enter') checkPassword(); }
+
+        // 完全對齊前台的班次資料與 ID
+        const rawBusData = [
+            { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
+            { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
+            { id: 3, hotel: "10:00", kMin: "10:15", tMin: "10:30" },
+            { id: 4, hotel: "11:00", kMin: "11:15", tMin: "11:30" },
+            { id: 5, hotel: "12:00", kMin: "12:15", tMin: "12:30" },
+            { id: 6, hotel: "13:00", isBreak: true },
+            { id: 7, hotel: "14:00", kMin: "14:15", tMin: "14:30" },
+            { id: 8, hotel: "15:00", kMin: "15:15", tMin: "15:30" },
+            { id: 9, hotel: "16:00", kMin: "16:15", tMin: "16:30" },
+            { id: 10, hotel: "17:00", kMin: "17:15", tMin: "17:30" },
+            { id: 11, hotel: "18:00", kMin: "18:15", tMin: "18:30" },
+            { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
+            { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
+        ];
+
+        function renderStaffBusList() {
+            const container = document.getElementById('staffBusList');
+            if (!container) return;
+            container.innerHTML = '';
+
+            rawBusData.forEach(item => {
+                if (item.isBreak) {
+                    container.innerHTML += `<div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; text-align: center;">🍽️ ${item.hotel} : 午飯時間 (暫停服務)</div>`;
+                } else {
+                    const st = manualOverrides[item.id] || 'normal';
+                    container.innerHTML += `
                     <div class="staff-bus-item"><div class="staff-bus-row">
                         <span>🕒 <strong>${item.hotel}</strong></span>
                         <div class="btn-group">
-                            <button class="staff-btn btn-normal ${st==='normal'?'active':''}" onclick="setBusStatus(${item.id}, 'normal')">正常</button>
-                            <button class="staff-btn btn-full ${st==='full'?'active':''}" onclick="setBusStatus(${item.id}, 'full')">滿座</button>
-                            <button class="staff-btn btn-out ${st==='out'?'active':''}" onclick="setBusStatus(${item.id}, 'out')">停駛</button>
+                            <button class="staff-btn btn-normal ${st === 'normal' ? 'active' : ''}" onclick="setBusStatus(${item.id}, 'normal')">正常</button>
+                            <button class="staff-btn btn-full ${st === 'full' ? 'active' : ''}" onclick="setBusStatus(${item.id}, 'full')">滿座</button>
+                            <button class="staff-btn btn-out ${st === 'out' ? 'active' : ''}" onclick="setBusStatus(${item.id}, 'out')">停駛</button>
                         </div>
                     </div></div>`;
-            }
-        });
-    }
-
-    function setBusStatus(id, status) {
-        let updates = { ...manualOverrides };
-        if (status === 'normal') {
-            delete updates[id];
-        } else {
-            updates[id] = status; // 寫入 'full' 或 'out'
+                }
+            });
         }
-        
-        // 直接寫入 Firebase 雲端資料庫
-        db.ref('busManualOverrides').set(updates);
-    }
-</script>
+
+        function setBusStatus(id, status) {
+            let updates = { ...manualOverrides };
+            if (status === 'normal') {
+                delete updates[id];
+            } else {
+                updates[id] = status; // 寫入 'full' 或 'out'
+            }
+
+            // 直接寫入 Firebase 雲端資料庫
+            db.ref('busManualOverrides').set(updates);
+        }
+    </script>
+
+    <div style="width: 100%; height: 100vh; padding: 0; margin: 0;">
+        <h3 style="padding: 10px; margin: 0; background: #1C64F2; color: white; font-family: sans-serif;">荃灣絲麗酒店 -
+            線上禮賓部接管後台</h3>
+        <iframe src="https://cloud.dify.ai/app/584f7359-abfb-47b4-b0e2-b6a89502f651/logs"
+            style="width: 100%; height: calc(100vh - 45px); border: none;">
+        </iframe>
+    </div>
+
 </body>
+
 </html>
