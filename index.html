@@ -4909,7 +4909,7 @@
             const chatBox = document.getElementById('ai-chat-box');
             if (chatBox) chatBox.style.display = 'none';
         }
-        // 1. 訪客請求轉接真人 (加入防重複點擊)
+        // 1. 訪客請求轉接真人
         function requestHumanStaff() {
             let sessionId = localStorage.getItem("chat_session_id");
             if (!sessionId) {
@@ -4917,12 +4917,8 @@
                 localStorage.setItem("chat_session_id", sessionId);
             }
 
-            // 防重複點擊：如果已經是 human 模式，就不再重複發送
-            if (localStorage.getItem("chat_mode_" + sessionId) === "human") {
-                return;
-            }
-
-            // 鎖定為 human 模式
+            // 標記狀態
+            window.isHumanConnected = true;
             localStorage.setItem("chat_mode_" + sessionId, "human");
 
             if (typeof firebase !== 'undefined' && firebase.database) {
@@ -4935,7 +4931,7 @@
             }
 
             const msgContainer = document.getElementById('ai-chat-messages');
-            if (msgContainer) {
+            if (msgContainer && !document.getElementById('human-status-banner')) {
                 msgContainer.innerHTML += `
             <div id="human-status-banner" style="margin-bottom: 8px; color: #e67e22; display: flex; justify-content: space-between; align-items: center; background: #fff3cd; padding: 8px; border-radius: 6px;">
                 <span><b>系統：</b> 已為您轉接禮賓專員，請稍候...</span>
@@ -4944,7 +4940,77 @@
                 msgContainer.scrollTop = msgContainer.scrollHeight;
             }
 
+            // 啟動監聽
             listenForStaffReplies();
+        }
+
+        // 2. 訪客主動結束真人對話
+        function endHumanChatGuest() {
+            let sessionId = localStorage.getItem("chat_session_id");
+            if (!sessionId) return;
+
+            window.isHumanConnected = false;
+            localStorage.setItem("chat_mode_" + sessionId, "ai");
+
+            if (typeof firebase !== 'undefined' && firebase.database) {
+                firebase.database().ref('chatStatus/' + sessionId).set('ai');
+                firebase.database().ref('chats/' + sessionId).push({
+                    sender: 'guest',
+                    message: '【系統提示】訪客已主動結束真人對話，切換回 AI 服務。',
+                    timestamp: Date.now()
+                });
+            }
+        }
+
+        // 3. 監聽專員回覆與狀態切換（確保此 Function 獨立存在）
+        function listenForStaffReplies() {
+            let sessionId = localStorage.getItem("chat_session_id");
+            if (!sessionId || typeof firebase === 'undefined' || !firebase.database) return;
+
+            // 監聽專員訊息
+            firebase.database().ref('chats/' + sessionId).on('child_added', (snapshot) => {
+                const msg = snapshot.val();
+                if (msg && msg.sender === 'staff') {
+                    const msgContainer = document.getElementById('ai-chat-messages');
+                    const msgId = 'msg-' + (msg.timestamp || Date.now());
+                    if (msgContainer && !document.getElementById(msgId)) {
+                        const dateObj = msg.timestamp ? new Date(msg.timestamp) : new Date();
+                        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                        const day = String(dateObj.getDate()).padStart(2, '0');
+                        const hours = String(dateObj.getHours()).padStart(2, '0');
+                        const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+                        const timeStr = `${month}/${day} ${hours}:${minutes}`;
+
+                        msgContainer.innerHTML += `
+                    <div id="${msgId}" style="margin-bottom: 8px; text-align: left;">
+                        <span style="font-weight: bold; color: #2c3e50; font-size: 12px;">禮賓專員</span>
+                        <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+                        <div style="color: #2c3e50; margin-top: 2px;">${msg.message}</div>
+                    </div>`;
+                        msgContainer.scrollTop = msgContainer.scrollHeight;
+                    }
+                }
+            });
+
+            // 監聽雲端切換回 AI 狀態
+            firebase.database().ref('chatStatus/' + sessionId).on('value', (snapshot) => {
+                const status = snapshot.val();
+                if (status === 'ai') {
+                    window.isHumanConnected = false;
+                    localStorage.setItem("chat_mode_" + sessionId, "ai");
+                    const banner = document.getElementById('human-status-banner');
+                    if (banner) banner.remove();
+
+                    const msgContainer = document.getElementById('ai-chat-messages');
+                    if (msgContainer && !document.getElementById('sys-back-to-ai')) {
+                        msgContainer.innerHTML += '<div id="sys-back-to-ai" style="margin-bottom: 8px; color: #28a745;"><b>系統：</b> 真人服務已結束，已為您切換回 AI 智能禮賓部。</div>';
+                        msgContainer.scrollTop = msgContainer.scrollHeight;
+                    }
+                } else if (status === 'human') {
+                    window.isHumanConnected = true;
+                    localStorage.setItem("chat_mode_" + sessionId, "human");
+                }
+            });
         }
 
         // 2. 訪客主動結束真人對話
