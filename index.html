@@ -4910,75 +4910,172 @@
             if (chatBox) chatBox.style.display = 'none';
         }
         // 轉接真人
-        function requestHumanStaff() {
-            let sessionId = localStorage.getItem("chat_session_id");
-            if (!sessionId) {
-                sessionId = "user_" + Date.now();
-                localStorage.setItem("chat_session_id", sessionId);
-            }
+function requestHumanStaff() {
+    // 1. 強制鎖定真人模式標記，阻斷 AI
+    window.isHumanConnected = true;
 
-            // 1. 標記雲端狀態為真人服務中 (human)
-            if (typeof firebase !== 'undefined' && firebase.database) {
-                firebase.database().ref('chatStatus/' + sessionId).set('human');
-                firebase.database().ref('chats/' + sessionId).push({
-                    sender: 'guest',
-                    message: '⚠️ 訪客請求真人協助',
-                    timestamp: Date.now()
-                });
-            }
+    let sessionId = localStorage.getItem("chat_session_id");
+    if (!sessionId) {
+        sessionId = "user_" + Date.now();
+        localStorage.setItem("chat_session_id", sessionId);
+    }
 
+    // 2. 寫入雲端狀態
+    if (typeof firebase !== 'undefined' && firebase.database) {
+        firebase.database().ref('chatStatus/' + sessionId).set('human');
+        firebase.database().ref('chats/' + sessionId).push({
+            sender: 'guest',
+            message: '⚠️ 訪客請求真人協助',
+            timestamp: Date.now()
+        });
+    }
+
+    const msgContainer = document.getElementById('ai-chat-messages');
+    if (msgContainer) {
+        msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 已為您轉接禮賓專員，請稍候...</div>';
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+    }
+
+    listenForStaffReplies();
+}
+
+// 發送訊息（分流處理）
+async function sendToDeepSeek() {
+    const input = document.getElementById('ai-user-input');
+    const msgContainer = document.getElementById('ai-chat-messages');
+    if (!input || !msgContainer) return;
+
+    const text = input.value.trim();
+    if (!text) return;
+
+    let sessionId = localStorage.getItem("chat_session_id");
+    if (!sessionId) {
+        sessionId = "user_" + Date.now();
+        localStorage.setItem("chat_session_id", sessionId);
+    }
+
+    const now = Date.now();
+
+    // 格式化時間
+    const dateObj = new Date(now);
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const hours = String(dateObj.getHours()).padStart(2, '0');
+    const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+    const timeStr = `${month}/${day} ${hours}:${minutes}`;
+
+    // 1. 本地顯示訪客發言
+    msgContainer.innerHTML += `
+        <div style="margin-bottom: 8px; text-align: right;">
+            <span style="font-weight: bold; color: #007bff; font-size: 12px;">您</span>
+            <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+            <div style="color: #007bff; margin-top: 2px;">${text}</div>
+        </div>`;
+    input.value = '';
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+
+    // 2. 判斷是否為真人模式
+    if (window.isHumanConnected === true) {
+        // 寫入 Firebase (傳去後台)
+        if (typeof firebase !== 'undefined' && firebase.database) {
+            firebase.database().ref('chats/' + sessionId).push({
+                sender: 'guest',
+                message: text,
+                timestamp: now
+            });
+        }
+        return; // 🛑 徹底攔截，絕對不發送給 AI！
+    }
+
+    // 3. AI 模式（呼叫 DeepSeek）
+    const loadingId = 'loading-' + now;
+    msgContainer.innerHTML += `<div id="${loadingId}" style="margin-bottom: 8px; color: #666;"><b>AI 禮賓部：</b> 正在思考中...</div>`;
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+
+    const knowledgeData = typeof HOTEL_KNOWLEDGE !== 'undefined' ? HOTEL_KNOWLEDGE : '';
+
+    try {
+        const response = await fetch('https://api.deepseek.com/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + DEEPSEEK_API_KEY
+            },
+            body: JSON.stringify({
+                model: "deepseek-chat",
+                messages: [
+                    {
+                        role: "system",
+                        content: `你係荃灣絲麗酒店嘅智能禮賓部助手。\n${knowledgeData}\n【規則】請全程使用【${window.currentLang || 'zh-HK'}】回答。`
+                    },
+                    { role: "user", content: text }
+                ]
+            })
+        });
+
+        const data = await response.json();
+        let reply = data.choices[0].message.content;
+
+        if (typeof marked !== 'undefined') {
+            reply = marked.parse(reply);
+        }
+
+        document.getElementById(loadingId)?.remove();
+        msgContainer.innerHTML += `
+            <div style="margin-bottom: 8px;">
+                <span style="font-weight: bold; color: #333; font-size: 12px;">AI 禮賓部</span>
+                <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+                <div style="color: #333; margin-top: 2px;">${reply}</div>
+            </div>`;
+    } catch (error) {
+        document.getElementById(loadingId)?.remove();
+        msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: red;"><b>系統：</b> 連線發生錯誤。</div>';
+    }
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+}
+
+// 3. 監聽後台切換回 AI 模式
+function listenForStaffReplies() {
+    let sessionId = localStorage.getItem("chat_session_id");
+    if (!sessionId || typeof firebase === 'undefined' || !firebase.database) return;
+
+    // 監聽專員訊息
+    firebase.database().ref('chats/' + sessionId).on('child_added', (snapshot) => {
+        const msg = snapshot.val();
+        if (msg && msg.sender === 'staff') {
             const msgContainer = document.getElementById('ai-chat-messages');
-            if (msgContainer) {
-                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 已為您轉接禮賓專員，請稍候...</div>';
+            const msgId = 'msg-' + (msg.timestamp || Date.now());
+            if (msgContainer && !document.getElementById(msgId)) {
+                const dateObj = msg.timestamp ? new Date(msg.timestamp) : new Date();
+                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const day = String(dateObj.getDate()).padStart(2, '0');
+                const hours = String(dateObj.getHours()).padStart(2, '0');
+                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+                const timeStr = `${month}/${day} ${hours}:${minutes}`;
+
+                msgContainer.innerHTML += `
+                    <div id="${msgId}" style="margin-bottom: 8px; text-align: left;">
+                        <span style="font-weight: bold; color: #2c3e50; font-size: 12px;">禮賓專員</span>
+                        <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+                        <div style="color: #2c3e50; margin-top: 2px;">${msg.message}</div>
+                    </div>`;
                 msgContainer.scrollTop = msgContainer.scrollHeight;
             }
-
-            listenForStaffReplies();
         }
+    });
 
-        // 監聽真人回覆及對話狀態切換
-        function listenForStaffReplies() {
-            let sessionId = localStorage.getItem("chat_session_id");
-            if (!sessionId || typeof firebase === 'undefined' || !firebase.database) return;
-
-            // 監聽禮賓專員訊息
-            firebase.database().ref('chats/' + sessionId).on('child_added', (snapshot) => {
-                const msg = snapshot.val();
-                if (msg && msg.sender === 'staff') {
-                    const msgContainer = document.getElementById('ai-chat-messages');
-                    if (msgContainer) {
-                        const msgId = 'msg-' + (msg.timestamp || Date.now());
-                        if (!document.getElementById(msgId)) {
-                            const dateObj = msg.timestamp ? new Date(msg.timestamp) : new Date();
-                            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                            const day = String(dateObj.getDate()).padStart(2, '0');
-                            const hours = String(dateObj.getHours()).padStart(2, '0');
-                            const minutes = String(dateObj.getMinutes()).padStart(2, '0');
-                            const timeStr = `${month}/${day} ${hours}:${minutes}`;
-
-                            msgContainer.innerHTML += `
-                        <div id="${msgId}" style="margin-bottom: 8px; text-align: left;">
-                            <span style="font-weight: bold; color: #2c3e50; font-size: 12px;">禮賓專員</span>
-                            <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
-                            <div style="color: #2c3e50; margin-top: 2px;">${msg.message}</div>
-                        </div>`;
-                            msgContainer.scrollTop = msgContainer.scrollHeight;
-                        }
-                    }
-                }
-            });
-
-            // 監聽後台「結束對話」切換回 AI 狀態
-            firebase.database().ref('chatStatus/' + sessionId).on('value', (snapshot) => {
-                if (snapshot.val() === 'ai') {
-                    const msgContainer = document.getElementById('ai-chat-messages');
-                    if (msgContainer && !document.getElementById('sys-back-to-ai')) {
-                        msgContainer.innerHTML += '<div id="sys-back-to-ai" style="margin-bottom: 8px; color: #28a745;"><b>系統：</b> 真人服務已結束，已為您切換回 AI 智能禮賓部。</div>';
-                        msgContainer.scrollTop = msgContainer.scrollHeight;
-                    }
-                }
-            });
+    // 當後台按「結束對話」時，將 window.isHumanConnected 解鎖，恢復 AI 服務
+    firebase.database().ref('chatStatus/' + sessionId).on('value', (snapshot) => {
+        if (snapshot.val() === 'ai') {
+            window.isHumanConnected = false; // 解鎖，讓 AI 重新發言
+            const msgContainer = document.getElementById('ai-chat-messages');
+            if (msgContainer && !document.getElementById('sys-back-to-ai')) {
+                msgContainer.innerHTML += '<div id="sys-back-to-ai" style="margin-bottom: 8px; color: #28a745;"><b>系統：</b> 真人服務已結束，已為您切換回 AI 智能禮賓部。</div>';
+                msgContainer.scrollTop = msgContainer.scrollHeight;
+            }
         }
+    });
+}
         document.addEventListener("DOMContentLoaded", listenForStaffReplies);
         function handleKeyPress(e) {
             if (e.key === 'Enter') sendToDeepSeek();
