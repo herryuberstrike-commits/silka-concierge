@@ -155,6 +155,9 @@
         }
 
         .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 12px;
             border-bottom: 1px solid #e9ecef;
             cursor: pointer;
@@ -334,27 +337,54 @@
         let manualOverrides = {};
         let isLiveStatusPaused = false;
         let activeSessionId = null;
+        let readStatus = {}; // 紀錄各對話房間已讀 timestamp
 
-        // 監聽線上客服訪客列表 (一對多)
+        // 監聽線上客服訪客列表 (一對多：自動置頂 + 未讀紅點)
         db.ref('chats').on('value', (snapshot) => {
             const chats = snapshot.val() || {};
             const userListEl = document.getElementById('userList');
             if (!userListEl) return;
 
             userListEl.innerHTML = '';
-            const sessionIds = Object.keys(chats);
 
-            if (sessionIds.length === 0) {
+            // 將訪客列表轉換並按最新訊息時間從新到舊排序 (置頂最新)
+            const sortedSessions = Object.keys(chats).map(sessionId => {
+                const messages = chats[sessionId] ? Object.values(chats[sessionId]) : [];
+                const lastMsg = messages[messages.length - 1] || {};
+                return {
+                    sessionId: sessionId,
+                    lastTimestamp: lastMsg.timestamp || 0,
+                    lastSender: lastMsg.sender || ''
+                };
+            }).sort((a, b) => b.lastTimestamp - a.lastTimestamp);
+
+            if (sortedSessions.length === 0) {
                 userListEl.innerHTML = '<div style="padding: 12px; color: #888; font-size: 12px; text-align: center;">暫無訪客請求</div>';
                 return;
             }
 
-            sessionIds.forEach(sessionId => {
-                const item = document.createElement('div');
-                item.className = 'user-item' + (sessionId === activeSessionId ? ' active' : '');
-                item.innerHTML = `👤 訪客 (${sessionId.slice(-4)})`;
-                item.onclick = () => selectUserSession(sessionId);
-                userListEl.appendChild(item);
+            sortedSessions.forEach(item => {
+                const sessionId = item.sessionId;
+                const isCurrentActive = (sessionId === activeSessionId);
+
+                // 若為目前選取的對話視窗，更新已讀時間
+                if (isCurrentActive) {
+                    readStatus[sessionId] = item.lastTimestamp;
+                }
+
+                // 判斷是否顯示紅點 (最後訊息為訪客發出，且大於已讀時間)
+                const hasUnread = (item.lastSender === 'guest') && (!readStatus[sessionId] || item.lastTimestamp > readStatus[sessionId]);
+
+                const div = document.createElement('div');
+                div.className = 'user-item' + (isCurrentActive ? ' active' : '');
+
+                div.innerHTML = `
+                    <span>👤 訪客 (${sessionId.slice(-4)})</span>
+                    ${hasUnread ? '<span style="width: 8px; height: 8px; background-color: #dc3545; border-radius: 50%; display: inline-block;"></span>' : ''}
+                `;
+
+                div.onclick = () => selectUserSession(sessionId);
+                userListEl.appendChild(div);
             });
 
             if (activeSessionId && chats[activeSessionId]) {
@@ -368,10 +398,16 @@
             document.getElementById('activeUserHeader').innerText = `正在與 訪客 (${sessionId.slice(-4)}) 對話`;
 
             db.ref('chats/' + sessionId).once('value', (snapshot) => {
-                renderMessages(snapshot.val() || {});
+                const msgs = snapshot.val() || {};
+                const msgArr = Object.values(msgs);
+                if (msgArr.length > 0) {
+                    // 標記為已讀，消去紅點
+                    readStatus[sessionId] = msgArr[msgArr.length - 1].timestamp || Date.now();
+                }
+                renderMessages(msgs);
             });
 
-            renderStaffBusList(); // 重繪 UI 狀態
+            renderStaffBusList();
         }
 
         // 渲染對話紀錄（含日期時間與專業名稱）
