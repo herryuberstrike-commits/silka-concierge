@@ -4906,27 +4906,46 @@
             if (chatBox) chatBox.style.display = 'none';
         }
         function requestHumanStaff() {
-    let sessionId = localStorage.getItem("chat_session_id");
-    if (!sessionId) {
-        sessionId = "user_" + Date.now();
-        localStorage.setItem("chat_session_id", sessionId);
-    }
+            let sessionId = localStorage.getItem("chat_session_id");
+            if (!sessionId) {
+                sessionId = "user_" + Date.now();
+                localStorage.setItem("chat_session_id", sessionId);
+            }
 
-    const msgContainer = document.getElementById('ai-chat-messages');
-    if (msgContainer) {
-        msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 正在為您轉接真人職員，請稍候...</div>';
-        msgContainer.scrollTop = msgContainer.scrollHeight;
-    }
+            const msgContainer = document.getElementById('ai-chat-messages');
+            if (msgContainer) {
+                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #e67e22;"><b>系統：</b> 正在為您轉接真人職員，請稍候...</div>';
+                msgContainer.scrollTop = msgContainer.scrollHeight;
+            }
 
-    if (typeof firebase !== 'undefined' && firebase.database) {
-        firebase.database().ref('chats/' + sessionId).push({
-            sender: 'guest',
-            message: '訪客請求真人協助',
-            timestamp: Date.now()
-        });
-    }
-}
+            if (typeof firebase !== 'undefined' && firebase.database) {
+                firebase.database().ref('chats/' + sessionId).push({
+                    sender: 'guest',
+                    message: '訪客請求真人協助',
+                    timestamp: Date.now()
+                });
+            }
+        }
+        // 監聽 Firebase 真人職員回覆
+        function listenForStaffReplies() {
+            let sessionId = localStorage.getItem("chat_session_id");
+            if (!sessionId || typeof firebase === 'undefined' || !firebase.database) return;
 
+            firebase.database().ref('chats/' + sessionId).on('child_added', (snapshot) => {
+                const msg = snapshot.val();
+                if (msg && msg.sender === 'staff') {
+                    const msgContainer = document.getElementById('ai-chat-messages');
+                    if (msgContainer) {
+                        const msgId = 'msg-' + msg.timestamp;
+                        if (!document.getElementById(msgId)) {
+                            msgContainer.innerHTML += `<div id="${msgId}" style="margin-bottom: 8px; color: #2c3e50;"><b>真人禮賓部：</b> ${msg.message}</div>`;
+                            msgContainer.scrollTop = msgContainer.scrollHeight;
+                        }
+                    }
+                }
+            });
+        }
+        document.addEventListener("DOMContentLoaded", listenForStaffReplies);
         function handleKeyPress(e) {
             if (e.key === 'Enter') sendToDeepSeek();
         }
