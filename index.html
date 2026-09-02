@@ -4867,9 +4867,9 @@
             <div style="padding: 10px; border-top: 1px solid #ddd; display: flex; background: #ffffff;">
                 <input type="text" id="ai-user-input" placeholder="請輸入您想查詢的問題..."
                     style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; outline: none;"
-                    onkeypress="handleKeyPress(event)">
+                    onkeydown="if(event.key==='Enter'){sendToDeepSeek();}">
                 <button onclick="sendToDeepSeek()"
-                    style="background: #2c3e50; color: #ffffff; border: none; padding: 8px 12px; margin-left: 5px; border-radius: 4px; cursor: pointer; font-weight: bold;">發送</button>
+                    style="background: #2c3e50; color: #ffffff; border: none; padding: 8px 12px; margin-left: 6px; border-radius: 4px; cursor: pointer;">發送</button>
             </div>
         </div>
     </div>
@@ -5117,7 +5117,10 @@
 
         document.addEventListener("DOMContentLoaded", listenForStaffReplies);
         function handleKeyPress(e) {
-            if (e.key === 'Enter') sendToDeepSeek();
+            if (e.key === 'Enter') {
+                e.preventDefault(); // 防止預設跳行
+                sendToDeepSeek();   // 進入我們剛才寫好有絕對攔截機制的函數
+            }
         }
 
         // 3. 發送 API 請求
@@ -5129,13 +5132,63 @@
             const text = input.value.trim();
             if (!text) return;
 
-            msgContainer.innerHTML += '<div style="margin-bottom: 8px; text-align: right; color: #007bff;"><b>您：</b> ' + text + '</div>';
+            let sessionId = localStorage.getItem("chat_session_id");
+            if (!sessionId) {
+                sessionId = "user_" + Date.now();
+                localStorage.setItem("chat_session_id", sessionId);
+            }
+
+            const now = Date.now();
+            const dateObj = new Date(now);
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            const hours = String(dateObj.getHours()).padStart(2, '0');
+            const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+            const timeStr = `${month}/${day} ${hours}:${minutes}`;
+
+            // 🔴 【絕對第一行攔截】：只要係真人模式，立刻鎖死，絕對不准走去行 AI！
+            const isHuman = (window.forceHumanMode === true) || (localStorage.getItem("chat_mode_" + sessionId) === 'human');
+
+            if (isHuman) {
+                // 1. 畫面顯示訪客訊息
+                msgContainer.innerHTML += `
+            <div style="margin-bottom: 8px; text-align: right;">
+                <span style="font-weight: bold; color: #007bff; font-size: 12px;">您</span>
+                <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+                <div style="color: #007bff; margin-top: 2px;">${text}</div>
+            </div>`;
+                input.value = '';
+                msgContainer.scrollTop = msgContainer.scrollHeight;
+
+                // 2. 嚴格推送到 Firebase 供 staff.html 接收
+                if (typeof firebase !== 'undefined' && firebase.database) {
+                    firebase.database().ref('chats/' + sessionId).push({
+                        sender: 'guest',
+                        message: text,
+                        timestamp: now
+                    });
+                    firebase.database().ref('chatStatus/' + sessionId).set('human');
+                }
+                return; // 🛑 徹底中斷，AI 永世接觸唔到呢句嘢！
+            }
+
+            // ==========================================
+            // ⬇️ 以下才是原本的 AI 模式（呼叫 DeepSeek API）
+            // ==========================================
+            msgContainer.innerHTML += `
+        <div style="margin-bottom: 8px; text-align: right;">
+            <span style="font-weight: bold; color: #007bff; font-size: 12px;">您</span>
+            <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+            <div style="color: #007bff; margin-top: 2px;">${text}</div>
+        </div>`;
             input.value = '';
             msgContainer.scrollTop = msgContainer.scrollHeight;
 
-            const loadingId = 'loading-' + Date.now();
-            msgContainer.innerHTML += '<div id="' + loadingId + '" style="margin-bottom: 8px; color: #666;"><b>AI 禮賓部：</b> 正在思考中...</div>';
+            const loadingId = 'loading-' + now;
+            msgContainer.innerHTML += `<div id="${loadingId}" style="margin-bottom: 8px; color: #666;"><b>AI 禮賓部：</b> 正在思考中...</div>`;
             msgContainer.scrollTop = msgContainer.scrollHeight;
+
+            const knowledgeData = typeof HOTEL_KNOWLEDGE !== 'undefined' ? HOTEL_KNOWLEDGE : '';
 
             try {
                 const response = await fetch('https://api.deepseek.com/chat/completions', {
@@ -5149,34 +5202,30 @@
                         messages: [
                             {
                                 role: "system",
-                                content: `你係荃灣絲麗酒店嘅智能禮賓部助手。
-                        
-                        以下是你可以參考的完整網頁資料：
-                        ${HOTEL_KNOWLEDGE}
-                        
-                        【規則】
-                        1. 必須 100% 根據以上資料回答旅客。
-                        2. 訪客目前已選擇使用【${window.currentLang}】進行溝通，你必須全程堅決使用【${window.currentLang}】來回覆用戶。
-                        3. 如果資料中沒有答案，請用【${window.currentLang}】禮貌告知，並提示可以點擊上方按鈕聯絡真人職員。`
+                                content: `你係荃灣絲麗酒店嘅智能禮賓部助手。\n${knowledgeData}\n【規則】請全程使用【${window.currentLang || 'zh-HK'}】回答。`
                             },
                             { role: "user", content: text }
-                        ],
-                        stream: false
+                        ]
                     })
                 });
 
                 const data = await response.json();
-                const reply = data.choices[0].message.content;
+                let reply = data.choices[0].message.content;
 
-                const loadingElement = document.getElementById(loadingId);
-                if (loadingElement) loadingElement.remove();
+                if (typeof marked !== 'undefined') {
+                    reply = marked.parse(reply);
+                }
 
-                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: #333;"><b>AI 禮賓部：</b> ' + reply + '</div>';
+                document.getElementById(loadingId)?.remove();
+                msgContainer.innerHTML += `
+            <div style="margin-bottom: 8px;">
+                <span style="font-weight: bold; color: #333; font-size: 12px;">AI 禮賓部</span>
+                <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+                <div style="color: #333; margin-top: 2px;">${reply}</div>
+            </div>`;
             } catch (error) {
-                const loadingElement = document.getElementById(loadingId);
-                if (loadingElement) loadingElement.remove();
-
-                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: red;"><b>系統：</b> 連線發生錯誤，請稍後再試。</div>';
+                document.getElementById(loadingId)?.remove();
+                msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: red;"><b>系統：</b> 連線發生錯誤。</div>';
             }
             msgContainer.scrollTop = msgContainer.scrollHeight;
         }
