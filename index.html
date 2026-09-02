@@ -4804,6 +4804,13 @@
     <script src="https://udify.app/embed.min.js" id="ZyZw64F5gP26hvMv" defer>
     </script>
     <style>
+        /* 強制隱藏所有多餘/舊版按鈕 */
+        #human-concierge-btn-container,
+        [id*="human-concierge"] {
+            display: none !important;
+        }
+
+        /* 保留 Dify 原生藍色氣泡 */
         #dify-chatbot-bubble-button {
             background-color: #1C64F2 !important;
         }
@@ -4813,25 +4820,6 @@
             height: 40rem !important;
         }
     </style>
-    <!-- 線上人工禮賓部浮動按鈕 -->
-    <div id="human-concierge-btn-container" style="position: fixed; bottom: 90px; right: 20px; z-index: 9999;">
-        <a href="https://your-hotel-link.com/contact" target="_blank" style="
-    background-color: #1C64F2;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  ">
-            💬 聯繫線上人工禮賓部
-        </a>
-    </div>
 </body>
 
 </html>
