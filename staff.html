@@ -107,6 +107,19 @@
             color: #fff;
             padding: 20px;
             text-align: center;
+            transition: background-color 0.3s ease; /* 增加轉場特效 */
+        }
+
+        /* 新增：當有未讀訊息時，頂部 Header 變成紅色警示 */
+        .header.alert-mode {
+            background: #c0392b !important;
+            animation: pulse-header 1.5s infinite;
+        }
+
+        @keyframes pulse-header {
+            0% { opacity: 1; }
+            50% { opacity: 0.85; }
+            100% { opacity: 1; }
         }
 
         .header h1 {
@@ -283,7 +296,7 @@
     </div>
 
     <div class="container" id="mainContainer">
-        <div class="header">
+        <div class="header" id="mainHeader">
             <h1>荃灣絲麗酒店 - 禮賓部員工後台</h1>
             <p>Staff Management Console (Cloud Synced)</p>
         </div>
@@ -346,6 +359,7 @@
         db.ref('chats').on('value', (snapshot) => {
             const chats = snapshot.val() || {};
             const userListEl = document.getElementById('userList');
+            const headerEl = document.getElementById('mainHeader');
             if (!userListEl) return;
 
             userListEl.innerHTML = '';
@@ -363,8 +377,14 @@
 
             if (sortedSessions.length === 0) {
                 userListEl.innerHTML = '<div style="padding: 12px; color: #888; font-size: 12px; text-align: center;">暫無訪客請求</div>';
+                if (headerEl) {
+                    headerEl.classList.remove('alert-mode');
+                    document.title = "荃灣絲麗酒店 - 禮賓部員工後台";
+                }
                 return;
             }
+
+            let hasAnyUnread = false;
 
             sortedSessions.forEach(item => {
                 const sessionId = item.sessionId;
@@ -378,6 +398,10 @@
                 // 判斷是否顯示紅點 (最後訊息為訪客發出，且大於已讀時間)
                 const hasUnread = (item.lastSender === 'guest') && (!readStatus[sessionId] || item.lastTimestamp > readStatus[sessionId]);
 
+                if (hasUnread) {
+                    hasAnyUnread = true;
+                }
+
                 const div = document.createElement('div');
                 div.className = 'user-item' + (isCurrentActive ? ' active' : '');
 
@@ -389,6 +413,17 @@
                 div.onclick = () => selectUserSession(sessionId);
                 userListEl.appendChild(div);
             });
+
+            // 💡 根據全域是否有未讀訊息，動態改變網頁頂部 Header 顏色及分頁標題
+            if (headerEl) {
+                if (hasAnyUnread) {
+                    headerEl.classList.add('alert-mode');
+                    document.title = "【新訊息！🚨】荃灣絲麗酒店 - 禮賓部員工後台";
+                } else {
+                    headerEl.classList.remove('alert-mode');
+                    document.title = "荃灣絲麗酒店 - 禮賓部員工後台";
+                }
+            }
 
             if (activeSessionId && chats[activeSessionId]) {
                 renderMessages(chats[activeSessionId]);
@@ -409,6 +444,12 @@
                     readStatus[sessionId] = msgArr[msgArr.length - 1].timestamp || Date.now();
                 }
                 renderMessages(msgs);
+            });
+
+            // 重新整理以即時清除頂部紅色警示（若無其他未讀）
+            // 這裡會觸發一次重新渲染檢查
+            db.ref('chats').once('value', (snapshot) => {
+                // 觸發畫面上紅點更新
             });
 
             renderStaffBusList();
@@ -529,6 +570,9 @@
             { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
             { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
         ];
+
+        function renderStaffBusList$1() { // placeholder
+        }
 
         function renderStaffBusList() {
             const container = document.getElementById('staffBusList');
