@@ -2436,6 +2436,7 @@
                 endHumanBtn: '結束真人對話',
                 sendBtn: '發送',
                 inputPlaceholder: '請輸入您想查詢的問題...',
+                botName: 'AI 禮賓部',
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2697,6 +2698,7 @@
                 endHumanBtn: '结束真人对话',
                 sendBtn: '发送',
                 inputPlaceholder: '请输入您想查询的问题...',
+                botName: 'AI 礼宾部',
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2958,6 +2960,7 @@
                 endHumanBtn: 'End Live Chat',
                 sendBtn: 'Send',
                 inputPlaceholder: 'Type your message here...',
+                botName: 'AI Concierge',
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -3218,6 +3221,7 @@
                 endHumanBtn: 'チャットを終了',
                 sendBtn: '送信',
                 inputPlaceholder: '質問を入力してください...',
+                botName: "AIコンシェルジュ",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -3479,6 +3483,7 @@
                 endHumanBtn: '상담 종료',
                 sendBtn: '전송',
                 inputPlaceholder: '문의 사항을 입력하세요...',
+                botName: 'AI 컨시어지',
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3740,6 +3745,7 @@
                 endHumanBtn: 'Kết thúc chat',
                 sendBtn: 'Gửi',
                 inputPlaceholder: 'Nhập câu hỏi của bạn...',
+                botName: 'Trợ lý AI',
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -4004,6 +4010,7 @@
                 endHumanBtn: 'चैट समाप्त करें',
                 sendBtn: 'भेजें',
                 inputPlaceholder: 'अपना प्रश्न यहाँ लिखें...',
+                botName: 'AI दरबान',
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -4262,6 +4269,7 @@
                 endHumanBtn: 'I-end ang Chat',
                 sendBtn: 'Ipadala',
                 inputPlaceholder: 'I-type ang iyong katanungan...',
+                botName: 'AI Concierge',
             }
         };
 
@@ -5030,35 +5038,38 @@
             }
         }
 
-        function selectLanguage(langName, welcomeMsg) {
+       function selectLanguage(langName, welcomeMsg) {
             window.currentLang = langName;
 
-            // 1. 靜默寫入歡迎語
+            // 1. 撈取主頁字典 t
+            const i18n = (window.t && window.t[langName]) ? window.t[langName] : {};
+            // 取得對應語言的 AI 名字（如果字典冇就預設返中文）
+            const botName = i18n.botName || 'AI 禮賓部';
+
+            // 2. 寫入歡迎語（使用動態的 botName）
             const msgContainer = document.getElementById('ai-chat-messages');
             if (msgContainer) {
-                msgContainer.innerHTML = '<div style="margin-bottom: 8px; color: #333;"><b>AI ' + langName + '：</b>' + welcomeMsg + '</div>';
+                msgContainer.innerHTML = '<div style="margin-bottom: 8px; color: #333;"><b>' + botName + '：</b>' + welcomeMsg + '</div>';
             }
 
-            // 2. 撈取主頁字典 t，自動更新發送按鈕文字 & 輸入框 Placeholder
-            const i18n = (typeof t !== 'undefined' && t[langName]) ? t[langName] : {};
-
+            // 3. 自動更新發送按鈕文字 (支援 i18n.sendBtn 或 i18n.aiSendBtn)
             const sendBtn = document.getElementById('ai-send-btn');
-            if (sendBtn && i18n.aiSendBtn) {
-                sendBtn.innerText = i18n.aiSendBtn;
+            if (sendBtn) {
+                sendBtn.innerText = i18n.sendBtn || i18n.aiSendBtn || '發送';
             }
 
+            // 4. 自動更新輸入框 Placeholder (支援 i18n.inputPlaceholder 或 i18n.aiInputPlaceholder)
             const chatInput = document.getElementById('ai-user-input');
-            if (chatInput && i18n.aiInputPlaceholder) {
-                chatInput.placeholder = i18n.aiInputPlaceholder;
+            if (chatInput) {
+                chatInput.placeholder = i18n.inputPlaceholder || i18n.aiInputPlaceholder || '請輸入您想查詢的問題...';
             }
 
-            // 3. 更新右下角按鈕文字
+            // 5. 更新右下角按鈕文字 (優先用字典裡的 botBtn，如果冇先用 AI + 語言名)
             const btnText = document.getElementById('ai-btn-text');
             if (btnText) {
-                btnText.innerText = 'AI ' + langName;
+                btnText.innerText = i18n.botBtn || ('AI ' + langName);
             }
         }
-
         function closeChat() {
             const chatBox = document.getElementById('ai-chat-box');
             if (chatBox) chatBox.style.display = 'none';
@@ -5124,7 +5135,7 @@
             }
         }
 
-        // 3. 核心發送訊息（雙重絕對攔截）
+           // 3. 核心發送訊息（雙重絕對攔截）
         async function sendToDeepSeek() {
             const input = document.getElementById('ai-user-input');
             const msgContainer = document.getElementById('ai-chat-messages');
@@ -5148,10 +5159,15 @@
             const minutes = String(dateObj.getMinutes()).padStart(2, '0');
             const timeStr = `${month}/${day} ${hours}:${minutes}`;
 
+            // 取得當前語言對應的稱呼（訪客與 AI 名字）
+            const currentI18n = (window.t && window.t[window.currentLang]) ? window.t[window.currentLang] : {};
+            const dynamicGuestName = currentI18n.guestName || '您';
+            const dynamicBotName = currentI18n.botName || 'AI 禮賓部';
+
             // 渲染訪客訊息
             msgContainer.innerHTML += `
         <div style="margin-bottom: 8px; text-align: right;">
-            <span style="font-weight: bold; color: #007bff; font-size: 12px;">您</span>
+            <span style="font-weight: bold; color: #007bff; font-size: 12px;">${dynamicGuestName}</span>
             <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
             <div style="color: #007bff; margin-top: 2px;">${text}</div>
         </div>`;
@@ -5174,7 +5190,7 @@
 
             // 4. AI 模式（呼叫 DeepSeek API）
             const loadingId = 'loading-' + now;
-            msgContainer.innerHTML += `<div id="${loadingId}" style="margin-bottom: 8px; color: #666;"><b>AI 禮賓部：</b> 正在思考中...</div>`;
+            msgContainer.innerHTML += `<div id="${loadingId}" style="margin-bottom: 8px; color: #666;"><b>${dynamicBotName}：</b> 正在思考中...</div>`;
             msgContainer.scrollTop = msgContainer.scrollHeight;
 
             const knowledgeData = typeof HOTEL_KNOWLEDGE !== 'undefined' ? HOTEL_KNOWLEDGE : '';
@@ -5191,7 +5207,7 @@
                         messages: [
                             {
                                 role: "system",
-                                content: `你係荃灣絲麗酒店嘅智能禮賓部助手。\n${knowledgeData}\n【規則】請全程使用【${window.currentLang || 'zh-HK'}】回答。`
+                                content: `你係荃灣絲麗酒店嘅智能禮賓部助手。\n${knowledgeData}\n【規則】請全程使用【${window.currentLang || '繁體中文'}】回答。`
                             },
                             { role: "user", content: text }
                         ]
@@ -5208,7 +5224,7 @@
                 document.getElementById(loadingId)?.remove();
                 msgContainer.innerHTML += `
             <div style="margin-bottom: 8px;">
-                <span style="font-weight: bold; color: #333; font-size: 12px;">AI 禮賓部</span>
+                <span style="font-weight: bold; color: #333; font-size: 12px;">${dynamicBotName}</span>
                 <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
                 <div style="color: #333; margin-top: 2px;">${reply}</div>
             </div>`;
