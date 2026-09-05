@@ -384,6 +384,22 @@
         let activeSessionId = null;
         let readStatus = {};
 
+        // 🟢 發送原生桌面系統通知函數
+        function sendDesktopNotification(title, body) {
+            if ("Notification" in window && Notification.permission === "granted") {
+                const notification = new Notification(title, {
+                    body: body,
+                    tag: 'new-guest-message',
+                    renotify: true
+                });
+
+                notification.onclick = function() {
+                    window.focus();
+                    this.close();
+                };
+            }
+        }
+
         // 🟢 Google 翻譯工具函數
         async function translateText(text, targetLang, sourceLang = 'auto') {
             if (!text || text.trim() === '') return text;
@@ -421,6 +437,11 @@
                 document.getElementById('mainContainer').style.display = 'block';
                 document.getElementById('errorMsg').style.display = 'none';
                 renderStaffBusList();
+
+                // 🔔 登入成功時請求原生桌面通知權限
+                if ("Notification" in window && Notification.permission !== "granted") {
+                    Notification.requestPermission();
+                }
             } else {
                 document.getElementById('errorMsg').style.display = 'block';
             }
@@ -527,6 +548,13 @@
 
                     if (hasUnread) {
                         hasAnyUnread = true;
+                        
+                        // 🔔 有新未讀訊息時觸發桌面系統通知
+                        const guestId = sessionId.slice(-4);
+                        sendDesktopNotification(
+                            `🚨 收到來自訪客 (${guestId}) 的新訊息！`,
+                            `訪客發來了新訊息，請點擊返回後台查看與回覆。`
+                        );
                     }
 
                     const isWaiting = (item.status === 'waiting');
