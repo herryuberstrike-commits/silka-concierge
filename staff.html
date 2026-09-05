@@ -107,10 +107,9 @@
             color: #fff;
             padding: 20px;
             text-align: center;
-            transition: background-color 0.3s ease; /* 增加轉場特效 */
+            transition: background-color 0.3s ease;
         }
 
-        /* 新增：當有未讀訊息時，頂部 Header 變成紅色警示 */
         .header.alert-mode {
             background: #c0392b !important;
             animation: pulse-header 1.5s infinite;
@@ -150,7 +149,6 @@
             gap: 6px;
         }
 
-        /* 💬 客服中控台樣式 */
         .chat-console {
             display: flex;
             height: 380px;
@@ -228,7 +226,6 @@
             font-weight: bold;
         }
 
-        /* 巴士列表樣式 */
         .staff-bus-item {
             background: #f8f9fa;
             border: 1px solid #ced4da;
@@ -289,9 +286,12 @@
         <div class="login-card">
             <h2>職員身分驗證</h2>
             <p>荃灣絲麗酒店 - 禮賓部後台</p>
-            <input type="password" id="passwordInput" placeholder="請輸入員工密碼" onkeypress="handleKeyPress(event)">
-            <button onclick="checkPassword()">登入後台</button>
-            <div id="errorMsg" class="error-msg">密碼錯誤，請重新輸入！</div>
+            <form id="loginForm" onsubmit="checkLogin(event)">
+                <input type="text" id="usernameInput" placeholder="請輸入員工帳號" autocomplete="username" required>
+                <input type="password" id="passwordInput" placeholder="請輸入員工密碼" autocomplete="current-password" required>
+                <button type="submit">登入後台</button>
+            </form>
+            <div id="errorMsg" class="error-msg">帳號或密碼錯誤，請重新輸入！</div>
         </div>
     </div>
 
@@ -349,13 +349,43 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        const CORRECT_USERNAME = "stwconciergestaff";
         const CORRECT_PASSWORD = "stw3824";
         let manualOverrides = {};
         let isLiveStatusPaused = false;
         let activeSessionId = null;
-        let readStatus = {}; // 紀錄各對話房間已讀 timestamp
+        let readStatus = {};
 
-        // 監聽線上客服訪客列表 (一對多：自動置頂 + 未讀紅點)
+        // 頁面載入時：自動帶入上次記憶的帳號與密碼
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedUser = localStorage.getItem('savedUsername');
+            const savedPass = localStorage.getItem('savedPassword');
+
+            if (savedUser) document.getElementById('usernameInput').value = savedUser;
+            if (savedPass) document.getElementById('passwordInput').value = savedPass;
+        });
+
+        // 登入驗證與記憶帳密
+        function checkLogin(e) {
+            if (e) e.preventDefault();
+            const userVal = document.getElementById('usernameInput').value.trim();
+            const passVal = document.getElementById('passwordInput').value.trim();
+
+            if (userVal === CORRECT_USERNAME && passVal === CORRECT_PASSWORD) {
+                // 儲存正確的帳密到 LocalStorage，以便下次自動帶入
+                localStorage.setItem('savedUsername', userVal);
+                localStorage.setItem('savedPassword', passVal);
+
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('mainContainer').style.display = 'block';
+                document.getElementById('errorMsg').style.display = 'none';
+                renderStaffBusList();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        // 監聽線上客服訪客列表
         db.ref('chats').on('value', (snapshot) => {
             const chats = snapshot.val() || {};
             const userListEl = document.getElementById('userList');
@@ -364,7 +394,6 @@
 
             userListEl.innerHTML = '';
 
-            // 將訪客列表轉換並按最新訊息時間從新到舊排序 (置頂最新)
             const sortedSessions = Object.keys(chats).map(sessionId => {
                 const messages = chats[sessionId] ? Object.values(chats[sessionId]) : [];
                 const lastMsg = messages[messages.length - 1] || {};
@@ -390,12 +419,10 @@
                 const sessionId = item.sessionId;
                 const isCurrentActive = (sessionId === activeSessionId);
 
-                // 若為目前選取的對話視窗，更新已讀時間
                 if (isCurrentActive) {
                     readStatus[sessionId] = item.lastTimestamp;
                 }
 
-                // 判斷是否顯示紅點 (最後訊息為訪客發出，且大於已讀時間)
                 const hasUnread = (item.lastSender === 'guest') && (!readStatus[sessionId] || item.lastTimestamp > readStatus[sessionId]);
 
                 if (hasUnread) {
@@ -414,7 +441,6 @@
                 userListEl.appendChild(div);
             });
 
-            // 💡 根據全域是否有未讀訊息，動態改變網頁頂部 Header 顏色及分頁標題
             if (headerEl) {
                 if (hasAnyUnread) {
                     headerEl.classList.add('alert-mode');
@@ -430,39 +456,28 @@
             }
         });
 
-        // 切換目前對話的訪客
         function selectUserSession(sessionId) {
             activeSessionId = sessionId;
             document.getElementById('activeUserTitle').innerText = `正在與 訪客 (${sessionId.slice(-4)}) 對話`;
-            document.getElementById('endChatBtn').style.display = 'inline-block'; // 顯示結束按鈕
+            document.getElementById('endChatBtn').style.display = 'inline-block';
 
             db.ref('chats/' + sessionId).once('value', (snapshot) => {
                 const msgs = snapshot.val() || {};
                 const msgArr = Object.values(msgs);
                 if (msgArr.length > 0) {
-                    // 標記為已讀，消去紅點
                     readStatus[sessionId] = msgArr[msgArr.length - 1].timestamp || Date.now();
                 }
                 renderMessages(msgs);
             });
 
-            // 重新整理以即時清除頂部紅色警示（若無其他未讀）
-            // 這裡會觸發一次重新渲染檢查
-            db.ref('chats').once('value', (snapshot) => {
-                // 觸發畫面上紅點更新
-            });
-
+            db.ref('chats').once('value', (snapshot) => {});
             renderStaffBusList();
         }
 
-        // 職員點擊「結束對話」：將狀態改回 'ai'
         function endHumanChat() {
             if (!activeSessionId) return;
 
-            // 1. 將狀態切換回 AI
             db.ref('chatStatus/' + activeSessionId).set('ai');
-
-            // 2. 發送系統提示訊息
             db.ref('chats/' + activeSessionId).push({
                 sender: 'staff',
                 message: '【系統提示】禮賓專員已結束服務，對話已切換回 AI 智能禮賓部。',
@@ -472,7 +487,6 @@
             alert("已成功結束對話，已將該訪客交回 AI 接管！");
         }
 
-        // 渲染對話紀錄（含日期時間與專業名稱）
         function renderMessages(msgObj) {
             const container = document.getElementById('staffChatMessages');
             if (!container) return;
@@ -483,7 +497,6 @@
                 const color = msg.sender === 'staff' ? '#2c3e50' : '#007bff';
                 const senderName = msg.sender === 'staff' ? '禮賓專員' : '訪客';
 
-                // 格式化時間（例如：09/03 14:25）
                 const dateObj = msg.timestamp ? new Date(msg.timestamp) : new Date();
                 const month = String(dateObj.getMonth() + 1).padStart(2, '0');
                 const day = String(dateObj.getDate()).padStart(2, '0');
@@ -501,7 +514,6 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        // 發送職員回覆
         function sendStaffMessage() {
             const input = document.getElementById('staffInput');
             const text = input.value.trim();
@@ -516,7 +528,6 @@
             input.value = '';
         }
 
-        // 監聽後台雲端狀態（含班次與全局暫停）
         db.ref('busManualOverrides').on('value', (snapshot) => {
             const data = snapshot.val() || {};
             manualOverrides = data;
@@ -544,17 +555,6 @@
             }
         }
 
-        function checkPassword() {
-            if (document.getElementById('passwordInput').value === CORRECT_PASSWORD) {
-                document.getElementById('loginOverlay').style.display = 'none';
-                document.getElementById('mainContainer').style.display = 'block';
-                renderStaffBusList();
-            } else {
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        }
-        function handleKeyPress(e) { if (e.key === 'Enter') checkPassword(); }
-
         const rawBusData = [
             { id: 1, hotel: "08:00", kMin: "08:15", tMin: "08:30" },
             { id: 2, hotel: "09:00", kMin: "09:15", tMin: "09:30" },
@@ -570,9 +570,6 @@
             { id: 12, hotel: "19:00", kMin: "19:15", tMin: "19:30" },
             { id: 13, hotel: "20:00", kMin: "20:15", tMin: "20:30" }
         ];
-
-        function renderStaffBusList$1() { // placeholder
-        }
 
         function renderStaffBusList() {
             const container = document.getElementById('staffBusList');
