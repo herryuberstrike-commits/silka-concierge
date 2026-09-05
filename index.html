@@ -1400,8 +1400,8 @@
 
         <!-- 香港旅遊攻略 -> 購物 -> 海港城分頁 -->
         <div id="guideHarbourCitySection" class="section-content">
-            <button class="back-btn" onclick="showSection('guideShoppingSection')">⬅ 返回購物攻略</button>
-            - 購物</button>
+            <button class="back-btn" id="ui-back-guideharbourcity" onclick="showSection('guideShoppingSection')">⬅
+                返回香港旅遊攻略 - 購物</button>
             <h3 id="ui-guideharbourcity-header" style="margin-top: 0; font-size: 16px; color: #2c3e50;">香港旅遊攻略 -
                 購物 -
                 海港城</h3>
@@ -2437,6 +2437,7 @@
                 sendBtn: '發送',
                 inputPlaceholder: '請輸入您想查詢的問題...',
                 botName: 'AI 禮賓部',
+                backToSightseeing: "⬅ 返回香港旅遊攻略 - 購物",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2699,6 +2700,7 @@
                 sendBtn: '发送',
                 inputPlaceholder: '请输入您想查询的问题...',
                 botName: 'AI 礼宾部',
+                backToSightseeing: "⬅ 返回香港旅游攻略 - 购物",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2961,6 +2963,7 @@
                 sendBtn: 'Send',
                 inputPlaceholder: 'Type your message here...',
                 botName: 'AI Concierge',
+                backToSightseeing: "⬅ Back to HK Travel Guide - Shopping",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -3222,6 +3225,7 @@
                 sendBtn: '送信',
                 inputPlaceholder: '質問を入力してください...',
                 botName: "AIコンシェルジュ",
+                backToSightseeing: "⬅ 香港観光ガイドに戻る - ショッピング",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -3484,6 +3488,7 @@
                 sendBtn: '전송',
                 inputPlaceholder: '문의 사항을 입력하세요...',
                 botName: 'AI 컨시어지',
+                backToSightseeing: "⬅ 홍콩 여행 가이드로 돌아가기 - 쇼핑",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3746,6 +3751,7 @@
                 sendBtn: 'Gửi',
                 inputPlaceholder: 'Nhập câu hỏi của bạn...',
                 botName: 'Trợ lý AI',
+                backToSightseeing: "⬅ Quay lại Cẩm nang Du lịch HK - Mua sắm",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -4011,6 +4017,7 @@
                 sendBtn: 'भेजें',
                 inputPlaceholder: 'अपना प्रश्न यहाँ लिखें...',
                 botName: 'AI दरबान',
+                backToSightseeing: "⬅ हॉन्गकॉन्ग यात्रा गाइड पर वापस जाएं - खरीदारी",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -4270,6 +4277,7 @@
                 sendBtn: 'Ipadala',
                 inputPlaceholder: 'I-type ang iyong katanungan...',
                 botName: 'AI Concierge',
+                backToSightseeing: "⬅ Bumalik sa Gabay sa Paglalakbay sa HK - Pag-shopping",
             }
         };
 
@@ -4738,6 +4746,11 @@
                 'ui-back-guideroute2': (langData.backGuide || '⬅ 返回香港旅遊攻略'),
                 'ai-btn-text': (langData.aiBtnText || '智能AI禮賓部'),
                 'ai-send-btn': (langData.aiSendBtn || '發送'),
+                'ui-back-guideshopping': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
+                'ui-back-guideharbourcity': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
+                'ui-back-guidecausewaybay': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
+                'ui-back-guidesoho': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
+                'ui-back-guideladies': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
             };
 
             // 🟢 加喺呢度！自動更新 AI 發送按鈕與輸入框 Placeholder
