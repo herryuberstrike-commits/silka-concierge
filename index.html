@@ -4433,6 +4433,9 @@
 
         function selectLang(lang) {
             currentLang = lang;
+            if (typeof mySessionId !== 'undefined' && mySessionId) {
+                db.ref('chatStatus/' + mySessionId + '_lang').set(lang);
+            }
             document.getElementById('lang-modal').style.display = 'none';
             document.getElementById('mainContainer').style.display = 'block';
             updateUIText();
@@ -5038,7 +5041,7 @@
             }
         }
 
-       function selectLanguage(langName, welcomeMsg) {
+        function selectLanguage(langName, welcomeMsg) {
             window.currentLang = langName;
 
             // 1. 撈取主頁字典 t
@@ -5091,6 +5094,9 @@
 
             if (typeof firebase !== 'undefined' && firebase.database) {
                 firebase.database().ref('chatStatus/' + sessionId).set('human');
+                if (typeof currentLang !== 'undefined' && currentLang) {
+                    firebase.database().ref('chatStatus/' + sessionId + '_lang').set(currentLang);
+                }
                 firebase.database().ref('chats/' + sessionId).push({
                     sender: 'guest',
                     message: '⚠️ 訪客請求真人協助',
@@ -5135,7 +5141,7 @@
             }
         }
 
-           // 3. 核心發送訊息（雙重絕對攔截）
+        // 3. 核心發送訊息（雙重絕對攔截）
         async function sendToDeepSeek() {
             const input = document.getElementById('ai-user-input');
             const msgContainer = document.getElementById('ai-chat-messages');
@@ -5257,12 +5263,16 @@
                         const minutes = String(dateObj.getMinutes()).padStart(2, '0');
                         const timeStr = `${month}/${day} ${hours}:${minutes}`;
 
+                        const activeLang = typeof currentLang !== 'undefined' ? currentLang : 'zh-HK';
+                        const langObj = t[activeLang] || t['zh-HK'];
+                        const staffDisplayName = langObj.agentName || '禮賓專員';
+
                         msgContainer.innerHTML += `
-                    <div id="${msgId}" style="margin-bottom: 8px; text-align: left;">
-                        <span style="font-weight: bold; color: #2c3e50; font-size: 12px;">禮賓專員</span>
-                        <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
-                        <div style="color: #2c3e50; margin-top: 2px;">${msg.message}</div>
-                    </div>`;
+<div id="${msgId}" style="margin-bottom: 8px; text-align: left;">
+    <span style="font-weight: bold; color: #2c3e50; font-size: 12px;">${staffDisplayName}</span>
+    <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+    <div style="color: #2c3e50; margin-top: 2px;">${msg.message}</div>
+</div>`;
                         msgContainer.scrollTop = msgContainer.scrollHeight;
                     }
                 }
@@ -5393,12 +5403,16 @@
                 }
 
                 document.getElementById(loadingId)?.remove();
+                const activeLang = typeof currentLang !== 'undefined' ? currentLang : 'zh-HK';
+                const langObj = t[activeLang] || t['zh-HK'];
+                const aiDisplayName = langObj.botName || 'AI 禮賓部';
+
                 msgContainer.innerHTML += `
-            <div style="margin-bottom: 8px;">
-                <span style="font-weight: bold; color: #333; font-size: 12px;">AI 禮賓部</span>
-                <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
-                <div style="color: #333; margin-top: 2px;">${reply}</div>
-            </div>`;
+<div style="margin-bottom: 8px;">
+    <span style="font-weight: bold; color: #333; font-size: 12px;">${aiDisplayName}</span>
+    <span style="font-size: 10px; color: #888; margin-left: 4px;">${timeStr}</span>
+    <div style="color: #333; margin-top: 2px;">${reply}</div>
+</div>`;
             } catch (error) {
                 document.getElementById(loadingId)?.remove();
                 msgContainer.innerHTML += '<div style="margin-bottom: 8px; color: red;"><b>系統：</b> 連線發生錯誤。</div>';
@@ -5416,6 +5430,7 @@
                 }
             }
         }
+
     </script>
 </body>
 

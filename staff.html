@@ -356,6 +356,20 @@
         let activeSessionId = null;
         let readStatus = {};
 
+        // 🟢 Google 翻譯工具函數
+        async function translateText(text, targetLang, sourceLang = 'auto') {
+            if (!text || text.trim() === '') return text;
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                return data[0].map(item => item[0]).join('');
+            } catch (e) {
+                console.error("Translation error:", e);
+                return text;
+            }
+        }
+
         // 頁面載入時：自動帶入上次記憶的帳號與密碼
         window.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('savedUsername');
@@ -372,7 +386,6 @@
             const passVal = document.getElementById('passwordInput').value.trim();
 
             if (userVal === CORRECT_USERNAME && passVal === CORRECT_PASSWORD) {
-                // 儲存正確的帳密到 LocalStorage，以便下次自動帶入
                 localStorage.setItem('savedUsername', userVal);
                 localStorage.setItem('savedPassword', passVal);
 
@@ -487,12 +500,15 @@
             alert("已成功結束對話，已將該訪客交回 AI 接管！");
         }
 
-        function renderMessages(msgObj) {
+        // 🟢 渲染對話：訪客外語自動翻譯成中文，並保留原文
+        async function renderMessages(msgObj) {
             const container = document.getElementById('staffChatMessages');
             if (!container) return;
             container.innerHTML = '';
 
-            Object.values(msgObj).forEach(msg => {
+            const msgList = Object.values(msgObj);
+
+            for (const msg of msgList) {
                 const align = msg.sender === 'staff' ? 'right' : 'left';
                 const color = msg.sender === 'staff' ? '#2c3e50' : '#007bff';
                 const senderName = msg.sender === 'staff' ? '禮賓專員' : '訪客';
@@ -504,24 +520,62 @@
                 const minutes = String(dateObj.getMinutes()).padStart(2, '0');
                 const timeStr = `${month}/${day} ${hours}:${minutes}`;
 
+                let displayMsg = msg.message;
+
+                // 若是客人傳來的訊息，自動翻譯為繁體中文
+                if (msg.sender === 'guest') {
+                    const translatedText = await translateText(msg.message, 'zh-TW');
+                    displayMsg = `<div>${translatedText}</div><div style="font-size:11px; color:#888; margin-top:2px;">🌐 原文：${msg.message}</div>`;
+                }
+
                 container.innerHTML += `
                     <div style="margin-bottom: 10px; text-align: ${align};">
                         <span style="font-weight: bold; color: ${color}; font-size: 12px;">${senderName}</span>
                         <span style="font-size: 10px; color: #888; margin: 0 4px;">${timeStr}</span>
-                        <div style="color: #333; margin-top: 2px;">${msg.message}</div>
+                        <div style="color: #333; margin-top: 2px;">${displayMsg}</div>
                     </div>`;
-            });
+            }
             container.scrollTop = container.scrollHeight;
         }
 
-        function sendStaffMessage() {
+        // 🟢【核心修復】Staff 發送訊息：動態精準對應客人的語言 code 進行翻譯
+        async function sendStaffMessage() {
             const input = document.getElementById('staffInput');
             const text = input.value.trim();
             if (!text || !activeSessionId) return;
 
+            // 1. 取得訪客選擇的語言
+            let guestLang = '';
+            const langSnap = await db.ref('chatStatus/' + activeSessionId + '_lang').once('value');
+            if (langSnap.exists() && langSnap.val()) {
+                guestLang = langSnap.val();
+            }
+
+            // 完整語言映射表
+            const langMap = {
+                'zh-HK': 'zh-TW',
+                'zh-CN': 'zh-CN',
+                'en': 'en',
+                'ja': 'ja',
+                'ko': 'ko',
+                'vi': 'vi',
+                'hi': 'hi',
+                'fil': 'tl' // 菲律賓語 Google API 官方代碼為 tl
+            };
+
+            const targetLang = langMap[guestLang] || guestLang || 'zh-TW';
+
+            // 2. 如果目標語言不是中文，才翻譯成外語
+            let finalMsg = text;
+            if (targetLang && !targetLang.startsWith('zh')) {
+                finalMsg = await translateText(text, targetLang, 'zh-TW');
+            }
+
+            // 3. 寫入 Firebase 發送
             db.ref('chats/' + activeSessionId).push({
                 sender: 'staff',
-                message: text,
+                message: finalMsg,          // 發給客人的外語
+                originalMessage: text,      // Staff 輸入的中文原文
                 timestamp: Date.now()
             });
 
