@@ -121,6 +121,24 @@
             100% { opacity: 1; }
         }
 
+        /* 🔵 藍色閃爍外框標籤 (請求通話) */
+        .blue-req-tag {
+            color: #0056b3;
+            background: #e1f0ff;
+            border: 1px solid #007bff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+            animation: blueBlink 1.2s infinite;
+        }
+
+        @keyframes blueBlink {
+            0% { opacity: 1; box-shadow: 0 0 2px #007bff; }
+            50% { opacity: 0.3; box-shadow: none; }
+            100% { opacity: 1; box-shadow: 0 0 2px #007bff; }
+        }
+
         .header h1 {
             font-size: 18px;
             margin-bottom: 4px;
@@ -312,9 +330,19 @@
                     <div id="activeUserHeader"
                         style="padding: 10px; background: #eef2f7; font-size: 13px; font-weight: bold; border-bottom: 1px solid #ced4da; display: flex; justify-content: space-between; align-items: center;">
                         <span id="activeUserTitle">請選擇左側訪客進行對話</span>
-                        <button id="endChatBtn" onclick="endHumanChat()"
-                            style="display: none; background: #28a745; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">✅
-                            結束對話 (交回AI)</button>
+                        
+                        <div class="btn-group">
+                            <!-- 階段 1：AI 智能對話中 -->
+                            <span id="aiStatusTag" style="display: inline-block; background: #e9ecef; color: #495057; border: 1px solid #ced4da; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                                🤖 智能 AI 對話中 (無需接管)
+                            </span>
+                            <!-- 階段 2：確認接通服務 -->
+                            <button id="acceptChatBtn" onclick="acceptHumanChat()"
+                                style="display: none; background: #007bff; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">📞 確認接通服務</button>
+                            <!-- 階段 3：結束對話 (交回AI) -->
+                            <button id="endChatBtn" onclick="endHumanChat()"
+                                style="display: none; background: #28a745; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">✅ 結束對話 (交回AI)</button>
+                        </div>
                     </div>
                     <div class="chat-messages" id="staffChatMessages"></div>
                     <div class="chat-input-area">
@@ -398,82 +426,155 @@
             }
         }
 
-        // 監聽線上客服訪客列表
+        // 🟢 檢查對話紀錄中的最後真實狀態（支援 8 種語言多國關鍵字與原文比對）
+        function parseRealSessionStatus(messages, currentDbStatus) {
+            if (currentDbStatus === 'human') return 'human';
+
+            let lastRealState = 'ai';
+            messages.forEach(m => {
+                if (m) {
+                    const txt = m.message || '';
+                    const origTxt = m.originalMessage || '';
+                    const fullTxt = txt + ' ' + origTxt;
+
+                    // 1. 判定請求真人
+                    if (
+                        fullTxt.includes('請求真人') || 
+                        fullTxt.includes('轉接') || 
+                        fullTxt.includes('⚠️') || 
+                        fullTxt.includes('Human') || 
+                        fullTxt.includes('assistance') ||
+                        fullTxt.includes('상담원') ||
+                        fullTxt.includes('オペレーター') ||
+                        fullTxt.includes('nhân viên')
+                    ) {
+                        lastRealState = 'waiting';
+                    } 
+                    // 2. 判定專員已接通
+                    else if (fullTxt.includes('專員已接通') || fullTxt.includes('Chuyên gia đã được kết nối')) {
+                        lastRealState = 'human';
+                    } 
+                    // 3. 判定已結束對話（切換回 AI，涵蓋 8 種語言）
+                    else if (
+                        fullTxt.includes('結束對話') || 
+                        fullTxt.includes('切換回 AI') || 
+                        fullTxt.includes('結束服務') || 
+                        fullTxt.includes('結束真人對話') ||
+                        fullTxt.includes('chuyển về dịch vụ AI') ||
+                        fullTxt.includes('switched back to AI') ||
+                        fullTxt.includes('AIコンシェルジュに切り替え') ||
+                        fullTxt.includes('AI 컨시어지로 전환') ||
+                        fullTxt.includes('bumalik sa serbisyo ng AI') ||
+                        fullTxt.includes('AI सेवा पर वापस')
+                    ) {
+                        lastRealState = 'ai';
+                    }
+                }
+            });
+
+            // 若資料庫記錄已設為 ai，優先以資料庫紀錄為主
+            if (currentDbStatus === 'ai') return 'ai';
+
+            return lastRealState;
+        }
+
+        // 🟢【即時監聽】訪客列表
         db.ref('chats').on('value', (snapshot) => {
             const chats = snapshot.val() || {};
             const userListEl = document.getElementById('userList');
             const headerEl = document.getElementById('mainHeader');
             if (!userListEl) return;
 
-            userListEl.innerHTML = '';
+            db.ref('chatStatus').once('value', (statusSnap) => {
+                const statuses = statusSnap.val() || {};
+                userListEl.innerHTML = '';
 
-            const sortedSessions = Object.keys(chats).map(sessionId => {
-                const messages = chats[sessionId] ? Object.values(chats[sessionId]) : [];
-                const lastMsg = messages[messages.length - 1] || {};
-                return {
-                    sessionId: sessionId,
-                    lastTimestamp: lastMsg.timestamp || 0,
-                    lastSender: lastMsg.sender || ''
-                };
-            }).sort((a, b) => b.lastTimestamp - a.lastTimestamp);
+                const sortedSessions = Object.keys(chats).map(sessionId => {
+                    const messages = chats[sessionId] ? Object.values(chats[sessionId]) : [];
+                    const lastMsg = messages[messages.length - 1] || {};
+                    const dbStatus = statuses[sessionId] || 'ai';
 
-            if (sortedSessions.length === 0) {
-                userListEl.innerHTML = '<div style="padding: 12px; color: #888; font-size: 12px; text-align: center;">暫無訪客請求</div>';
+                    const realStatus = parseRealSessionStatus(messages, dbStatus);
+
+                    return {
+                        sessionId: sessionId,
+                        lastTimestamp: lastMsg.timestamp || 0,
+                        lastSender: lastMsg.sender || '',
+                        status: realStatus
+                    };
+                }).sort((a, b) => b.lastTimestamp - a.lastTimestamp);
+
+                if (sortedSessions.length === 0) {
+                    userListEl.innerHTML = '<div style="padding: 12px; color: #888; font-size: 12px; text-align: center;">暫無訪客連線</div>';
+                    if (headerEl) {
+                        headerEl.classList.remove('alert-mode');
+                        document.title = "荃灣絲麗酒店 - 禮賓部員工後台";
+                    }
+                    return;
+                }
+
+                let hasAnyUnread = false;
+
+                sortedSessions.forEach(item => {
+                    const sessionId = item.sessionId;
+                    const isCurrentActive = (sessionId === activeSessionId);
+
+                    if (isCurrentActive) {
+                        readStatus[sessionId] = item.lastTimestamp;
+                    }
+
+                    const hasUnread = (item.lastSender === 'guest') && (!readStatus[sessionId] || item.lastTimestamp > readStatus[sessionId]);
+
+                    if (hasUnread) {
+                        hasAnyUnread = true;
+                    }
+
+                    const isWaiting = (item.status === 'waiting');
+
+                    const div = document.createElement('div');
+                    div.className = 'user-item' + (isCurrentActive ? ' active' : '');
+
+                    // 🟢 左邊顯示藍色閃爍外框 (請求通話) 標籤
+                    div.innerHTML = `
+                        <span>👤 訪客 (${sessionId.slice(-4)}) ${isWaiting ? '<span class="blue-req-tag">(請求通話)</span>' : ''}</span>
+                        ${hasUnread ? '<span style="width: 8px; height: 8px; background-color: #dc3545; border-radius: 50%; display: inline-block;"></span>' : ''}
+                    `;
+
+                    div.onclick = () => selectUserSession(sessionId);
+                    userListEl.appendChild(div);
+                });
+
                 if (headerEl) {
-                    headerEl.classList.remove('alert-mode');
-                    document.title = "荃灣絲麗酒店 - 禮賓部員工後台";
-                }
-                return;
-            }
-
-            let hasAnyUnread = false;
-
-            sortedSessions.forEach(item => {
-                const sessionId = item.sessionId;
-                const isCurrentActive = (sessionId === activeSessionId);
-
-                if (isCurrentActive) {
-                    readStatus[sessionId] = item.lastTimestamp;
+                    if (hasAnyUnread) {
+                        headerEl.classList.add('alert-mode');
+                        document.title = "【新訊息！🚨】荃灣絲麗酒店 - 禮賓部員工後台";
+                    } else {
+                        headerEl.classList.remove('alert-mode');
+                        document.title = "荃灣絲麗酒店 - 禮賓部員工後台";
+                    }
                 }
 
-                const hasUnread = (item.lastSender === 'guest') && (!readStatus[sessionId] || item.lastTimestamp > readStatus[sessionId]);
-
-                if (hasUnread) {
-                    hasAnyUnread = true;
+                if (activeSessionId && chats[activeSessionId]) {
+                    renderMessages(chats[activeSessionId]);
                 }
-
-                const div = document.createElement('div');
-                div.className = 'user-item' + (isCurrentActive ? ' active' : '');
-
-                div.innerHTML = `
-                    <span>👤 訪客 (${sessionId.slice(-4)})</span>
-                    ${hasUnread ? '<span style="width: 8px; height: 8px; background-color: #dc3545; border-radius: 50%; display: inline-block;"></span>' : ''}
-                `;
-
-                div.onclick = () => selectUserSession(sessionId);
-                userListEl.appendChild(div);
             });
-
-            if (headerEl) {
-                if (hasAnyUnread) {
-                    headerEl.classList.add('alert-mode');
-                    document.title = "【新訊息！🚨】荃灣絲麗酒店 - 禮賓部員工後台";
-                } else {
-                    headerEl.classList.remove('alert-mode');
-                    document.title = "荃灣絲麗酒店 - 禮賓部員工後台";
-                }
-            }
-
-            if (activeSessionId && chats[activeSessionId]) {
-                renderMessages(chats[activeSessionId]);
-            }
         });
+
+        let currentStatusListener = null;
 
         function selectUserSession(sessionId) {
             activeSessionId = sessionId;
             document.getElementById('activeUserTitle').innerText = `正在與 訪客 (${sessionId.slice(-4)}) 對話`;
-            document.getElementById('endChatBtn').style.display = 'inline-block';
 
+            if (currentStatusListener) {
+                currentStatusListener.off();
+            }
+
+            const acceptBtn = document.getElementById('acceptChatBtn');
+            const endBtn = document.getElementById('endChatBtn');
+            const aiTag = document.getElementById('aiStatusTag');
+
+            // 1. 讀取與更新狀態
             db.ref('chats/' + sessionId).once('value', (snapshot) => {
                 const msgs = snapshot.val() || {};
                 const msgArr = Object.values(msgs);
@@ -481,34 +582,151 @@
                     readStatus[sessionId] = msgArr[msgArr.length - 1].timestamp || Date.now();
                 }
                 renderMessages(msgs);
+
+                db.ref('chatStatus/' + sessionId).once('value', (snap) => {
+                    const dbStatus = snap.val() || 'ai';
+                    const realStatus = parseRealSessionStatus(msgArr, dbStatus);
+
+                    updateHeaderButtons(realStatus);
+                });
             });
 
-            db.ref('chats').once('value', (snapshot) => {});
+            // 2. 即時監聽
+            currentStatusListener = db.ref('chatStatus/' + sessionId);
+            currentStatusListener.on('value', (snap) => {
+                const dbStatus = snap.val() || 'ai';
+                db.ref('chats/' + sessionId).once('value', (msgSnap) => {
+                    const msgArr = Object.values(msgSnap.val() || {});
+                    const realStatus = parseRealSessionStatus(msgArr, dbStatus);
+                    updateHeaderButtons(realStatus);
+                });
+            });
+
             renderStaffBusList();
         }
 
-        function endHumanChat() {
+        // 🟢 控制右上角三種按鈕切換的核心函數
+        function updateHeaderButtons(status) {
+            const acceptBtn = document.getElementById('acceptChatBtn');
+            const endBtn = document.getElementById('endChatBtn');
+            const aiTag = document.getElementById('aiStatusTag');
+
+            if (status === 'waiting') {
+                // 客要真人 ➔ 藍色 「📞 確認接通服務」 按鈕
+                acceptBtn.style.display = 'inline-block';
+                endBtn.style.display = 'none';
+                aiTag.style.display = 'none';
+            } else if (status === 'human') {
+                // 專員已接通 ➔ 綠色 「✅ 結束對話 (交回AI)」 按鈕
+                acceptBtn.style.display = 'none';
+                endBtn.style.display = 'inline-block';
+                aiTag.style.display = 'none';
+            } else {
+                // 平時（AI 處理中） ➔ 灰底 「🤖 智能 AI 對話中 (無需接管)」 標籤
+                acceptBtn.style.display = 'none';
+                endBtn.style.display = 'none';
+                aiTag.style.display = 'inline-block';
+            }
+        }
+
+        // 🟢 專員點擊「確認接通服務」（已加入自動翻譯）
+        async function acceptHumanChat() {
             if (!activeSessionId) return;
+
+            let guestLang = '';
+            const langSnap = await db.ref('chatStatus/' + activeSessionId + '_lang').once('value');
+            if (langSnap.exists() && langSnap.val()) {
+                guestLang = langSnap.val();
+            }
+
+            const langMap = {
+                'zh-HK': 'zh-TW', 'zh-CN': 'zh-CN', 'en': 'en',
+                'ja': 'ja', 'ko': 'ko', 'vi': 'vi', 'hi': 'hi', 'fil': 'tl'
+            };
+            const targetLang = langMap[guestLang] || guestLang || 'zh-TW';
+
+            const rawMsg = '【系統提示】專員已接通，目前正在進行真人通話中。';
+            let translatedMsg = rawMsg;
+            if (targetLang && !targetLang.startsWith('zh')) {
+                translatedMsg = await translateText(rawMsg, targetLang, 'zh-TW');
+            }
+
+            db.ref('chatStatus/' + activeSessionId).set('human');
+            db.ref('chats/' + activeSessionId).push({
+                sender: 'staff',
+                message: translatedMsg,
+                originalMessage: rawMsg,
+                timestamp: Date.now()
+            });
+
+            alert("已成功接通訪客！");
+        }
+
+        // 🟢 專員點擊「結束對話 (交回AI)」（已加入自動翻譯）
+        async function endHumanChat() {
+            if (!activeSessionId) return;
+
+            let guestLang = '';
+            const langSnap = await db.ref('chatStatus/' + activeSessionId + '_lang').once('value');
+            if (langSnap.exists() && langSnap.val()) {
+                guestLang = langSnap.val();
+            }
+
+            const langMap = {
+                'zh-HK': 'zh-TW', 'zh-CN': 'zh-CN', 'en': 'en',
+                'ja': 'ja', 'ko': 'ko', 'vi': 'vi', 'hi': 'hi', 'fil': 'tl'
+            };
+            const targetLang = langMap[guestLang] || guestLang || 'zh-TW';
+
+            const rawMsg = '【系統提示】禮賓專員已結束服務，對話已切換回 AI 智能禮賓部。';
+            let translatedMsg = rawMsg;
+            if (targetLang && !targetLang.startsWith('zh')) {
+                translatedMsg = await translateText(rawMsg, targetLang, 'zh-TW');
+            }
 
             db.ref('chatStatus/' + activeSessionId).set('ai');
             db.ref('chats/' + activeSessionId).push({
                 sender: 'staff',
-                message: '【系統提示】禮賓專員已結束服務，對話已切換回 AI 智能禮賓部。',
+                message: translatedMsg,
+                originalMessage: rawMsg,
                 timestamp: Date.now()
             });
 
             alert("已成功結束對話，已將該訪客交回 AI 接管！");
         }
 
-        // 🟢 渲染對話：訪客外語自動翻譯成中文，並保留原文
+        // 🟢 渲染對話紀錄
         async function renderMessages(msgObj) {
             const container = document.getElementById('staffChatMessages');
             if (!container) return;
             container.innerHTML = '';
 
-            const msgList = Object.values(msgObj);
+            if (!msgObj) return;
 
-            for (const msg of msgList) {
+            const entries = Object.entries(msgObj);
+
+            let lastHumanReqIndex = -1;
+            entries.forEach(([key, msg], idx) => {
+                if (msg && msg.message) {
+                    const txt = msg.message;
+                    if (
+                        txt.includes('請求真人') || 
+                        txt.includes('轉接') || 
+                        txt.includes('⚠️') || 
+                        txt.includes('human') || 
+                        txt.includes('Human') || 
+                        txt.includes('assistance') ||
+                        txt.includes('상담원') ||
+                        txt.includes('オペレーター')
+                    ) {
+                        lastHumanReqIndex = idx;
+                    }
+                }
+            });
+
+            const targetEntries = lastHumanReqIndex !== -1 ? entries.slice(lastHumanReqIndex) : entries;
+
+            for (const [key, msg] of targetEntries) {
                 const align = msg.sender === 'staff' ? 'right' : 'left';
                 const color = msg.sender === 'staff' ? '#2c3e50' : '#007bff';
                 const senderName = msg.sender === 'staff' ? '禮賓專員' : '訪客';
@@ -522,8 +740,7 @@
 
                 let displayMsg = msg.message;
 
-                // 若是客人傳來的訊息，自動翻譯為繁體中文
-                if (msg.sender === 'guest') {
+                if (msg.sender === 'guest' && !msg.message.includes('⚠️')) {
                     const translatedText = await translateText(msg.message, 'zh-TW');
                     displayMsg = `<div>${translatedText}</div><div style="font-size:11px; color:#888; margin-top:2px;">🌐 原文：${msg.message}</div>`;
                 }
@@ -538,20 +755,18 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        // 🟢【核心修復】Staff 發送訊息：動態精準對應客人的語言 code 進行翻譯
+        // 🟢 Staff 發送訊息
         async function sendStaffMessage() {
             const input = document.getElementById('staffInput');
             const text = input.value.trim();
             if (!text || !activeSessionId) return;
 
-            // 1. 取得訪客選擇的語言
             let guestLang = '';
             const langSnap = await db.ref('chatStatus/' + activeSessionId + '_lang').once('value');
             if (langSnap.exists() && langSnap.val()) {
                 guestLang = langSnap.val();
             }
 
-            // 完整語言映射表
             const langMap = {
                 'zh-HK': 'zh-TW',
                 'zh-CN': 'zh-CN',
@@ -560,22 +775,20 @@
                 'ko': 'ko',
                 'vi': 'vi',
                 'hi': 'hi',
-                'fil': 'tl' // 菲律賓語 Google API 官方代碼為 tl
+                'fil': 'tl'
             };
 
             const targetLang = langMap[guestLang] || guestLang || 'zh-TW';
 
-            // 2. 如果目標語言不是中文，才翻譯成外語
             let finalMsg = text;
             if (targetLang && !targetLang.startsWith('zh')) {
                 finalMsg = await translateText(text, targetLang, 'zh-TW');
             }
 
-            // 3. 寫入 Firebase 發送
             db.ref('chats/' + activeSessionId).push({
                 sender: 'staff',
-                message: finalMsg,          // 發給客人的外語
-                originalMessage: text,      // Staff 輸入的中文原文
+                message: finalMsg,
+                originalMessage: text,
                 timestamp: Date.now()
             });
 

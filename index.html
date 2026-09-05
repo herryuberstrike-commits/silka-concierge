@@ -4784,6 +4784,29 @@
                 const humanBtn = chatBox.querySelector('button[onclick*="requestHumanStaff"]');
                 if (humanBtn) {
                     humanBtn.innerHTML = `📞 ${langData.btnHuman || '轉接真人職員'}`;
+
+                    // 🟢 實時監聽 Firebase 狀態，自動切換 3 個階段
+                    let sessionId = localStorage.getItem("chat_session_id");
+                    if (sessionId && typeof firebase !== 'undefined' && firebase.database) {
+                        firebase.database().ref('chatStatus/' + sessionId).on('value', (snapshot) => {
+                            const status = snapshot.val();
+                            if (status === 'waiting') {
+                                // 階段 2：等待專員接通
+                                humanBtn.innerHTML = `📞 ${langData.waitingStaff || '等待專員接通...'}`;
+                                humanBtn.disabled = true;
+                            } else if (status === 'human') {
+                                // 階段 3：專員已接通，改為結束真人對話按鈕
+                                humanBtn.innerHTML = `✅ ${langData.endHumanBtn || '結束真人對話'}`;
+                                humanBtn.disabled = false;
+                                humanBtn.onclick = endHumanChatGuest;
+                            } else {
+                                // 階段 1：一般 AI 對話中
+                                humanBtn.innerHTML = `📞 ${langData.btnHuman || '轉接真人職員'}`;
+                                humanBtn.disabled = false;
+                                humanBtn.onclick = requestHumanStaff;
+                            }
+                        });
+                    }
                 }
             }
             // 執行 ID 替換
@@ -4792,6 +4815,7 @@
                 if (el && text) el.innerHTML = text;
             }
         }
+
 
         // ✅ 替換為完整且安全的寫法
         const navText = (t[currentLang] && t[currentLang].navBtn) || (t['zh-HK'] && t['zh-HK'].navBtn) || '導航 ➔';
@@ -5103,10 +5127,10 @@
             }
 
             window.forceHumanMode = true;
-            localStorage.setItem("chat_mode_" + sessionId, "human");
+            localStorage.setItem("chat_mode_" + sessionId, "waiting");
 
             if (typeof firebase !== 'undefined' && firebase.database) {
-                firebase.database().ref('chatStatus/' + sessionId).set('human');
+                firebase.database().ref('chatStatus/' + sessionId).set('waiting');
                 if (typeof currentLang !== 'undefined' && currentLang) {
                     firebase.database().ref('chatStatus/' + sessionId + '_lang').set(currentLang);
                 }
@@ -5119,14 +5143,15 @@
 
             const msgContainer = document.getElementById('ai-chat-messages');
             if (msgContainer && !document.getElementById('human-status-banner')) {
-                const langData = (typeof t !== 'undefined' && t[currentLang]) ? t[currentLang] : (t['zh-HK'] || {});
+                const langData = (typeof t !== 'undefined' && t[currentLang]) ? t[currentLang] : {};
                 const startMsg = langData.startHumanMsg || '系統：已為您轉接禮賓專員，請稍候...';
                 const endBtn = langData.endHumanBtn || '結束真人對話';
 
                 msgContainer.innerHTML += `
-<div id="human-status-banner" style="margin-bottom: 8px; color: #e67e22; display: flex; justify-content: space-between; align-items: center; background: #fff8e1; padding: 8px 12px; border-radius: 8px;">
+<div id="human-status-banner" style="margin-bottom: 8px; color: #e67e22; display: flex; justify-content: space-between; align-items: center;">
     <span>${startMsg}</span>
-<button onclick="endHumanChatGuest()" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">${endBtn}</button></div>`;
+    <button onclick="endHumanChatGuest()" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">${endBtn}</button>
+</div>`;
                 msgContainer.scrollTop = msgContainer.scrollHeight;
             }
 
@@ -5136,19 +5161,59 @@
             }
         }
 
-        // 2. 訪客主動結束真人對話
-        function endHumanChatGuest() {
+        // 2. 訪客主動結束真人對話 (含菲律賓文 9國語言精準字典版)
+        async function endHumanChatGuest() {
             let sessionId = localStorage.getItem("chat_session_id");
             if (!sessionId) return;
 
             window.forceHumanMode = false;
             localStorage.setItem("chat_mode_" + sessionId, "ai");
 
+            const banner = document.getElementById('human-status-banner');
+            if (banner) {
+                banner.remove();
+            }
+
             if (typeof firebase !== 'undefined' && firebase.database) {
                 firebase.database().ref('chatStatus/' + sessionId).set('ai');
+
+                // 1. 抓取當前介面語言 (多重抓取防錯)
+                let activeLang = 'zh-HK';
+                if (typeof currentLang !== 'undefined' && currentLang) {
+                    activeLang = currentLang;
+                } else {
+                    activeLang = localStorage.getItem('selected_language') || localStorage.getItem('lang') || 'zh-HK';
+                }
+
+                // 2. 多國語言內建字典 (含 Tagalog / Filipino)
+                const i18nSysMsg = {
+                    'zh-HK': '【系統提示】訪客已主動結束真人對話，切換回 AI 服務。',
+                    'zh-TW': '【系統提示】訪客已主動結束真人對話，切換回 AI 服務。',
+                    'zh-CN': '【系统提示】访客已主动结束真人对话，切换回 AI 服务。',
+                    'en': '[System Prompt] The visitor has ended the live chat and switched back to AI service.',
+                    'ja': '【システムプロンプト】お客様が有人チャットを終了しました。AIコンシェルジュに切り替えます。',
+                    'ko': '【시스템 안내】방문자가 상담원 연결을 종료하였습니다. AI 컨시어지로 전환됩니다.',
+                    'vi': '【Thông báo hệ thống】Khách hàng đã kết thúc trò chuyện và chuyển về dịch vụ AI.',
+                    'hi': '【सिस्टम निर्देश】अतिथि ने लाइव चैट समाप्त कर दी है और AI सेवा पर वापस स्विच कर दिया है।',
+                    'fil': '[Pansistemang Prompt] Tinapos na ng bisita ang live chat at bumalik sa serbisyo ng AI.',
+                    'tl': '[Pansistemang Prompt] Tinapos na ng bisita ang live chat at bumalik sa serbisyo ng AI.'
+                };
+
+                // 根據 activeLang 抓取文字，抓不到就以對應語言 Prefix 或英文遞補
+                let finalMsg = i18nSysMsg[activeLang];
+                if (!finalMsg) {
+                    if (activeLang.startsWith('ja')) finalMsg = i18nSysMsg['ja'];
+                    else if (activeLang.startsWith('ko')) finalMsg = i18nSysMsg['ko'];
+                    else if (activeLang.startsWith('fil') || activeLang.startsWith('tl')) finalMsg = i18nSysMsg['fil'];
+                    else if (activeLang.startsWith('zh')) finalMsg = i18nSysMsg['zh-HK'];
+                    else finalMsg = i18nSysMsg['en'];
+                }
+
+                // 3. 推送至 Firebase
                 firebase.database().ref('chats/' + sessionId).push({
-                    sender: 'guest',
-                    message: '【系統提示】訪客已主動結束真人對話，切換回 AI 服務。',
+                    sender: 'staff',
+                    message: finalMsg,
+                    originalMessage: '【系統提示】訪客已主動結束真人對話，切換回 AI 服務。',
                     timestamp: Date.now()
                 });
             }
