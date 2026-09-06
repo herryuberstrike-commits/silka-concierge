@@ -547,6 +547,9 @@
             <h4 id="ui-weather-forecast-title" style="color: #2c3e50; font-size: 14px; margin: 15px 0 8px 0;">九天天氣預報
             </h4>
             <div id="forecastContainer">載入預報中...</div>
+            <div id="ui-weather-source" style="text-align: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.08); font-size: 11px; color: #888;">
+    資料來源：香港天文台
+</div>
         </div>
 
         <!-- 1. 穿梭巴士頁面 -->
@@ -2438,6 +2441,7 @@
                 inputPlaceholder: '請輸入您想查詢的問題...',
                 botName: 'AI 禮賓部',
                 backToSightseeing: "⬅ 返回香港旅遊攻略 - 購物",
+                weatherSource: "資料來源：香港天文台",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2701,6 +2705,7 @@
                 inputPlaceholder: '请输入您想查询的问题...',
                 botName: 'AI 礼宾部',
                 backToSightseeing: "⬅ 返回香港旅游攻略 - 购物",
+                weatherSource: "数据来源：香港天文台",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2964,6 +2969,7 @@
                 inputPlaceholder: 'Type your message here...',
                 botName: 'AI Concierge',
                 backToSightseeing: "⬅ Back to HK Travel Guide - Shopping",
+                weatherSource: "Data Source: Hong Kong Observatory",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -3226,6 +3232,7 @@
                 inputPlaceholder: '質問を入力してください...',
                 botName: "AIコンシェルジュ",
                 backToSightseeing: "⬅ 香港観光ガイドに戻る - ショッピング",
+                weatherSource: "情報提供：香港天文台",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -3489,6 +3496,7 @@
                 inputPlaceholder: '문의 사항을 입력하세요...',
                 botName: 'AI 컨시어지',
                 backToSightseeing: "⬅ 홍콩 여행 가이드로 돌아가기 - 쇼핑",
+                weatherSource: "자료 출처: 홍콩 기상청",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3752,6 +3760,7 @@
                 inputPlaceholder: 'Nhập câu hỏi của bạn...',
                 botName: 'Trợ lý AI',
                 backToSightseeing: "⬅ Quay lại Cẩm nang Du lịch HK - Mua sắm",
+                weatherSource: "Nguồn dữ liệu: Đài Thiên văn Hồng Kông",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -4018,6 +4027,7 @@
                 inputPlaceholder: 'अपना प्रश्न यहाँ लिखें...',
                 botName: 'AI दरबान',
                 backToSightseeing: "⬅ हॉन्गकॉन्ग यात्रा गाइड पर वापस जाएं - खरीदारी",
+                weatherSource: "डेटा स्रोत: हांगकांग वेधशाला (Hong Kong Observatory)",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -4278,6 +4288,8 @@
                 inputPlaceholder: 'I-type ang iyong katanungan...',
                 botName: 'AI Concierge',
                 backToSightseeing: "⬅ Bumalik sa Gabay sa Paglalakbay sa HK - Pag-shopping",
+                weatherSource: "Pinagmulan ng Datos: Hong Kong Observatory",
+                
             }
         };
 
@@ -4751,6 +4763,7 @@
                 'ui-back-guidecausewaybay': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
                 'ui-back-guidesoho': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
                 'ui-back-guideladies': (langData.backToSightseeing || '⬅ 返回香港旅遊攻略 - 購物'),
+                'ui-weather-source': (langData.weatherSource || '資料來源：香港天文台'),
             };
 
             // 🟢 加喺呢度！自動更新 AI 發送按鈕與輸入框 Placeholder
