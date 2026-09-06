@@ -64,7 +64,7 @@
             margin-bottom: 20px;
         }
 
-        .login-card input {
+        .login-card input, .login-card select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ced4da;
@@ -72,6 +72,7 @@
             font-size: 14px;
             margin-bottom: 12px;
             text-align: center;
+            background: #fff;
         }
 
         .login-card button {
@@ -307,16 +308,23 @@
             <form id="loginForm" onsubmit="checkLogin(event)">
                 <input type="text" id="usernameInput" placeholder="請輸入員工帳號" autocomplete="username" required>
                 <input type="password" id="passwordInput" placeholder="請輸入員工密碼" autocomplete="current-password" required>
+                <select id="staffNameSelect" required>
+                    <option value="" disabled selected>請選擇您的身分</option>
+                    <option value="Angus">Angus</option>
+                    <option value="Wilson">Wilson</option>
+                    <option value="Alfred">Alfred</option>
+                    <option value="Godwin">Godwin</option>
+                </select>
                 <button type="submit">登入後台</button>
             </form>
-            <div id="errorMsg" class="error-msg">帳號或密碼錯誤，請重新輸入！</div>
+            <div id="errorMsg" class="error-msg">帳號、密碼錯誤或未選擇身分！</div>
         </div>
     </div>
 
     <div class="container" id="mainContainer">
         <div class="header" id="mainHeader">
             <h1>荃灣絲麗酒店 - 禮賓部員工後台</h1>
-            <p>Staff Management Console (Cloud Synced)</p>
+            <p>Staff Management Console (Cloud Synced) | 當前專員: <span id="currentStaffDisplay" style="color: #4cd137; font-weight: bold;">-</span></p>
         </div>
 
         <!-- 💬 一對多線上客服中控台 -->
@@ -383,6 +391,7 @@
         let isLiveStatusPaused = false;
         let activeSessionId = null;
         let readStatus = {};
+        let currentStaffName = '';
 
         // 🟢 發送原生桌面系統通知函數
         function sendDesktopNotification(title, body) {
@@ -418,21 +427,27 @@
         window.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('savedUsername');
             const savedPass = localStorage.getItem('savedPassword');
+            const savedStaff = localStorage.getItem('savedStaffName');
 
             if (savedUser) document.getElementById('usernameInput').value = savedUser;
             if (savedPass) document.getElementById('passwordInput').value = savedPass;
+            if (savedStaff) document.getElementById('staffNameSelect').value = savedStaff;
         });
 
-        // 登入驗證與記憶帳密
+        // 登入驗證與記憶帳密及身分
         function checkLogin(e) {
             if (e) e.preventDefault();
             const userVal = document.getElementById('usernameInput').value.trim();
             const passVal = document.getElementById('passwordInput').value.trim();
+            const staffVal = document.getElementById('staffNameSelect').value;
 
-            if (userVal === CORRECT_USERNAME && passVal === CORRECT_PASSWORD) {
+            if (userVal === CORRECT_USERNAME && passVal === CORRECT_PASSWORD && staffVal) {
+                currentStaffName = staffVal;
                 localStorage.setItem('savedUsername', userVal);
                 localStorage.setItem('savedPassword', passVal);
+                localStorage.setItem('savedStaffName', staffVal);
 
+                document.getElementById('currentStaffDisplay').innerText = currentStaffName;
                 document.getElementById('loginOverlay').style.display = 'none';
                 document.getElementById('mainContainer').style.display = 'block';
                 document.getElementById('errorMsg').style.display = 'none';
@@ -673,7 +688,7 @@
             };
             const targetLang = langMap[guestLang] || guestLang || 'zh-TW';
 
-            const rawMsg = '【系統提示】專員已接通，目前正在進行真人通話中。';
+            const rawMsg = `【系統提示】禮賓專員 (${currentStaffName}) 已接通，目前正在進行真人通話中。`;
             let translatedMsg = rawMsg;
             if (targetLang && !targetLang.startsWith('zh')) {
                 translatedMsg = await translateText(rawMsg, targetLang, 'zh-TW');
@@ -706,7 +721,7 @@
             };
             const targetLang = langMap[guestLang] || guestLang || 'zh-TW';
 
-            const rawMsg = '【系統提示】禮賓專員已結束服務，對話已切換回 AI 智能禮賓部。';
+            const rawMsg = `【系統提示】禮賓專員 (${currentStaffName}) 已結束服務，對話已切換回 AI 智能禮賓部。`;
             let translatedMsg = rawMsg;
             if (targetLang && !targetLang.startsWith('zh')) {
                 translatedMsg = await translateText(rawMsg, targetLang, 'zh-TW');
@@ -783,7 +798,7 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        // 🟢 Staff 發送訊息
+        // 🟢 Staff 發送訊息 (自動帶入專員名字署名並進行多國語言翻譯)
         async function sendStaffMessage() {
             const input = document.getElementById('staffInput');
             const text = input.value.trim();
@@ -808,15 +823,18 @@
 
             const targetLang = langMap[guestLang] || guestLang || 'zh-TW';
 
-            let finalMsg = text;
+            // 自動組合署名與內容
+            const rawMessageWithSign = `禮賓專員 (${currentStaffName})：${text}`;
+
+            let finalMsg = rawMessageWithSign;
             if (targetLang && !targetLang.startsWith('zh')) {
-                finalMsg = await translateText(text, targetLang, 'zh-TW');
+                finalMsg = await translateText(rawMessageWithSign, targetLang, 'zh-TW');
             }
 
             db.ref('chats/' + activeSessionId).push({
                 sender: 'staff',
                 message: finalMsg,
-                originalMessage: text,
+                originalMessage: rawMessageWithSign,
                 timestamp: Date.now()
             });
 
