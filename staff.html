@@ -392,6 +392,7 @@
         let activeSessionId = null;
         let readStatus = {};
         let currentStaffName = '';
+        let lastNotifiedTimestamps = {};
 
         // 🟢 發送原生桌面系統通知函數
         function sendDesktopNotification(title, body) {
@@ -559,11 +560,14 @@
                         readStatus[sessionId] = item.lastTimestamp;
                     }
 
+                    const isWaiting = (item.status === 'waiting');
                     const hasUnread = (item.lastSender === 'guest') && (!readStatus[sessionId] || item.lastTimestamp > readStatus[sessionId]);
 
-                    if (hasUnread) {
+                    if (hasUnread || isWaiting) {
                         hasAnyUnread = true;
-                        
+                    }
+
+                    if (hasUnread) {
                         // 🔔 有新未讀訊息時觸發桌面系統通知
                         const guestId = sessionId.slice(-4);
                         sendDesktopNotification(
@@ -572,7 +576,18 @@
                         );
                     }
 
-                    const isWaiting = (item.status === 'waiting');
+                    // 🚨 改為發送電腦系統桌面彈窗通知（取代網頁 alert 視窗）
+                    if (isWaiting) {
+                        const reqKey = sessionId + '_' + item.lastTimestamp;
+                        if (!lastNotifiedTimestamps[reqKey]) {
+                            lastNotifiedTimestamps[reqKey] = true;
+                            const guestId = sessionId.slice(-4);
+                            sendDesktopNotification(
+                                `🚨 收到訪客 (${guestId}) 的轉接真人請求！`,
+                                `訪客請求專員服務，請點擊返回後台接通。`
+                            );
+                        }
+                    }
 
                     const div = document.createElement('div');
                     div.className = 'user-item' + (isCurrentActive ? ' active' : '');
