@@ -296,6 +296,52 @@
             outline: 2px solid #000;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
+
+        /* 📱 手機版獨立適應 (電腦網頁版不受任何影響) */
+        @media (max-width: 768px) {
+            body {
+                padding: 8px;
+            }
+
+            .container {
+                border-radius: 8px;
+            }
+
+            .chat-console {
+                flex-direction: column;
+                height: 520px;
+            }
+
+            .user-list {
+                width: 100%;
+                height: 130px;
+                border-right: none;
+                border-bottom: 1px solid #ced4da;
+            }
+
+            .chat-window {
+                flex: 1;
+            }
+
+            .staff-bus-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .staff-bus-row .btn-group {
+                width: 100%;
+                display: flex;
+                gap: 6px;
+            }
+
+            .staff-bus-row .staff-btn {
+                flex: 1;
+                padding: 10px 0;
+                font-size: 13px;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
