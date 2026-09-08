@@ -2105,6 +2105,10 @@
         // 計算即時行車狀況 (頂部 Banner)
         function getRealtimeStatusText(currentMinutes, langData) {
             // 🟢 新增這段在最頂部
+            
+            if (isLiveStatusDelayed) {
+        return langData.stDelay || "行程延誤";
+            }
             if (isLiveStatusPaused) {
                 return langData.stOut || "暫停服務";
             }
@@ -2155,6 +2159,7 @@
 
             // 同步 Firebase 的暫停狀態
             isLiveStatusPaused = !!data.isLiveStatusPaused;
+            isLiveStatusDelayed = !!data.isLiveStatusDelayed;
 
             renderBusSchedule();
         });
@@ -2445,6 +2450,7 @@
                 weatherSource: "資料來源：香港天文台",
                 waitingStaff: "📞 等待專員接通...",
                 conciergeHours: "✨ 禮賓專員在線時間：10:00 - 23:00",
+                stDelay: "行程延誤",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2711,6 +2717,7 @@
                 weatherSource: "数据来源：香港天文台",
                 waitingStaff: "📞 等待专员接通...",
                 conciergeHours: "✨ 礼宾专员在线时间：10:00 - 23:00",
+                stDelay: "行程延误",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2977,6 +2984,7 @@
                 weatherSource: "Data Source: Hong Kong Observatory",
                 waitingStaff: "📞 Waiting for Staff...",
                 conciergeHours: "✨ Concierge Online Hours: 10:00 - 23:00",
+                stDelay: "Trip Delayed",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -3242,6 +3250,7 @@
                 weatherSource: "情報提供：香港天文台",
                 waitingStaff: "📞 スタッフの接続待機中...",
                 conciergeHours: "✨ コンシェルジュ対応時間：10:00 - 23:00",
+                stDelay: "運行遅延",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -3508,6 +3517,7 @@
                 weatherSource: "자료 출처: 홍콩 기상청",
                 waitingStaff: "📞 상담원 연결 대기 중...",
                 conciergeHours: "✨ 컨시어지 온라인 시간: 10:00 - 23:00",
+                stDelay: "운행 지연",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3774,6 +3784,7 @@
                 weatherSource: "Nguồn dữ liệu: Đài Thiên văn Hồng Kông",
                 waitingStaff: "📞 Đang chờ kết nối...",
                 conciergeHours: "✨ Giờ trực tuyến của Nhân viên Lễ tân: 10:00 - 23:00",
+                stDelay: "운행 지연",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -4043,6 +4054,7 @@
                 weatherSource: "डेटा स्रोत: हांगकांग वेधशाला (Hong Kong Observatory)",
                 waitingStaff: "📞 स्टाफ से जुड़ने का इंतज़ार...",
                 conciergeHours: "✨ दरबान ऑनलाइन hours: 10:00 - 23:00",
+                stDelay: "운행 지연",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -4306,6 +4318,7 @@
                 weatherSource: "Pinagmulan ng Datos: Hong Kong Observatory",
                 waitingStaff: "📞 Naghihintay sa staff...",
                 conciergeHours: "✨ Oras ng Online ng Concierge: 10:00 - 23:00",
+                stDelay: "Naantalang Biyahe",
 
             }
         };
@@ -4783,6 +4796,7 @@
                 'ui-weather-source': (langData.weatherSource || '資料來源：香港天文台'),
                 'ui-waiting-staff': (langData.waitingStaff || '📞 等待專員接通...'),
                 'ui-concierge-hours': (langData.conciergeHours || '✨ 禮賓專員在線時間：10:00 - 23:00'),
+                stDelay: (langData.stDelay || '行程延誤'),
             };
 
             // 🟢 加喺呢度！自動更新 AI 發送按鈕與輸入框 Placeholder

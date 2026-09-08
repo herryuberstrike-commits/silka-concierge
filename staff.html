@@ -292,6 +292,12 @@
             color: white;
         }
 
+        /* 🟢 新增行程延誤按鈕樣式 */
+        .btn-delay {
+            background: #ffc107;
+            color: #212529;
+        }
+
         .staff-btn.active {
             outline: 2px solid #000;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -414,10 +420,17 @@
             <div
                 style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; padding: 12px; margin-bottom: 16px; text-align: center;">
                 <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px;">📍 即時行車狀況（頂部 Banner 控制）</div>
-                <button id="pauseToggleBtn" onclick="toggleStatusPause()"
-                    style="width: 100%; padding: 10px; font-size: 14px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: white; background-color: #dc3545;">
-                    ⏸️ 一鍵暫停全日服務（覆蓋即時狀況）
-                </button>
+                <div style="display: flex; gap: 8px;">
+                    <button id="pauseToggleBtn" onclick="toggleStatusPause()"
+                        style="flex: 1; padding: 10px; font-size: 14px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: white; background-color: #dc3545;">
+                        ⏸️ 一鍵暫停全日服務（覆蓋即時狀況）
+                    </button>
+                    <!-- 🟢 頂部行程延誤按鈕 -->
+                    <button id="delayToggleBtn" onclick="toggleStatusDelay()"
+                        style="flex: 1; padding: 10px; font-size: 14px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; color: #212529; background-color: #ffc107;">
+                        ⚠️ 行程延誤
+                    </button>
+                </div>
             </div>
             <div id="staffBusList"></div>
         </div>
@@ -435,6 +448,7 @@
         const CORRECT_PASSWORD = "stw3824";
         let manualOverrides = {};
         let isLiveStatusPaused = false;
+        let isLiveStatusDelayed = false; // 🟢 增加延誤狀態變數
         let activeSessionId = null;
         let readStatus = {};
         let currentStaffName = '';
@@ -906,14 +920,26 @@
             const data = snapshot.val() || {};
             manualOverrides = data;
             isLiveStatusPaused = !!data.isLiveStatusPaused;
+            isLiveStatusDelayed = !!data.isLiveStatusDelayed; // 🟢 同步延誤狀態
 
             updatePauseButtonUI();
+            updateDelayButtonUI(); // 🟢 更新延誤按鈕 UI
             renderStaffBusList();
         });
 
         function toggleStatusPause() {
             const newPauseState = !isLiveStatusPaused;
-            db.ref('busManualOverrides/isLiveStatusPaused').set(newPauseState);
+            const updates = { isLiveStatusPaused: newPauseState };
+            if (newPauseState) updates.isLiveStatusDelayed = false; // 互斥
+            db.ref('busManualOverrides').update(updates);
+        }
+
+        // 🟢 切換頂部行車狀況：延誤
+        function toggleStatusDelay() {
+            const newDelayState = !isLiveStatusDelayed;
+            const updates = { isLiveStatusDelayed: newDelayState };
+            if (newDelayState) updates.isLiveStatusPaused = false; // 互斥
+            db.ref('busManualOverrides').update(updates);
         }
 
         function updatePauseButtonUI() {
@@ -926,6 +952,22 @@
             } else {
                 btn.innerText = "⏸️ 一鍵暫停全日服務（覆蓋即時狀況）";
                 btn.style.backgroundColor = "#dc3545";
+            }
+        }
+
+        // 🟢 更新延誤按鈕 UI
+        function updateDelayButtonUI() {
+            const btn = document.getElementById('delayToggleBtn');
+            if (!btn) return;
+
+            if (isLiveStatusDelayed) {
+                btn.innerText = "✅ 取消行程延誤狀態";
+                btn.style.backgroundColor = "#28a745";
+                btn.style.color = "white";
+            } else {
+                btn.innerText = "⚠️ 行程延誤";
+                btn.style.backgroundColor = "#ffc107";
+                btn.style.color = "#212529";
             }
         }
 
