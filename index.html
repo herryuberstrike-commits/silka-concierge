@@ -2451,6 +2451,7 @@
                 waitingStaff: "📞 等待專員接通...",
                 conciergeHours: "✨ 禮賓專員在線時間：10:00 - 23:00",
                 stDelay: "行程延誤",
+                hTxt: "酒店",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2718,6 +2719,7 @@
                 waitingStaff: "📞 等待专员接通...",
                 conciergeHours: "✨ 礼宾专员在线时间：10:00 - 23:00",
                 stDelay: "行程延误",
+                hTxt: "酒店",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2985,6 +2987,7 @@
                 waitingStaff: "📞 Waiting for Staff...",
                 conciergeHours: "✨ Concierge Online Hours: 10:00 - 23:00",
                 stDelay: "Trip Delayed",
+                hTxt: "Hotel",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -3251,6 +3254,7 @@
                 waitingStaff: "📞 スタッフの接続待機中...",
                 conciergeHours: "✨ コンシェルジュ対応時間：10:00 - 23:00",
                 stDelay: "運行遅延",
+                hTxt: "ホテル",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -3518,6 +3522,7 @@
                 waitingStaff: "📞 상담원 연결 대기 중...",
                 conciergeHours: "✨ 컨시어지 온라인 시간: 10:00 - 23:00",
                 stDelay: "운행 지연",
+                hTxt: "호텔",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3785,6 +3790,7 @@
                 waitingStaff: "📞 Đang chờ kết nối...",
                 conciergeHours: "✨ Giờ trực tuyến của Nhân viên Lễ tân: 10:00 - 23:00",
                 stDelay: "운행 지연",
+                hTxt: "Khách sạn",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -4055,6 +4061,7 @@
                 waitingStaff: "📞 स्टाफ से जुड़ने का इंतज़ार...",
                 conciergeHours: "✨ दरबान ऑनलाइन hours: 10:00 - 23:00",
                 stDelay: "운행 지연",
+                hTxt: "होटल",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -4319,6 +4326,7 @@
                 waitingStaff: "📞 Naghihintay sa staff...",
                 conciergeHours: "✨ Oras ng Online ng Concierge: 10:00 - 23:00",
                 stDelay: "Naantalang Biyahe",
+                hTxt: "Hotel",
 
             }
         };
@@ -4797,6 +4805,7 @@
                 'ui-waiting-staff': (langData.waitingStaff || '📞 等待專員接通...'),
                 'ui-concierge-hours': (langData.conciergeHours || '✨ 禮賓專員在線時間：10:00 - 23:00'),
                 stDelay: (langData.stDelay || '行程延誤'),
+                'ui-hotel-txt': (langData.hTxt || '酒店'),
             };
 
             // 🟢 加喺呢度！自動更新 AI 發送按鈕與輸入框 Placeholder
@@ -5015,8 +5024,7 @@
 
                 let timeInfoHtml = bus.isLunch ?
                     `<strong>🕒 ${bus.hotel}</strong> ➔ ${langData.lunchBreak}` :
-                    `<strong>酒店 🕒 ${bus.hotel}</strong><br><span style="font-size:11px; color:#666;">➔ ${langData.kwaiFong} ${bus.kwaiFong} ➔ ${langData.tsuenWanWest} ${bus.tsuenWanWest}</span>`;
-
+`<strong>${langData.hTxt || '酒店'} 🕒 ${bus.hotel}</strong><br><span style="font-size:11px; color:#666;">➔ ${langData.kwaiFong} ${bus.kwaiFong} ➔ ${langData.tsuenWanWest} ${bus.tsuenWanWest}</span>`;
                 item.innerHTML = `
                 <div>
                     ${nextBadgeHtml}
