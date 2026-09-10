@@ -1002,3 +1002,85 @@ Pici（灣仔）： 主打手工現做義大利麵，價格親民且氣氛輕鬆
 • 無限流量：住宿期間不限流量、不限裝置數量，讓您隨時隨地與親友保持緊密聯繫或處理公務。
 • 技術支援：如在連線時遇到任何訊號微弱或登入困難，請致電客房服務部，我們將有專人為您即時跟進。
 `;
+window.t = {
+    'zh-HK': {
+        botName: 'AI 禮賓部',
+        agentName: '禮賓專員',
+        guestName: '您',
+        sendBtn: '發送',
+        inputPlaceholder: '請輸入您想查詢的問題...',
+        botBtn: '智能AI禮賓部',
+        startHumanMsg: '系統：已為您轉接禮賓專員，請稍候...',
+        endHumanBtn: '結束真人對話'
+    },
+    'zh-CN': {
+        botName: 'AI 礼宾部',
+        agentName: '礼宾专员',
+        guestName: '您',
+        sendBtn: '发送',
+        inputPlaceholder: '请输入您想查询的问题...',
+        botBtn: '智能AI礼宾部',
+        startHumanMsg: '系统：已为您转接礼宾专员，请稍候...',
+        endHumanBtn: '结束真人对话'
+    },
+    'en': {
+        botName: 'AI Concierge',
+        agentName: 'Concierge Officer',
+        guestName: 'You',
+        sendBtn: 'Send',
+        inputPlaceholder: 'Type your message here...',
+        botBtn: 'Smart AI Concierge',
+        startHumanMsg: 'System: Transferred to a concierge officer, please wait...',
+        endHumanBtn: 'End Chat'
+    },
+    'ja': {
+        botName: 'AIコンシェルジュ',
+        agentName: 'コンシェルジュ係員',
+        guestName: 'あなた',
+        sendBtn: '送信',
+        inputPlaceholder: 'ご質問を入力してください...',
+        botBtn: 'スマートAIコンシェルジュ',
+        startHumanMsg: 'システム：コンシェルジュ係員に接続しました。お待ちください...',
+        endHumanBtn: 'チャット終了'
+    },
+    'ko': {
+        botName: 'AI 컨시어지',
+        agentName: '컨시어지 담당자',
+        guestName: '방문객',
+        sendBtn: '전송',
+        inputPlaceholder: '궁금하신 점을 입력해 주세요...',
+        botBtn: '스마트 AI 컨시어지',
+        startHumanMsg: '시스템: 컨시어지 담당자에게 연결되었습니다. 잠시만 기다려주세요...',
+        endHumanBtn: '상담 종료'
+    },
+    'vi': {
+        botName: 'AI Lễ tân',
+        agentName: 'Nhân viên lễ tân',
+        guestName: 'Bạn',
+        sendBtn: 'Gửi',
+        inputPlaceholder: 'Nhập câu hỏi của bạn tại đây...',
+        botBtn: 'Lễ tân AI thông minh',
+        startHumanMsg: 'Hệ thống: Đã chuyển cho nhân viên lễ tân, vui lòng đợi...',
+        endHumanBtn: 'Kết thúc trò chuyện'
+    },
+    'hi': {
+        botName: 'एआई दरبان',
+        agentName: 'दरबान अधिकारी',
+        guestName: 'आप',
+        sendBtn: 'भेजें',
+        inputPlaceholder: 'यहाँ अपना प्रश्न दर्ज करें...',
+        botBtn: 'स्मार्ट एआई दरबान',
+        startHumanMsg: 'सिस्टम: दरबान अधिकारी को स्थानांतरित किया गया, कृपया प्रतीक्षा करें...',
+        endHumanBtn: 'चैट समाप्त करें'
+    },
+    'fil': {
+        botName: 'AI Concierge',
+        agentName: 'Concierge Officer',
+        guestName: 'Ikaw',
+        sendBtn: 'Ipadala',
+        inputPlaceholder: 'I-type ang iyong tanong dito...',
+        botBtn: 'Smart AI Concierge',
+        startHumanMsg: 'Sistema: Inilipat sa concierge officer, mangyaring maghintay...',
+        endHumanBtn: 'Tapusin ang Chat'
+    }
+};
