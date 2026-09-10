@@ -1003,7 +1003,7 @@ Pici（灣仔）： 主打手工現做義大利麵，價格親民且氣氛輕鬆
 • 技術支援：如在連線時遇到任何訊號微弱或登入困難，請致電客房服務部，我們將有專人為您即時跟進。
 `;
 window.t = {
-    'zh-HK': {
+    '繁體中文': {
         botName: 'AI 禮賓部',
         agentName: '禮賓專員',
         guestName: '您',
@@ -1013,7 +1013,7 @@ window.t = {
         startHumanMsg: '系統：已為您轉接禮賓專員，請稍候...',
         endHumanBtn: '結束真人對話'
     },
-    'zh-CN': {
+    '簡體中文': {
         botName: 'AI 礼宾部',
         agentName: '礼宾专员',
         guestName: '您',
@@ -1023,7 +1023,7 @@ window.t = {
         startHumanMsg: '系统：已为您转接礼宾专员，请稍候...',
         endHumanBtn: '结束真人对话'
     },
-    'en': {
+    'English': {
         botName: 'AI Concierge',
         agentName: 'Concierge Officer',
         guestName: 'You',
@@ -1033,7 +1033,7 @@ window.t = {
         startHumanMsg: 'System: Transferred to a concierge officer, please wait...',
         endHumanBtn: 'End Chat'
     },
-    'ja': {
+    '日本語': {
         botName: 'AIコンシェルジュ',
         agentName: 'コンシェルジュ係員',
         guestName: 'あなた',
@@ -1043,7 +1043,7 @@ window.t = {
         startHumanMsg: 'システム：コンシェルジュ係員に接続しました。お待ちください...',
         endHumanBtn: 'チャット終了'
     },
-    'ko': {
+    '한국어': {
         botName: 'AI 컨시어지',
         agentName: '컨시어지 담당자',
         guestName: '방문객',
@@ -1053,7 +1053,7 @@ window.t = {
         startHumanMsg: '시스템: 컨시어지 담당자에게 연결되었습니다. 잠시만 기다려주세요...',
         endHumanBtn: '상담 종료'
     },
-    'vi': {
+    'Tiếng Việt': {
         botName: 'AI Lễ tân',
         agentName: 'Nhân viên lễ tân',
         guestName: 'Bạn',
@@ -1063,7 +1063,7 @@ window.t = {
         startHumanMsg: 'Hệ thống: Đã chuyển cho nhân viên lễ tân, vui lòng đợi...',
         endHumanBtn: 'Kết thúc trò chuyện'
     },
-    'hi': {
+    'हिन्दी': {
         botName: 'एआई दरبان',
         agentName: 'दरबान अधिकारी',
         guestName: 'आप',
@@ -1073,7 +1073,7 @@ window.t = {
         startHumanMsg: 'सिस्टम: दरबान अधिकारी को स्थानांतरित किया गया, कृपया प्रतीक्षा करें...',
         endHumanBtn: 'चैट समाप्त करें'
     },
-    'fil': {
+    'Tagalog': {
         botName: 'AI Concierge',
         agentName: 'Concierge Officer',
         guestName: 'Ikaw',

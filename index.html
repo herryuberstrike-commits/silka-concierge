@@ -4481,36 +4481,22 @@
             'fil': ['Tagalog', 'Kumusta! Paano kita matutulungan ngayon?']
         };
 
-      function selectLang(lang) {
-    currentLang = lang;
-    if (typeof mySessionId !== 'undefined' && mySessionId) {
-        db.ref('chatStatus/' + mySessionId + '_lang').set(lang);
-    }
-    document.getElementById('lang-modal').style.display = 'none';
-    document.getElementById('mainContainer').style.display = 'block';
-    
-    updateUIText();
-    renderBusSchedule();
-    fetchHKOWeather(lang);
+        function selectLang(lang) {
+            currentLang = lang;
+            if (typeof mySessionId !== 'undefined' && mySessionId) {
+                db.ref('chatStatus/' + mySessionId + '_lang').set(lang);
+            }
+            document.getElementById('lang-modal').style.display = 'none';
+            document.getElementById('mainContainer').style.display = 'block';
+            updateUIText();
+            renderBusSchedule();
+            fetchHKOWeather(lang);
 
-    // 🟢【新增】強制同步更新 AI 對話框底部的輸入框與按鈕
-    const i18n = (window.t && window.t[lang]) ? window.t[lang] : {};
-    
-    const sendBtn = document.getElementById('ai-send-btn');
-    if (sendBtn) {
-        sendBtn.innerText = i18n.sendBtn || '發送';
-    }
-
-    const chatInput = document.getElementById('ai-user-input');
-    if (chatInput) {
-        chatInput.placeholder = i18n.inputPlaceholder || '請輸入您想查詢的問題...';
-    }
-
-    // 連動觸發 AI 切換語言與發送歡迎語
-    if (aiLangMap && aiLangMap[lang] && typeof selectLanguage === 'function') {
-        selectLanguage(aiLangMap[lang][0], aiLangMap[lang][1]);
-    }
-}
+            // 連動觸發 AI 切換語言與發送歡迎語
+            if (aiLangMap[lang] && typeof selectLanguage === 'function') {
+                selectLanguage(aiLangMap[lang][0], aiLangMap[lang][1]);
+            }
+        }
 
         function updateUIText() {
             const langData = t[currentLang] || t['zh-HK'];
