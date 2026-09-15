@@ -5125,7 +5125,7 @@
     <script>
         // 1. 全域變數寫死，避免 Duplicate Declaration 錯誤
         window.currentLang = '繁體中文';
-        const DEEPSEEK_API_KEY = "sk-dabca7727e3845279201d1cd256af736";
+        const DEEPSEEK_API_KEY = "";
 
         // 2. 控制介面開關
         function toggleLangSelector() {
@@ -5341,12 +5341,11 @@
             const knowledgeData = typeof HOTEL_KNOWLEDGE !== 'undefined' ? HOTEL_KNOWLEDGE : '';
 
             try {
-                const response = await fetch('https://api.deepseek.com/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + DEEPSEEK_API_KEY
-                    },
+               const response = await fetch('https://my-express-proxy-five.vercel.app/api/chat', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
                     body: JSON.stringify({
                         model: "deepseek-chat",
                         messages: [
@@ -5516,12 +5515,11 @@
             const knowledgeData = typeof HOTEL_KNOWLEDGE !== 'undefined' ? HOTEL_KNOWLEDGE : '';
 
             try {
-                const response = await fetch('https://api.deepseek.com/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + DEEPSEEK_API_KEY
-                    },
+                const response = await fetch('https://my-express-proxy-five.vercel.app/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
                     body: JSON.stringify({
                         model: "deepseek-chat",
                         messages: [
