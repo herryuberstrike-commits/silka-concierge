@@ -2105,9 +2105,9 @@
         // 計算即時行車狀況 (頂部 Banner)
         function getRealtimeStatusText(currentMinutes, langData) {
             // 🟢 新增這段在最頂部
-            
+
             if (isLiveStatusDelayed) {
-        return langData.stDelay || "行程延誤";
+                return langData.stDelay || "行程延誤";
             }
             if (isLiveStatusPaused) {
                 return langData.stOut || "暫停服務";
@@ -2452,6 +2452,7 @@
                 conciergeHours: "✨ 禮賓專員在線時間：10:00 - 23:00",
                 stDelay: "行程延誤",
                 hTxt: "酒店",
+                thinking: "正在思考中...",
             },
             'zh-CN': {
                 title: "荃湾丝丽酒店 - 礼宾部",
@@ -2720,6 +2721,7 @@
                 conciergeHours: "✨ 礼宾专员在线时间：10:00 - 23:00",
                 stDelay: "行程延误",
                 hTxt: "酒店",
+                thinking: "正在思考中...",
             },
             'en': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -2988,6 +2990,7 @@
                 conciergeHours: "✨ Concierge Online Hours: 10:00 - 23:00",
                 stDelay: "Trip Delayed",
                 hTxt: "Hotel",
+                thinking: "Thinking...",
             },
             'ja': {
                 title: "シルカ・ツェンワン - コンシェルジュ",
@@ -3255,6 +3258,7 @@
                 conciergeHours: "✨ コンシェルジュ対応時間：10:00 - 23:00",
                 stDelay: "運行遅延",
                 hTxt: "ホテル",
+                thinking: "思考中...",
             },
             'ko': {
                 title: "실카 취언완 - 컨시어지",
@@ -3523,6 +3527,7 @@
                 conciergeHours: "✨ 컨시어지 온라인 시간: 10:00 - 23:00",
                 stDelay: "운행 지연",
                 hTxt: "호텔",
+                thinking: "생각 중...",
             },
             'vi': {
                 title: "Silka Tsuen Wan - Tiền sảnh",
@@ -3791,6 +3796,7 @@
                 conciergeHours: "✨ Giờ trực tuyến của Nhân viên Lễ tân: 10:00 - 23:00",
                 stDelay: "운행 지연",
                 hTxt: "Khách sạn",
+                thinking: "Đang suy nghĩ...",
             },
             'hi': {
                 title: "सिलका त्सुएन वान - दरबान",
@@ -4062,6 +4068,7 @@
                 conciergeHours: "✨ दरबान ऑनलाइन hours: 10:00 - 23:00",
                 stDelay: "운행 지연",
                 hTxt: "होटल",
+                thinking: "सोच रहा हूँ...",
             },
             'fil': {
                 title: "Silka Tsuen Wan - Concierge",
@@ -4327,6 +4334,7 @@
                 conciergeHours: "✨ Oras ng Online ng Concierge: 10:00 - 23:00",
                 stDelay: "Naantalang Biyahe",
                 hTxt: "Hotel",
+                thinking: "Nagiisip...",
 
             }
         };
@@ -4806,6 +4814,7 @@
                 'ui-concierge-hours': (langData.conciergeHours || '✨ 禮賓專員在線時間：10:00 - 23:00'),
                 stDelay: (langData.stDelay || '行程延誤'),
                 'ui-hotel-txt': (langData.hTxt || '酒店'),
+                'ui-thinking-txt': (langData.thinking || '正在思考中...'),
             };
 
             // 🟢 加喺呢度！自動更新 AI 發送按鈕與輸入框 Placeholder
@@ -5024,7 +5033,7 @@
 
                 let timeInfoHtml = bus.isLunch ?
                     `<strong>🕒 ${bus.hotel}</strong> ➔ ${langData.lunchBreak}` :
-`<strong>${langData.hTxt || '酒店'} 🕒 ${bus.hotel}</strong><br><span style="font-size:11px; color:#666;">➔ ${langData.kwaiFong} ${bus.kwaiFong} ➔ ${langData.tsuenWanWest} ${bus.tsuenWanWest}</span>`;
+                    `<strong>${langData.hTxt || '酒店'} 🕒 ${bus.hotel}</strong><br><span style="font-size:11px; color:#666;">➔ ${langData.kwaiFong} ${bus.kwaiFong} ➔ ${langData.tsuenWanWest} ${bus.tsuenWanWest}</span>`;
                 item.innerHTML = `
                 <div>
                     ${nextBadgeHtml}
@@ -5341,11 +5350,11 @@
             const knowledgeData = typeof HOTEL_KNOWLEDGE !== 'undefined' ? HOTEL_KNOWLEDGE : '';
 
             try {
-               const response = await fetch('https://my-express-proxy-five.vercel.app/api/chat', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
+                const response = await fetch('https://my-express-proxy-five.vercel.app/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
                         model: "deepseek-chat",
                         messages: [
@@ -5516,10 +5525,10 @@
 
             try {
                 const response = await fetch('https://my-express-proxy-five.vercel.app/api/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
                         model: "deepseek-chat",
                         messages: [
